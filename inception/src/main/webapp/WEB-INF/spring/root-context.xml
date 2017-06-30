@@ -37,7 +37,8 @@
 	</bean>
 <!-- 	base-package를 기준으로 모든 패키지를 자동으로 Bean등록 -->
 <!-- 	단, @Repository난 @Service 등 Annotation이 붙은 클래스만 등록 -->
-	<context:component-scan base-package="kr.co.shop.dao"/>
+	<context:component-scan base-package="kr.co.inception.dao"/>
+	<context:component-scan base-package="kr.co.inception.service"/>
 	<!-- aop 설정하기 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<context:component-scan base-package="kr.co.shop.aop"></context:component-scan>	
