@@ -63,34 +63,25 @@
         </p>
 
         <p style="text-align: right;">
-        <c:choose>
-        <c:when test="${not empty sessionScope.loginInfo}">
           <a href="#"><input type="submit" name="Profile" value="Profile"></a>
-          ${sessionScope.loginInfo.userid}님 개반갑
-          </c:when>
-          <c:otherwise>
-          <a href="/user/login"><input type="submit" name="LOGIN" value="LOGIN"></a>
-           
-           </c:otherwise>
-</c:choose>
+          <a href="LoginForm_adjust_CSS.html"><input type="submit" name="LOGIN" value="LOGIN"></a>
+
 
 
         </p>
-       
-
-      </p>
-
-      </p>
 
     </header>
 
     <nav>
 
       <div>
-<c:forEach var="vo" items="${categoryList }">
-<a href="/${vo.category }"><input type="submit" name="category1" value=${vo.category }></a>
 
-</c:forEach>
+<a href="#"><input type="submit" name="category1" value="category1"></a>
+<a href="#"><input type="submit" name="category2" value="category2"></a>
+<a href="#"><input type="submit" name="category3" value="category3"></a>
+<a href="#"><input type="submit" name="category4" value="category4"></a>
+<a href="#"><input type="submit" name="category5" value="category5"></a>
+
       </div>
 
     </nav>
