@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: KimTY
 Build-Jdk: 1.8.0_121
-=======
-Built-By: KIBEOM
-Build-Jdk: 1.8.0_131
->>>>>>> cdc85fcfc632a16e8704a821ffb9cb57db153bfa
 Created-By: Maven Integration for Eclipse
 
