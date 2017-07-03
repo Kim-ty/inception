@@ -70,7 +70,7 @@ article {
 						<a href="#"><input type="submit" name="Profile"
 							value="Profile"></a>
           
-          <a href="#"><input type="submit" name="Log out"
+          <a href="/user/logout"><input type="submit" name="Log out"
 							value="Log out"></a>
 
 					</c:when>
