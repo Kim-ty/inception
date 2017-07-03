@@ -44,7 +44,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="joinchk",method=RequestMethod.POST)
-	public String joinUser(JoinDTO joinDTO) {
+	public String joinUser(JoinDTO joinDTO) throws Exception{
+		
 		userService.joinUser(joinDTO);
 		
 		return "redirect:/";
@@ -52,11 +53,22 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/idchk")
-	public @ResponseBody int duplicationCheck(@ModelAttribute("joinDTO") JoinDTO joinDTO) throws Exception {
+	public @ResponseBody int duplicationIdCheck(@ModelAttribute("joinDTO") JoinDTO joinDTO) throws Exception {
 		System.out.println("아이디체크중");
 		System.out.println(joinDTO.getUserid());
 		
 		int result = userService.idchk(joinDTO);
+		System.out.println(result);
+
+		return result;
+	}
+	
+	@RequestMapping(value = "/emailchk")
+	public @ResponseBody int duplicationEmailCheck(@ModelAttribute("joinDTO") JoinDTO joinDTO) throws Exception {
+		System.out.println("이메일체크중");
+		System.out.println(joinDTO.getUseremail());
+		
+		int result = userService.emailchk(joinDTO);
 		System.out.println(result);
 
 		return result;

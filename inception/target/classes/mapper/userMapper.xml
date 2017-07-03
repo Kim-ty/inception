@@ -10,14 +10,12 @@
 		insert into tb_user(userid,
 							userpw,
 							useremail,
-							profilepicture,
 							joindate,
 							sex) 
 							values(
 									#{userid},
 									#{userpw},
 									#{useremail},
-									#{profilepicture},
 									sysdate,
 									#{sex})
 									]]>
@@ -38,6 +36,12 @@
 	<select id="idchk" resultType="int">
 		<![CDATA[
 			select count(*) from tb_user where userid=#{userid}
+		]]>
+	</select>
+	
+	<select id="emailchk" resultType="int">
+		<![CDATA[
+			select count(*) from tb_user where useremail=#{useremail}
 		]]>
 	</select>
 	

@@ -38,4 +38,9 @@ public class UserServiceImpl implements UserService{
 		return userDao.idchk(joinDTO);
 	}
 
+	@Override
+	public int emailchk(JoinDTO joinDTO) {
+		return userDao.emailchk(joinDTO);
+	}
+
 }

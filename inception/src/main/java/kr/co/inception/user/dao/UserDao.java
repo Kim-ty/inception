@@ -12,5 +12,6 @@ public interface UserDao {
 	public LoginVO loginUser(LoginDTO loginDTO);
 	public int UpdateUser(UpdateUserDTO updateuserDTO);
 	public int idchk(JoinDTO joinDTO);
+	public int emailchk(JoinDTO joinDTO);
 
 }

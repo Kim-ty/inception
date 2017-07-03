@@ -12,6 +12,8 @@ public interface UserService {
 	public LoginVO loginUser(LoginDTO loginDTO);
 	public int updateUser(UpdateUserDTO updateuserDTO);
 	public int idchk(JoinDTO joinDTO);
+	public int emailchk(JoinDTO joinDTO);
+	
 	
 
 }

@@ -44,6 +44,23 @@ $(document).ready(function(){
 		  
 		 });
 	
+	$("#useremail").blur(function(){
+		 var userinfo = $("#insert_form").serialize();
+		$.ajax({
+			type:"GET",
+			url:"/user/emailchk",
+			data:userinfo,
+			success:function(emailchk){
+				if(1==emailchk){
+					$("#content4").text("중복된 이메일입니다").css("color","red");
+				}else{
+					$("#content4").text("사용가능한 이메일 입니다").css("color","blue");
+				}
+				
+			}
+		}); 
+	 });
+	
 	 $("#userid").blur(function(){
 		 var userinfo = $("#insert_form").serialize();
 		$.ajax({
@@ -97,17 +114,13 @@ $(document).ready(function(){
             <div class="form-group">
               <label for="useremail">Email</label>
               <input id="useremail" type="text" name="useremail" class="form-control" placeholder="Enter Your Email" />
+              <span id="content4"> </span>
             </div>
             
              <div class="form-group">
               <label for="useremail2">re - Email</label>
               <input id="useremail2" type="text" name="useremail2" class="form-control" placeholder="Enter Your Email" />
               <span id="content3"> </span>
-            </div>
-            
-             <div class="form-group">
-              <label for="profilepicture">profilepicture</label>
-              <input id="profilepicture" type="text" name="profilepicture" class="form-control" placeholder="Insert the jpgfile" />
             </div>
             
             <div class="form-group">

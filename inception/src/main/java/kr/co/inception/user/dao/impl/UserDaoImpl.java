@@ -38,4 +38,9 @@ public class UserDaoImpl implements UserDao {
 		return sqlSession.selectOne(namespace + ".idchk", joinDTO);
 	}
 
+	@Override
+	public int emailchk(JoinDTO joinDTO) {
+		return sqlSession.selectOne(namespace + ".emailchk", joinDTO);
+	}
+
 }
