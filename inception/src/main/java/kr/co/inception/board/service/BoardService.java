@@ -1,5 +1,7 @@
 package kr.co.inception.board.service;
 
+import java.util.List;
+
 import kr.co.inception.board.dto.BadDTO;
 import kr.co.inception.board.dto.BoardInsertDTO;
 import kr.co.inception.board.dto.BoardUpdateDTO;
@@ -12,19 +14,22 @@ import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.board.vo.BoardSimpleVO;
 import kr.co.inception.board.vo.GooderListVO;
 import kr.co.inception.board.vo.ReplyListVO;
+import kr.co.inception.board.vo.ScraperListVO;
 
 public interface BoardService {
+
 	public void boardInsert(BoardInsertDTO boardInsertDTO);
 	public void boardUpdate(BoardUpdateDTO boardUpdateDTO);
 	public void replyInsert(ReplyDTO replyDTO);
 	public void Scrape(ScrapeDTO scrapeDTO);
 	public void good(GoodDTO goodDTO);
 	public void bad(BadDTO badDTO);
-	public BoardListVO showBoardList();
+	public List<BoardListVO> showBoardList();
 	public BoardDetailVO showBoardDetail(String bidx);
 	public BoardSimpleVO showBoardSimple(String bidx);
-	public GooderListVO showGooderList();
-	public BaderListVO showBaderList();
-	public ReplyListVO showReplyList();
+	public List<GooderListVO> showGooderList();
+	public List<BaderListVO> showBaderList();
+	public List<ReplyListVO> showReplyList();
+	public List<ScraperListVO> showScraperList();
 	
 }
