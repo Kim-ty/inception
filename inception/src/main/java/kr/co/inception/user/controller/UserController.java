@@ -1,9 +1,12 @@
 package kr.co.inception.user.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,7 +22,7 @@ import kr.co.inception.user.vo.LoginVO;
 public class UserController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-
+	
 //	각 리턴값(뷰 이동)과 urlmapping은 수정해야함
 	
 	@Autowired
@@ -44,11 +47,13 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="loginchk",method=RequestMethod.POST)
-	public String loginUser(LoginDTO loginDTO){
+	public String loginUser(LoginDTO loginDTO,Model model,HttpSession session){
 		LoginVO loginVO = userService.loginUser(loginDTO);
 		System.out.println(loginVO);
+		model.addAttribute("loginInfo",loginVO);
+		session.setAttribute("loginInfo",loginVO);
 		System.out.println("로그인성공");
-		return "redirect:/login";
+		return "redirect:/";
 		
 	}
 	

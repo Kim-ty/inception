@@ -63,12 +63,20 @@
         </p>
 
         <p style="text-align: right;">
+        <c:choose>
+        <c:when test="${not empty sessionScope.loginInfo}">
           <a href="#"><input type="submit" name="Profile" value="Profile"></a>
+          ${sessionScope.loginInfo.userid}님 개반갑
+          </c:when>
+          <c:otherwise>
           <a href="/user/login"><input type="submit" name="LOGIN" value="LOGIN"></a>
-
+           
+           </c:otherwise>
+</c:choose>
 
 
         </p>
+       
 
       </p>
 
