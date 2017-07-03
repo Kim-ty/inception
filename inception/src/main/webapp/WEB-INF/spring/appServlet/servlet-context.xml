@@ -22,7 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="kr.co.inception.controller" />
-	
+	<context:component-scan base-package="kr.co.inception" />
 	
 	
 </beans:beans>
