@@ -56,7 +56,7 @@ article {
 			<h1>Image Searching</h1>
 			<p style="text-align: center;">
 			<p style="text-align: left;">
-				<a href="Main.html"><img
+				<a href="/"><img
 					src="http://kinimage.naver.net/20170630_163/1498780202972xwE1E_GIF/3477def4c30cd39d708e90448a3db9a5.gif?type=w620"
 					alt="logo" style="width: 200px; height: 200px;" /> <img
 					src="http://kinimage.naver.net/20170412_168/1491991851891x1pH6_GIF/1491991849429.gif?type=w620"

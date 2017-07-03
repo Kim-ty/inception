@@ -34,6 +34,13 @@
 	<update id="UpdateUser">
   		<![CDATA[UPDATE tb_user set userpw = #{userpw} , useremail =#{useremail}, profilepicture = #{profilepicture}, sex=#{sex} where userid=#{userid}]]>
 	</update>
+	
+	<select id="checkId"
+    resultType="java.lang.Integer">
+    SELECT NVL(COUNT(*),0)
+    FROM tb_user WHERE ID=#{id}
+</select>
+	
   
   
   

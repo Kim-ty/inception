@@ -25,7 +25,7 @@
       <div class="col-md-3">
         <div class="login-box well">
 
-          <form role="form" method="post" action="#">
+          <form role="form" method="post" action="/user/joinchk">
             <legend>Join</legend>
 
             <div class="form-group">
@@ -34,24 +34,35 @@
             </div>
 
             <div class="form-group">
-              <label for="password1">password</label>
-              <input id="password1" type="password" name="password1" class="form-control" placeholder="Enter Your password" />
+              <label for="uesrpw">password</label>
+              <input id="userpw" type="password" name="userpw" class="form-control" placeholder="Enter Your password" />
             </div>
 
             <div class="form-group">
-              <label for="password2">re-password</label>
-              <input id="password2" type="password" name="password2" class="form-control" placeholder="Enter Your password" />
-            </div>
-
-            <div class="form-group">
-              <label for="username">username</label>
-              <input id="username" type="text" name="username" class="form-control" placeholder="Enter your Name" />
+              <label for="userpw2">re-password</label>
+              <input id="userpw2" type="password" name="userpw2" class="form-control" placeholder="Enter Your password" />
             </div>
 
             <div class="form-group">
               <label for="useremail">Email</label>
               <input id="useremail" type="text" name="useremail" class="form-control" placeholder="Enter Your Email" />
             </div>
+            
+             <div class="form-group">
+              <label for="useremail2">re - Email</label>
+              <input id="useremail2" type="text" name="useremail2" class="form-control" placeholder="Enter Your Email" />
+            </div>
+            
+             <div class="form-group">
+              <label for="profilepicture">profilepicture</label>
+              <input id="profilepicture" type="text" name="profilepicture" class="form-control" placeholder="Insert the jpgfile" />
+            </div>
+            
+            <div class="form-group">
+              <label for="sex">SEX</label>
+              <input id="sex" type="text" name="sex" class="form-control" placeholder="Enter Your sex" />
+            </div>
+            
 
 
             <div class="form-group">

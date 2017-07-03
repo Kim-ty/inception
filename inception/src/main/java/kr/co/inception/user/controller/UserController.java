@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.inception.user.dto.JoinDTO;
 import kr.co.inception.user.dto.LoginDTO;
@@ -42,9 +43,14 @@ public class UserController {
 	public String joinUser(JoinDTO joinDTO) {
 		userService.joinUser(joinDTO);
 		
-		return "redirect:/login";
+		return "redirect:/";
 		
 	}
+	
+//	@RequestMapping(value = "checkId", method = RequestMethod.GET)
+//    public @ResponseBody int idCheck(JYUser user, Model model) {
+//        return jYUserService.checkId(user);
+//    }
 	
 	@RequestMapping(value="loginchk",method=RequestMethod.POST)
 	public String loginUser(LoginDTO loginDTO,Model model,HttpSession session){
