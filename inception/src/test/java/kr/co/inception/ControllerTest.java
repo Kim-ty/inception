@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import kr.co.inception.service.UserService;
+import kr.co.inception.user.service.UserService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)

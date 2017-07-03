@@ -1,4 +1,4 @@
-package kr.co.inception.dto;
+package kr.co.inception.user.dto;
 
 public class LoginDTO {
 	private String userid;

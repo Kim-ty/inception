@@ -1,4 +1,4 @@
-package kr.co.inception.vo;
+package kr.co.inception.user.vo;
 
 public class LoginVO {
 	private String userid;

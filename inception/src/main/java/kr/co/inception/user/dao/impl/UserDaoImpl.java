@@ -1,19 +1,19 @@
-package kr.co.inception.dao.impl;
+package kr.co.inception.user.dao.impl;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.co.inception.dao.UserDao;
-import kr.co.inception.dto.JoinDTO;
-import kr.co.inception.dto.LoginDTO;
-import kr.co.inception.dto.UpdateUserDTO;
-import kr.co.inception.vo.LoginVO;
+import kr.co.inception.user.dao.UserDao;
+import kr.co.inception.user.dto.JoinDTO;
+import kr.co.inception.user.dto.LoginDTO;
+import kr.co.inception.user.dto.UpdateUserDTO;
+import kr.co.inception.user.vo.LoginVO;
 
 @Repository
 public class UserDaoImpl implements UserDao{
 	
-private static final String namespace="kr.co.shop.mapper.userMapper";
+private static final String namespace="kr.co.inception.mapper.userMapper";
 
 	
 	@Autowired

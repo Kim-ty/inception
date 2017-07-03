@@ -1,14 +1,14 @@
-package kr.co.inception.service.impl;
+package kr.co.inception.user.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.inception.dao.UserDao;
-import kr.co.inception.dto.JoinDTO;
-import kr.co.inception.dto.LoginDTO;
-import kr.co.inception.dto.UpdateUserDTO;
-import kr.co.inception.service.UserService;
-import kr.co.inception.vo.LoginVO;
+import kr.co.inception.user.dao.UserDao;
+import kr.co.inception.user.dto.JoinDTO;
+import kr.co.inception.user.dto.LoginDTO;
+import kr.co.inception.user.dto.UpdateUserDTO;
+import kr.co.inception.user.service.UserService;
+import kr.co.inception.user.vo.LoginVO;
 
 @Service
 public class UserServiceImpl implements UserService{

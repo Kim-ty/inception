@@ -23,7 +23,7 @@
 									]]>
 	</insert>
 	
-	<select id="loginUser" resultType="kr.co.inception.vo.LoginVO">
+	<select id="loginUser" resultType="kr.co.inception.user.vo.LoginVO">
 		<![CDATA[
 			select userid,useremail,profilepicture,sex
 			 from tb_user 

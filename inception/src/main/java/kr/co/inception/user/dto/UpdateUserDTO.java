@@ -1,17 +1,11 @@
-package kr.co.inception.dto;
+package kr.co.inception.user.dto;
 
-public class JoinDTO {
+public class UpdateUserDTO {
 	private String userid;
 	private String userpw;
 	private String useremail;
 	private String profilepicture;
 	private String sex;
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
 	public String getUserid() {
 		return userid;
 	}
@@ -36,9 +30,15 @@ public class JoinDTO {
 	public void setProfilepicture(String profilepicture) {
 		this.profilepicture = profilepicture;
 	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 	@Override
 	public String toString() {
-		return "JoinDTO [userid=" + userid + ", userpw=" + userpw + ", useremail=" + useremail + ", profilepicture="
-				+ profilepicture + ", sex=" + sex + "]";
+		return "UpdateUserDTO [userid=" + userid + ", userpw=" + userpw + ", useremail=" + useremail
+				+ ", profilepicture=" + profilepicture + ", sex=" + sex + "]";
 	}
 }

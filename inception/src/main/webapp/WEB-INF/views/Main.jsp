@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -63,7 +64,7 @@
 
         <p style="text-align: right;">
           <a href="#"><input type="submit" name="Profile" value="Profile"></a>
-          <a href="LoginForm_adjust_CSS.html"><input type="submit" name="LOGIN" value="LOGIN"></a>
+          <a href="/user/login"><input type="submit" name="LOGIN" value="LOGIN"></a>
 
 
 
@@ -78,13 +79,10 @@
     <nav>
 
       <div>
+<c:forEach var="vo" items="${categoryList }">
+<a href="/${vo.category }"><input type="submit" name="category1" value=${vo.category }></a>
 
-<a href="#"><input type="submit" name="category1" value="category1"></a>
-<a href="#"><input type="submit" name="category2" value="category2"></a>
-<a href="#"><input type="submit" name="category3" value="category3"></a>
-<a href="#"><input type="submit" name="category4" value="category4"></a>
-<a href="#"><input type="submit" name="category5" value="category5"></a>
-
+</c:forEach>
       </div>
 
     </nav>

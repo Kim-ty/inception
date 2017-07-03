@@ -1,4 +1,4 @@
-package kr.co.inception.controller;
+package kr.co.inception.user.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,11 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.co.inception.dto.JoinDTO;
-import kr.co.inception.dto.LoginDTO;
-import kr.co.inception.dto.UpdateUserDTO;
-import kr.co.inception.service.UserService;
-import kr.co.inception.vo.LoginVO;
+import kr.co.inception.user.dto.JoinDTO;
+import kr.co.inception.user.dto.LoginDTO;
+import kr.co.inception.user.dto.UpdateUserDTO;
+import kr.co.inception.user.service.UserService;
+import kr.co.inception.user.vo.LoginVO;
 
 
 @Controller
@@ -26,8 +26,13 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping("/join")
-	public String join(){
-		return "join_form";
+	public String move_join(){
+		return "Join";
+	}
+	
+	@RequestMapping("/login")
+	public String move_login(){
+		return "Login";
 	}
 	
 	@RequestMapping(value="joinchk",method=RequestMethod.POST)

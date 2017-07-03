@@ -21,8 +21,9 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="kr.co.inception.controller" />
+	<context:component-scan base-package="kr.co.inception.user.controller" />
 	<context:component-scan base-package="kr.co.inception" />
+	<context:component-scan base-package="kr.co.inception.main.controller" />
 	
 	
 </beans:beans>
