@@ -1,6 +1,6 @@
 package kr.co.inception.board.vo;
 
-public class ReplyVO {
+public class ReplyListVO {
 
 	private String ridx;
 	private String targetreply;

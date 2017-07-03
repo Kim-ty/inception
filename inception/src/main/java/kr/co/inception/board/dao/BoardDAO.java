@@ -1,5 +1,5 @@
 package kr.co.inception.board.dao;
 
-public class qw {
+public class BoardDAO {
 
 }

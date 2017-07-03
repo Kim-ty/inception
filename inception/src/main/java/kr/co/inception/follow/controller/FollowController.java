@@ -1,5 +1,8 @@
 package kr.co.inception.follow.controller;
 
-public class awefaef {
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class FollowController {
 
 }

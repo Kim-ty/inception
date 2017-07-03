@@ -1,6 +1,6 @@
 package kr.co.inception.board.vo;
 
-public class baderListVO {
+public class BaderListVO {
 
 	private String userid;
 
