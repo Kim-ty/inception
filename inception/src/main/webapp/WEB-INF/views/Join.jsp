@@ -57,12 +57,14 @@
             <div class="form-group">
               <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="sign up" />
             </div>
-
-            <div class="form-group">
-              <input type="reset" class="btn btn-default btn-login-submit btn-block m-t-md" value="reset" />
-            </div>
           </form>
-          
+          <form role="form" action="#" method="post">
+            <div class="form-group">
+              <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="reset" />
+            </div>
+
+
+          </form>
         </div>
       </div>
     </div>

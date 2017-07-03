@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
@@ -19,7 +19,7 @@
       <div class="col-md-3">
         <div class="login-box well">
 
-          <form role="form" method="post" action="#">
+          <form role="form" method="post" action="/user/loginchk">
             <legend>Login</legend>
 
             <div class="form-group">
@@ -28,13 +28,13 @@
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input name="password" id="password" placeholder="Password" type="password" class="form-control" />
+              <input name="userpw" id="password" placeholder="Password" type="password" class="form-control" />
             </div>
             <div class="form-group">
               <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="sign in" />
             </div>
           </form>
-          <form role="form" action="JoinForm_adjust_CSS.html" method="post">
+          <form role="form" action="/user/join" method="post">
             <div class="form-group">
               <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="sign up" />
             </div>
