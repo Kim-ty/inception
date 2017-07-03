@@ -8,6 +8,7 @@ import kr.co.inception.user.dto.JoinDTO;
 import kr.co.inception.user.dto.LoginDTO;
 import kr.co.inception.user.dto.UpdateUserDTO;
 import kr.co.inception.user.service.UserService;
+import kr.co.inception.user.vo.JoinVO;
 import kr.co.inception.user.vo.LoginVO;
 
 @Service
@@ -30,6 +31,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public int updateUser(UpdateUserDTO updateuserDTO) {
 		return userDao.UpdateUser(updateuserDTO);
+	}
+
+	@Override
+	public int idchk(JoinDTO joinDTO) {
+		return userDao.idchk(joinDTO);
 	}
 
 }

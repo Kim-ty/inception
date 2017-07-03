@@ -8,6 +8,7 @@ import kr.co.inception.user.dao.UserDao;
 import kr.co.inception.user.dto.JoinDTO;
 import kr.co.inception.user.dto.LoginDTO;
 import kr.co.inception.user.dto.UpdateUserDTO;
+import kr.co.inception.user.vo.JoinVO;
 import kr.co.inception.user.vo.LoginVO;
 
 @Repository
@@ -32,6 +33,11 @@ private static final String namespace="kr.co.inception.mapper.userMapper";
 	@Override
 	public int UpdateUser(UpdateUserDTO updateuserDTO) {
 		return sqlSession.update(namespace+".UpdateUser",updateuserDTO);
+	}
+
+	@Override
+	public int idchk(JoinDTO joinDTO) {
+		return sqlSession.selectOne(namespace+".idchk",joinDTO);
 	}
 
 }

@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +16,7 @@ import kr.co.inception.user.dto.JoinDTO;
 import kr.co.inception.user.dto.LoginDTO;
 import kr.co.inception.user.dto.UpdateUserDTO;
 import kr.co.inception.user.service.UserService;
+import kr.co.inception.user.vo.JoinVO;
 import kr.co.inception.user.vo.LoginVO;
 
 
@@ -47,10 +49,16 @@ public class UserController {
 		
 	}
 	
-//	@RequestMapping(value = "checkId", method = RequestMethod.GET)
-//    public @ResponseBody int idCheck(JYUser user, Model model) {
-//        return jYUserService.checkId(user);
-//    }
+	@RequestMapping(value = "/idchk")
+	public @ResponseBody int duplicationCheck(@ModelAttribute("joinDTO") JoinDTO joinDTO) throws Exception {
+		System.out.println("아이디체크중");
+		System.out.println(joinDTO.getUserid());
+		
+		int result = userService.idchk(joinDTO);
+		System.out.println(result);
+
+		return result;
+	}
 	
 	@RequestMapping(value="loginchk",method=RequestMethod.POST)
 	public String loginUser(LoginDTO loginDTO,Model model,HttpSession session){
