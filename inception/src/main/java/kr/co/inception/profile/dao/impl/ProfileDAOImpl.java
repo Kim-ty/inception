@@ -20,7 +20,7 @@ public class ProfileDAOImpl implements ProfileDAO{
 	
 	
 	@Autowired
-	SqlSession SqlSession;
+	SqlSession sqlSession;
 	
 	@Override
 	public ProfileVO showProfile(ProfileDTO profileDTO) {

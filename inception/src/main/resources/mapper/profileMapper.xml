@@ -5,7 +5,20 @@
 
 <mapper namespace="kr.co.inception.mapper.profileMapper">
 
-  
+	<select id="showProfile" resultType="kr.co.inception.profile.vo.ProfileVO">
+		<![CDATA[
+			select u.userid,u.profilepicture,f.follow,f2.follower
+			from tb_user u,
+  				(select count(follow) as follow
+  				 from userfollow
+  				 where userid = #{userid}) f,
+  				(select count(follower) as follower
+  				 from userfollower
+  				 where userid = #{userid}) f2
+			where userid =#{userid};
+		
+		]]>
+	</select>
   
   
 	
