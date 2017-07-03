@@ -1,7 +1,7 @@
 package kr.co.inception.board.vo;
 
-public class BoardSimple {
-	
+public class BoardDetailVO {
+
 	private String bidx;
 	private String title;
 	private String userid;
@@ -81,10 +81,5 @@ public class BoardSimple {
 	public void setScrapecount(String scrapecount) {
 		this.scrapecount = scrapecount;
 	}
-	
-	
-	
-	
-	
 	
 }
