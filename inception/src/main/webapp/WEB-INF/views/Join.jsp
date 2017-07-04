@@ -23,24 +23,51 @@
 
 $(document).ready(function(){
 	
+	var joinCheck = document.getElementById('join');
+	joinCheck.disabled = true;
+	var idFlag = false;
+	var pwFlag = false;
+	var emailFlag = false;
+	var emailFlag2 = false;
+	var sexFlag = false;
+	
+	$("#sex").click(function(){
+		sexFlag = true;
+		joinChecker();
+	})
+	
 	$("#userpw2").blur(function(){
 		  var pw1 = $("#userpw").val();
 		  var pw2 = $("#userpw2").val();
-		  if(pw1 != pw2){
-			  $("#content2").text("암호가 일치하지 않습니다").css("color","red");
-		  }else{
-			  $("#content2").text("암호가 일치합니다").css("color","blue");
+		  if(pw1.length > 0 && pw2.length >0){
+			  if(pw1 != pw2){
+				  $("#content2").text("암호가 일치하지 않습니다").css("color","red");
+				  pwFlag = false;
+				  joinChecker();
+			  }else{
+				  $("#content2").text("암호가 일치합니다").css("color","blue");
+				  pwFlag = true;
+				  joinChecker();
+			  }
 		  }
+		 
 		  
 		 });
 	$("#useremail2").blur(function(){
 		  var email1 = $("#useremail").val();
 		  var email2 = $("#useremail2").val();
-		  if(email1 != email2){
-			  $("#content3").text("이메일이 일치하지 않습니다").css("color","red");
-		  }else{
-			  $("#content3").text("이메일이 일치합니다").css("color","blue");
+		  if(email1.length > 5 && email2.length > 5){
+			  if(email1 != email2){
+				  $("#content3").text("이메일이 일치하지 않습니다").css("color","red");
+				  emailFlag = false;
+				  joinChecker();
+			  }else{
+				  $("#content3").text("이메일이 일치합니다").css("color","blue");
+				  emailFlag = true;
+				  joinChecker();
+			  }
 		  }
+		  
 		  
 		 });
 	
@@ -53,13 +80,22 @@ $(document).ready(function(){
 			success:function(emailchk){
 				if(1==emailchk){
 					$("#content4").text("중복된 이메일입니다").css("color","red");
+					emailFlag2 = false;
+					joinChecker();
+				}else if(-1==emailchk){
+					$("#content4").text("이메일이 너무짧습니다").css("color","black");
+					emailFlag2 = false;
+					joinChecker();
 				}else{
 					$("#content4").text("사용가능한 이메일 입니다").css("color","blue");
+					emailFlag2 = true;
+					joinChecker();
 				}
 				
 			}
 		}); 
 	 });
+	
 	
 	 $("#userid").blur(function(){
 		 var userinfo = $("#insert_form").serialize();
@@ -70,13 +106,31 @@ $(document).ready(function(){
 			success:function(idchk){
 				if(1==idchk){
 					$("#content").text("중복된 아이디입니다").css("color","red");
+					idFlag = false;
+					joinChecker();
+				}else if(-1==idchk){
+					$("#content").text("아이디가 너무 짧습니다").css("color","black");
+					idFlag = false;
+					joinChecker();
 				}else{
 					$("#content").text("사용가능한 아이디 입니다").css("color","blue");
+					idFlag = true;
+					joinChecker();
 				}
 				
 			}
 		}); 
 	 });
+	function joinChecker(){
+		var joinCheck = document.getElementById('join');
+		if(idFlag == true && pwFlag == true && emailFlag == true && emailFlag2 == true && sexFlag == true){
+			joinCheck.disabled = false;
+		}else{
+			joinCheck.disabled = true;
+		}
+	}
+	 
+	 
 	
 });
 
@@ -133,7 +187,7 @@ $(document).ready(function(){
 
 
             <div class="form-group">
-              <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="sign up" />
+              <input type="submit" id="join" class="btn btn-default btn-login-submit btn-block m-t-md" value="sign up" />
             </div>
             
             <div class="form-group">

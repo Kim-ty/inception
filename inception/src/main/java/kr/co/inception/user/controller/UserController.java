@@ -54,23 +54,21 @@ public class UserController {
 	
 	@RequestMapping(value = "/idchk")
 	public @ResponseBody int duplicationIdCheck(@ModelAttribute("joinDTO") JoinDTO joinDTO) throws Exception {
-		System.out.println("아이디체크중");
-		System.out.println(joinDTO.getUserid());
+		int result = -1;
+		if(joinDTO.getUserid().length()>2){
+			result = userService.idchk(joinDTO);
+		}
 		
-		int result = userService.idchk(joinDTO);
-		System.out.println(result);
 
 		return result;
 	}
 	
 	@RequestMapping(value = "/emailchk")
 	public @ResponseBody int duplicationEmailCheck(@ModelAttribute("joinDTO") JoinDTO joinDTO) throws Exception {
-		System.out.println("이메일체크중");
-		System.out.println(joinDTO.getUseremail());
-		
-		int result = userService.emailchk(joinDTO);
-		System.out.println(result);
-
+		int result = -1;
+		if(joinDTO.getUseremail().length()>5){
+			result = userService.emailchk(joinDTO);
+		}
 		return result;
 	}
 	
