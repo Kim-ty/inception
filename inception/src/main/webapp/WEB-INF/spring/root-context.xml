@@ -30,6 +30,17 @@
 				
 	</bean>
 	
+<!-- 	<bean id="googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory"> -->
+<!-- 	 <constructor-arg value="867095911617-0pin1k4q55m1v19ju0f875hbba4knvq8.apps.googleusercontent.com" /> -->
+<!-- 	  <constructor-arg value="BqH5sDDc3Ptw7ajy8PBiWLYm" />  -->
+<!-- 	 </bean>  -->
+<!-- 	 <bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters"> -->
+<!-- 	  <property name="scope" value="https://www.googleapis.com/auth/plus.login"/>  -->
+	  <!-- <property name="scope" value="https://www.googleapis.com/auth/plus.me"/> -->
+<!-- 	   <property name="redirectUri" value="http://localhost:8080/user/login/google"/>  -->
+<!-- 	   </bean> -->
+
+	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
 		  destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory">
@@ -43,12 +54,13 @@
 	<context:component-scan base-package="kr.co.inception.profile.service"/>
 	<!-- aop 설정하기 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-	<context:component-scan base-package="kr.co.shop.aop"></context:component-scan>	
+	<context:component-scan base-package="kr.co.inception.aop"></context:component-scan>	
 	
 <!-- 	트랜잭션매니저 정의 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 	<property name="dataSource" ref="dataSource"/>
 	</bean>
+	
 	
 <!-- 	Transactional 어노테이션 검색 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>

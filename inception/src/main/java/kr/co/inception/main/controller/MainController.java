@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.inception.main.service.MainService;
 import kr.co.inception.main.vo.CategoryListVO;
@@ -30,10 +33,16 @@ public class MainController {
 			List<CategoryListVO> categoryListVO = mainService.CategoryListView();
 			model.addAttribute("categoryList",categoryListVO);
 			model.addAttribute("categoryListSize",categoryListVO.size());
-			
 			return "Main";
 		}
-	
-	
+		@RequestMapping(value="inception", method=RequestMethod.POST)
+		public String fileUpload(MultipartHttpServletRequest mRequest) {
+			mainService.searchImageUpload(mRequest);
+				System.out.println(mainService.searchImageUpload(mRequest));
+				
+			return "redirect:/";
+
+		}
+
 
 }
