@@ -23,22 +23,22 @@ public class ProfileDAOImpl implements ProfileDAO {
 
 	@Override
 	public ProfileVO showProfile(ProfileDTO profileDTO) {
-		return sqlSession.selectOne(namespace + ".showProfile");
+		return sqlSession.selectOne(namespace + ".showProfile",profileDTO);
 	}
 
 	@Override
 	public List<ProfileBoardListVO> showProfileBoardList(String userid) {
-		return sqlSession.selectList(namespace + ".showProfileBoardList");
+		return sqlSession.selectList(namespace + ".showProfileBoardList",userid);
 	}
 
 	@Override
 	public List<ProfileReplyListVO> showProfileReplyList(String userid) {
-		return sqlSession.selectList(namespace + ".showProfileReplyList");
+		return sqlSession.selectList(namespace + ".showProfileReplyList",userid);
 	}
 
 	@Override
 	public List<ProfileScrapeListVO> showProfileScrapeList(String userid) {
-		return sqlSession.selectList(namespace + ".showProfileSecrapeList");
+		return sqlSession.selectList(namespace + ".showProfileSecrapeList",userid);
 	}
 
 }
