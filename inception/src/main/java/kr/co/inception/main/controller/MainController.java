@@ -33,7 +33,7 @@ public class MainController {
 			List<CategoryListVO> categoryListVO = mainService.CategoryListView();
 			model.addAttribute("categoryList",categoryListVO);
 			model.addAttribute("categoryListSize",categoryListVO.size());
-			return "Main";
+			return "MainTest";
 		}
 		@RequestMapping(value="inception", method=RequestMethod.POST)
 		public String fileUpload(MultipartHttpServletRequest mRequest) {
