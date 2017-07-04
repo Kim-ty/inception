@@ -109,11 +109,12 @@ article {
 
 			<form>
 				Searching : <input type="text" name="">
-
 				<button type="submit" name="">search</button>
-
 			</form>
-
+			<form action="inception" method="post" enctype="multipart/form-data">
+				이미지분석<input type = "file" name="uploadfile" required="required">
+				<input type="submit" value="Search">
+			</form>
 
 		</article>
 

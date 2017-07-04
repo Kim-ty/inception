@@ -21,13 +21,14 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	 <beans:property name="maxUploadSize" value="10000000" /> 
+	 <beans:property name="maxUploadSize" value="50000000" /> 
 	 </beans:bean>
 
 	
 	<context:component-scan base-package="kr.co.inception.user.controller" />
 	<context:component-scan base-package="kr.co.inception" />
 	<context:component-scan base-package="kr.co.inception.main.controller" />
+	
 	
 	
 </beans:beans>
