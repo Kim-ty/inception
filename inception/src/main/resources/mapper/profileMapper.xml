@@ -5,17 +5,25 @@
 
 <mapper namespace="kr.co.inception.mapper.profileMapper">
 
+<!-- 	<resultMap type="kr.co.inception.profile.vo.ProfileVO" id="showProfile"> -->
+<!-- 		<result property="userid" column="userid" javaType="String"/> -->
+<!-- 		<result property="follow" column="followCount" javaType="String"/> -->
+<!-- 		<result property="follower" column="followerCount" javaType="String"/> -->
+<!-- 	</resultMap> -->
+
+
 	<select id="showProfile" resultType="kr.co.inception.profile.vo.ProfileVO">
 		<![CDATA[
-			select u.userid,u.profilepicture,f.follow,f2.follower
+
+			select u.userid,u.profilepicture,f.followCount,f2.followerCount
 			from tb_user u,
-  				(select count(follow) as follow
+  				(select count(follow) as followCount
   				 from userfollow
-  				 where userid = #{userid,jdbcType=VARCHAR}) f,
-  				(select count(follower) as follower
+  				 where userid = #{userid}) f,
+  				(select count(follower) as followerCount
   				 from userfollower
-  				 where userid = #{userid,jdbcType=VARCHAR}) f2
-			where userid =#{userid,jdbcType=VARCHAR}
+  				 where userid = #{userid}) f2
+			where userid =#{userid}
 		]]>
 	</select>
   
