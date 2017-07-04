@@ -27,9 +27,10 @@ public interface BoardService {
 	public List<BoardListVO> showBoardList();
 	public BoardDetailVO showBoardDetail(String bidx);
 	public BoardSimpleVO showBoardSimple(String bidx);
-	public List<GooderListVO> showGooderList();
-	public List<BaderListVO> showBaderList();
-	public List<ReplyListVO> showReplyList();
-	public List<ScraperListVO> showScraperList();
+	public List<GooderListVO> showGooderList(String bidx);
+	public List<BaderListVO> showBaderList(String bidx);
+	public List<ReplyListVO> showReplyList(String bidx);
+	public List<ScraperListVO> showScraperList(String bidx);
+
 	
 }
