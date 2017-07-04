@@ -11,16 +11,46 @@
 			from tb_user u,
   				(select count(follow) as follow
   				 from userfollow
-  				 where userid = #{userid}) f,
+  				 where userid = #{userid,jdbcType=VARCHAR}) f,
   				(select count(follower) as follower
   				 from userfollower
-  				 where userid = #{userid}) f2
-			where userid =#{userid};
-		
+  				 where userid = #{userid,jdbcType=VARCHAR}) f2
+			where userid =#{userid,jdbcType=VARCHAR}
 		]]>
 	</select>
   
+	<select id="showProfileBoardList" resultType="kr.co.inception.profile.vo.ProfileBoardListVO">
+		<![CDATA[
+			select title,CONTENTS,writedate
+			from board
+			where userid = #{userid}
+		
+		]]>	
+	</select>  
+  	
+	<select id="showProfileReplyList" resultType="kr.co.inception.profile.vo.ProfileReplyListVO">
+		<![CDATA[
+			select b.title,r.CONTENTS
+			from board b,boardreply r
+			where b.bidx = r.bidx and r.userid= #{userid}
+
+		
+		]]>	
+	</select>  
+  	
+	<select id="showProfileScrapeList" resultType="kr.co.inception.profile.vo.ProfileScrapeListVO">
+		<![CDATA[
+			select b.title,b.contents,b.userid
+			from board b,scrape s
+			where b.bidx = s.bidx and s.userid = #{userid}
+		
+		]]>	
+	</select>  
+  	
   
+  	
+  	
+  	
 	
   
 </mapper>

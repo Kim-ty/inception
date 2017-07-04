@@ -21,26 +21,22 @@ public class ProfileServiceImpl implements ProfileService{
 	
 	@Override
 	public ProfileVO showProfile(ProfileDTO profileDTO) {
-		// TODO Auto-generated method stub
-		return null;
+		return profileDAO.showProfile(profileDTO);
 	}
 
 	@Override
 	public List<ProfileBoardListVO> showProfileBoardList(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+		return profileDAO.showProfileBoardList(userid);
 	}
 
 	@Override
 	public List<ProfileReplyListVO> showProfileReplyList(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+		return profileDAO.showProfileReplyList(userid);
 	}
 
 	@Override
 	public List<ProfileScrapeListVO> showProfileScrapeList(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+		return profileDAO.showProfileScrapeList(userid);
 	}
 
 }

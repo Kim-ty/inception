@@ -14,36 +14,31 @@ import kr.co.inception.profile.vo.ProfileScrapeListVO;
 import kr.co.inception.profile.vo.ProfileVO;
 
 @Repository
-public class ProfileDAOImpl implements ProfileDAO{
+public class ProfileDAOImpl implements ProfileDAO {
 
-	private static final String namespace="kr.co.inception.mapper.profileMapper";
-	
-	
+	private static final String namespace = "kr.co.inception.mapper.profileMapper";
+
 	@Autowired
 	SqlSession sqlSession;
-	
+
 	@Override
 	public ProfileVO showProfile(ProfileDTO profileDTO) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(namespace + ".showProfile");
 	}
 
 	@Override
 	public List<ProfileBoardListVO> showProfileBoardList(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace + ".showProfileBoardList");
 	}
 
 	@Override
 	public List<ProfileReplyListVO> showProfileReplyList(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace + ".showProfileReplyList");
 	}
 
 	@Override
 	public List<ProfileScrapeListVO> showProfileScrapeList(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace + ".showProfileSecrapeList");
 	}
 
 }
