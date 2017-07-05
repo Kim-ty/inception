@@ -9,14 +9,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import kr.co.inception.main.service.inception_label_image;
+
 public class usinginception{
    static inception_label_image ILI = new inception_label_image();
    
    public static void main(String[] args) {
-      String img_src = "bi3.jpg";
+      String img_src = "1499157883779_1111.jpg";
       
-      // ¿©±â¼­ºÎÅÍ
-      String File_path = "D:/inception_image/"+img_src;
+      // ï¿½ï¿½ï¿½â¼­ï¿½ï¿½ï¿½ï¿½
+      String File_path = "C:/uploadimage/"+img_src;
       Image image = null;
       try{
          File sourceimage = new File(File_path);
@@ -29,18 +31,18 @@ public class usinginception{
       JLabel label = new JLabel(new ImageIcon(image));
       frame.add(label);
 //      frame.setVisible(true);
-      //¿©±â±îÁö´Â ÀÌ¹ÌÁöÃâ·ÂÀÌ¹Ç·Î »èÁ¦ÇØµµ ¹«¹æ
+      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ ï¿½ï¿½ï¿½ï¿½
       
-      System.out.println(img_src+"ÀÇ ÀÌ¹ÌÁö¸¦ ºÐ¼® ÁßÀÔ´Ï´Ù");
+      System.out.println(img_src+"ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¼ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½");
       System.out.println();
       String result[] = ILI.result(img_src);
       for (int i = 0; i < result.length; i++){
          String cutresult = result[i];
-//         int index = cutresult.indexOf("(");
-//         System.out.println(result[i].substring(0,index));
-         System.out.println(result[i]);
+         int index = cutresult.indexOf("(");
+         System.out.println(result[i].substring(0,index));
+//         System.out.println(result[i]);
       }
-      System.out.println("ºÐ¼®¿Ï·á");
+      System.out.println("ï¿½Ð¼ï¿½ï¿½Ï·ï¿½");
       
    
       
