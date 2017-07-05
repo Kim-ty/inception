@@ -15,8 +15,6 @@ ${Rank2}</br>
 ${Rank3}</br>
 ${Rank4}</br>
 ${Rank5}</br>
-<img src ='/resources/image/1499219046128_1111.jpg'>
-<img src ='/resources/image/${img_src}'>
 
 </body>
 </html>

@@ -44,6 +44,36 @@ article {
 }
 </style>
 <title>Main</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript">
+$('#image').on('change', function() {
+        
+        ext = $(this).val().split('.').pop().toLowerCase(); //확장자
+        
+        //배열에 추출한 확장자가 존재하는지 체크
+        if($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+            resetFormElement($(this)); //폼 초기화
+            window.alert('이미지 파일이 아닙니다! (gif, png, jpg, jpeg 만 업로드 가능)');
+        } else {
+            file = $('#image').prop("files")[0];
+            blobURL = window.URL.createObjectURL(file);
+            $('#image_preview img').attr('src', blobURL);
+            $('#image_preview').slideDown(); //업로드한 이미지 미리보기 
+            $(this).slideUp(); //파일 양식 감춤
+        }
+    });
+
+    /**
+    onclick event handler for the delete button.
+    It removes the image, clears and unhides the file input field.
+    */
+    $('#image_preview a').bind('click', function() {
+        resetFormElement($('#image')); //전달한 양식 초기화
+        $('#image').slideDown(); //파일 양식 보여줌
+        $(this).parent().slideUp(); //미리 보기 영역 감춤
+        return false; //기본 이벤트 막음
+    });
+    </script>
 </head>
 
 <body>
@@ -111,10 +141,22 @@ article {
 				Searching : <input type="text" name="">
 				<button type="submit" name="">search</button>
 			</form>
-			<form action="inception" method="post" enctype="multipart/form-data">
-				이미지분석<input type = "file" name="uploadfile" required="required">
+			<form action="inception" method="post" enctype="multipart/form-data" runat="server">
+				이미지분석<input type = "file"  id="imgInp" name="uploadfile" required="required">
+				<img id="blah" src="#" alt="your image" />
 				<input type="submit" value="Search">
 			</form>
+			 <form>
+    <p>
+        <label for="image">Image:</label>
+        <br />
+        <input type="file" name="image" id="image" />
+    </p>
+    </form>
+    <div id="image_preview">
+        <img src="#" />
+        <br />
+    </div>
 
 		</article>
 

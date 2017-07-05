@@ -130,6 +130,30 @@ to {
 }
 </style>
 <title>Main</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#imgInp").on('change', function(){
+                readURL(this);
+            });
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+              reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+    </script>
+
+
 </head>
 
 <body>
@@ -242,10 +266,15 @@ to {
 				Searching : <input type="text" name="">
 				<button type="submit" name="">search</button>
 			</form>
-			<form action="inception" method="post" enctype="multipart/form-data">
-				이미지분석<input type="file" name="uploadfile" required="required">
-				<input type="submit" value="Search">
-			</form>
+			
+			<form id="form1" runat="server" action="inception" method="post" enctype="multipart/form-data">>
+			이미지를 올리면
+        <input type="file" name="uploadfile" required="required" id="imgInp" />
+        <img id="blah" src="#" alt="your image" />
+        <input type="submit" value="Search">
+    		</form>
+
+
 
 		</article>
 
