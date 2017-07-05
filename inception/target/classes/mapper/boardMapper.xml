@@ -5,13 +5,15 @@
 
 <mapper namespace="kr.co.inception.mapper.boardMapper">
 
-	<insert id="boardInsert">
+	<insert id="boardInsert" >
 			insert all
+			<![CDATA[
 			into board(BIDX,TITLE,USERID,WRITEDATE,CONTENTS,CATEGORY) VALUES(createbidx.nextval,#{title},#{userid},sysdate,#{contents},#{category})
 			<foreach collection="tagList" item="tagitem" index="index">
 			into boardtag(bidx,tag) values(createbidx.nextval,#{tagitem.tag})
 			</foreach>
 			SELECT * FROM dual
+			]]>
 	</insert>
 
 	<update id="boardUpdate" >
