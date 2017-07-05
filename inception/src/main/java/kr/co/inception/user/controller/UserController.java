@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.inception.user.dto.JoinDTO;
@@ -82,6 +83,21 @@ public class UserController {
 		return "redirect:/";
 		
 	}
+	
+	//android
+		@RequestMapping(value="/andlogin", method=RequestMethod.POST)
+		@ResponseBody
+		public boolean login(@RequestParam("userid") String userid, @RequestParam("userpw") String userpw){
+			LoginDTO loginDTO = new LoginDTO();
+			loginDTO.setUserid(userid);
+			loginDTO.setUserpw(userpw);
+			LoginVO loginVO = userService.loginUser(loginDTO);
+			if(loginVO == null){
+				return false;
+			}
+			return true;
+		}
+
 	
 	@RequestMapping(value="updatechk",method=RequestMethod.POST)
 	public String updateUser(UpdateUserDTO updateuserDTO){
