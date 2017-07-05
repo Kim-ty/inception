@@ -6,6 +6,7 @@ public class ReplyListVO {
 	private String targetreply;
 	private String contents;
 	private String level;
+	private String bidx;
 	
 	public String getRidx() {
 		return ridx;
@@ -30,6 +31,12 @@ public class ReplyListVO {
 	}
 	public void setLevel(String level) {
 		this.level = level;
+	}
+	public String getBidx() {
+		return bidx;
+	}
+	public void setBidx(String bidx) {
+		this.bidx = bidx;
 	}
 	
 	

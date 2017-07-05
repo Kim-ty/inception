@@ -25,7 +25,7 @@ import kr.co.inception.board.vo.ScraperListVO;
 @Repository
 public class BoardDAOImpl implements BoardDAO{
 
-	private static final String namespace="kr.co.inception.mapper.BoardMapper";
+	private static final String namespace="kr.co.inception.mapper.boardMapper";
 	
 	@Autowired
 	SqlSession sqlSession;
