@@ -24,25 +24,15 @@ public class ProfileTest {
 	@Autowired
 	ProfileDAO profileDAO;
 
-	@Autowired
-	UserDao userDao;
-	
-//	@Test
-//	public void login(){
-//		LoginDTO logindto = new LoginDTO();
-//		logindto.setUserid("kimty");
-//		logindto.setUserpw("1234");
-//		System.out.println("로그인로그인로그인"+userDao.loginUser(logindto));
-//	}
-//	
-//	@Test
-//	public void showprofileTest() {
-//		ProfileDTO profileDTO = new ProfileDTO();
-//		profileDTO.setUserid("kimty");
+	@Test
+	public void showprofileTest() {
+		ProfileDTO profileDTO = new ProfileDTO();
+		profileDTO.setUserid("kimty");
 //		System.out.println(profileDTO.getUserid());
-//		System.out.println(profileDAO.showProfile(profileDTO));
-//		//System.out.println(profileservice.showProfile(profileDTO));
-//	}
+//		System.out.println(profileservice.showProfile(profileDTO).getFollowCount());
+//		System.out.println(profileservice.showProfile(profileDTO).getFollowerCount());
+		System.out.println(profileservice.showProfile(profileDTO));
+	}
 
 	@Test
 	public void showprofileBoard(){

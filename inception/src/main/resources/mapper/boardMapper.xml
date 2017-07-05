@@ -5,11 +5,58 @@
 
 <mapper namespace="kr.co.inception.mapper.boardMapper">
 
+  	<insert id="boardInsert">
   
+  	</insert>
   
-  
+	<update id="boardUpdate">
 	
+	</update>	
   
+  	<insert id="replyInsert">
+  	
+  	</insert>
+
+	<insert id="Scrape">
+	
+	</insert>
+	
+	<insert id="good">
+	
+	</insert>
+
+	<insert id="bad">
+	
+	</insert>
+	
+	<select id="boardList" resultType="kr.co.inception.board.vo.BoardListVO">
+	
+	</select>
+	
+	<select id="boardDetail" resultType="kr.co.inception.board.vo.BoardDetailVO">
+	
+	</select>
+
+	<select id="boardSimple" resultType="kr.co.inception.board.vo.BoardSimpleVO">
+	
+	</select>
+
+	<select id="GooderList" resultType="kr.co.inception.board.vo.GooderListVO">
+	
+	</select>
+	
+	<select id="baderList" resultType="kr.co.inception.board.vo.BaderListVO">
+	
+	</select>
+	
+	<select id="replyList" resultType="kr.co.inception.board.vo.ReplyListVO">
+	
+	</select>
+	
+	<select id="scrapeList" resultType="kr.co.inception.board.vo.ScraperListVO">
+	
+	</select>
+	
 </mapper>
   
   
