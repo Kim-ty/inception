@@ -56,7 +56,7 @@ article {
 	/* Hidden by default */
 	position: fixed;
 	/* Stay in place */
-	z-index: 1;
+	z-index: auto;
 	/* Sit on top */
 	padding-top: 100px;
 	/* Location of the box */
@@ -80,13 +80,13 @@ article {
 	margin: auto;
 	padding: 0;
 	border: 1px solid #888;
-	width: 80%;
+	width: 18%;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
 		rgba(0, 0, 0, 0.19);
 	-webkit-animation-name: animatetop;
-	-webkit-animation-duration: 0.3s;
+	-webkit-animation-duration: 0.4s;
 	animation-name: animatetop;
-	animation-duration: 0.3s
+	animation-duration: 0.4s
 }
 /* Add Animation */
 @
@@ -124,10 +124,10 @@ to {
 	text-decoration: none;
 	cursor: pointer;
 }
+
 .modal-body {
 	padding: 2px 16px;
 }
-
 </style>
 <title>Main</title>
 </head>
