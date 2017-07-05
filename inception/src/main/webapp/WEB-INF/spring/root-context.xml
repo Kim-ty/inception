@@ -52,6 +52,8 @@
 	<context:component-scan base-package="kr.co.inception.user.service"/>
 	<context:component-scan base-package="kr.co.inception.profile.dao"/>
 	<context:component-scan base-package="kr.co.inception.profile.service"/>
+	<context:component-scan base-package="kr.co.inception.board.dao"/>
+	<context:component-scan base-package="kr.co.inception.board.service"/>
 	<!-- aop 설정하기 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<context:component-scan base-package="kr.co.inception.aop"></context:component-scan>	

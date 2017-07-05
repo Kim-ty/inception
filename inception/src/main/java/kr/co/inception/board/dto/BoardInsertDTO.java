@@ -8,7 +8,7 @@ public class BoardInsertDTO {
 	private String userid;
 	private String contents;
 	private String category;
-	private List<String> tagList;
+	private List<BoardTagDTO> tagList;
 	
 	public String getTitle() {
 		return title;
@@ -42,11 +42,11 @@ public class BoardInsertDTO {
 		this.category = category;
 	}
 
-	public List<String> getTagList() {
+	public List<BoardTagDTO> getTagList() {
 		return tagList;
 	}
 
-	public void setTagList(List<String> tagList) {
+	public void setTagList(List<BoardTagDTO> tagList) {
 		this.tagList = tagList;
 	}
 	
