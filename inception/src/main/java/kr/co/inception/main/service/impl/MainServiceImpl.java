@@ -28,7 +28,7 @@ public class MainServiceImpl implements MainService{
 	@Override
 	public String searchImageUpload(MultipartHttpServletRequest mRequest){
 		String saveFileName = "";
-		String uploadPath = "C:/uploadimage/";
+		String uploadPath = "C:/Users/KIBEOM/Documents/inception/inception/src/main/webapp/resources/image/";
 		File dir = new File(uploadPath);
 		if (!dir.isDirectory()) {
 			dir.mkdirs();

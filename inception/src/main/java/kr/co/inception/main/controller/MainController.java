@@ -50,7 +50,7 @@ public class MainController {
 			      int i = 0;
 			      try {
 			         Process oProcess = new ProcessBuilder("cmd", "/C",
-			               "activate tensorflow & python C:/inception_image/label_image.py --image C:/uploadimage/"
+			               "activate tensorflow & python C:/inception_image/label_image.py --image C:/Users/KIBEOM/Documents/inception/inception/src/main/webapp/resources/image/"
 			                     + searchimage).start();
 			         BufferedReader stdOut = new BufferedReader(new InputStreamReader(oProcess.getInputStream()));
 			         while ((s = stdOut.readLine()) != null) {
