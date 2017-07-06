@@ -22,94 +22,122 @@ import kr.co.inception.user.service.UserService;
 import kr.co.inception.user.vo.JoinVO;
 import kr.co.inception.user.vo.LoginVO;
 
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-	
-//	각 리턴값(뷰 이동)과 urlmapping은 수정해야함
-	
+
+	// 각 리턴값(뷰 이동)과 urlmapping은 수정해야함
+
 	@Autowired
 	private UserService userService;
-	
+
 	@RequestMapping("/join")
-	public String move_join(){
+	public String move_join() {
 		return "Join";
 	}
-	
+
 	@RequestMapping("/login")
-	public String move_login(){
+	public String move_login() {
 		return "Login";
 	}
-	
-	@RequestMapping(value="joinchk",method=RequestMethod.POST)
-	public String joinUser(JoinDTO joinDTO) throws Exception{
-		
+
+	@RequestMapping(value = "joinchk", method = RequestMethod.POST)
+	public String joinUser(JoinDTO joinDTO) throws Exception {
+
 		userService.joinUser(joinDTO);
-		
+
 		return "redirect:/";
-		
+
 	}
-	
+
+	// android
+	@RequestMapping(value = "/andjoin", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean Join(@RequestParam("userid") String userid, @RequestParam("userpw") String userpw,
+			@RequestParam("useremail") String useremail, @RequestParam("sex") String sex) {
+		JoinDTO joinDTO = new JoinDTO();
+		joinDTO.setUserid(userid);
+		joinDTO.setUserpw(userpw);
+		joinDTO.setUseremail(useremail);
+		joinDTO.setSex(sex);
+		int joinVO = userService.joinUser(joinDTO);
+		if (joinVO == 0) {
+			return false;
+		}
+		return true;
+	}
+
 	@RequestMapping(value = "/idchk")
 	public @ResponseBody int duplicationIdCheck(@ModelAttribute("joinDTO") JoinDTO joinDTO) throws Exception {
 		int result = -1;
-		if(joinDTO.getUserid().length()>2){
+		if (joinDTO.getUserid().length() > 2) {
 			result = userService.idchk(joinDTO);
 		}
-		
 
 		return result;
 	}
-	
-	@RequestMapping(value = "/emailchk")
-	public @ResponseBody int duplicationEmailCheck(@ModelAttribute("joinDTO") JoinDTO joinDTO) throws Exception {
-		int result = -1;
-		if(joinDTO.getUseremail().length()>5){
-			result = userService.emailchk(joinDTO);
-		}
-		return result;
-	}
-	
-	@RequestMapping(value="loginchk",method=RequestMethod.POST)
-	public String loginUser(LoginDTO loginDTO,Model model,HttpSession session){
-		LoginVO loginVO = userService.loginUser(loginDTO);
-		System.out.println(loginVO);
-		model.addAttribute("loginInfo",loginVO);
-		session.setAttribute("loginInfo",loginVO);
-		System.out.println("로그인성공");
-		return "redirect:/";
-		
-	}
-	
-	//android
-		@RequestMapping(value="/andlogin", method=RequestMethod.POST)
+	// android
+		@RequestMapping(value = "/anddupidchk", method = RequestMethod.POST)
 		@ResponseBody
-		public boolean login(@RequestParam("userid") String userid, @RequestParam("userpw") String userpw){
-			LoginDTO loginDTO = new LoginDTO();
-			loginDTO.setUserid(userid);
-			loginDTO.setUserpw(userpw);
-			LoginVO loginVO = userService.loginUser(loginDTO);
-			if(loginVO == null){
+		public boolean duplicationIdCheck(@RequestParam("userid") String userid) {
+			JoinDTO joinDTO = new JoinDTO();
+			
+			System.out.println(userid);
+			joinDTO.setUserid(userid);
+			int joinVO = userService.idchk(joinDTO);
+			if (joinVO == 1) {
 				return false;
 			}
 			return true;
 		}
-
 	
-	@RequestMapping(value="updatechk",method=RequestMethod.POST)
-	public String updateUser(UpdateUserDTO updateuserDTO){
+
+	@RequestMapping(value = "/emailchk")
+	public @ResponseBody int duplicationEmailCheck(@ModelAttribute("joinDTO") JoinDTO joinDTO) throws Exception {
+		int result = -1;
+		if (joinDTO.getUseremail().length() > 5) {
+			result = userService.emailchk(joinDTO);
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "loginchk", method = RequestMethod.POST)
+	public String loginUser(LoginDTO loginDTO, Model model, HttpSession session) {
+		LoginVO loginVO = userService.loginUser(loginDTO);
+		System.out.println(loginVO);
+		model.addAttribute("loginInfo", loginVO);
+		session.setAttribute("loginInfo", loginVO);
+		System.out.println("로그인성공");
+		return "redirect:/";
+
+	}
+
+	// android
+	@RequestMapping(value = "/andlogin", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean login(@RequestParam("userid") String userid, @RequestParam("userpw") String userpw) {
+		LoginDTO loginDTO = new LoginDTO();
+		loginDTO.setUserid(userid);
+		loginDTO.setUserpw(userpw);
+		LoginVO loginVO = userService.loginUser(loginDTO);
+		if (loginVO == null) {
+			return false;
+		}
+		return true;
+	}
+
+	@RequestMapping(value = "updatechk", method = RequestMethod.POST)
+	public String updateUser(UpdateUserDTO updateuserDTO) {
 		userService.updateUser(updateuserDTO);
 		return "redirect:/login";
 	}
-	
-	@RequestMapping(value="logout",method=RequestMethod.GET)
-	public String logout(HttpServletRequest request){
+
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request) {
 		request.getSession().invalidate();
 		return "redirect:/";
 	}
-	
 
 }
