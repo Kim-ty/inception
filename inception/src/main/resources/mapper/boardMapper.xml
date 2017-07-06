@@ -7,13 +7,12 @@
 
 	<insert id="boardInsert" >
 			insert all
-			<![CDATA[
 			into board(BIDX,TITLE,USERID,WRITEDATE,CONTENTS,CATEGORY) VALUES(createbidx.nextval,#{title},#{userid},sysdate,#{contents},#{category})
 			<foreach collection="tagList" item="tagitem" index="index">
 			into boardtag(bidx,tag) values(createbidx.nextval,#{tagitem.tag})
 			</foreach>
 			SELECT * FROM dual
-			]]>
+			
 	</insert>
 
 	<update id="boardUpdate" >
@@ -28,27 +27,27 @@
 	<insert id="replyInsert">
 
 		<![CDATA[
-			insert into BOARDREPLY(ridx,bidx,userid,writedate,contents,TARGETREPLY) values(createridx.nextval,'3','USER01',sysdate,'asdfadsf',25)
+			insert into BOARDREPLY(ridx,bidx,userid,writedate,contents,TARGETREPLY) values(createridx.nextval,#{bidx},#{userid},sysdate,#{contents},#{targetreply})
 		]]>
 	</insert>
 
 	<insert id="Scrape">
 		<![CDATA[
-			insert into scrape(bidx,userid,scrapedate) values(2,'kimty',sysdate);
+			insert into scrape(bidx,userid,scrapedate) values(#{bidx},#{userid},sysdate);
 		]]>
 
 	</insert>
 
 	<insert id="good">
 		<![CDATA[
-			insert into goodbad(bidx,g_b_count,userid) VALUES(2,0,'USER01');
+			insert into goodbad(bidx,g_b_count,userid) VALUES(2,0,#{userid});
 		]]>
 
 	</insert>
 
 	<insert id="bad">
 		<![CDATA[
-			insert into goodbad(bidx,g_b_count,userid) VALUES(2,1,'USER01');
+			insert into goodbad(bidx,g_b_count,userid) VALUES(2,1,#{userid});
 		]]>
 
 	</insert>
@@ -78,39 +77,39 @@
     			) t,
     			(select count(g_b_count) as good
     			from goodbad
-    			where bidx=2 and g_b_count = 1
+    			where bidx=#{bidx} and g_b_count = 0
     			) g,
     			(select count(g_b_count) as bad
     			from goodbad
-    			where bidx=2 and g_b_count =0) b,
+    			where bidx=#{bidx} and g_b_count =1) b,
     			(select count(*) as scrapecount
     			from scrape
-    			where bidx=2
+    			where bidx=#{bidx}
     			) s
-			where b.bidx = 2
+			where b.bidx = #{bidx}
 		]]>
 
 	</select>
 
 	<select id="GooderList" resultType="kr.co.inception.board.vo.GooderListVO">
 		<![CDATA[
-			select bidx,userid from goodbad where bidx ='2' and g_b_count =0
+			select bidx,userid from goodbad where bidx =#{bidx} and g_b_count =0
 		]]>
 
 	</select>
 
 	<select id="baderList" resultType="kr.co.inception.board.vo.BaderListVO">
 		<![CDATA[
-		select bidx,userid from goodbad where bidx ='2' and g_b_count =1
+		select bidx,userid from goodbad where bidx =#{bidx} and g_b_count =1
 		]]>
 
 	</select>
 
 	<select id="replyList" resultType="kr.co.inception.board.vo.ReplyListVO">
 		<![CDATA[
-			select ridx,TARGETREPLY,lpad(' ',3*(level-1)) || contents ,level,bidx
+			select ridx,targetreply,lpad(' ',3*(level-1)) || contents as contents,level,bidx
 			from BOARDREPLY
-			where bidx = 2
+			where bidx = #{bidx}
 			start with targetreply is null
 			connect by prior ridx = TARGETREPLY
 		]]>
@@ -119,14 +118,10 @@
 
 	<select id="scrapeList" resultType="kr.co.inception.board.vo.ScraperListVO">
 		<![CDATA[
-			select userid from scrape where bidx = 2;
+			select bidx,userid from scrape where bidx = #{bidx}
 		]]>
 
 	</select>
 
 </mapper>
-  
-  
-  
-  
   

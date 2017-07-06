@@ -22,27 +22,30 @@ public class BoardTest {
 	
 	@Test
 	public void BoardTest(){
-		BoardInsertDTO board = new BoardInsertDTO();
-		ArrayList<BoardTagDTO> tagList = new ArrayList<BoardTagDTO>();
-		BoardTagDTO tag = new BoardTagDTO();
-		BoardTagDTO tag2 = new BoardTagDTO();
-		BoardTagDTO tag3 = new BoardTagDTO();
+//		BoardInsertDTO board = new BoardInsertDTO();
+//		ArrayList<BoardTagDTO> tagList = new ArrayList<BoardTagDTO>();
+//		BoardTagDTO tag = new BoardTagDTO();
+//		BoardTagDTO tag2 = new BoardTagDTO();
+//		BoardTagDTO tag3 = new BoardTagDTO();
+//		
+//		tag.setTag("우왕");
+//		tag2.setTag("멋져");
+//		tag3.setTag("가버렷");
+//		
+//		tagList.add(tag);
+//		tagList.add(tag2);
+//		tagList.add(tag3);
+//		
+//		
+//		board.setTitle("타이틀");
+//		board.setUserid("kkb");
+//		board.setCategory("의류");
+//		board.setContents("내내내내내내내내내내내내내내내내내내내내내내내용용용용용용용용용용용용용용용용용용용용용용용용용용용용용용용");
+//		board.setTagList(tagList);
+//		
+//		boardService.boardInsert(board);
+//		
 		
-		tag.setTag("우왕");
-		tag2.setTag("멋져");
-		tag3.setTag("가버렷");
-		
-		tagList.add(tag);
-		tagList.add(tag2);
-		tagList.add(tag3);
-		
-		
-		board.setTitle("타이틀");
-		board.setUserid("kkb");
-		board.setCategory("의류");
-		board.setContents("내내내내내내내내내내내내내내내내내내내내내내내용용용용용용용용용용용용용용용용용용용용용용용용용용용용용용용");
-		board.setTagList(tagList);
-		
-		boardService.boardInsert(board);
+		System.out.println(boardService.showScraperList("2"));
 	}
 }

@@ -2,15 +2,16 @@ package kr.co.inception.follow.vo;
 
 public class FollowListVO {
 	
-	private String userid;
+	private String follow;
 
-	public String getUserid() {
-		return userid;
+	public String getFollow() {
+		return follow;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setFollow(String follow) {
+		this.follow = follow;
 	}
+
 	
 	
 }

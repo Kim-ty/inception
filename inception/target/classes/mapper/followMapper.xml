@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.inception.mapper.followMapper">
+
+	<insert id="follow">
+		<![CDATA[
+			insert all
+				into userfollow(userid,follow) values(#{userid},#{follow})
+				into userfollower(userid,follower) values(#{follow},#{userid})
+			select * from dual
+		]]>
+	</insert>
+
+	<delete id="unfollow">
+			{call
+    		 declare
+       		 begin
+				delete from userfollow where userid = #{userid} and follow = #{follow};
+				delete from userfollower where userid = #{follow} and follower = #{userid};
+        	end
+    		}
+    </delete>
+	<select id="followList" resultType="kr.co.inception.follow.vo.FollowListVO">
+		<![CDATA[
+			select follow from userfollow where userid = #{userid}
+		]]>
+	</select>
+
+	<select id="followerList" resultType="kr.co.inception.follow.vo.FollowerListVO">
+		<![CDATA[
+			select follower from userfollower where userid = #{userid}			
+		]]>
+	</select>
+</mapper>
