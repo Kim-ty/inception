@@ -11,8 +11,21 @@ public class BoardListVO{
 	private String contents;
 	private String userid;
 	private String writedate;
+	private String category;
+	private int hitcnt;
 	
-	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public int getHitcnt() {
+		return hitcnt;
+	}
+	public void setHitcnt(int hitcnt) {
+		this.hitcnt = hitcnt;
+	}
 	public String getTitle() {
 		return title;
 	}

@@ -54,7 +54,7 @@
 
 	<select id="boardList" resultType="kr.co.inception.board.vo.BoardListVO">
 		<![CDATA[ 
-			select bidx,contents,userid,HITCOUNT,writedate
+			select *
 			from board
 			order by writedate
 		]]>
