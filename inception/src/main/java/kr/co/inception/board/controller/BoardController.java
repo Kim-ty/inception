@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.inception.board.dto.BoardInsertDTO;
 import kr.co.inception.board.service.BoardService;
+import kr.co.inception.board.vo.BoardDetailVO;
 import kr.co.inception.board.vo.BoardListVO;
 
 
@@ -25,7 +28,7 @@ public class BoardController {
 	private BoardService boardService;
 	
 	
-	//안드용 json
+	//�븞�뱶�슜 json
 		@RequestMapping(value = "/andboardlist")
 		@ResponseBody
 		public List<BoardListVO> boardListJson(Model model){
@@ -34,5 +37,22 @@ public class BoardController {
 			
 			return boardListVO;
 		}
-
+		
+		@RequestMapping(value = "/boardList")
+		public String boardList(Model model){
+			List<BoardListVO> boardList= boardService.showBoardList();
+			
+			model.addAttribute("boardList",boardList);
+			
+			return "boardList";
+		}
+		
+		@RequestMapping(value = "/boardInsert")
+		public String boardInsert(BoardInsertDTO boardInsertDTO,Model model){
+			BoardDetailVO boardDetailVO = boardService.showBoardDetail(boardService.boardInsert(boardInsertDTO));
+			
+			
+			return "showBoardDeteil";
+		}
+		
 }
