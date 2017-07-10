@@ -33,7 +33,6 @@ public class BoardController {
 		public List<BoardListVO> boardListJson(Model model){
 			List<BoardListVO> boardListVO = boardService.showBoardList();
 			
-			
 			return boardListVO;
 		}
 		
