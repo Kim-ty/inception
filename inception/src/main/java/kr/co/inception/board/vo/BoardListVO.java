@@ -6,19 +6,8 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class BoardListVO{
-<<<<<<< HEAD
 	
 	private String bidx;
-	public String getBidx() {
-		return bidx;
-	}
-	public void setBidx(String bidx) {
-		this.bidx = bidx;
-	}
-=======
-
-	private String bidx;
->>>>>>> a3e0226342aee0f84771813611988ba7a693487e
 	private String title;
 	private String contents;
 	private String userid;
