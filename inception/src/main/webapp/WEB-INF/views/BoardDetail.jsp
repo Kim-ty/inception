@@ -19,7 +19,7 @@
 	<table class="table table-striped table-hover ">
 		<thead>
 			<tr>
-				<th>Bidx</th>
+				<th>까꿍</th>
 				<th>title</th>
 				<th>userid</th>
 				<th>writedate</th>

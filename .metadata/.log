@@ -9269,3 +9269,9 @@ Caused by: java.io.FileNotFoundException: C:\Users\Bit\.m2\repository\org\spring
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2017-07-10 16:47:59.101
 !MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-07-10 17:15:12.967
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-07-10 17:15:12.999
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
