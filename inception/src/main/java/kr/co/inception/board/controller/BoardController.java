@@ -47,11 +47,22 @@ public class BoardController {
 			return "BoardList";
 		}
 		
+<<<<<<< HEAD
+		//why error?
+//		@RequestMapping(value = "/boardInsert")
+//		public String boardInsert(BoardInsertDTO boardInsertDTO,Model model){
+//			BoardDetailVO boardDetailVO = boardService.showBoardDetail(boardService.boardInsert(boardInsertDTO));
+//			
+//			
+//			return "showBoardDeteil";
+//		}
+=======
 		@RequestMapping(value = "/boardInsert")
 		public String boardInsert(BoardInsertDTO boardInsertDTO,Model model){
 			
 			
 			return "showBoardDeteil";
 		}
+>>>>>>> a3e0226342aee0f84771813611988ba7a693487e
 		
 }

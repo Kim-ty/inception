@@ -10,6 +10,18 @@
 			select category from board group by category
 		]]>
 	</select>
+	
+	<select id="fashionList" resultType="kr.co.inception.board.vo.BoardListVO">
+		<![CDATA[
+			select * from board where category = '의류'
+		]]>
+	</select>
+	
+	<select id="carList" resultType="kr.co.inception.board.vo.BoardListVO">
+		<![CDATA[
+			select * from board where category = '차'
+		]]>
+	</select>
   
   
   

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.main.dao.MainDao;
 import kr.co.inception.main.vo.CategoryListVO;
 
@@ -20,6 +21,16 @@ public class MainDaoImpl implements MainDao{
 	@Override
 	public List<CategoryListVO> CategoryListView() {
 		return sqlSession.selectList(namespace+".categoryList");
+	}
+
+	@Override
+	public List<BoardListVO> FashionList() {
+		return sqlSession.selectList(namespace+".fashionList");
+	}
+	
+	@Override
+	public List<BoardListVO> CarList() {
+		return sqlSession.selectList(namespace+".carList");
 	}
 
 }
