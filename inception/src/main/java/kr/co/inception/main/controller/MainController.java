@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.main.service.MainService;
 import kr.co.inception.main.service.inception_label_image;
 import kr.co.inception.main.vo.CategoryListVO;
-import kr.co.inception.user.dto.JoinDTO;
 
 @Controller
 @RequestMapping("/")
@@ -42,7 +42,20 @@ public class MainController {
 			model.addAttribute("categoryListSize",categoryListVO.size());
 			return "Main";
 		}
-		
+		@RequestMapping(value = "/andfashionlist")
+		@ResponseBody
+		public List<BoardListVO> FashionListJson(Model model){
+			List<BoardListVO> boardListVO = mainService.FashionList();
+			
+			return boardListVO;
+		}
+		@RequestMapping(value = "/andcarlist")
+		@ResponseBody
+		public List<BoardListVO> CarListJson(Model model){
+			List<BoardListVO> boardListVO = mainService.CarList();
+			
+			return boardListVO;
+		}
 		//안드용 json
 		@RequestMapping(value = "/andcategorylist")
 		@ResponseBody
@@ -52,6 +65,8 @@ public class MainController {
 			
 			return categoryListVO;
 		}
+		
+		
 				
 		@RequestMapping(value="inception", method=RequestMethod.POST)
 		public ModelAndView fileUpload(MultipartHttpServletRequest mRequest,Model model) throws Exception {

@@ -47,12 +47,13 @@ public class BoardController {
 			return "boardList";
 		}
 		
-		@RequestMapping(value = "/boardInsert")
-		public String boardInsert(BoardInsertDTO boardInsertDTO,Model model){
-			BoardDetailVO boardDetailVO = boardService.showBoardDetail(boardService.boardInsert(boardInsertDTO));
-			
-			
-			return "showBoardDeteil";
-		}
+		//why error?
+//		@RequestMapping(value = "/boardInsert")
+//		public String boardInsert(BoardInsertDTO boardInsertDTO,Model model){
+//			BoardDetailVO boardDetailVO = boardService.showBoardDetail(boardService.boardInsert(boardInsertDTO));
+//			
+//			
+//			return "showBoardDeteil";
+//		}
 		
 }
