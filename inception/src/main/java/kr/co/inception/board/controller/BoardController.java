@@ -44,9 +44,10 @@ public class BoardController {
 			
 			model.addAttribute("boardList",boardList);
 			
-			return "boardList";
+			return "BoardList";
 		}
 		
+<<<<<<< HEAD
 		//why error?
 //		@RequestMapping(value = "/boardInsert")
 //		public String boardInsert(BoardInsertDTO boardInsertDTO,Model model){
@@ -55,5 +56,13 @@ public class BoardController {
 //			
 //			return "showBoardDeteil";
 //		}
+=======
+		@RequestMapping(value = "/boardInsert")
+		public String boardInsert(BoardInsertDTO boardInsertDTO,Model model){
+			
+			
+			return "showBoardDeteil";
+		}
+>>>>>>> a3e0226342aee0f84771813611988ba7a693487e
 		
 }
