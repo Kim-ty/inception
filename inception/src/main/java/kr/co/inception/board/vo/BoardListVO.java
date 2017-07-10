@@ -7,12 +7,17 @@ import java.util.ListIterator;
 
 public class BoardListVO{
 
+	private String bidx;
 	private String title;
 	private String contents;
 	private String userid;
 	private String writedate;
 	private String category;
 	private int hitcnt;
+	private String gcnt;
+	private String bcnt;
+	private String scrapecnt;
+	private String rpcnt;
 	
 	public String getCategory() {
 		return category;
@@ -49,6 +54,36 @@ public class BoardListVO{
 	}
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
+	}
+	public String getGcnt() {
+		return gcnt;
+	}
+	public void setGcnt(String gcnt) {
+		this.gcnt = gcnt;
+	}
+	public String getBcnt() {
+		return bcnt;
+	}
+	public void setBcnt(String bcnt) {
+		this.bcnt = bcnt;
+	}
+	public String getScrapecnt() {
+		return scrapecnt;
+	}
+	public void setScrapecnt(String scrapecnt) {
+		this.scrapecnt = scrapecnt;
+	}
+	public String getRpcnt() {
+		return rpcnt;
+	}
+	public void setRpcnt(String rpcnt) {
+		this.rpcnt = rpcnt;
+	}
+	public String getBidx() {
+		return bidx;
+	}
+	public void setBidx(String bidx) {
+		this.bidx = bidx;
 	}
 
 	

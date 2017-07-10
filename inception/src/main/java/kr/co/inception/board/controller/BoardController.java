@@ -44,12 +44,11 @@ public class BoardController {
 			
 			model.addAttribute("boardList",boardList);
 			
-			return "boardList";
+			return "BoardList";
 		}
 		
 		@RequestMapping(value = "/boardInsert")
 		public String boardInsert(BoardInsertDTO boardInsertDTO,Model model){
-			BoardDetailVO boardDetailVO = boardService.showBoardDetail(boardService.boardInsert(boardInsertDTO));
 			
 			
 			return "showBoardDeteil";

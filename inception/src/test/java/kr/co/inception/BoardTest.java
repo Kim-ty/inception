@@ -45,7 +45,7 @@ public class BoardTest {
 //		
 //		boardService.boardInsert(board);
 //		
-		
-		System.out.println(boardService.showScraperList("2"));
+		boardService.showBoardList();
+		//System.out.println(boardService.showScraperList("2"));
 	}
 }
