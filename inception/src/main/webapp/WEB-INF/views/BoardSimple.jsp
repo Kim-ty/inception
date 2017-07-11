@@ -133,7 +133,7 @@ to {
 		</thead>
 		<tbody>
 			<tr class="active">
-				<td>${ }</td>
+				<td>asdasd</td>
 				<th>asdfefqw</th>
 				<th>rgwefvadr</th>
 				<th>

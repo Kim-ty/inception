@@ -34,12 +34,10 @@ public class BoardController {
 		public List<BoardListVO> AllboardListJson(Model model){
 			List<BoardListVO> boardList= boardService.showBoardList();
 			
-<<<<<<< HEAD
+
 			
 			return boardList;
-=======
-			return boardListVO;
->>>>>>> d87f567ff29ab606e6a0f2590ab757ae7e51eaa5
+
 		}
 		
 		@RequestMapping(value = "/boardList")
