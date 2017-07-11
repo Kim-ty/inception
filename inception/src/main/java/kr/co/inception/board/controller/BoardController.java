@@ -40,6 +40,8 @@ public class BoardController {
 
 		}
 		
+	
+		
 		@RequestMapping(value = "/boardList")
 		public String boardList(Model model){
 			List<BoardListVO> boardList= boardService.showBoardList();
