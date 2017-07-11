@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.inception.profile.dto.ProfileDTO;
 import kr.co.inception.profile.service.ProfileService;
@@ -52,6 +54,23 @@ public class ProfileController {
 		List<ProfileScrapeListVO> profileScrapeListVO = profileService.showProfileScrapeList(userid);
 		model.addAttribute("profileboardList", profileScrapeListVO);
 		return "profileScrapeList";
+	}
+	
+	@RequestMapping(value="/andmyscraplist")
+	@ResponseBody
+	public List<ProfileScrapeListVO> showandmyscraplist(@RequestParam("userid") String userid) throws Exception{
+		
+		List<ProfileScrapeListVO> profileScrapeListVO = profileService.showProfileScrapeList(userid);
+		return profileScrapeListVO;
+	}
+	
+	@RequestMapping(value="/andshowprofile")
+	@ResponseBody
+	public ProfileVO androidshowprofile(@RequestParam("userid") String userid) throws Exception{
+		ProfileDTO profileDTO = new ProfileDTO();
+		profileDTO.setUserid(userid);
+		ProfileVO profileVO = profileService.showProfile(profileDTO);
+		return profileVO;
 	}
 
 }
