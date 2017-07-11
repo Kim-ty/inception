@@ -27,14 +27,15 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	
-		@RequestMapping(value = "/andboardlist")
+		
+		//android
+		@RequestMapping(value = "/andallboardlist")
 		@ResponseBody
-		public List<BoardListVO> boardListJson(Model model){
-			List<BoardListVO> boardListVO = boardService.showBoardList();
+		public List<BoardListVO> AllboardListJson(Model model){
+			List<BoardListVO> boardList= boardService.showBoardList();
 			
 			
-			return boardListVO;
+			return boardList;
 		}
 		
 		@RequestMapping(value = "/boardList")

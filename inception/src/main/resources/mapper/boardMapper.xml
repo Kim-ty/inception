@@ -71,7 +71,7 @@
 			left join ( select bidx, count(decode(g_b_count,'0','1')) as gcnt,count(decode(g_b_count,'1','1')) as bcnt from goodbad group by bidx ) gb ON b.bidx = gb.bidx
 			left join ( select bidx, count(*) as scrapecnt from scrape group by bidx ) s ON b.bidx = s.bidx
 			left join ( select bidx, count(*) as rpcnt from BoardReply group by bidx) rp on b.bidx = rp.bidx
-			where where category =#{category}
+			where category =#{category}
 			order by b.writedate desc
 		]]>		
 	</select>
