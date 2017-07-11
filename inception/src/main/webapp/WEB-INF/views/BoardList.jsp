@@ -17,7 +17,7 @@
 		<!-- <tr></tr> => row1  Table Row -->
 			<tr align="center">
 			<!-- <td></td> => DATA Table DATA -->
-				<td>${ vo.title }</td>
+				<td><a href="/board/boardSimple/${vo.bidx}">${ vo.title }</a></td>
 				<td>${ vo.contents }</td>
 				<td>${ vo.userid }</td>
 				<td>${ vo.writedate }</td>
