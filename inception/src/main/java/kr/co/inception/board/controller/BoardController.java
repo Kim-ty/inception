@@ -15,6 +15,7 @@ import kr.co.inception.board.dto.BoardInsertDTO;
 import kr.co.inception.board.service.BoardService;
 import kr.co.inception.board.vo.BoardDetailVO;
 import kr.co.inception.board.vo.BoardListVO;
+import kr.co.inception.profile.vo.ProfileBoardListVO;
 
 
 
@@ -38,6 +39,14 @@ public class BoardController {
 			
 			return boardList;
 
+		}
+		
+		@RequestMapping(value="/andmyboardlist")
+		@ResponseBody
+		public List<BoardListVO> androidshowmyboardlist(@RequestParam("userid") String userid) throws Exception{
+			
+			List<BoardListVO> boardList = boardService.showMyBoardList(userid);
+			return  boardList;
 		}
 		
 	

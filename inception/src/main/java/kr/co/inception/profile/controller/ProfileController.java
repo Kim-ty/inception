@@ -72,5 +72,13 @@ public class ProfileController {
 		ProfileVO profileVO = profileService.showProfile(profileDTO);
 		return profileVO;
 	}
+	
+//	@RequestMapping(value="/andmyboardlist")
+//	@ResponseBody
+//	public List<ProfileBoardListVO> androidshowmyboardlist(@RequestParam("userid") String userid) throws Exception{
+//		
+//		List<ProfileBoardListVO> profileBoardListVO = profileService.showProfileBoardList(userid);
+//		return profileBoardListVO;
+//	}
 
 }

@@ -29,7 +29,7 @@
   
 	<select id="showProfileBoardList" resultType="kr.co.inception.profile.vo.ProfileBoardListVO">
 		<![CDATA[
-			select title,CONTENTS,writedate
+			select *
 			from board
 			where userid = #{userid}
 		
@@ -50,7 +50,7 @@
 		<![CDATA[
 			select b.title,b.contents,b.userid as writeuserid,b.writedate as scrapedate
 			from board b,scrape s
-			where b.bidx = s.bidx and s.userid = #{userid} order by b.writedate desc;
+			where b.bidx = s.bidx and s.userid = #{userid} order by b.writedate desc
 		
 		]]>	
 	</select>  

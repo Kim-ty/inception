@@ -25,6 +25,7 @@ public interface BoardService {
 	public void good(GoodDTO goodDTO);
 	public void bad(BadDTO badDTO);
 	public List<BoardListVO> showBoardList();
+	public List<BoardListVO> showMyBoardList(String userid);
 	public BoardDetailVO showBoardDetail(String bidx);
 	public BoardSimpleVO showBoardSimple(String bidx);
 	public List<GooderListVO> showGooderList(String bidx);
