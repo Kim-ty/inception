@@ -45,6 +45,27 @@ public class FollowController {
 		return true;
 	}
 
+	
+	@RequestMapping(value = "/andunfollow")
+	@ResponseBody
+	public String andunfollow(@RequestParam("userid") String userid,@RequestParam("follow") String follow) {
+		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
+		followInsertOrDeleteDTO.setUserid(userid);
+		followInsertOrDeleteDTO.setFollow(follow);
+		followService.unfollowUser(followInsertOrDeleteDTO);
+		String result = "뿅";
+		return result;
+	}
+	@RequestMapping(value = "/andfollow")
+	@ResponseBody
+	public String andfollow(@RequestParam("userid") String userid,@RequestParam("follow") String follow) {
+		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
+		followInsertOrDeleteDTO.setUserid(userid);
+		followInsertOrDeleteDTO.setFollow(follow);
+		followService.followUser(followInsertOrDeleteDTO);
+		String result = "뿅";
+		return result;
+	}
 
 
 }
