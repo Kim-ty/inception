@@ -6,16 +6,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.inception.board.vo.BoardListVO;
+import kr.co.inception.follow.dto.FollowInsertOrDeleteDTO;
 import kr.co.inception.follow.service.FollowService;
 import kr.co.inception.follow.vo.FollowListVO;
-import kr.co.inception.profile.controller.ProfileController;
-import kr.co.inception.profile.vo.ProfileScrapeListVO;
 
 @Controller
 @RequestMapping("/follow")
@@ -34,6 +31,18 @@ public class FollowController {
 
 		return followListVO;
 
+	}
+	@RequestMapping(value = "/andfollowcheck")
+	@ResponseBody
+	public Boolean androidfollowcheck(@RequestParam("userid") String userid,@RequestParam("follow") String follow) {
+		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
+		followInsertOrDeleteDTO.setUserid(userid);
+		followInsertOrDeleteDTO.setFollow(follow);
+		int result = followService.followcheck(followInsertOrDeleteDTO);
+		if (result == 0) {
+			return false;
+		}
+		return true;
 	}
 
 

@@ -12,5 +12,6 @@ public interface FollowService {
 	public void unfollowUser(FollowInsertOrDeleteDTO followInsertOrDeleteDTO);
 	public List<FollowListVO> followList(String userid);
 	public List<FollowerListVO> followerList(String userid);
+	public int followcheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO);
 
 }
