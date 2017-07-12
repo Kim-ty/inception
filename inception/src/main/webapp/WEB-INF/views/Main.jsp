@@ -38,17 +38,20 @@
 
 <!-- CSS -->
 <style>
-
-html{
-background: url("https://rosaelizabethquintana.files.wordpress.com/2013/05/291h.jpg");
-
+body {
+	background:
+		url("https://rosaelizabethquintana.files.wordpress.com/2013/05/291h.jpg")
+		no-repeat center center fixed;
+	webkit-background-size: cover;
+	moz-background-size: cover;
+	o-background-size: cover;
+	background-size: cover;
 }
 
 div.jumbotron {
-size:auto;
-	padding-left: 5px;
-	
-	background-size: 100%;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: transparent;
 }
 
 /* modal */
@@ -143,22 +146,13 @@ to {
 	<div class="jumbotron">
 
 		<header>
+
 			<h1>Image</h1>
 
 			<p>This is a simple hero unit, a simple jumbotron-style component
 				for calling extra attention to featured content or information.</p>
-		</header>
-		<nav>
 
-			<div id="categories">
-				<c:forEach var="vo" items="${categoryList }">
-					<a href="/${vo.category }"><input type="submit"
-						name="category1" value=${vo.category }></a>
-
-				</c:forEach>
-			</div>
-
-			<div id="login">
+			<div id="login" align="right">
 				<p>
 					<c:choose>
 						<c:when test="${not empty sessionScope.loginInfo}">
@@ -173,7 +167,8 @@ to {
 						<c:otherwise>
 
 							<!-- Trigger/Open The Modal -->
-							<button id="myBtn">Login</button>
+
+							<button id="myBtn" class="btn btn-default">Login</button>
 
 							<!-- The Modal -->
 							<div id="myModal" class="modal">
@@ -223,29 +218,43 @@ to {
 					</c:choose>
 				</p>
 			</div>
+
+		</header>
+		<br> <br>
+		<nav>
+
+			<div id="categories" align="center">
+				<c:forEach var="vo" items="${categoryList }">
+					<a href="/${vo.category }"><input type="submit"
+						name="category1" value=${vo.category } class="btn btn-default"></a>
+
+				</c:forEach>
+			</div>
+
 		</nav>
+		<br> <br> <br>
 		<section>
-			<div>
-				<h1>검색이미지를 던지든 키워드를 입력하든</h1>
+
+			<div id="search" align="center">
+				<h3>검색이미지를 던지든 키워드를 입력하든</h3>
 
 				<form>
-					Searching : <input type="text" name="">
-					<button type="submit" name="">search</button>
+					<h4>Search :</h4>
+					<br> <input type="text" name="" class="form-control"
+						placeholder="Search"> <br>
+					<button type="submit" name="" class="btn btn-default">search</button>
 				</form>
-
+				<br>
 				<form id="form1" runat="server" action="inception" method="post"
 					enctype="multipart/form-data">
 					> 이미지를 올리면 <input type="file" name="uploadfile" required="required"
 						id="imgInp" /> <img id="blah" src="#" alt="your image" /> <input
-						type="submit" value="Search">
+						type="submit" value="Search" class="btn btn-default">
 				</form>
 			</div>
+
 		</section>
-		<footer>
-			<div>
-				<footer>Footer</footer>
-			</div>
-		</footer>
+
 	</div>
 </body>
 
