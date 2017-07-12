@@ -32,6 +32,7 @@
 			select *
 			from board
 			where userid = #{userid}
+			order by b.writedate desl
 		
 		]]>	
 	</select>  
@@ -41,6 +42,7 @@
 			select b.title,r.CONTENTS
 			from board b,boardreply r
 			where b.bidx = r.bidx and r.userid= #{userid}
+			order by b.writedate desc
 
 		
 		]]>	

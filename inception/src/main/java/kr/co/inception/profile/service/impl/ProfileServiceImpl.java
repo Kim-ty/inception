@@ -20,8 +20,8 @@ public class ProfileServiceImpl implements ProfileService{
 	private ProfileDAO profileDAO;
 	
 	@Override
-	public ProfileVO showProfile(ProfileDTO profileDTO) {
-		return profileDAO.showProfile(profileDTO);
+	public ProfileVO showProfile(String userid) {
+		return profileDAO.showProfile(userid);
 	}
 
 	@Override

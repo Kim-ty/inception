@@ -26,12 +26,10 @@ public class ProfileTest {
 
 	@Test
 	public void showprofileTest() {
-		ProfileDTO profileDTO = new ProfileDTO();
-		profileDTO.setUserid("kimty");
 //		System.out.println(profileDTO.getUserid());
 //		System.out.println(profileservice.showProfile(profileDTO).getFollowCount());
 //		System.out.println(profileservice.showProfile(profileDTO).getFollowerCount());
-		System.out.println(profileservice.showProfile(profileDTO));
+		System.out.println(profileservice.showProfile("kimty"));
 	}
 
 	@Test

@@ -7,11 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.inception.board.vo.BoardSimpleVO;
 import kr.co.inception.profile.dto.ProfileDTO;
 import kr.co.inception.profile.service.ProfileService;
 import kr.co.inception.profile.vo.ProfileBoardListVO;
@@ -28,10 +30,13 @@ public class ProfileController {
 	@Autowired
 	private ProfileService profileService;
 
-	@RequestMapping(value = "showprofile",method=RequestMethod.POST)
-	public String showProfile(ProfileDTO profileDTO,Model model) throws Exception {
-		ProfileVO profileVO = profileService.showProfile(profileDTO);
+	
+	@RequestMapping("/profile/{param1}")
+	public String boardSimple(@PathVariable("param1") String userid,Model model){
+
+		ProfileVO profileVO = profileService.showProfile(userid);
 		model.addAttribute("profile", profileVO);
+		
 		return "profile";
 	}
 
@@ -67,9 +72,7 @@ public class ProfileController {
 	@RequestMapping(value="/andshowprofile")
 	@ResponseBody
 	public ProfileVO androidshowprofile(@RequestParam("userid") String userid) throws Exception{
-		ProfileDTO profileDTO = new ProfileDTO();
-		profileDTO.setUserid(userid);
-		ProfileVO profileVO = profileService.showProfile(profileDTO);
+		ProfileVO profileVO = profileService.showProfile(userid);
 		return profileVO;
 	}
 	

@@ -22,8 +22,8 @@ public class ProfileDAOImpl implements ProfileDAO {
 	SqlSession sqlSession;
 
 	@Override
-	public ProfileVO showProfile(ProfileDTO profileDTO) {
-		return sqlSession.selectOne(namespace + ".showProfile",profileDTO);
+	public ProfileVO showProfile(String userid) {
+		return sqlSession.selectOne(namespace + ".showProfile",userid);
 	}
 
 	@Override
