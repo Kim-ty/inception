@@ -37,22 +37,10 @@ public class BoardController {
 		public List<BoardListVO> AllboardListJson(Model model){
 			List<BoardListVO> boardList= boardService.showBoardList();
 			
-
-			
 			return boardList;
 
-		}
-		
-		@RequestMapping(value="/andmyboardlist")
-		@ResponseBody
-		public List<BoardListVO> androidshowmyboardlist(@RequestParam("userid") String userid) throws Exception{
-			
-			List<BoardListVO> boardList = boardService.showMyBoardList(userid);
-			return  boardList;
-		}
-		
-	
-		
+		}				
+
 		@RequestMapping(value = "/boardList")
 		public String boardList(Model model){
 			List<BoardListVO> boardList= boardService.showBoardList();

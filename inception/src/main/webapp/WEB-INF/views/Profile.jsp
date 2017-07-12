@@ -18,16 +18,27 @@
 	<table border="1">
 		<tr>
 			<td>
-			profile.userid
+			${profile.userid}
 			</td>
 			<td>
-			profile.followCount
+			${profile.followCount}
 			</td>
 			<td>
-			profile.followerCount
+			${profile.followerCount}
 			</td>
 		</tr>
+<!-- 		<tr> -->
+<!-- 		<td> -->
+<%-- 		<a href ="/profile/${profile.userid}/board">board</a> --%>
+<!-- 		</td> -->
+<!-- 		<td> -->
+<%-- 		<a href ="/profile/${profile.userid}/reply">reply</a> --%>
+<!-- 		</td> -->
+<!-- 		<td> -->
+<%-- 		<a href ="/profile/${profile.userid}/scrape">scrpae</a> --%>
+<!-- 		</td> -->
+<!-- 		</tr> -->
 	</table>
-	
+<%-- 	<jsp:include page="/profile/${profile.userid}/board"/> --%>
 </body>
 </html>

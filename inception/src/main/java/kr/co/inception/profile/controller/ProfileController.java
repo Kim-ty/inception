@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.board.vo.BoardSimpleVO;
 import kr.co.inception.profile.dto.ProfileDTO;
 import kr.co.inception.profile.service.ProfileService;
@@ -30,58 +31,68 @@ public class ProfileController {
 	@Autowired
 	private ProfileService profileService;
 
-	
-	@RequestMapping("/profile/{param1}")
-	public String boardSimple(@PathVariable("param1") String userid,Model model){
+	@RequestMapping("/{param1}")
+	public String boardSimple(@PathVariable("param1") String userid, Model model) {
 
 		ProfileVO profileVO = profileService.showProfile(userid);
 		model.addAttribute("profile", profileVO);
-		
-		return "profile";
+
+		return "Profile";
 	}
 
-	@RequestMapping(value = "showprofileBoard",method=RequestMethod.POST)
-	public String showProfileBoard(String userid,Model model) throws Exception {
+	@RequestMapping(value = "/{param1}/board")
+	public String showProfileBoard(@PathVariable("param1") String userid, Model model) throws Exception {
 		List<ProfileBoardListVO> profileBoardListVO = profileService.showProfileBoardList(userid);
-		model.addAttribute("profileboardList", profileBoardListVO);
-		return "profileboardList";
+		model.addAttribute("profileBoard", profileBoardListVO);
+		return "ProfileBoardList";
 	}
 
-	@RequestMapping(value = "showprofileReply",method=RequestMethod.POST)
-	public String showProfileReply(String userid,Model model) throws Exception {
+	@RequestMapping(value = "/{param1}/reply")
+	public String showProfileReply(@PathVariable("param1") String userid, Model model) throws Exception {
 		List<ProfileReplyListVO> profileReplyListVO = profileService.showProfileReplyList(userid);
-		model.addAttribute("profileboardList", profileReplyListVO);
-		return "profileReplyList";
+		model.addAttribute("profileReply", profileReplyListVO);
+		return "ProfileReplyList";
 	}
 
-	@RequestMapping(value = "showprofileScrape",method=RequestMethod.POST)
-	public String showProfileScrape(String userid,Model model) throws Exception {
+	@RequestMapping(value = "/{param1}/scrape")
+	public String showProfileScrape(@PathVariable("param1") String userid, Model model) throws Exception {
 		List<ProfileScrapeListVO> profileScrapeListVO = profileService.showProfileScrapeList(userid);
-		model.addAttribute("profileboardList", profileScrapeListVO);
-		return "profileScrapeList";
+		model.addAttribute("profileScrape", profileScrapeListVO);
+		return "ProfileScrapeList";
 	}
-	
-	@RequestMapping(value="/andmyscraplist")
+
+	@RequestMapping(value = "/andmyscraplist")
 	@ResponseBody
-	public List<ProfileScrapeListVO> showandmyscraplist(@RequestParam("userid") String userid) throws Exception{
-		
+	public List<ProfileScrapeListVO> showandmyscraplist(@RequestParam("userid") String userid) throws Exception {
+
 		List<ProfileScrapeListVO> profileScrapeListVO = profileService.showProfileScrapeList(userid);
 		return profileScrapeListVO;
 	}
-	
-	@RequestMapping(value="/andshowprofile")
+
+	@RequestMapping(value = "/andshowprofile")
 	@ResponseBody
-	public ProfileVO androidshowprofile(@RequestParam("userid") String userid) throws Exception{
+	public ProfileVO androidshowprofile(@RequestParam("userid") String userid) throws Exception {
 		ProfileVO profileVO = profileService.showProfile(userid);
 		return profileVO;
 	}
-	
-//	@RequestMapping(value="/andmyboardlist")
-//	@ResponseBody
-//	public List<ProfileBoardListVO> androidshowmyboardlist(@RequestParam("userid") String userid) throws Exception{
-//		
-//		List<ProfileBoardListVO> profileBoardListVO = profileService.showProfileBoardList(userid);
-//		return profileBoardListVO;
-//	}
+
+	@RequestMapping(value = "/andmyboardlist")
+	@ResponseBody
+	public List<ProfileBoardListVO> androidshowmyboardlist(@RequestParam("userid") String userid) throws Exception {
+
+		List<ProfileBoardListVO> profileList = profileService.showProfileBoardList(userid);
+		return profileList;
+	}
+
+	// @RequestMapping(value="/andmyboardlist")
+	// @ResponseBody
+	// public List<ProfileBoardListVO>
+	// androidshowmyboardlist(@RequestParam("userid") String userid) throws
+	// Exception{
+	//
+	// List<ProfileBoardListVO> profileBoardListVO =
+	// profileService.showProfileBoardList(userid);
+	// return profileBoardListVO;
+	// }
 
 }
