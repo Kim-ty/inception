@@ -39,13 +39,14 @@
 <!-- CSS -->
 <style>
 body {
-	background:
+	background-color: white;
+	/* background:
 		url("https://rosaelizabethquintana.files.wordpress.com/2013/05/291h.jpg")
 		no-repeat center center fixed;
 	webkit-background-size: cover;
 	moz-background-size: cover;
 	o-background-size: cover;
-	background-size: cover;
+	background-size: cover; */
 }
 
 div.jumbotron {
@@ -149,9 +150,6 @@ to {
 
 			<h1>Image</h1>
 
-			<p>This is a simple hero unit, a simple jumbotron-style component
-				for calling extra attention to featured content or information.</p>
-
 			<div id="login" align="right">
 				<p>
 					<c:choose>
@@ -245,12 +243,46 @@ to {
 					<button type="submit" name="" class="btn btn-default">search</button>
 				</form>
 				<br>
+
 				<form id="form1" runat="server" action="inception" method="post"
 					enctype="multipart/form-data">
-					> 이미지를 올리면 <input type="file" name="uploadfile" required="required"
-						id="imgInp" /> <img id="blah" src="#" alt="your image" /> <input
-						type="submit" value="Search" class="btn btn-default">
+
+
+
+					<input type="file" name="file1" style="display: none;"> 
+					<input type="text" name="file2" id="file2"> 
+					<img 
+					src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/25.Camera-Front-128.png" 
+					border="0" 
+					onclick="document.all.file1.click(); document.all.file2.value=document.all.file1.value"
+					id="imgbtn">
+
+
+		
+					<input id="imgInp" type="file" name="uploadfile" required="required"/>
+
+						
+
+									
+					
+						
+
+
+
+					<br> 
+					<img id="blah" src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/18.Pictures-Day-128.png" />
+						<br> 
+					<input type="submit" value="Search" class="btn btn-default">
+						
+					
+						
+					
+						
+						
+						
+						
 				</form>
+
 			</div>
 
 		</section>
