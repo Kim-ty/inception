@@ -87,3 +87,7 @@ hs_err_pid*
 
 Servers/
 # End of https://www.gitignore.io/api/java,eclipse
+
+*.MF
+*.properties
+*.ini
