@@ -5,17 +5,15 @@
 <html>
 <head>
 
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
-
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"></script>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
+	crossorigin="anonymous">
 
 <script type="text/javascript">
 	$(function() {
@@ -247,40 +245,18 @@ to {
 				<form id="form1" runat="server" action="inception" method="post"
 					enctype="multipart/form-data">
 
+					<p>
+						<input id="imgInp" type="file" name="uploadfile"
+							required="required" style="display: none;" /> <img
+							src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/25.Camera-Front-128.png"
+							border="0" onclick="document.all.uploadfile.click();" id="imgbtn">
+					</p>
 
+					<br> <img id="blah"
+						src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/18.Pictures-Day-128.png" />
+					<br> <input type="submit" value="Search"
+						class="btn btn-default">
 
-					<input type="file" name="file1" style="display: none;"> 
-					<input type="text" name="file2" id="file2"> 
-					<img 
-					src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/25.Camera-Front-128.png" 
-					border="0" 
-					onclick="document.all.file1.click(); document.all.file2.value=document.all.file1.value"
-					id="imgbtn">
-
-
-		
-					<input id="imgInp" type="file" name="uploadfile" required="required"/>
-
-						
-
-									
-					
-						
-
-
-
-					<br> 
-					<img id="blah" src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/18.Pictures-Day-128.png" />
-						<br> 
-					<input type="submit" value="Search" class="btn btn-default">
-						
-					
-						
-					
-						
-						
-						
-						
 				</form>
 
 			</div>
