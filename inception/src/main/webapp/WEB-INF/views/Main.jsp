@@ -44,7 +44,7 @@ body {
 	webkit-background-size: cover;
 	moz-background-size: cover;
 	o-background-size: cover;
-	background-size: cover; */
+	background-size: cover;
 }
 
 div.jumbotron {
@@ -235,10 +235,12 @@ to {
 				<h3>검색이미지를 던지든 키워드를 입력하든</h3>
 
 				<form>
+					<p>
 					<h4>Search :</h4>
-					<br> <input type="text" name="" class="form-control"
-						placeholder="Search"> <br>
+					<input type="text" name="" class="form-control"
+						placeholder="Search" width="300px">
 					<button type="submit" name="" class="btn btn-default">search</button>
+					</p>
 				</form>
 				<br>
 
@@ -250,6 +252,7 @@ to {
 							required="required" style="display: none;" /> <img
 							src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/25.Camera-Front-128.png"
 							border="0" onclick="document.all.uploadfile.click();" id="imgbtn">
+					<h4>Click the Camera and Upload your Image</h4>
 					</p>
 
 					<br> <img id="blah"
