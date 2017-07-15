@@ -40,7 +40,7 @@
   	
 	<select id="showProfileReplyList" resultType="kr.co.inception.profile.vo.ProfileReplyListVO">
 		<![CDATA[
-			select b.title,r.CONTENTS
+			select b.title,r.CONTENTS,r.USERID
 			from board b,boardreply r
 			where b.bidx = r.bidx and r.userid= #{userid}
 			order by b.writedate desc
@@ -51,7 +51,7 @@
   	
 	<select id="showProfileScrapeList" resultType="kr.co.inception.profile.vo.ProfileScrapeListVO">
 		<![CDATA[
-			select b.title,b.contents,b.userid as writeuserid,b.writedate as scrapedate
+			select b.title,b.contents,b.userid as writeuserid,b.writedate as scrapedate,s.userid
 			from board b,scrape s
 			where b.bidx = s.bidx and s.userid = #{userid} order by b.writedate desc
 		

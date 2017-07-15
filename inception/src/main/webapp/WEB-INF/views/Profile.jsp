@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    var userid = "${profile.userid}";         // <== 요렇게
+</script>
+  
   <title>profile</title>
 </head>
 
@@ -39,6 +43,6 @@
 <!-- 		</td> -->
 <!-- 		</tr> -->
 	</table>
-<%-- 	<jsp:include page="/profile/${profile.userid}/board"/> --%>
+<%-- 	<jsp:include page="/profile/${userid}/board"/> --%>
 </body>
 </html>

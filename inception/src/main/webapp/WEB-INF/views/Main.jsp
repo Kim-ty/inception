@@ -221,7 +221,7 @@ to {
 
 			<div id="categories" align="center">
 				<c:forEach var="vo" items="${categoryList }">
-					<a href="/${vo.category }"><input type="submit"
+					<a href="/boardList/${vo.category }"><input type="submit"
 						name="category1" value=${vo.category } class="btn btn-default"></a>
 
 				</c:forEach>

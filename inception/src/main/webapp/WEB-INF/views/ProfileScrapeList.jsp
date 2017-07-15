@@ -17,20 +17,22 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
+<script type="text/javascript">
+    var userid = "${profile.userid}";         // <== 요렇게
+</script>
 </head>
 
 <body>
 	<table border="1">
 		<tr>
 		<td>
-		<a href ="/profile/${profile.userid}/board">board</a>
+		<a href ="/profile/${vo.userid}/board">board</a>
 		</td>
 		<td>
-		<a href ="/profile/${profile.userid}/reply">reply</a>
+		<a href ="/profile/${vo.userid}/reply">reply</a>
 		</td>
 		<td>
-		<a href ="/profile/${profile.userid}/scrape">scrpae</a>
+		<a href ="/profile/${vo.userid}/scrape">scrpae</a>
 		</td>
 		</tr>
 	</table>
