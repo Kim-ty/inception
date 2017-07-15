@@ -40,4 +40,9 @@ public class FollowDAOImpl implements FollowDAO{
 		return sqlSession.selectList(nameSpace+".followerList", userid);
 	}
 
+	@Override
+	public int followcheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO){
+		return sqlSession.selectOne(nameSpace+".followCheck",followInsertOrDeleteDTO);
+	}
+
 }

@@ -22,8 +22,8 @@ public class ProfileDAOImpl implements ProfileDAO {
 	SqlSession sqlSession;
 
 	@Override
-	public ProfileVO showProfile(ProfileDTO profileDTO) {
-		return sqlSession.selectOne(namespace + ".showProfile",profileDTO);
+	public ProfileVO showProfile(String userid) {
+		return sqlSession.selectOne(namespace + ".showProfile",userid);
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 
 	@Override
 	public List<ProfileScrapeListVO> showProfileScrapeList(String userid) {
-		return sqlSession.selectList(namespace + ".showProfileSecrapeList",userid);
+		return sqlSession.selectList(namespace + ".showProfileScrapeList",userid);
 	}
 
 }

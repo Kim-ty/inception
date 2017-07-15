@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,10 @@ import kr.co.inception.board.service.BoardService;
 import kr.co.inception.board.vo.BoardDetailVO;
 import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.board.vo.BoardSimpleVO;
+<<<<<<< HEAD
+=======
+import kr.co.inception.profile.vo.ProfileBoardListVO;
+>>>>>>> 32ec5e5488ae5dfe447f840b0799f5812e3765a2
 
 
 
@@ -33,29 +38,32 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	
-	//�븞�뱶�슜 json
-		@RequestMapping(value = "/andboardlist")
-		@ResponseBody
-		public List<BoardListVO> boardListJson(Model model){
-			List<BoardListVO> boardListVO = boardService.showBoardList();
-			
-			
-			return boardListVO;
-		}
 		
+		//android
+		@RequestMapping(value = "/andallboardlist")
+		@ResponseBody
+		public List<BoardListVO> AllboardListJson(Model model){
+			List<BoardListVO> boardList= boardService.showBoardList();
+			
+			return boardList;
+
+		}				
+
 		@RequestMapping(value = "/boardList")
 		public String boardList(Model model){
 			List<BoardListVO> boardList= boardService.showBoardList();
 			
 			model.addAttribute("boardList",boardList);
 			
-			return "boardList";
+			return "BoardList";
 		}
 		
 		@RequestMapping(value = "/boardInsert")
 		public String boardInsert(BoardInsertDTO boardInsertDTO,Model model){
+<<<<<<< HEAD
 			boardService.boardInsert(boardInsertDTO);
+=======
+>>>>>>> 32ec5e5488ae5dfe447f840b0799f5812e3765a2
 			
 			return "/boardList";
 		}
@@ -91,6 +99,7 @@ public class BoardController {
 			return "/boardSimple";
 		}
 		
+<<<<<<< HEAD
 		
 		@RequestMapping(value = "/boardSimple",method = RequestMethod.GET)
 		public String boardSimple(String bidx,Model model){
@@ -100,4 +109,14 @@ public class BoardController {
 		}
 		
 		
+=======
+		@RequestMapping("/BoardList/{param1}")
+		public String boardSimple(@PathVariable("param1") String bidx,Model model){
+			BoardSimpleVO boardSimpleVO = boardService.showBoardSimple(bidx);
+			
+			model.addAttribute("boardSimpleVO",boardSimpleVO);
+			return "BoardSimple";
+		}
+		
+>>>>>>> 32ec5e5488ae5dfe447f840b0799f5812e3765a2
 }

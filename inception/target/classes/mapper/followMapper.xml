@@ -34,4 +34,10 @@
 			select follower from userfollower where userid = #{userid}			
 		]]>
 	</select>
+	
+	<select id="followCheck" resultType="int" >
+		<![CDATA[
+			select count(*) from userfollow where userid = #{userid} and follow = #{follow}			
+		]]>
+	</select>
 </mapper>

@@ -90,4 +90,9 @@ public class BoardServiceImpl implements BoardService{
 		return boardDAO.showScraperList(bidx);
 	}
 
+	@Override
+	public List<BoardListVO> showMyBoardList(String userid) {
+		return boardDAO.showMyBoardList(userid);
+	}
+
 }

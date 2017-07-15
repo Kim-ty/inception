@@ -37,4 +37,9 @@ public class FollowServiceImpl implements FollowService {
 		return followDAO.followerList(userid);
 	}
 
+	@Override
+	public int followcheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO) {
+		return followDAO.followcheck(followInsertOrDeleteDTO);
+	}
+
 }

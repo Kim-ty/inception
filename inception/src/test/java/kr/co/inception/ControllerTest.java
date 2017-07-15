@@ -51,10 +51,15 @@ public class ControllerTest {
 //		System.out.println("�쉶�썝�젙蹂댁닔�젙 �뀒�뒪�듃");
 //		mockMvc.perform(MockMvcRequestBuilders.post("/user/updatechk").param("userid","kkb1").param("userpw","33333").param("profilepicture","�몢踰덉㎏濡쒕컮轅�").param("useremail","�삉諛붽퓞").param("sex","�뿬�옄")).andDo(print());
 //	}
+//	@Test
+//	public void movepageJoinform() throws Exception{
+//		System.out.println("�쉶�썝媛��엯�솕硫댁쑝濡쒕줈 �씠�룞");
+//		mockMvc.perform(MockMvcRequestBuilders.post("/user/join")).andDo(print());
+//	}
+	
 	@Test
-	public void movepageJoinform() throws Exception{
-		System.out.println("�쉶�썝媛��엯�솕硫댁쑝濡쒕줈 �씠�룞");
-		mockMvc.perform(MockMvcRequestBuilders.post("/user/join")).andDo(print());
+	public void selectcategory() throws Exception{
+		mockMvc.perform(MockMvcRequestBuilders.post("/andselectcategory?category=의류")).andDo(print());
 	}
 
 }

@@ -10,7 +10,7 @@ import kr.co.inception.profile.vo.ProfileVO;
 
 public interface ProfileDAO {
 
-	public ProfileVO showProfile(ProfileDTO profileDTO);
+	public ProfileVO showProfile(String userid);
 	public List<ProfileBoardListVO> showProfileBoardList(String userid);
 	public List<ProfileReplyListVO> showProfileReplyList(String userid);
 	public List<ProfileScrapeListVO> showProfileScrapeList(String userid);
