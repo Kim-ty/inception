@@ -23,16 +23,28 @@
 </head>
 
 <body>
+
 	<table border="1">
 		<tr>
+			<td>
+			${profile.userid}
+			</td>
+			<td>
+			${profile.followCount}
+			</td>
+			<td>
+			${profile.followerCount}
+			</td>
+		</tr>
+		<tr>
 		<td>
-		<a href ="/profile/${vo.userid}/board">board</a>
+		<a href ="/profile/${profile.userid}/board">board</a>
 		</td>
 		<td>
-		<a href ="/profile/${vo.userid}/reply">reply</a>
+		<a href ="/profile/${profile.userid}/reply">reply</a>
 		</td>
 		<td>
-		<a href ="/profile/${vo.userid}/scrape">scrpae</a>
+		<a href ="/profile/${profile.userid}/scrape">scrpae</a>
 		</td>
 		</tr>
 	</table>

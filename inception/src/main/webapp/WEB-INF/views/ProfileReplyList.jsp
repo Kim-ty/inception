@@ -23,16 +23,29 @@
 </head>
 
 <body>
+	
+		
 	<table border="1">
 		<tr>
+			<td>
+			${profile.userid}
+			</td>
+			<td>
+			${profile.followCount}
+			</td>
+			<td>
+			${profile.followerCount}
+			</td>
+		</tr>
+		<tr>
 		<td>
-		<a href ="/profile/${vo.profileid}/board">board</a>
+		<a href ="/profile/${profile.userid}/board">board</a>
 		</td>
 		<td>
-		<a href ="/profile/${vo.profileid}/reply">reply</a>
+		<a href ="/profile/${profile.userid}/reply">reply</a>
 		</td>
 		<td>
-		<a href ="/profile/${vo.profileid}/scrape">scrpae</a>
+		<a href ="/profile/${profile.userid}/scrape">scrpae</a>
 		</td>
 		</tr>
 	</table>
@@ -41,17 +54,9 @@
 				<!-- <tr></tr> => row1  Table Row -->
 				<tr class="active">
 					<!-- <td></td> => DATA Table DATA -->
-					<th>${vo.bidx}</th>
-					<th>${ vo.title }</th>
-					<th>${vo.contents}</th>
-					<th>${ vo.userid }</th>
-					<th>${ vo.writedate }</th>
-					<th>${ vo.category }</th>
-					<th>${ vo.hitcnt }</th>
-					<th>${ vo.gcnt }</th>
-					<th>${ vo.bcnt }</th>
-					<th>${ vo.scrapecnt }</th>
-					<th>${ vo.rpcnt }</th>
+					<th>${vo.boardTitle}</th>
+					<th>${ vo.contents}</th>
+					<th>${ vo.writedate}</th>
 				</tr>
 
 			</c:forEach>	
