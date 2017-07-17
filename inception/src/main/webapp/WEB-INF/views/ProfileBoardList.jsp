@@ -18,24 +18,24 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
- 	
- 	var page;
- 	
-  	function gopage(param){
-  		if(param == board){
-  			page = board;
-  		}else if(param == reply){
-  			page = reply;
-  		}else if(param == scrape){
-  			page = scrape;
-  		}
-  	}
-  </script>
-
+//     var userid = "${profile.userid}";         // <== 요렇게
+</script>
 </head>
 
 <body>
+
 	<table border="1">
+		<tr>
+			<td>
+			${profile.userid}
+			</td>
+			<td>
+			${profile.followCount}
+			</td>
+			<td>
+			${profile.followerCount}
+			</td>
+		</tr>
 		<tr>
 		<td>
 		<a id="board" href ="/profile/${profile.userid}/${page}">board</a>

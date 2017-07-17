@@ -13,6 +13,7 @@ public class ProfileBoardListVO {
 	private String bcnt;
 	private String scrapecnt;
 	private String rpcnt;
+	private String profileid;
 	
 	public String getCategory() {
 		return category;
@@ -79,6 +80,12 @@ public class ProfileBoardListVO {
 	}
 	public void setBidx(String bidx) {
 		this.bidx = bidx;
+	}
+	public String getProfileid() {
+		return profileid;
+	}
+	public void setProfileid(String profileid) {
+		this.profileid = profileid;
 	}
 
 		

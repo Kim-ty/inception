@@ -5,17 +5,15 @@
 <html>
 <head>
 
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
-
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"></script>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
+	crossorigin="anonymous">
 
 <script type="text/javascript">
 	$(function() {
@@ -39,7 +37,8 @@
 <!-- CSS -->
 <style>
 body {
-	background:
+	background-color: white;
+	/* background:
 		url("https://rosaelizabethquintana.files.wordpress.com/2013/05/291h.jpg")
 		no-repeat center center fixed;
 	webkit-background-size: cover;
@@ -149,9 +148,6 @@ to {
 
 			<h1>Image</h1>
 
-			<p>This is a simple hero unit, a simple jumbotron-style component
-				for calling extra attention to featured content or information.</p>
-
 			<div id="login" align="right">
 				<p>
 					<c:choose>
@@ -225,7 +221,7 @@ to {
 
 			<div id="categories" align="center">
 				<c:forEach var="vo" items="${categoryList }">
-					<a href="/${vo.category }"><input type="submit"
+					<a href="/boardList/${vo.category }"><input type="submit"
 						name="category1" value=${vo.category } class="btn btn-default"></a>
 
 				</c:forEach>
@@ -239,18 +235,33 @@ to {
 				<h3>검색이미지를 던지든 키워드를 입력하든</h3>
 
 				<form>
+					<p>
 					<h4>Search :</h4>
-					<br> <input type="text" name="" class="form-control"
-						placeholder="Search"> <br>
+					<input type="text" name="" class="form-control"
+						placeholder="Search" width="300px">
 					<button type="submit" name="" class="btn btn-default">search</button>
+					</p>
 				</form>
 				<br>
+
 				<form id="form1" runat="server" action="inception" method="post"
 					enctype="multipart/form-data">
-					> 이미지를 올리면 <input type="file" name="uploadfile" required="required"
-						id="imgInp" /> <img id="blah" src="#" alt="your image" /> <input
-						type="submit" value="Search" class="btn btn-default">
+
+					<p>
+						<input id="imgInp" type="file" name="uploadfile"
+							required="required" style="display: none;" /> <img
+							src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/25.Camera-Front-128.png"
+							border="0" onclick="document.all.uploadfile.click();" id="imgbtn">
+					<h4>Click the Camera and Upload your Image</h4>
+					</p>
+
+					<br> <img id="blah"
+						src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/18.Pictures-Day-128.png" />
+					<br> <input type="submit" value="Search"
+						class="btn btn-default">
+
 				</form>
+
 			</div>
 
 		</section>

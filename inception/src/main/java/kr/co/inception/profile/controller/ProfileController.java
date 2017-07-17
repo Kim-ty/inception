@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,23 +42,33 @@ public class ProfileController {
 	}
 
 	@RequestMapping(value = "/{param1}/board")
-	public String showProfileBoard(@PathVariable("param1") String userid, Model model) throws Exception {
+	public String showProfileBoard(@PathVariable("param1") String userid,@ModelAttribute("profile") ProfileVO profileVO, Model model) throws Exception {
+		System.out.println(profileVO.getUserid());
 		List<ProfileBoardListVO> profileBoardListVO = profileService.showProfileBoardList(userid);
 		model.addAttribute("profileBoard", profileBoardListVO);
+<<<<<<< HEAD
 		return "/ProfileBoardList";
+=======
+		model.addAttribute("profile",profileVO);
+		return "ProfileBoardList";
+>>>>>>> 3fae4c0ed50e052ebfa0dac327e219b0b69ac64c
 	}
 
 	@RequestMapping(value = "/{param1}/reply")
-	public String showProfileReply(@PathVariable("param1") String userid, Model model) throws Exception {
+	public String showProfileReply(@PathVariable("param1") String userid,@ModelAttribute("profile") ProfileVO profileVO, Model model) throws Exception {
+		System.out.println(profileVO.getUserid());
 		List<ProfileReplyListVO> profileReplyListVO = profileService.showProfileReplyList(userid);
 		model.addAttribute("profileReply", profileReplyListVO);
+		model.addAttribute("profile",profileVO);
 		return "ProfileReplyList";
 	}
 
 	@RequestMapping(value = "/{param1}/scrape")
-	public String showProfileScrape(@PathVariable("param1") String userid, Model model) throws Exception {
+	public String showProfileScrape(@PathVariable("param1") String userid,@ModelAttribute("profile") ProfileVO profileVO, Model model) throws Exception {
+		System.out.println(profileVO.getUserid());
 		List<ProfileScrapeListVO> profileScrapeListVO = profileService.showProfileScrapeList(userid);
 		model.addAttribute("profileScrape", profileScrapeListVO);
+		model.addAttribute("profile",profileVO);
 		return "ProfileScrapeList";
 	}
 

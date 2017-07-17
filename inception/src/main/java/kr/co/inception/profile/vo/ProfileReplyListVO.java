@@ -4,6 +4,7 @@ public class ProfileReplyListVO {
 	private String boardTitle;
 	private String contents;
 	private String writedate;
+	private String profileid;
 	
 	public String getBoardTitle() {
 		return boardTitle;
@@ -22,6 +23,12 @@ public class ProfileReplyListVO {
 	}
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
+	}
+	public String getProfileid() {
+		return profileid;
+	}
+	public void setProfileid(String profileid) {
+		this.profileid = profileid;
 	}
 	
 	

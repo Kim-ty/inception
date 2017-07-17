@@ -18,24 +18,25 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
- 	
- 	var page;
- 	
-  	function gopage(param){
-  		if(param == board){
-  			page = board;
-  		}else if(param == reply){
-  			page = reply;
-  		}else if(param == scrape){
-  			page = scrape;
-  		}
-  	}
-  </script>
-
+//     var userid = "${profile.userid}";         // <== 요렇게
+</script>
 </head>
 
 <body>
+	
+		
 	<table border="1">
+		<tr>
+			<td>
+			${profile.userid}
+			</td>
+			<td>
+			${profile.followCount}
+			</td>
+			<td>
+			${profile.followerCount}
+			</td>
+		</tr>
 		<tr>
 		<td>
 		<a id="board" href ="/profile/${profile.userid}/${page}">board</a>
@@ -53,17 +54,9 @@
 				<!-- <tr></tr> => row1  Table Row -->
 				<tr class="active">
 					<!-- <td></td> => DATA Table DATA -->
-					<th>${vo.bidx}</th>
-					<th>${ vo.title }</th>
-					<th>${vo.contents}</th>
-					<th>${ vo.userid }</th>
-					<th>${ vo.writedate }</th>
-					<th>${ vo.category }</th>
-					<th>${ vo.hitcnt }</th>
-					<th>${ vo.gcnt }</th>
-					<th>${ vo.bcnt }</th>
-					<th>${ vo.scrapecnt }</th>
-					<th>${ vo.rpcnt }</th>
+					<th>${vo.boardTitle}</th>
+					<th>${ vo.contents}</th>
+					<th>${ vo.writedate}</th>
 				</tr>
 
 			</c:forEach>	

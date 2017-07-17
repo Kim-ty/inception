@@ -42,4 +42,9 @@ public class FollowServiceImpl implements FollowService {
 		return followDAO.followcheck(followInsertOrDeleteDTO);
 	}
 
+	@Override
+	public int followercheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO) {
+		return followDAO.followercheck(followInsertOrDeleteDTO);
+	}
+
 }
