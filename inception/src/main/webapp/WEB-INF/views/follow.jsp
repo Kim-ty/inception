@@ -42,7 +42,8 @@
 				<!-- <tr></tr> => row1  Table Row -->
 				<tr class="active">
 					<!-- <td></td> => DATA Table DATA -->
-					<th>${vo.follow}</th>
+					<th><a href="/profile/${vo.follow}">${vo.follow}</a></th>
+					<th></th>
 				</tr>
 
 			</c:forEach>	
