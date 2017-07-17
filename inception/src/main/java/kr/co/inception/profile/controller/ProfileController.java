@@ -46,12 +46,10 @@ public class ProfileController {
 		System.out.println(profileVO.getUserid());
 		List<ProfileBoardListVO> profileBoardListVO = profileService.showProfileBoardList(userid);
 		model.addAttribute("profileBoard", profileBoardListVO);
-<<<<<<< HEAD
-		return "/ProfileBoardList";
-=======
+
 		model.addAttribute("profile",profileVO);
 		return "ProfileBoardList";
->>>>>>> 3fae4c0ed50e052ebfa0dac327e219b0b69ac64c
+
 	}
 
 	@RequestMapping(value = "/{param1}/reply")

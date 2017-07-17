@@ -124,6 +124,12 @@ public class MainController {
 			return view;
 
 		}
+		//test
+		@RequestMapping("/image_upload")
+		public String image_upload(Model model) throws Exception{
+			
+			return "image_upload";
+		}
 
 
 }
