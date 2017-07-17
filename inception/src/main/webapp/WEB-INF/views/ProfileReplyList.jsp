@@ -33,7 +33,7 @@
 		<tr>
 			<td><a href="/profile/${profile.userid}">board</a></td>
 			<td><a href="/profile/${profile.userid}/reply">reply</a></td>
-			<td><a href="/profile/${profile.userid}/scrape">scrpae</a></td>
+			<td><a href="/profile/${profile.userid}/scrap">scrap</a></td>
 		</tr>
 	</table>
 	<table>

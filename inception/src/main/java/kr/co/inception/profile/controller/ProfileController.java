@@ -66,7 +66,7 @@ public class ProfileController {
 		return "ProfileReplyList";
 	}
 
-	@RequestMapping(value = "/{param1}/scrape2")
+	@RequestMapping(value = "/{param1}/scrap2")
 	public String showProfileScrape(@PathVariable("param1") String userid, Model model) throws Exception {
 		List<ProfileScrapeListVO> profileScrapeListVO = profileService.showProfileScrapeList(userid);
 		model.addAttribute("profileScrape", profileScrapeListVO);
