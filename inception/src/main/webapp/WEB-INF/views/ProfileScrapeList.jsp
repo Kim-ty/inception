@@ -20,13 +20,11 @@
 </head>
 
 <body>
-
-
 	<table border="1">
 		<tr>
-			<td>${profile.userid}</td>
-			<td>${profile.followCount}</td>
-			<td>${profile.followerCount}</td>
+			<td><a href="/profile/${profile.userid}">${profile.userid}</a></td>
+			<td><a href ="/profile/${profile.userid}/followlist">${profile.followCount}</a></td>
+			<td><a href ="/profile/${profile.userid}/followerlist">${profile.followerCount}</a></td>
 		</tr>
 	</table>
 	<table>
@@ -43,11 +41,18 @@
 				<!-- <tr></tr> => row1  Table Row -->
 				<tr class="active">
 					<!-- <td></td> => DATA Table DATA -->
-					<th>${ vo.title }</th>
+					<th>${vo.bidx}</th>
+					<th>${vo.title}</th>
 					<th>${vo.contents}</th>
-					<th>${ vo.userid }</th>
-					<th>${ vo.writedate }</th>
-					<th>${ vo.scrapedate }</th>
+					<th>${vo.userid}</th>
+					<th>${vo.writedate}</th>
+					<th>${vo.category}</th>
+					<th>${vo.hitcnt}</th>
+					<th>${vo.gcnt}</th>
+					<th>${vo.bcnt}</th>
+					<th>${vo.scrapecnt}</th>
+					<th>${vo.rpcnt}</th>
+					<th>${vo.scrapedate}</th>
 				</tr>
 
 			</c:forEach>	

@@ -7,16 +7,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.inception.board.vo.BoardListVO;
-import kr.co.inception.board.vo.BoardSimpleVO;
-import kr.co.inception.profile.dto.ProfileDTO;
+import kr.co.inception.follow.service.FollowService;
+import kr.co.inception.follow.vo.FollowListVO;
+import kr.co.inception.follow.vo.FollowerListVO;
 import kr.co.inception.profile.service.ProfileService;
 import kr.co.inception.profile.vo.ProfileBoardListVO;
 import kr.co.inception.profile.vo.ProfileReplyListVO;
@@ -31,6 +29,8 @@ public class ProfileController {
 
 	@Autowired
 	private ProfileService profileService;
+	@Autowired
+	private FollowService followService;
 
 	@RequestMapping(value ="/{param1}/{param2}")
 	public String boardSimple(@PathVariable("param1") String userid,@PathVariable("param2") String contents, Model model) {
@@ -73,6 +73,21 @@ public class ProfileController {
 		return "ProfileScrapeList";
 	}
 
+	@RequestMapping(value ="/{param1}/followlist2")
+	public String showFollowList(@PathVariable("param1") String userid,Model model){
+		List<FollowListVO> followListVO = followService.followList(userid);
+		model.addAttribute("followList",followListVO);
+		return "follow";
+	}
+
+	@RequestMapping(value ="/{param1}/followerlist2")
+	public String showFollowerList(@PathVariable("param1") String userid,Model model){
+		List<FollowerListVO> followerListVO = followService.followerList(userid);
+		model.addAttribute("followerList",followerListVO);
+		return "follower";
+	}
+	
+	
 	@RequestMapping(value = "/andmyscraplist")
 	@ResponseBody
 	public List<ProfileScrapeListVO> showandmyscraplist(@RequestParam("userid") String userid) throws Exception {

@@ -20,12 +20,11 @@
 </head>
 
 <body>
-
 	<table border="1">
 		<tr>
-			<td>${profile.userid}</td>
-			<td>${profile.followCount}</td>
-			<td>${profile.followerCount}</td>
+			<td><a href="/profile/${profile.userid}">${profile.userid}</a></td>
+			<td><a href ="/profile/${profile.userid}/followlist">${profile.followCount}</a></td>
+			<td><a href ="/profile/${profile.userid}/followerlist">${profile.followerCount}</a></td>
 		</tr>
 	</table>
 	<table>
