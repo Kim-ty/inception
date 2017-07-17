@@ -24,6 +24,10 @@ public class FollowController {
 	@Autowired
 	private FollowService followService;
 
+	//web
+	
+	
+	
 	// android
 	@RequestMapping(value = "/andfollowlist")
 	@ResponseBody

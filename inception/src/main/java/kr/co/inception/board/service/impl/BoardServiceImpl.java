@@ -95,4 +95,9 @@ public class BoardServiceImpl implements BoardService{
 		return boardDAO.showMyBoardList(userid);
 	}
 
+	@Override
+	public List<BoardListVO> showBoardListCa(String category) {
+		return boardDAO.showBoardListCa(category);
+	}
+
 }

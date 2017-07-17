@@ -95,7 +95,7 @@ article {
 
 			<div>
 				<c:forEach var="vo" items="${categoryList }">
-					<a href="/${vo.category }"><input type="submit"
+					<a href="/boardList/${vo.category }"><input type="submit"
 						name="category1" value=${vo.category }></a>
 
 				</c:forEach>

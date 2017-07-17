@@ -64,7 +64,7 @@
 		]]>
 	</select>
 	
-	<select id ="boardListCg" resultType="kr.co.inception.board.vo.BoardListVO">
+	<select id ="boardListCategory" resultType="kr.co.inception.board.vo.BoardListVO">
 		<![CDATA[ 
 			select b.bidx,b.hitcount,SUBSTR(b.contents, 1, 25) as contents,b.title,b.userid,b.writedate,b.category,nvl(gb.gcnt,0) AS gcnt,nvl(gb.bcnt,0) as bcnt,nvl(s.scrapecnt,0) AS scrapecnt,nvl(rp.rpcnt,0) as rpcnt
 			from ( select distinct bidx,HITCOUNT,contents,TITLE,USERID,WRITEDATE,CATEGORY from board ) b
