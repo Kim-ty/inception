@@ -44,7 +44,7 @@ public class ProfileController {
 	public String showProfileBoard(@PathVariable("param1") String userid, Model model) throws Exception {
 		List<ProfileBoardListVO> profileBoardListVO = profileService.showProfileBoardList(userid);
 		model.addAttribute("profileBoard", profileBoardListVO);
-		return "ProfileBoardList";
+		return "/ProfileBoardList";
 	}
 
 	@RequestMapping(value = "/{param1}/reply")

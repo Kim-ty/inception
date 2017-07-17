@@ -17,6 +17,20 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+ 	
+ 	var page;
+ 	
+  	function gopage(param){
+  		if(param == board){
+  			page = board;
+  		}else if(param == reply){
+  			page = reply;
+  		}else if(param == scrape){
+  			page = scrape;
+  		}
+  	}
+  </script>
 
 </head>
 
@@ -24,13 +38,13 @@
 	<table border="1">
 		<tr>
 		<td>
-		<a href ="/profile/${profile.userid}/board">board</a>
+		<a id="board" href ="/profile/${profile.userid}/${page}">board</a>
 		</td>
 		<td>
-		<a href ="/profile/${profile.userid}/reply">reply</a>
+		<a id="reply" href ="/profile/${profile.userid}/${page}">reply</a>
 		</td>
 		<td>
-		<a href ="/profile/${profile.userid}/scrape">scrpae</a>
+		<a id="scrape" href ="/profile/${profile.userid}/${page}">scrape</a>
 		</td>
 		</tr>
 	</table>
