@@ -1,12 +1,13 @@
 package kr.co.inception.profile.vo;
 
 public class ProfileScrapeListVO {
+	
+	private String bidx;
 	private String title;
 	private String userid;
 	private String contents;
 	private String writeuserid;
 	private String scrapedate;
-	private String profileid;
 	
 	public String getTitle() {
 		return title;
@@ -38,12 +39,11 @@ public class ProfileScrapeListVO {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-	public String getProfileid() {
-		return profileid;
+	public String getBidx() {
+		return bidx;
 	}
-	public void setProfileid(String profileid) {
-		this.profileid = profileid;
+	public void setBidx(String bidx) {
+		this.bidx = bidx;
 	}
-	
 	
 }

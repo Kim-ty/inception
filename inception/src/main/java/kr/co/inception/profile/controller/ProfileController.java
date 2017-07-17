@@ -32,43 +32,44 @@ public class ProfileController {
 	@Autowired
 	private ProfileService profileService;
 
-	@RequestMapping("/{param1}")
-	public String boardSimple(@PathVariable("param1") String userid, Model model) {
-
+	@RequestMapping(value ="/{param1}/{param2}")
+	public String boardSimple(@PathVariable("param1") String userid,@PathVariable("param2") String contents, Model model) {
+		System.out.println(userid);
+		System.out.println(contents);
 		ProfileVO profileVO = profileService.showProfile(userid);
 		model.addAttribute("profile", profileVO);
-
-		return "Profile";
+		return "forward:/profile/"+userid+"/"+contents+"2";
 	}
 
-	@RequestMapping(value = "/{param1}/board")
-	public String showProfileBoard(@PathVariable("param1") String userid,@ModelAttribute("profile") ProfileVO profileVO, Model model) throws Exception {
-		System.out.println(profileVO.getUserid());
+	@RequestMapping(value ="/{param1}")
+	public String boardSimple(@PathVariable("param1") String userid, Model model) {
+		System.out.println(userid);
+		ProfileVO profileVO = profileService.showProfile(userid);
+		model.addAttribute("profile", profileVO);
+		
+		return "forward:/profile/"+userid+"/board2";
+	}
+
+	
+	@RequestMapping(value = "/{param1}/board2")
+	public String showProfileBoard(@PathVariable("param1") String userid, Model model) throws Exception {
+		
 		List<ProfileBoardListVO> profileBoardListVO = profileService.showProfileBoardList(userid);
 		model.addAttribute("profileBoard", profileBoardListVO);
-<<<<<<< HEAD
-		return "/ProfileBoardList";
-=======
-		model.addAttribute("profile",profileVO);
 		return "ProfileBoardList";
->>>>>>> 3fae4c0ed50e052ebfa0dac327e219b0b69ac64c
 	}
 
-	@RequestMapping(value = "/{param1}/reply")
-	public String showProfileReply(@PathVariable("param1") String userid,@ModelAttribute("profile") ProfileVO profileVO, Model model) throws Exception {
-		System.out.println(profileVO.getUserid());
+	@RequestMapping(value = "/{param1}/reply2")
+	public String showProfileReply(@PathVariable("param1") String userid, Model model) throws Exception {
 		List<ProfileReplyListVO> profileReplyListVO = profileService.showProfileReplyList(userid);
 		model.addAttribute("profileReply", profileReplyListVO);
-		model.addAttribute("profile",profileVO);
 		return "ProfileReplyList";
 	}
 
-	@RequestMapping(value = "/{param1}/scrape")
-	public String showProfileScrape(@PathVariable("param1") String userid,@ModelAttribute("profile") ProfileVO profileVO, Model model) throws Exception {
-		System.out.println(profileVO.getUserid());
+	@RequestMapping(value = "/{param1}/scrape2")
+	public String showProfileScrape(@PathVariable("param1") String userid, Model model) throws Exception {
 		List<ProfileScrapeListVO> profileScrapeListVO = profileService.showProfileScrapeList(userid);
 		model.addAttribute("profileScrape", profileScrapeListVO);
-		model.addAttribute("profile",profileVO);
 		return "ProfileScrapeList";
 	}
 
