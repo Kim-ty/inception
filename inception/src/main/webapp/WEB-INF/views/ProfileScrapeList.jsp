@@ -18,39 +18,36 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
-    var userid = "${profile.userid}";         // <== 요렇게
-</script>
+ 	
+ 	var page;
+ 	
+  	function gopage(param){
+  		if(param == board){
+  			page = board;
+  		}else if(param == reply){
+  			page = reply;
+  		}else if(param == scrape){
+  			page = scrape;
+  		}
+  	}
+  </script>
+
 </head>
 
 <body>
-	
-	<table border="1">
-		<tr>
-			<td>
-			${profile.userid}
-			</td>
-			<td>
-			${profile.followCount}
-			</td>
-			<td>
-			${profile.followerCount}
-			</td>
-		</tr>
-		</table>
 	<table border="1">
 		<tr>
 		<td>
-		<a href ="/profile/${profile.userid}/board">board</a>
+		<a id="board" href ="/profile/${profile.userid}/${page}">board</a>
 		</td>
 		<td>
-		<a href ="/profile/${profile.userid}/reply">reply</a>
+		<a id="reply" href ="/profile/${profile.userid}/${page}">reply</a>
 		</td>
 		<td>
-		<a href ="/profile/${profile.userid}/scrape">scrpae</a>
+		<a id="scrape" href ="/profile/${profile.userid}/${page}">scrape</a>
 		</td>
 		</tr>
 	</table>
-	
 	<table>
 			<c:forEach var="vo" items="${profileScrape}">
 				<!-- <tr></tr> => row1  Table Row -->

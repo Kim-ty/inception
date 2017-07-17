@@ -39,13 +39,13 @@
 		</tr>
 		<tr>
 		<td>
-		<a href ="/profile/${profile.userid}/board">board</a>
+		<a id="board" href ="/profile/${profile.userid}/${page}">board</a>
 		</td>
 		<td>
-		<a href ="/profile/${profile.userid}/reply">reply</a>
+		<a id="reply" href ="/profile/${profile.userid}/${page}">reply</a>
 		</td>
 		<td>
-		<a href ="/profile/${profile.userid}/scrape">scrpae</a>
+		<a id="scrape" href ="/profile/${profile.userid}/${page}">scrape</a>
 		</td>
 		</tr>
 	</table>
