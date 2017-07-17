@@ -29,12 +29,12 @@ public class ProfileTest {
 //		System.out.println(profileDTO.getUserid());
 //		System.out.println(profileservice.showProfile(profileDTO).getFollowCount());
 //		System.out.println(profileservice.showProfile(profileDTO).getFollowerCount());
+		System.out.println(profileservice.showProfileScrapeList("kimty"));
 		System.out.println(profileservice.showProfile("kimty"));
 	}
 
 	@Test
 	public void showprofileBoard(){
-		System.out.println(profileservice.showProfileBoardList("kimty"));
 	}
 	
 

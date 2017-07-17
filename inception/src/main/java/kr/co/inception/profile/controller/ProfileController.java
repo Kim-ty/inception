@@ -7,16 +7,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.inception.board.vo.BoardListVO;
-import kr.co.inception.board.vo.BoardSimpleVO;
-import kr.co.inception.profile.dto.ProfileDTO;
+import kr.co.inception.follow.service.FollowService;
+import kr.co.inception.follow.vo.FollowListVO;
+import kr.co.inception.follow.vo.FollowerListVO;
 import kr.co.inception.profile.service.ProfileService;
 import kr.co.inception.profile.vo.ProfileBoardListVO;
 import kr.co.inception.profile.vo.ProfileReplyListVO;
@@ -31,45 +29,65 @@ public class ProfileController {
 
 	@Autowired
 	private ProfileService profileService;
+	@Autowired
+	private FollowService followService;
 
-	@RequestMapping("/{param1}")
-	public String boardSimple(@PathVariable("param1") String userid, Model model) {
-
+	@RequestMapping(value ="/{param1}/{param2}")
+	public String boardSimple(@PathVariable("param1") String userid,@PathVariable("param2") String contents, Model model) {
+		System.out.println(userid);
+		System.out.println(contents);
 		ProfileVO profileVO = profileService.showProfile(userid);
 		model.addAttribute("profile", profileVO);
-
-		return "Profile";
+		return "forward:/profile/"+userid+"/"+contents+"2";
 	}
 
-	@RequestMapping(value = "/{param1}/board")
-	public String showProfileBoard(@PathVariable("param1") String userid,@ModelAttribute("profile") ProfileVO profileVO, Model model) throws Exception {
-		System.out.println(profileVO.getUserid());
+	@RequestMapping(value ="/{param1}")
+	public String boardSimple(@PathVariable("param1") String userid, Model model) {
+		System.out.println(userid);
+		ProfileVO profileVO = profileService.showProfile(userid);
+		model.addAttribute("profile", profileVO);
+		
+		return "forward:/profile/"+userid+"/board2";
+	}
+
+	
+	@RequestMapping(value = "/{param1}/board2")
+	public String showProfileBoard(@PathVariable("param1") String userid, Model model) throws Exception {
+		
 		List<ProfileBoardListVO> profileBoardListVO = profileService.showProfileBoardList(userid);
 		model.addAttribute("profileBoard", profileBoardListVO);
-
-		model.addAttribute("profile",profileVO);
 		return "ProfileBoardList";
-
 	}
 
-	@RequestMapping(value = "/{param1}/reply")
-	public String showProfileReply(@PathVariable("param1") String userid,@ModelAttribute("profile") ProfileVO profileVO, Model model) throws Exception {
-		System.out.println(profileVO.getUserid());
+	@RequestMapping(value = "/{param1}/reply2")
+	public String showProfileReply(@PathVariable("param1") String userid, Model model) throws Exception {
 		List<ProfileReplyListVO> profileReplyListVO = profileService.showProfileReplyList(userid);
 		model.addAttribute("profileReply", profileReplyListVO);
-		model.addAttribute("profile",profileVO);
 		return "ProfileReplyList";
 	}
 
-	@RequestMapping(value = "/{param1}/scrape")
-	public String showProfileScrape(@PathVariable("param1") String userid,@ModelAttribute("profile") ProfileVO profileVO, Model model) throws Exception {
-		System.out.println(profileVO.getUserid());
+	@RequestMapping(value = "/{param1}/scrap2")
+	public String showProfileScrape(@PathVariable("param1") String userid, Model model) throws Exception {
 		List<ProfileScrapeListVO> profileScrapeListVO = profileService.showProfileScrapeList(userid);
 		model.addAttribute("profileScrape", profileScrapeListVO);
-		model.addAttribute("profile",profileVO);
 		return "ProfileScrapeList";
 	}
 
+	@RequestMapping(value ="/{param1}/followlist2")
+	public String showFollowList(@PathVariable("param1") String userid,Model model){
+		List<FollowListVO> followListVO = followService.followList(userid);
+		model.addAttribute("followList",followListVO);
+		return "follow";
+	}
+
+	@RequestMapping(value ="/{param1}/followerlist2")
+	public String showFollowerList(@PathVariable("param1") String userid,Model model){
+		List<FollowerListVO> followerListVO = followService.followerList(userid);
+		model.addAttribute("followerList",followerListVO);
+		return "follower";
+	}
+	
+	
 	@RequestMapping(value = "/andmyscraplist")
 	@ResponseBody
 	public List<ProfileScrapeListVO> showandmyscraplist(@RequestParam("userid") String userid) throws Exception {

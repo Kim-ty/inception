@@ -1,5 +1,9 @@
 <%@ page import="java.io.*,com.oreilly.servlet.*,com.oreilly.servlet.multipart.*"%>
+<<<<<<< HEAD
 <% request.setCharacterEncoding("euc-kr"); %> 
+=======
+<% request.setCharacterEncoding("UTF-8"); %> 
+>>>>>>> 54d8865842e06784ae7403bce2ffd79e3a40d204
 <html>
 <head><title>upload test</title></head>
 <body>
@@ -18,6 +22,10 @@
 <li>제목: ${subject}<br>
 <li>업로드파일1: <a href=/upload/${file1}>${ofile1}</a><br>
 </body>
+<<<<<<< HEAD
 </html>
 
 
+=======
+</html>
+>>>>>>> 54d8865842e06784ae7403bce2ffd79e3a40d204
