@@ -13,5 +13,6 @@ public interface FollowService {
 	public List<FollowListVO> followList(String userid);
 	public List<FollowerListVO> followerList(String userid);
 	public int followcheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO);
+	public int followercheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO);
 
 }
