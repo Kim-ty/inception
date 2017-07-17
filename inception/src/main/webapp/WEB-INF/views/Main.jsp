@@ -53,9 +53,7 @@ div.jumbotron {
 	background-color: transparent;
 }
 
-/* modal */
-.modal {
-	display: none;
+/* modal */ . modal { display : none;
 	/* Hidden by default */
 	position: fixed;
 	/* Stay in place */
@@ -152,11 +150,11 @@ to {
 				<p>
 					<c:choose>
 						<c:when test="${not empty sessionScope.loginInfo}">
-					${sessionScope.loginInfo.userid}님 개반갑
-						<a href="#"><input type="submit" name="Profile"
+					welcome ${sessionScope.loginInfo.userid} !!
+						<a href="#"><input class="btn btn-default" type="submit" name="Profile"
 								value="Profile"></a>
 
-							<a href="/user/logout"><input type="submit" name="Log out"
+							<a href="/user/logout"><input class="btn btn-default" type="submit" name="Log out"
 								value="Log out"></a>
 
 						</c:when>
@@ -232,7 +230,6 @@ to {
 		<section>
 
 			<div id="search" align="center">
-				<h3>검색이미지를 던지든 키워드를 입력하든</h3>
 
 				<form>
 					<p>
@@ -243,6 +240,9 @@ to {
 					</p>
 				</form>
 				<br>
+				<h4>
+						Or<br /><br />Click the Camera and Upload your Image
+					</h4>
 
 				<form id="form1" runat="server" action="inception" method="post"
 					enctype="multipart/form-data">
@@ -252,7 +252,7 @@ to {
 							required="required" style="display: none;" /> <img
 							src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/25.Camera-Front-128.png"
 							border="0" onclick="document.all.uploadfile.click();" id="imgbtn">
-					<h4>Click the Camera and Upload your Image</h4>
+					
 					</p>
 
 					<br> <img id="blah"

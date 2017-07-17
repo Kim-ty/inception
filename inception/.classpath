@@ -33,5 +33,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/apache-tomcat-8.0.42/lib/cos.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
