@@ -20,7 +20,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-md">
+			<div class="col-sm">
 				<div class="login-box well">
 
 					<form role="form" method="post" action="/user/loginchk">
