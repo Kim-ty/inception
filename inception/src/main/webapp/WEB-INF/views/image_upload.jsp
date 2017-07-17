@@ -1,30 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-
-<%@ page import="com.oreilly.servlet.MultipartRequest" %>
-<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
-
+<%@ page import="java.io.*,com.oreilly.servlet.*,com.oreilly.servlet.multipart.*"%>
+<% request.setCharacterEncoding("euc-kr"); %> 
 <html>
-<head>
-<title>Intro_insert</title>
-</head>
+<head><title>upload test</title></head>
 <body>
-<%
-
-
-String save = application.getRealPath("/images");
-int size = 5 * 1024 * 1024;
-MultipartRequest multi = new MultipartRequest(request, save, size, "utf-8", new DefaultFileRenamePolicy());
-//multipartRequest 객체를 생성하면서 웹서버에 파일저장
-//DefaultFileRenamePolicy() 웹서버에 같은 이름 파일이 있으면 파일 이름 자동 변경
-
-String id = new String(multi.getParameter("intro_id").getBytes("UTF-8"),"8859_1");
-//utf-8형식의 파라미터값을 8859-1값으로 인코딩
-//MySQL DB에 저장할때는 
-//String myid = new String(multi.getParameter("intro_id").getBytes("8859-1"),"UTF-8");
+<h3>파일 upload</h3>
+<%  
+        String dir=application.getRealPath("/upload");
+        int max= 5*1024*1024;
+        //최대크기 max바이트, dir 디렉토리에 파일을 업로드하는 MultipartRequest
+        //객체를 생성한다.
+        MultipartRequest m = new MultipartRequest(request,dir,max,"UTF-8",
+                                               new  DefaultFileRenamePolicy());
 %>
-
+<c:set var="file1" value='<%= m.getFilesystemName("file1")%>' />   // 파일이름을 file1 이라는 파라메터로 넘겨받음
+<c:set var="ofile1" value='<%= m.getOriginalFileName("file1") %>' />
+<p>
+<li>제목: ${subject}<br>
+<li>업로드파일1: <a href=/upload/${file1}>${ofile1}</a><br>
 </body>
-
 </html>
+
+
