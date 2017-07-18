@@ -1,10 +1,13 @@
 package kr.co.inception.main.controller;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +36,7 @@ public class MainController {
 	@Autowired
 	private MainService mainService;
 	private inception_label_image ILI;
+	private ManipulateImage manipulateImage;
 	
 	//메인페이지 이동
 		@RequestMapping("/")
@@ -125,11 +129,27 @@ public class MainController {
 
 		}
 		//test
-		@RequestMapping("/image_upload")
-		public String image_upload(Model model) throws Exception{
-			
-			return "image_upload";
-		}
+		@RequestMapping("image_upload")
+		public static String convertStringtoImage(String encodedImageStr,	String fileName) {
 
+//			try {
+//				// Decode String using Base64 Class
+//				byte[] imageByteArray = Base64.decodeBase64(encodedImageStr); 
+//
+//				// Write Image into File system - Make sure you update the path
+//				FileOutputStream imageOutFile = new FileOutputStream("C:/uploadimage/" + fileName);
+//				imageOutFile.write(imageByteArray);
+//
+//				imageOutFile.close();
+//
+//				System.out.println("Image Successfully Stored");
+//			} catch (FileNotFoundException fnfe) {
+//				System.out.println("Image Path not found" + fnfe);
+//			} catch (IOException ioe) {
+//				System.out.println("Exception while converting the Image " + ioe);
+//			}
+			return "image_upload";
+
+		}
 
 }
