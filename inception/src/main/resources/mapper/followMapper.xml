@@ -25,19 +25,25 @@
     </delete>
 	<select id="followList" resultType="kr.co.inception.follow.vo.FollowListVO">
 		<![CDATA[
-			select follow from userfollow where userid = #{userid}
+			select follow from userfollow where userid = #{userid} order by userid
 		]]>
 	</select>
 
 	<select id="followerList" resultType="kr.co.inception.follow.vo.FollowerListVO">
 		<![CDATA[
-			select follower from userfollower where userid = #{userid}			
+			select follower from userfollower where userid = #{userid} order by userid		
 		]]>
 	</select>
 	
 	<select id="followCheck" resultType="int" >
 		<![CDATA[
 			select count(*) from userfollow where userid = #{userid} and follow = #{follow}			
+		]]>
+	</select>
+	
+	<select id="followerCheck" resultType="int" >
+		<![CDATA[
+			select count(*) from userfollower where userid = #{userid} and follower = #{follower}			
 		]]>
 	</select>
 </mapper>

@@ -4,7 +4,14 @@ public class FollowInsertOrDeleteDTO {
 
 	private String userid;
 	private String follow;
+	private String follower;
 	
+	public String getFollower() {
+		return follower;
+	}
+	public void setFollower(String follower) {
+		this.follower = follower;
+	}
 	public String getUserid() {
 		return userid;
 	}

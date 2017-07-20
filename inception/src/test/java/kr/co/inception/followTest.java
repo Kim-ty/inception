@@ -28,7 +28,7 @@ public class followTest {
 		
 		followservice.followList("kimty");
 		followservice.followerList("kimty");
-	
+		followservice.unfollowUser(followInsertOrDeleteDTO);
 	}
 
 }

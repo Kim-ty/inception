@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.inception.follow.dto.FollowInsertOrDeleteDTO;
 import kr.co.inception.follow.service.FollowService;
 import kr.co.inception.follow.vo.FollowListVO;
+import kr.co.inception.follow.vo.FollowerListVO;
 
 @Controller
 @RequestMapping("/follow")
@@ -23,19 +25,26 @@ public class FollowController {
 	@Autowired
 	private FollowService followService;
 
-	//web
-	
-	
+	//web	
 	
 	// android
 	@RequestMapping(value = "/andfollowlist")
 	@ResponseBody
-	public List<FollowListVO> AllboardListJson(@RequestParam("userid") String userid) {
+	public List<FollowListVO> andfollwlist(@RequestParam("userid") String userid) {
 		List<FollowListVO> followListVO = followService.followList(userid);
 
 		return followListVO;
 
 	}
+	@RequestMapping(value = "/andfollowerlist")
+	@ResponseBody
+	public List<FollowerListVO> andfollwerlist(@RequestParam("userid") String userid) {
+		List<FollowerListVO> followerListVO = followService.followerList(userid);
+
+		return followerListVO;
+
+	}
+	
 	@RequestMapping(value = "/andfollowcheck")
 	@ResponseBody
 	public Boolean androidfollowcheck(@RequestParam("userid") String userid,@RequestParam("follow") String follow) {
@@ -43,6 +52,19 @@ public class FollowController {
 		followInsertOrDeleteDTO.setUserid(userid);
 		followInsertOrDeleteDTO.setFollow(follow);
 		int result = followService.followcheck(followInsertOrDeleteDTO);
+		System.out.println(result);
+		if (result == 0) {
+			return false;
+		}
+		return true;
+	}
+	@RequestMapping(value = "/andfollowercheck")
+	@ResponseBody
+	public Boolean androidfollowercheck(@RequestParam("userid") String userid,@RequestParam("follower") String follower) {
+		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
+		followInsertOrDeleteDTO.setUserid(userid);
+		followInsertOrDeleteDTO.setFollower(follower);
+		int result = followService.followercheck(followInsertOrDeleteDTO);
 		if (result == 0) {
 			return false;
 		}
@@ -60,6 +82,7 @@ public class FollowController {
 		String result = "뿅";
 		return result;
 	}
+	
 	@RequestMapping(value = "/andfollow")
 	@ResponseBody
 	public String andfollow(@RequestParam("userid") String userid,@RequestParam("follow") String follow) {
@@ -70,6 +93,6 @@ public class FollowController {
 		String result = "뿅";
 		return result;
 	}
-
+	
 
 }
