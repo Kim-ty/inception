@@ -2,10 +2,13 @@ package kr.co.inception.follow.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,8 +28,51 @@ public class FollowController {
 	@Autowired
 	private FollowService followService;
 
-	//web	
-	
+	// web
+	@RequestMapping(value = "/{param1}/follow")
+	public String follow(@PathVariable("param1") String userid, @RequestParam("follow") String follow,
+			HttpServletRequest request) {
+		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
+		followInsertOrDeleteDTO.setUserid(userid);
+		followInsertOrDeleteDTO.setFollow(follow);
+//		followService.followUser(followInsertOrDeleteDTO);
+		System.out.println(followInsertOrDeleteDTO.getUserid());
+		System.out.println(followInsertOrDeleteDTO.getFollow());
+		request.setAttribute("follow", follow);
+		return "forward:/" + userid + "/followcheck";
+	}
+
+	@RequestMapping(value = "/{param1}/unfollow")
+	public String unfollow(@PathVariable("param1") String userid, @RequestParam("follow") String follow,
+			HttpServletRequest request) {
+		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
+		followInsertOrDeleteDTO.setUserid(userid);
+		followInsertOrDeleteDTO.setFollow(follow);
+//		followService.unfollowUser(followInsertOrDeleteDTO);
+		System.out.println(followInsertOrDeleteDTO.getUserid());
+		System.out.println(followInsertOrDeleteDTO.getFollow());
+		request.setAttribute("follow", follow);
+		return "forward:/" + userid + "/followcheck";
+	}
+
+	@RequestMapping(value="/{param1}/followcheck")
+	public @ResponseBody boolean followcheck(@PathVariable("param1") String userid,HttpServletRequest request){
+		System.out.println("앙앙앙");
+		String follow = (String) request.getAttribute("follow");
+		System.out.println(follow);
+		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
+		followInsertOrDeleteDTO.setUserid(userid);
+		followInsertOrDeleteDTO.setFollow(follow);
+		followInsertOrDeleteDTO.getUserid();
+		followInsertOrDeleteDTO.getFollow();
+		int result = 1;
+				followService.followcheck(followInsertOrDeleteDTO);
+		if(result ==1){
+			return true;
+		}
+		return false;
+	}
+
 	// android
 	@RequestMapping(value = "/andfollowlist")
 	@ResponseBody
@@ -36,6 +82,7 @@ public class FollowController {
 		return followListVO;
 
 	}
+
 	@RequestMapping(value = "/andfollowerlist")
 	@ResponseBody
 	public List<FollowerListVO> andfollwerlist(@RequestParam("userid") String userid) {
@@ -44,10 +91,10 @@ public class FollowController {
 		return followerListVO;
 
 	}
-	
+
 	@RequestMapping(value = "/andfollowcheck")
 	@ResponseBody
-	public Boolean androidfollowcheck(@RequestParam("userid") String userid,@RequestParam("follow") String follow) {
+	public Boolean androidfollowcheck(@RequestParam("userid") String userid, @RequestParam("follow") String follow) {
 		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
 		followInsertOrDeleteDTO.setUserid(userid);
 		followInsertOrDeleteDTO.setFollow(follow);
@@ -58,9 +105,11 @@ public class FollowController {
 		}
 		return true;
 	}
+
 	@RequestMapping(value = "/andfollowercheck")
 	@ResponseBody
-	public Boolean androidfollowercheck(@RequestParam("userid") String userid,@RequestParam("follower") String follower) {
+	public Boolean androidfollowercheck(@RequestParam("userid") String userid,
+			@RequestParam("follower") String follower) {
 		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
 		followInsertOrDeleteDTO.setUserid(userid);
 		followInsertOrDeleteDTO.setFollower(follower);
@@ -71,10 +120,9 @@ public class FollowController {
 		return true;
 	}
 
-	
 	@RequestMapping(value = "/andunfollow")
 	@ResponseBody
-	public String andunfollow(@RequestParam("userid") String userid,@RequestParam("follow") String follow) {
+	public String andunfollow(@RequestParam("userid") String userid, @RequestParam("follow") String follow) {
 		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
 		followInsertOrDeleteDTO.setUserid(userid);
 		followInsertOrDeleteDTO.setFollow(follow);
@@ -82,10 +130,10 @@ public class FollowController {
 		String result = "뿅";
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/andfollow")
 	@ResponseBody
-	public String andfollow(@RequestParam("userid") String userid,@RequestParam("follow") String follow) {
+	public String andfollow(@RequestParam("userid") String userid, @RequestParam("follow") String follow) {
 		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
 		followInsertOrDeleteDTO.setUserid(userid);
 		followInsertOrDeleteDTO.setFollow(follow);
@@ -93,6 +141,5 @@ public class FollowController {
 		String result = "뿅";
 		return result;
 	}
-	
 
 }

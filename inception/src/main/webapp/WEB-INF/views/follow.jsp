@@ -15,7 +15,28 @@
   rel="stylesheet"
   integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
   crossorigin="anonymous">
-  
+<!--   <script src="follow.js" ></script> -->
+<script src="<c:url value="/resources/js/followfunction.js" />"></script>
+
+  <script type="text/javascript">
+
+  $("#follow").load("/follow/"+loginid+"/followcheck",data,callback);
+
+  $("#follow").click(
+  		function(loginid,followid,btntext){
+
+  			$.ajax({
+  				type:"POST",
+  				url:"<c:url value='/follow/${}'>",
+  				data : follow,
+  				datatype : "text",
+  				success:function(followcheck){
+            followchk(followcheck);
+  				}
+  			});
+  });
+
+  </script>
 </head>
 
 <body>
@@ -41,6 +62,7 @@
       <tr class="active">
         <!-- <td></td> => DATA Table DATA -->
         <th>${vo.follow}</th>
+        <th><button id="follow">followload.apply(${profile.userid},${vo.follow})</button></th>
       </tr>
     </c:forEach>
   </table>

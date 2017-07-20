@@ -16,6 +16,10 @@
   integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
   crossorigin="anonymous">
 
+<script type="text/javascript">
+
+</script>
+
 </head>
 
 <body>
@@ -41,6 +45,7 @@
       <tr class="active">
         <!-- <td></td> => DATA Table DATA -->
         <th>${vo.follower}</th>
+        <th><button>follow</button>
       </tr>
     </c:forEach>
   </table>

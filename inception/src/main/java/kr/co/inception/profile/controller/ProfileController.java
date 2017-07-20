@@ -77,6 +77,7 @@ public class ProfileController {
 	public String showFollowList(@PathVariable("param1") String userid,Model model){
 		List<FollowListVO> followListVO = followService.followList(userid);
 		model.addAttribute("followList",followListVO);
+		System.out.println("항앙");
 		return "follow";
 	}
 
