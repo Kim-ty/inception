@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -77,6 +78,7 @@ public class MainController {
 		@RequestMapping(value="inception", method=RequestMethod.POST)
 		public ModelAndView fileUpload(MultipartHttpServletRequest mRequest,Model model) throws Exception {
 			ModelAndView view = new ModelAndView();
+			StringBuffer temp = new StringBuffer();
 			view.setViewName("SearchResult");
 			System.out.println("업로드 시작");	
 			String searchimage = mainService.searchImageUpload(mRequest);
@@ -91,22 +93,39 @@ public class MainController {
 		          if( image == null ){
 		              System.out.println(imagePath + " 파일을 찾을 수 없음");
 		          }else{
-		              ImageIO.write(image, "jpg",new File("C:/uploadimage/change_"+searchimage));
+		        	  Random rnd = new Random();
+		        	  for (int i = 0; i < 20; i++) {
+		        	      int rIndex = rnd.nextInt(3);
+		        	      switch (rIndex) {
+		        	      case 0:
+		        	          // a-z
+		        	          temp.append((char) ((int) (rnd.nextInt(26)) + 97));
+		        	          break;
+		        	      case 1:
+		        	          // A-Z
+		        	          temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+		        	          break;
+		        	      case 2:
+		        	          // 0-9
+		        	          temp.append((rnd.nextInt(10)));
+		        	          break;
+		        	      }
+		        	  }
+		        	  temp.append(".jpg");
+		              ImageIO.write(image, "jpg",new File("C:/uploadimage/"+temp));
 		              
 		          }
 		       } catch (IOException e) {
 		               e.printStackTrace();
 		       }
-		       System.out.println("bmp -> jpg, png 변환 성공");
 			
-				System.out.println("업로드 완료 분석시작");
 				String s;
 			      String[] result = new String[5];
 			      int i = 0;
 			      try {
 			         Process oProcess = new ProcessBuilder("cmd", "/C",
-			               "activate tensorflow & python C:/inception_image/label_image.py --image C:/uploadimage/change_"
-			                     + searchimage).start();
+			               "activate tensorflow & python C:/inception_image/label_image.py --image C:/uploadimage/"
+			                     + temp).start();
 			         BufferedReader stdOut = new BufferedReader(new InputStreamReader(oProcess.getInputStream()));
 			         while ((s = stdOut.readLine()) != null) {
 			            result[i] = s;
@@ -188,9 +207,9 @@ public class MainController {
 			   * BMP bmp jpeg wbmp gif JPG png jpg WBMP JPEG
 			   */
 			  String readName[] =  ImageIO.getReaderFormatNames();
-			  System.out.println( ">> 읽을 수 있는 이미지 포멧들 " );
+//			  System.out.println( ">> 읽을 수 있는 이미지 포멧들 " );
 			  for( int i = 0; i < readName.length ; i++ ){
-			   System.out.println( readName[i]);
+//			   System.out.println( readName[i]);
 			  }
 			  
 			  
@@ -199,11 +218,11 @@ public class MainController {
 			   * BMP bmp jpeg wbmp png JPG PNG jpg WBMP JPEG
 			   */
 			  String writerName[] = ImageIO.getWriterFormatNames(); 
-			  System.out.println( ">> 저장할 수 있는 이미지 포맷들" );
+//			  System.out.println( ">> 저장할 수 있는 이미지 포맷들" );
 			  for( int i = 0; i < writerName.length ; i++ ){
-			   System.out.println( writerName[i]);
+//			   System.out.println( writerName[i]);
 			  }
-			  System.out.println( "======================" );
+//			  System.out.println( "======================" );
 			 }
 			
 		@RequestMapping("image_upload")
@@ -217,6 +236,7 @@ public class MainController {
 		@RequestMapping(value = "/andinception")
 		@ResponseBody
 		public SearchResultVO androidinception(@RequestParam("filename") String filename) throws InterruptedException {
+			StringBuffer temp = new StringBuffer();
 			System.out.println("작업하러들어옴");
 			String s;
 			BufferedImage image = null;
@@ -230,7 +250,26 @@ public class MainController {
 		          if( image == null ){
 		              System.out.println(imagePath + " 파일을 찾을 수 없음");
 		          }else{
-		              ImageIO.write(image, "jpg",new File("C:/uploadimage/change_"+filename));
+		        	  Random rnd = new Random();
+		        	  for (int i = 0; i < 20; i++) {
+		        	      int rIndex = rnd.nextInt(3);
+		        	      switch (rIndex) {
+		        	      case 0:
+		        	          // a-z
+		        	          temp.append((char) ((int) (rnd.nextInt(26)) + 97));
+		        	          break;
+		        	      case 1:
+		        	          // A-Z
+		        	          temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+		        	          break;
+		        	      case 2:
+		        	          // 0-9
+		        	          temp.append((rnd.nextInt(10)));
+		        	          break;
+		        	      }
+		        	  }
+		        	  temp.append(".jpg");
+		              ImageIO.write(image, "jpg",new File("C:/uploadimage/"+temp));
 		              
 		          }
 		       } catch (IOException e) {
@@ -244,8 +283,8 @@ public class MainController {
 		    	  
 		    	
 		         Process oProcess = new ProcessBuilder("cmd", "/C",
-		               "activate tensorflow & python C:/inception_image/label_image.py --image C:/uploadimage/change_"
-		                     + filename).start();
+		               "activate tensorflow & python C:/inception_image/label_image.py --image C:/uploadimage/"
+		                     + temp).start();
 		         oProcess.waitFor();
 		     
 		         BufferedReader stdOut = new BufferedReader(new InputStreamReader(oProcess.getInputStream()));
