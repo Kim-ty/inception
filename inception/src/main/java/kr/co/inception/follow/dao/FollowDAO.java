@@ -12,7 +12,7 @@ public interface FollowDAO {
 	public void unfollowUser(FollowInsertOrDeleteDTO followInsertOrDeleteDTO);
 	public List<FollowListVO> followList(String userid);
 	public List<FollowerListVO> followerList(String userid);
-	public int followcheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO);
-	public int followercheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO);
+	public String followcheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO);
+	public String followercheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO);
 	
 }

@@ -26,8 +26,8 @@ public class followTest {
 		followInsertOrDeleteDTO.setUserid("kimty");
 		followInsertOrDeleteDTO.setFollow("USER01");
 		
-		followservice.followList("kimty");
-		followservice.followerList("kimty");
+//		followservice.followList("kimty");
+//		followservice.followerList("kimty");
 		followservice.unfollowUser(followInsertOrDeleteDTO);
 	}
 

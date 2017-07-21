@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 	
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,16 +18,12 @@
 	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
 	crossorigin="anonymous">
 <!--   <script src="follow.js" ></script> -->
-<script src="<c:url value="/resources/js/followfunction.js" />"></script>
-
 <script type="text/javascript">
 	$(document).ready(
 			function() {
 				$("#follow").load("/follow/" + loginid + "/followcheck", data,
 						callback);
 
-				
-				
 				$("#follow").click(function(loginid, followid, btntext) {
 
 					$.ajax({
@@ -63,14 +59,18 @@
 
 	<table class="table table-striped table-hover">
 		<c:forEach var="vo" items="${followList}">
-			<!-- <tr></tr> => row1  Table Row -->
+ 				<!-- <tr></tr> => row1  Table Row -->
 			<tr class="active">
 				<!-- <td></td> => DATA Table DATA -->
 				<th>${vo.follow}</th>
-				<th><button id="follow"><script>document.write(followload(kimty));</script></button></th>
+				<th><button id="${vo.follow}">
+						${vo.loginid}					
+					</button>
+						</th>
 			</tr>
 		</c:forEach>
 	</table>
+	<button id="asdf"></button>
 </body>
 
 </html>

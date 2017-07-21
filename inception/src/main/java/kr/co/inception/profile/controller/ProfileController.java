@@ -83,7 +83,6 @@ public class ProfileController {
 
 		List<FollowListVO> followListVO = followService.followList(userid,loginid);
 		model.addAttribute("followList",followListVO);
-		System.out.println("항앙");
 		return "follow";
 	}
 

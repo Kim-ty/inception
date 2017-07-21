@@ -12,7 +12,7 @@ public interface FollowService {
 	public void unfollowUser(FollowInsertOrDeleteDTO followInsertOrDeleteDTO);
 	public List<FollowListVO> followList(String userid,String loginid);
 	public List<FollowerListVO> followerList(String userid,String loginid);
-	public int followcheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO);
-	public int followercheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO);
+	public String followcheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO);
+	public String followercheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO);
 
 }

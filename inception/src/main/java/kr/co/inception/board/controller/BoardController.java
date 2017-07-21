@@ -23,7 +23,7 @@ import kr.co.inception.board.vo.BoardListVO;
 @RequestMapping("/board")
 public class BoardController {
 
-	private Logger logger = LoggerFactory.getLogger(BoardController.class);
+//	private Logger logger = LoggerFactory.getLogger(BoardController.class);
 
 	@Autowired
 	private BoardService boardService;
@@ -38,12 +38,12 @@ public class BoardController {
 
 	}
 	
-	@RequestMapping(value = "/boardInsert")
-	@ResponseBody
-	public Boolean androidboardInsert(BoardInsertDTO boardInsertDTO) {
-		//편집기 완성되면 시작합시다
-		return false;
-	}
+//	@RequestMapping(value = "/boardInsert")
+//	@ResponseBody
+//	public Boolean androidboardInsert(BoardInsertDTO boardInsertDTO) {
+//		//편집기 완성되면 시작합시다
+//		return false;
+//	}
 
 	@RequestMapping(value = "/boardList")
 	public String boardList(Model model) {
