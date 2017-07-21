@@ -190,8 +190,8 @@
 						</div>
 
 						<div class="form-group">
-							<input id="sex" type="radio" name="sex" value="남자">남자<br />
-							<input id="sex" type="radio" name="sex" value="여자">여자<br />
+							<input id="sex" type="radio" name="sex" value="남자"> 남자<br />
+							<input id="sex" type="radio" name="sex" value="여자"> 여자<br />
 							<!--  <label for="sex">SEX</label>
               <input id="sex" type="text" name="sex" class="form-control" placeholder="Enter Your sex" /> -->
 						</div>

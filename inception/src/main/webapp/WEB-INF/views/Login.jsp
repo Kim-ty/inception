@@ -24,7 +24,7 @@
 				<div class="login-box well">
 
 					<form role="form" method="post" action="/user/loginchk">
-						<legend>Login</legend>
+						<legend align="left">Login</legend>
 
 						<div class="form-group">
 							<label for="userid">ID or Email</label> <input name="userid"
