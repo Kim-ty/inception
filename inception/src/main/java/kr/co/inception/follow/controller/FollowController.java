@@ -3,12 +3,12 @@ package kr.co.inception.follow.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +18,7 @@ import kr.co.inception.follow.dto.FollowInsertOrDeleteDTO;
 import kr.co.inception.follow.service.FollowService;
 import kr.co.inception.follow.vo.FollowListVO;
 import kr.co.inception.follow.vo.FollowerListVO;
+import kr.co.inception.user.vo.LoginVO;
 
 @Controller
 @RequestMapping("/follow")
@@ -29,30 +30,34 @@ public class FollowController {
 	private FollowService followService;
 
 	// web
-	@RequestMapping(value = "/{param1}/follow")
-	public String follow(@PathVariable("param1") String userid, @RequestParam("follow") String follow,
+	@RequestMapping(value = "/follow")
+	public String follow(HttpSession session, @RequestParam("follow") String follow,
 			HttpServletRequest request) {
+		LoginVO loginVO  = (LoginVO) session.getAttribute("loginInfo");
+		String loginid = loginVO.getUserid();
 		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
-		followInsertOrDeleteDTO.setUserid(userid);
+		followInsertOrDeleteDTO.setUserid(loginid);
 		followInsertOrDeleteDTO.setFollow(follow);
-//		followService.followUser(followInsertOrDeleteDTO);
 		System.out.println(followInsertOrDeleteDTO.getUserid());
 		System.out.println(followInsertOrDeleteDTO.getFollow());
+		followService.followUser(followInsertOrDeleteDTO);
 		request.setAttribute("follow", follow);
-		return "forward:/" + userid + "/followcheck";
+		return "forward:/" + loginid + "/followcheck";
 	}
 
-	@RequestMapping(value = "/{param1}/unfollow")
-	public String unfollow(@PathVariable("param1") String userid, @RequestParam("follow") String follow,
+	@RequestMapping(value = "/unfollow")
+	public String unfollow(HttpSession session, @RequestParam("follow") String follow,
 			HttpServletRequest request) {
+		LoginVO loginVO  = (LoginVO) session.getAttribute("loginInfo");
+		String loginid = loginVO.getUserid();
 		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
-		followInsertOrDeleteDTO.setUserid(userid);
+		followInsertOrDeleteDTO.setUserid(loginid);
 		followInsertOrDeleteDTO.setFollow(follow);
-//		followService.unfollowUser(followInsertOrDeleteDTO);
 		System.out.println(followInsertOrDeleteDTO.getUserid());
 		System.out.println(followInsertOrDeleteDTO.getFollow());
+		followService.unfollowUser(followInsertOrDeleteDTO);
 		request.setAttribute("follow", follow);
-		return "forward:/" + userid + "/followcheck";
+		return "forward:/" + loginid + "/followcheck";
 	}
 
 	@RequestMapping(value="/{param1}/followcheck")
@@ -77,7 +82,7 @@ public class FollowController {
 	@RequestMapping(value = "/andfollowlist")
 	@ResponseBody
 	public List<FollowListVO> andfollwlist(@RequestParam("userid") String userid) {
-		List<FollowListVO> followListVO = followService.followList(userid);
+		List<FollowListVO> followListVO = followService.followList(userid,userid);
 
 		return followListVO;
 
@@ -86,7 +91,7 @@ public class FollowController {
 	@RequestMapping(value = "/andfollowerlist")
 	@ResponseBody
 	public List<FollowerListVO> andfollwerlist(@RequestParam("userid") String userid) {
-		List<FollowerListVO> followerListVO = followService.followerList(userid);
+		List<FollowerListVO> followerListVO = followService.followerList(userid,userid);
 
 		return followerListVO;
 

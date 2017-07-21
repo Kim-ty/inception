@@ -2,6 +2,8 @@ package kr.co.inception.profile.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import kr.co.inception.profile.vo.ProfileBoardListVO;
 import kr.co.inception.profile.vo.ProfileReplyListVO;
 import kr.co.inception.profile.vo.ProfileScrapeListVO;
 import kr.co.inception.profile.vo.ProfileVO;
+import kr.co.inception.user.vo.LoginVO;
 
 @Controller
 @RequestMapping("/profile")
@@ -74,16 +77,21 @@ public class ProfileController {
 	}
 
 	@RequestMapping(value ="/{param1}/followlist2")
-	public String showFollowList(@PathVariable("param1") String userid,Model model){
-		List<FollowListVO> followListVO = followService.followList(userid);
+	public String showFollowList(@PathVariable("param1") String userid,HttpSession session,Model model){
+		LoginVO loginVO  = (LoginVO) session.getAttribute("loginInfo");
+		String loginid = loginVO.getUserid();
+
+		List<FollowListVO> followListVO = followService.followList(userid,loginid);
 		model.addAttribute("followList",followListVO);
 		System.out.println("항앙");
 		return "follow";
 	}
 
 	@RequestMapping(value ="/{param1}/followerlist2")
-	public String showFollowerList(@PathVariable("param1") String userid,Model model){
-		List<FollowerListVO> followerListVO = followService.followerList(userid);
+	public String showFollowerList(@PathVariable("param1") String userid,HttpSession session,Model model){
+		LoginVO loginVO  = (LoginVO) session.getAttribute("loginInfo");
+		String loginid = loginVO.getUserid();
+		List<FollowerListVO> followerListVO = followService.followerList(userid,loginid);
 		model.addAttribute("followerList",followerListVO);
 		return "follower";
 	}

@@ -5,67 +5,72 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"
-  rel="stylesheet"
-  integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
-  crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
+	crossorigin="anonymous">
 <!--   <script src="follow.js" ></script> -->
 <script src="<c:url value="/resources/js/followfunction.js" />"></script>
 
-  <script type="text/javascript">
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$("#follow").load("/follow/" + loginid + "/followcheck", data,
+						callback);
 
-  $("#follow").load("/follow/"+loginid+"/followcheck",data,callback);
+				
+				
+				$("#follow").click(function(loginid, followid, btntext) {
 
-  $("#follow").click(
-  		function(loginid,followid,btntext){
-
-  			$.ajax({
-  				type:"POST",
-  				url:"<c:url value='/follow/${}'>",
-  				data : follow,
-  				datatype : "text",
-  				success:function(followcheck){
-            followchk(followcheck);
-  				}
-  			});
-  });
-
-  </script>
+					$.ajax({
+						type : "POST",
+						url : "/follow/" + loginid + "/followcheck",
+						data : follow,
+						datatype : "text",
+						success : function(followcheck) {
+							followchk(followcheck);
+						}
+					});
+				});
+			});
+</script>
 </head>
 
 <body>
-  <table class="table table-striped table-hover" border="1">
-    <tr class="active">
-      <td><a href="/profile/${profile.userid}">${profile.userid}</a></td>
-      <td><a href="/profile/${profile.userid}/followlist">${profile.followCount}</a></td>
-      <td><a href="/profile/${profile.userid}/followerlist">${profile.followerCount}</a></td>
-    </tr>
-  </table>
+	<table class="table table-striped table-hover" border="1">
+		<tr class="active">
+			<td><a href="/profile/${profile.userid}">${profile.userid}</a></td>
+			<td><a href="/profile/${profile.userid}/followlist">${profile.followCount}</a></td>
+			<td><a href="/profile/${profile.userid}/followerlist">${profile.followerCount}</a></td>
+		</tr>
+	</table>
 
-  <table class="table table-striped table-hover">
-    <tr class="active">
-      <td><a href="/profile/${profile.userid}">board</a></td>
-      <td><a href="/profile/${profile.userid}/reply">reply</a></td>
-      <td><a href="/profile/${profile.userid}/scrap">scrap</a></td>
-    </tr>
-  </table>
+	<table class="table table-striped table-hover">
+		<tr class="active">
+			<td><a href="/profile/${profile.userid}">board</a></td>
+			<td><a href="/profile/${profile.userid}/reply">reply</a></td>
+			<td><a href="/profile/${profile.userid}/scrap">scrap</a></td>
+		</tr>
+	</table>
 
-  <table class="table table-striped table-hover">
-    <c:forEach var="vo" items="${followList}">
-      <!-- <tr></tr> => row1  Table Row -->
-      <tr class="active">
-        <!-- <td></td> => DATA Table DATA -->
-        <th>${vo.follow}</th>
-        <th><button id="follow">followload.apply(${profile.userid},${vo.follow})</button></th>
-      </tr>
-    </c:forEach>
-  </table>
+	<table class="table table-striped table-hover">
+		<c:forEach var="vo" items="${followList}">
+			<!-- <tr></tr> => row1  Table Row -->
+			<tr class="active">
+				<!-- <td></td> => DATA Table DATA -->
+				<th>${vo.follow}</th>
+				<th><button id="follow"><script>document.write(followload(kimty));</script></button></th>
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 
 </html>

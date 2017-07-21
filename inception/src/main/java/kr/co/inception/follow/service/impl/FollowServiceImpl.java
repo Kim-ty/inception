@@ -28,12 +28,12 @@ public class FollowServiceImpl implements FollowService {
 	}
 
 	@Override
-	public List<FollowListVO> followList(String userid) {
+	public List<FollowListVO> followList(String userid,String loginid) {
 		return followDAO.followList(userid);
 	}
 
 	@Override
-	public List<FollowerListVO> followerList(String userid) {
+	public List<FollowerListVO> followerList(String userid,String loginid) {
 		return followDAO.followerList(userid);
 	}
 

@@ -6,6 +6,13 @@ function followchk(follower){
   }
 }
 
-function followload(loginid,followid){
-	return followchk(location.href="/follow/"+loginid+"/followcheck")
+function followload(loginid){
+	if(loginid == 0){
+		alert('follow');
+		return 'follow';
+	}else{
+		alert('unfollow');
+		return 'unfollow';
+	}
+		
 }
