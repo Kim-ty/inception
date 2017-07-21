@@ -37,6 +37,13 @@ public class BoardController {
 		return boardList;
 
 	}
+	
+	@RequestMapping(value = "/boardInsert")
+	@ResponseBody
+	public Boolean androidboardInsert(BoardInsertDTO boardInsertDTO) {
+		//편집기 완성되면 시작합시다
+		return false;
+	}
 
 	@RequestMapping(value = "/boardList")
 	public String boardList(Model model) {
@@ -57,7 +64,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/boardInsert")
 	public String boardInsert(BoardInsertDTO boardInsertDTO, Model model) {
-
+		
 		return "/boardList";
 	}
 
