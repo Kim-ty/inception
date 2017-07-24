@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.inception.mapper.messageMapper">
+
+
+	<select id="messageList" resultType="kr.co.inception.message.vo.MessageListVO">
+		<![CDATA[
+		select userid,targetuserid,message,writedate from(
+select userid,targetuserid,message,writedate,rank()over(partition by userid order by writedate asc) as rank 
+from message where targetuserid = #{targetuserid}
+) where rank = 1 order by writedate asc
+			]]>
+	</select>
+
+  
+  
+  
+	
+  
+</mapper>
+  
+  
+  
+  
+  
