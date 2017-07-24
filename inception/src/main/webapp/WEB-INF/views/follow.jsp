@@ -21,14 +21,11 @@
 <script type="text/javascript">
 	$(document).ready(
 			function() {
-				$("#follow").load("/follow/" + loginid + "/followcheck", data,
-						callback);
-
-				$("#follow").click(function(loginid, followid, btntext) {
+				$("#{vo.follow}").click(function() {
 
 					$.ajax({
 						type : "POST",
-						url : "/follow/" + loginid + "/followcheck",
+						url : "/follow/follow",
 						data : follow,
 						datatype : "text",
 						success : function(followcheck) {
@@ -62,7 +59,7 @@
  				<!-- <tr></tr> => row1  Table Row -->
 			<tr class="active">
 				<!-- <td></td> => DATA Table DATA -->
-				<th>${vo.follow}</th>
+				<th><a href="/profile/${vo.follow}">${vo.follow}</a></th>
 				<th><button id="${vo.follow}">
 						${vo.loginid}					
 					</button>

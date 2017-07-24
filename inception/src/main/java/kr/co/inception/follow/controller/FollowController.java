@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.inception.follow.dto.FollowInsertOrDeleteDTO;
+import kr.co.inception.follow.dto.FollowListDTO;
 import kr.co.inception.follow.service.FollowService;
 import kr.co.inception.follow.vo.FollowListVO;
 import kr.co.inception.follow.vo.FollowerListVO;
@@ -31,57 +32,62 @@ public class FollowController {
 
 	// web
 	@RequestMapping(value = "/follow")
-	public String follow(HttpSession session, @RequestParam("follow") String follow,
-			HttpServletRequest request) {
-		LoginVO loginVO  = (LoginVO) session.getAttribute("loginInfo");
+	public String follow(HttpSession session,HttpServletRequest request) {
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		String loginid = loginVO.getUserid();
+		String followid = (String) request.getAttribute("follow");
+		System.out.println("로그인ID : "+loginid+"팔로우ID : "+followid);
 		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
 		followInsertOrDeleteDTO.setUserid(loginid);
-		followInsertOrDeleteDTO.setFollow(follow);
+		followInsertOrDeleteDTO.setFollow(followid);
 		System.out.println(followInsertOrDeleteDTO.getUserid());
 		System.out.println(followInsertOrDeleteDTO.getFollow());
 		followService.followUser(followInsertOrDeleteDTO);
-		request.setAttribute("follow", follow);
+		request.setAttribute("follow", followid);
 		return "forward:/followcheck";
 	}
 
 	@RequestMapping(value = "/unfollow")
-	public String unfollow(HttpSession session, @RequestParam("follow") String follow,
-			HttpServletRequest request) {
-		LoginVO loginVO  = (LoginVO) session.getAttribute("loginInfo");
+	public String unfollow(HttpSession session, HttpServletRequest request) {
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		String loginid = loginVO.getUserid();
+		String unfollowid = (String) request.getAttribute("follow");
+		System.out.println("로그인ID : "+loginid+"언팔로우ID : "+unfollowid);
 		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
 		followInsertOrDeleteDTO.setUserid(loginid);
-		followInsertOrDeleteDTO.setFollow(follow);
+		followInsertOrDeleteDTO.setFollow(unfollowid);
 		System.out.println(followInsertOrDeleteDTO.getUserid());
 		System.out.println(followInsertOrDeleteDTO.getFollow());
 		followService.unfollowUser(followInsertOrDeleteDTO);
-		request.setAttribute("follow", follow);
+		request.setAttribute("follow", unfollowid);
 		return "forward:/followcheck";
 	}
 
-	@RequestMapping(value="/followcheck")
-	public @ResponseBody String followcheck(@PathVariable("param1") String userid,HttpServletRequest request){
+	@RequestMapping(value = "/followcheck")
+	public @ResponseBody String followcheck(HttpSession session, HttpServletRequest request) {
 		String follow = (String) request.getAttribute("follow");
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		String loginid = loginVO.getUserid();
 		System.out.println(follow);
 		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
-		followInsertOrDeleteDTO.setUserid(userid);
+		followInsertOrDeleteDTO.setUserid(loginid);
 		followInsertOrDeleteDTO.setFollow(follow);
 		followInsertOrDeleteDTO.getUserid();
 		followInsertOrDeleteDTO.getFollow();
-		int result = 1;
-				followService.followcheck(followInsertOrDeleteDTO);
-		if(result ==1){
-			return true;
+		if (followService.followcheck(followInsertOrDeleteDTO) == 1) {
+			return "follow";
 		}
-		return false;
+		return "unfollow";
 	}
 
 	// android
 	@RequestMapping(value = "/andfollowlist")
 	@ResponseBody
 	public List<FollowListVO> andfollwlist(@RequestParam("userid") String userid) {
-		List<FollowListVO> followListVO = followService.followList(userid,userid);
+		FollowListDTO followListDTO = new FollowListDTO();
+		followListDTO.setUserid(userid);
+		followListDTO.setLoginid(userid);
+		List<FollowListVO> followListVO = followService.followList(followListDTO);
 
 		return followListVO;
 
@@ -90,7 +96,10 @@ public class FollowController {
 	@RequestMapping(value = "/andfollowerlist")
 	@ResponseBody
 	public List<FollowerListVO> andfollwerlist(@RequestParam("userid") String userid) {
-		List<FollowerListVO> followerListVO = followService.followerList(userid,userid);
+		FollowListDTO followListDTO = new FollowListDTO();
+		followListDTO.setUserid(userid);
+		followListDTO.setLoginid(userid);
+		List<FollowerListVO> followerListVO = followService.followerList(followListDTO);
 
 		return followerListVO;
 
@@ -102,12 +111,11 @@ public class FollowController {
 		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
 		followInsertOrDeleteDTO.setUserid(userid);
 		followInsertOrDeleteDTO.setFollow(follow);
-		int result = followService.followcheck(followInsertOrDeleteDTO);
-		System.out.println(result);
-		if (result == 0) {
+		if (followService.followcheck(followInsertOrDeleteDTO) == 1) {
+			return true;
+		} else {
 			return false;
 		}
-		return true;
 	}
 
 	@RequestMapping(value = "/andfollowercheck")
@@ -117,11 +125,11 @@ public class FollowController {
 		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
 		followInsertOrDeleteDTO.setUserid(userid);
 		followInsertOrDeleteDTO.setFollower(follower);
-		int result = followService.followercheck(followInsertOrDeleteDTO);
-		if (result == 0) {
+		if (followService.followercheck(followInsertOrDeleteDTO) == 1) {
+			return true;
+		} else {
 			return false;
 		}
-		return true;
 	}
 
 	@RequestMapping(value = "/andunfollow")
