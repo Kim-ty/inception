@@ -185,12 +185,12 @@ to {
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="vo" items="${boardList}">
+			<c:forEach var="vo" items="${boardListVO}">
 				<!-- <tr></tr> => row1  Table Row -->
 				<tr class="active">
 					<!-- <td></td> => DATA Table DATA -->
 					<th>${vo.bidx}</th>
-					<th>${ vo.title }</th>
+					<th>${vo.title }</th>
 					<th>
 												<a data-toggle="modal" href="BoardList/${vo.bidx}" data-target="#modal-testNew" 
 												role="button" data-backdrop="static" 						>
@@ -225,7 +225,7 @@ to {
 	<!-- 	<div id="myModal" class="modal"> -->
 
 	<!-- 		<!-- Modal content -->
-	-->
+
 	<!-- 		<div class="modal-content"> -->
 	<!-- 			<div class="modal-header"> -->
 	<!-- 				<span class="close">&times;</span> -->
@@ -235,7 +235,7 @@ to {
 
 	<%-- 				<a href="board/BoardList/${bidx}"></a> --%>
 	<%-- <%-- 				<jsp:include page="BoardSimple.jsp"></jsp:include> --%>
-	--%>
+
 
 
 	<!-- 			</div> -->
