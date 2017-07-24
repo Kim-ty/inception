@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import kr.co.inception.message.service.MessageService;
 import kr.co.inception.user.service.UserService;
 
 
@@ -27,6 +28,8 @@ public class ControllerTest {
 	private WebApplicationContext wac;
 	private MockMvc mockMvc;
 	private UserService userService;
+	private MessageService messageservice;
+
 	
 	
 
@@ -59,7 +62,7 @@ public class ControllerTest {
 	
 	@Test
 	public void selectcategory() throws Exception{
-		mockMvc.perform(MockMvcRequestBuilders.post("/andselectcategory?category=의류")).andDo(print());
+		mockMvc.perform(MockMvcRequestBuilders.post("/message/andmessagelist?targetuserid=kkb1")).andDo(print());
 	}
 
 }

@@ -11,7 +11,7 @@
 		select userid,targetuserid,message,writedate from(
 select userid,targetuserid,message,writedate,rank()over(partition by userid order by writedate asc) as rank 
 from message where targetuserid = #{targetuserid}
-) where rank = 1 order by writedate asc
+) where rank = 1 order by writedate desc
 			]]>
 	</select>
 

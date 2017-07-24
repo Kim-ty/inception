@@ -18,7 +18,8 @@ public class MessageDaoImpl implements MessageDAO{
 
 	@Override
 	public List<MessageListVO> showMessageList(String targetuserid) {
-		return sqlSession.selectList(namespace+".messageList");
+		System.out.println("DAO쪽"+targetuserid);
+		return sqlSession.selectList(namespace+".messageList",targetuserid);
 	}
 
 }

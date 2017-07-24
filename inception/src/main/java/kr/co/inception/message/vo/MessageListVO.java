@@ -4,7 +4,7 @@ public class MessageListVO {
 
 	private String userid;
 	private String writedate;
-	private String meesage;
+	private String message;
 	public String getUserid() {
 		return userid;
 	}
@@ -17,12 +17,11 @@ public class MessageListVO {
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
-	public String getMeesage() {
-		return meesage;
+	public String getMessage() {
+		return message;
 	}
-	public void setMeesage(String meesage) {
-		this.meesage = meesage;
+	public void setMessage(String message) {
+		this.message = message;
 	}
-	
 	
 }
