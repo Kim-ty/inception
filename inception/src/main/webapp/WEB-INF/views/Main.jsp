@@ -75,7 +75,7 @@ div.jumbotron {
 						</c:when>
 						<c:otherwise>
 							<!-- Trigger/Open The Modal -->
-							<button id="myBtn" class="btn btn-default">Login2</button>
+							<button id="myBtn" class="btn btn-default">Login</button>
 							<!-- The Modal -->
 							<div id="myModal" class="modal">
 								<div class="modal-dialog">
@@ -132,8 +132,8 @@ div.jumbotron {
 
 			<div id="categories" align="center">
 				<c:forEach var="vo" items="${categoryList }">
-					<a href="/boardList/${vo.category }"><input type="submit"
-						name="category1" value=${vo.category } class="btn btn-default"></a>
+					<a href="/board/boardList/${vo.category }"><input type="submit"
+						name="category1" value=${vo.category }class="btn btn-default"></a>
 
 				</c:forEach>
 			</div>

@@ -48,7 +48,6 @@ public class BoardController {
 	@RequestMapping(value = "/boardList")
 	public String boardList(Model model) {
 		List<BoardListVO> boardList = boardService.showBoardList();
-
 		model.addAttribute("boardList", boardList);
 
 		return "BoardList";
@@ -56,9 +55,8 @@ public class BoardController {
 	
 	@RequestMapping(value = "/boardList/{param1}")
 	public String boardList(@PathVariable("param1") String category,Model model){
-		List<BoardListVO> boardListVO = boardService.showBoardListCa(category);
-		
-		model.addAttribute("boardListVO",boardListVO);
+		List<BoardListVO> boardList = boardService.showBoardListCa(category);		
+		model.addAttribute("boardList",boardList);
 		return "BoardList";
 	}
 	

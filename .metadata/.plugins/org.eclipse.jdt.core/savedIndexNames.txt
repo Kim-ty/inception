@@ -17,7 +17,6 @@ INDEX VERSION 1.130+D:\WorkSpace\BitComputerfinalproject\.metadata\.plugins\org.
 793518627.index
 1481776451.index
 1079038258.index
-3211791056.index
 1780531177.index
 1423947254.index
 2653529334.index

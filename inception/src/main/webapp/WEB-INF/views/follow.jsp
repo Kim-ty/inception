@@ -19,17 +19,23 @@
 	crossorigin="anonymous">
 <!--   <script src="follow.js" ></script> -->
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$("#{vo.follow}").click(function() {
+	var btnid;
+	
+function foll(btnid){
+	alert(btnid);
+}
 
+$(document).ready(
+			function(){
+				$(btnid).click(function() {
+						var follow = $(this).attr('id');
 					$.ajax({
-						type : "POST",
-						url : "/follow/follow",
+						type : "GET",
+						url : "/follow/followcheck",
 						data : follow,
 						datatype : "text",
 						success : function(followcheck) {
-							followchk(followcheck);
+							$(this).val(followcheck);
 						}
 					});
 				});
@@ -60,7 +66,8 @@
 			<tr class="active">
 				<!-- <td></td> => DATA Table DATA -->
 				<th><a href="/profile/${vo.follow}">${vo.follow}</a></th>
-				<th><button id="${vo.follow}">
+				<th>
+				<button id="${vo.follow}" onclick="foll(<c:out value ="${vo.follow}"/>)">
 						${vo.loginid}					
 					</button>
 						</th>

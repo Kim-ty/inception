@@ -30,42 +30,9 @@ public class FollowController {
 	@Autowired
 	private FollowService followService;
 
-	// web
-	@RequestMapping(value = "/follow")
-	public String follow(HttpSession session,HttpServletRequest request) {
-		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
-		String loginid = loginVO.getUserid();
-		String followid = (String) request.getAttribute("follow");
-		System.out.println("로그인ID : "+loginid+"팔로우ID : "+followid);
-		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
-		followInsertOrDeleteDTO.setUserid(loginid);
-		followInsertOrDeleteDTO.setFollow(followid);
-		System.out.println(followInsertOrDeleteDTO.getUserid());
-		System.out.println(followInsertOrDeleteDTO.getFollow());
-		followService.followUser(followInsertOrDeleteDTO);
-		request.setAttribute("follow", followid);
-		return "forward:/followcheck";
-	}
-
-	@RequestMapping(value = "/unfollow")
-	public String unfollow(HttpSession session, HttpServletRequest request) {
-		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
-		String loginid = loginVO.getUserid();
-		String unfollowid = (String) request.getAttribute("follow");
-		System.out.println("로그인ID : "+loginid+"언팔로우ID : "+unfollowid);
-		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
-		followInsertOrDeleteDTO.setUserid(loginid);
-		followInsertOrDeleteDTO.setFollow(unfollowid);
-		System.out.println(followInsertOrDeleteDTO.getUserid());
-		System.out.println(followInsertOrDeleteDTO.getFollow());
-		followService.unfollowUser(followInsertOrDeleteDTO);
-		request.setAttribute("follow", unfollowid);
-		return "forward:/followcheck";
-	}
-
+	
 	@RequestMapping(value = "/followcheck")
-	public @ResponseBody String followcheck(HttpSession session, HttpServletRequest request) {
-		String follow = (String) request.getAttribute("follow");
+	public String followcheck(@RequestParam("follow") String follow,HttpSession session, HttpServletRequest request) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		String loginid = loginVO.getUserid();
 		System.out.println(follow);
@@ -74,10 +41,44 @@ public class FollowController {
 		followInsertOrDeleteDTO.setFollow(follow);
 		followInsertOrDeleteDTO.getUserid();
 		followInsertOrDeleteDTO.getFollow();
+		request.setAttribute("followid", follow);
 		if (followService.followcheck(followInsertOrDeleteDTO) == 1) {
-			return "follow";
+			return "forward:/unfollow";
+		} else {
+			return "forward:/follow";
 		}
+	}
+
+
+	// web
+	@RequestMapping(value = "/follow")
+	public @ResponseBody String follow(HttpSession session, HttpServletRequest request) {
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		String loginid = loginVO.getUserid();
+		String followid = (String) request.getAttribute("followid");
+		System.out.println("로그인ID : " + loginid + "팔로우ID : " + followid);
+		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
+		followInsertOrDeleteDTO.setUserid(loginid);
+		followInsertOrDeleteDTO.setFollow(followid);
+		System.out.println(followInsertOrDeleteDTO.getUserid());
+		System.out.println(followInsertOrDeleteDTO.getFollow());
+		followService.followUser(followInsertOrDeleteDTO);
 		return "unfollow";
+	}
+
+	@RequestMapping(value = "/unfollow")
+	public @ResponseBody String unfollow(HttpSession session, HttpServletRequest request) {
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		String loginid = loginVO.getUserid();
+		String unfollowid = (String) request.getAttribute("followid");
+		System.out.println("로그인ID : " + loginid + "언팔로우ID : " + unfollowid);
+		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
+		followInsertOrDeleteDTO.setUserid(loginid);
+		followInsertOrDeleteDTO.setFollow(unfollowid);
+		System.out.println(followInsertOrDeleteDTO.getUserid());
+		System.out.println(followInsertOrDeleteDTO.getFollow());
+		followService.unfollowUser(followInsertOrDeleteDTO);
+		return "follow";
 	}
 
 	// android

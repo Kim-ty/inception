@@ -42,7 +42,7 @@
 			<!-- <tr></tr> => row1  Table Row -->
 			<tr class="active">
 				<!-- <td></td> => DATA Table DATA -->
-				<th><a href="/profile/${vo.follower}">${vo.follower}</a></th>
+				<th><a href="/profile/${vo.userid}">${vo.follower}</a></th>
 				<th><button id="${vo.follower}">
 						${vo.loginid}					
 					</button>
