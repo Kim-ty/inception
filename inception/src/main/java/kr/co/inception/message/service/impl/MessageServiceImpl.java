@@ -17,6 +17,7 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public List<MessageListVO> showMessageList(String targetuserid) {
+		System.out.println("서비스쪽  "+targetuserid);
 		return messageDAO.showMessageList(targetuserid);
 
 	}

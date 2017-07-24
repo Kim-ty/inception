@@ -22,6 +22,7 @@ public class MessageContontroller {
 	@RequestMapping(value = "/andmessagelist")
 	@ResponseBody
 	public List<MessageListVO> AllboardListJson(@RequestParam("targetuserid") String targetuserid) {
+		System.out.println(targetuserid);
 		List<MessageListVO> messageList = messageService.showMessageList(targetuserid);
 
 		return messageList;
