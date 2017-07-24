@@ -42,7 +42,7 @@ public class FollowController {
 		System.out.println(followInsertOrDeleteDTO.getFollow());
 		followService.followUser(followInsertOrDeleteDTO);
 		request.setAttribute("follow", follow);
-		return "forward:/" + loginid + "/followcheck";
+		return "forward:/followcheck";
 	}
 
 	@RequestMapping(value = "/unfollow")
@@ -57,12 +57,11 @@ public class FollowController {
 		System.out.println(followInsertOrDeleteDTO.getFollow());
 		followService.unfollowUser(followInsertOrDeleteDTO);
 		request.setAttribute("follow", follow);
-		return "forward:/" + loginid + "/followcheck";
+		return "forward:/followcheck";
 	}
 
-	@RequestMapping(value="/{param1}/followcheck")
-	public @ResponseBody boolean followcheck(@PathVariable("param1") String userid,HttpServletRequest request){
-		System.out.println("앙앙앙");
+	@RequestMapping(value="/followcheck")
+	public @ResponseBody String followcheck(@PathVariable("param1") String userid,HttpServletRequest request){
 		String follow = (String) request.getAttribute("follow");
 		System.out.println(follow);
 		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();

@@ -41,12 +41,12 @@ public class FollowDAOImpl implements FollowDAO{
 	}
 
 	@Override
-	public int followcheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO){
+	public String followcheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO){
 		return sqlSession.selectOne(nameSpace+".followCheck",followInsertOrDeleteDTO);
 	}
 
 	@Override
-	public int followercheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO) {
+	public String followercheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO) {
 		return sqlSession.selectOne(nameSpace+".followerCheck",followInsertOrDeleteDTO);
 	}
 

@@ -25,18 +25,18 @@
     </delete>
 	<select id="followList" resultType="kr.co.inception.follow.vo.FollowListVO">
 		<![CDATA[
-			select f.follow ,nvl(fw.follower,0) as loginid 
+			select f.follow ,decode(fw.follower,null,'follow','unfollow') as loginid 
 			from (select userid,follow from userfollow where userid = #{userid}) f 
-				left join(select userid,follower from userfollower where follower =#{userid}) fw on f.follow = fw.userid 
+				left join(select userid,follower from userfollower where follower =#{loginid}) fw on f.follow = fw.userid 
 			order by follow
 		]]>
 	</select>
 
 	<select id="followerList" resultType="kr.co.inception.follow.vo.FollowerListVO">
 		<![CDATA[
-			select f.follower ,nvl(fw.follower,0) as loginid 
+			select f.follower ,decode(fw.follower,null,'follow','unfollow') as loginid 
 			from (select follower from userfollower where userid = #{userid}) f 
-				left join(select userid,follower from userfollower where follower =#{userid}) fw on f.follower = fw.userid 
+				left join(select userid,follower from userfollower where follower =#{loginid}) fw on f.follower = fw.userid 
 			order by follower
 		]]>
 	</select>
