@@ -44,7 +44,7 @@
 				<th>${vo.bidx}</th>
 				<th>${vo.title}</th>
 				<th>${vo.contents}</th>
-				<th>${vo.userid}</th>
+				<th><a href="/profile/${vo.userid}">${ vo.userid }</a></th>
 				<th>${vo.writedate}</th>
 				<th>${vo.category}</th>
 				<th>${vo.hitcnt}</th>

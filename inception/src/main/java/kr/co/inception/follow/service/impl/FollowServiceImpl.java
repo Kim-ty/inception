@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.inception.follow.dao.FollowDAO;
 import kr.co.inception.follow.dto.FollowInsertOrDeleteDTO;
+import kr.co.inception.follow.dto.FollowListDTO;
 import kr.co.inception.follow.service.FollowService;
 import kr.co.inception.follow.vo.FollowListVO;
 import kr.co.inception.follow.vo.FollowerListVO;
@@ -28,22 +29,22 @@ public class FollowServiceImpl implements FollowService {
 	}
 
 	@Override
-	public List<FollowListVO> followList(String userid,String loginid) {
-		return followDAO.followList(userid);
+	public List<FollowListVO> followList(FollowListDTO followListDTO) {
+		return followDAO.followList(followListDTO);
 	}
 
 	@Override
-	public List<FollowerListVO> followerList(String userid,String loginid) {
-		return followDAO.followerList(userid);
+	public List<FollowerListVO> followerList(FollowListDTO followListDTO) {
+		return followDAO.followerList(followListDTO);
 	}
 
 	@Override
-	public String followcheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO) {
+	public int followcheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO) {
 		return followDAO.followcheck(followInsertOrDeleteDTO);
 	}
 
 	@Override
-	public String followercheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO) {
+	public int followercheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO) {
 		return followDAO.followercheck(followInsertOrDeleteDTO);
 	}
 

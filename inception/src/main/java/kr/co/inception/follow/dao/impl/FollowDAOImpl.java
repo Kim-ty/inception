@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.inception.follow.dao.FollowDAO;
 import kr.co.inception.follow.dto.FollowInsertOrDeleteDTO;
+import kr.co.inception.follow.dto.FollowListDTO;
 import kr.co.inception.follow.vo.FollowListVO;
 import kr.co.inception.follow.vo.FollowerListVO;
 
@@ -31,22 +32,22 @@ public class FollowDAOImpl implements FollowDAO{
 	}
 
 	@Override
-	public List<FollowListVO> followList(String userid) {
-		return sqlSession.selectList(nameSpace+".followList", userid);
+	public List<FollowListVO> followList(FollowListDTO followListDTO) {
+		return sqlSession.selectList(nameSpace+".followList", followListDTO);
 	}
 
 	@Override
-	public List<FollowerListVO> followerList(String userid) {
-		return sqlSession.selectList(nameSpace+".followerList", userid);
+	public List<FollowerListVO> followerList(FollowListDTO followListDTO) {
+		return sqlSession.selectList(nameSpace+".followerList", followListDTO);
 	}
 
 	@Override
-	public String followcheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO){
+	public int followcheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO){
 		return sqlSession.selectOne(nameSpace+".followCheck",followInsertOrDeleteDTO);
 	}
 
 	@Override
-	public String followercheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO) {
+	public int followercheck(FollowInsertOrDeleteDTO followInsertOrDeleteDTO) {
 		return sqlSession.selectOne(nameSpace+".followerCheck",followInsertOrDeleteDTO);
 	}
 

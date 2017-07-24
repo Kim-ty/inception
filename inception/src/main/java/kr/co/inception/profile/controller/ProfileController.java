@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.inception.follow.dto.FollowListDTO;
 import kr.co.inception.follow.service.FollowService;
 import kr.co.inception.follow.vo.FollowListVO;
 import kr.co.inception.follow.vo.FollowerListVO;
@@ -78,19 +79,26 @@ public class ProfileController {
 
 	@RequestMapping(value ="/{param1}/followlist2")
 	public String showFollowList(@PathVariable("param1") String userid,HttpSession session,Model model){
+		FollowListDTO followListDTO = new FollowListDTO();
 		LoginVO loginVO  = (LoginVO) session.getAttribute("loginInfo");
 		String loginid = loginVO.getUserid();
-
-		List<FollowListVO> followListVO = followService.followList(userid,loginid);
+		System.out.println("로그인한ID : "+loginid);
+		followListDTO.setUserid(userid);
+		followListDTO.setLoginid(loginid);
+		List<FollowListVO> followListVO = followService.followList(followListDTO);
 		model.addAttribute("followList",followListVO);
 		return "follow";
 	}
 
 	@RequestMapping(value ="/{param1}/followerlist2")
 	public String showFollowerList(@PathVariable("param1") String userid,HttpSession session,Model model){
+		FollowListDTO followListDTO = new FollowListDTO();
 		LoginVO loginVO  = (LoginVO) session.getAttribute("loginInfo");
 		String loginid = loginVO.getUserid();
-		List<FollowerListVO> followerListVO = followService.followerList(userid,loginid);
+		System.out.println("로그인한ID : "+loginid);
+		followListDTO.setUserid(userid);
+		followListDTO.setLoginid(loginid);
+		List<FollowerListVO> followerListVO = followService.followerList(followListDTO);
 		model.addAttribute("followerList",followerListVO);
 		return "follower";
 	}
