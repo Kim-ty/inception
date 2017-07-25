@@ -135,6 +135,7 @@ div.jumbotron {
 					<a href="/board/boardList/${vo.category }"><input type="submit"
 						name="category1" value=${vo.category }class="btn btn-default"></a>
 
+
 				</c:forEach>
 			</div>
 
