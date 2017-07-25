@@ -87,6 +87,30 @@ public class BoardController {
 		return result;
 
 	}
+	
+	@RequestMapping(value = "/andcontentsgood")
+	@ResponseBody
+	public void andcontentsgood(@RequestParam("bidx") String bidx,@RequestParam("userid") String userid) {
+		GoodDTO goodDTO = new GoodDTO();
+		goodDTO.setBidx(bidx);
+		goodDTO.setUserid(userid);
+		boardService.good(goodDTO);
+
+	}
+	@RequestMapping(value = "/andgoodcheck")
+	@ResponseBody
+	public int andgoodcheck(@RequestParam("bidx") String bidx,@RequestParam("userid") String userid) {
+		GoodDTO goodDTO = new GoodDTO();
+		goodDTO.setBidx(bidx);
+		goodDTO.setUserid(userid);
+		int result = boardService.goodcheck(goodDTO);
+		if(result ==1 ){
+			System.out.println("이미 따봉 했당게");
+			return result;
+		}
+		System.out.println("따봉 ㄳ");
+		return result;
+	}
 
 	// @RequestMapping(value = "/boardInsert")
 	// @ResponseBody

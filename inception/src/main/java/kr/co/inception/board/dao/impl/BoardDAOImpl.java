@@ -120,4 +120,9 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlSession.selectOne(namespace+".scrapcheck", scrapeDTO);
 	}
 
+	@Override
+	public int goodcheck(GoodDTO goodDTO) {
+		return sqlSession.selectOne(namespace+".goodcheck",goodDTO);
+	}
+
 }

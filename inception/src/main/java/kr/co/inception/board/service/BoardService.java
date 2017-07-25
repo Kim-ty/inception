@@ -36,6 +36,8 @@ public interface BoardService {
 	public List<BoardListVO> searchkeyword(String searchkeyword);
 	public int hit(String bidx);
 	public int scrapscheck(ScrapeDTO scrapeDTO);
+	public int goodcheck(GoodDTO goodDTO);
+
 	
 
 
