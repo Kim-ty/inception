@@ -148,6 +148,10 @@ union
 select * from board where contents like #{searchkeword}
 		]]>
 	</select>
+	
+	<update id="hit">
+  		<![CDATA[update board set hitcount = hitcount+1 where bidx =#{bidx}]]>
+	</update>
 
 </mapper>
   

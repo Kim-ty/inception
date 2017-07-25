@@ -109,5 +109,10 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<BoardListVO> searchkeyword(String searchkeyword) {
 		return sqlSession.selectList(namespace+".searchkeyword",searchkeyword);
 	}
+	
+	@Override
+	public int hit(String bidx) {
+		return sqlSession.insert(namespace+".hit",bidx);
+	}
 
 }

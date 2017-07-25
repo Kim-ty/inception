@@ -104,5 +104,11 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardListVO> searchkeyword(String searchkeyword) {
 		return boardDAO.searchkeyword(searchkeyword);
 	}
+	
+	@Override
+	public int hit(String bidx) {
+		return boardDAO.hit(bidx);
+	}
+
 
 }
