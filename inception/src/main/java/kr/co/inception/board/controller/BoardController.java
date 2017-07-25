@@ -51,6 +51,15 @@ public class BoardController {
 		return boardlist;
 
 	}
+	
+	@RequestMapping(value = "/andboarddetail")
+	@ResponseBody
+	public BoardSimpleVO andboard(@RequestParam("bidx") String bidx) {
+		boardService.hit(bidx);
+		BoardSimpleVO boardSimple = boardService.showBoardSimple(bidx);
+		return boardSimple;
+
+	}
 
 	// @RequestMapping(value = "/boardInsert")
 	// @ResponseBody
@@ -69,10 +78,13 @@ public class BoardController {
 
 	@RequestMapping(value ="/boardDetail/{param1}")
 	public String boardDetail(@PathVariable("param1") String bidx,Model model){
+		boardService.hit(bidx);
 		BoardSimpleVO boardSimple = boardService.showBoardSimple(bidx);
 		model.addAttribute("boardSimple",boardSimple);
 		return "BoardDetail";
 	}
+	
+	
 	
 	
 	@RequestMapping(value = "/boardList/{param1}")
