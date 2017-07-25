@@ -9,13 +9,26 @@
 	<select id="messageList" resultType="kr.co.inception.message.vo.MessageListVO">
 		<![CDATA[
 		select userid,targetuserid,message,writedate from(
-select userid,targetuserid,message,writedate,rank()over(partition by userid order by writedate asc) as rank 
+select userid,targetuserid,message,writedate,rank()over(partition by userid order by writedate desc) as rank 
 from message where targetuserid = #{targetuserid}
 ) where rank = 1 order by writedate desc
 			]]>
 	</select>
-
-  
+	
+	<select id="messageroomList" resultType="kr.co.inception.message.vo.MessageListVO">
+		<![CDATA[
+		select * from (
+select * from message where userid = #{userid} and targetuserid = #{targetuserid}
+union
+select * from message where userid = #{targetuserid} and targetuserid = #{userid}
+)
+order by writedate asc
+		]]>
+	</select>
+<insert id="messageinsert">
+	<![CDATA[insert into message (userid,message,targetuserid,writedate)
+values(#{userid},#{message},#{targetuserid},sysdate)]]>
+  </insert>
   
   
 	

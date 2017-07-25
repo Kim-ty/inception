@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.inception.message.dao.MessageDAO;
+import kr.co.inception.message.dto.MessageListDTO;
 import kr.co.inception.message.vo.MessageListVO;
 
 @Repository
@@ -18,8 +19,17 @@ public class MessageDaoImpl implements MessageDAO{
 
 	@Override
 	public List<MessageListVO> showMessageList(String targetuserid) {
-		System.out.println("DAO쪽"+targetuserid);
 		return sqlSession.selectList(namespace+".messageList",targetuserid);
+	}
+
+	@Override
+	public List<MessageListVO> showMessageRoom(MessageListDTO messagelistDTO) {
+		return sqlSession.selectList(namespace+".messageroomList",messagelistDTO);
+	}
+
+	@Override
+	public void messageInsert(MessageListDTO messagelistDTO) {
+		sqlSession.insert(namespace+".messageinsert",messagelistDTO);
 	}
 
 }

@@ -105,4 +105,9 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlSession.selectList(namespace+".boardListCategory",category);
 	}
 
+	@Override
+	public List<BoardListVO> searchkeyword(String searchkeyword) {
+		return sqlSession.selectList(namespace+".searchkeyword",searchkeyword);
+	}
+
 }

@@ -100,4 +100,9 @@ public class BoardServiceImpl implements BoardService{
 		return boardDAO.showBoardListCa(category);
 	}
 
+	@Override
+	public List<BoardListVO> searchkeyword(String searchkeyword) {
+		return boardDAO.searchkeyword(searchkeyword);
+	}
+
 }

@@ -133,11 +133,8 @@ div.jumbotron {
 			<div id="categories" align="center">
 				<c:forEach var="vo" items="${categoryList }">
 					<a href="/board/boardList/${vo.category }"><input type="submit"
-<<<<<<< HEAD
 						name="category1" value=${vo.category }class="btn btn-default"></a>
-=======
-						name="category1" value=${vo.category } class="btn btn-default"></a>
->>>>>>> 015d2b2fe4c4fe79f3beecd6c9a86d40b4f492ab
+
 
 				</c:forEach>
 			</div>

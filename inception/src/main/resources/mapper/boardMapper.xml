@@ -138,6 +138,16 @@
 		]]>
 
 	</select>
+	
+	<select id="searchkeyword" resultType="kr.co.inception.board.vo.BoardListVO">
+		<![CDATA[
+		select * from board where title like #{searchkeyword}
+union
+select * from board where userid like #{searchkeword}
+union
+select * from board where contents like #{searchkeword}
+		]]>
+	</select>
 
 </mapper>
   

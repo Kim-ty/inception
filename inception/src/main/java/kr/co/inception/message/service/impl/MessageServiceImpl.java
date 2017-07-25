@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.inception.message.dao.MessageDAO;
+import kr.co.inception.message.dto.MessageListDTO;
 import kr.co.inception.message.service.MessageService;
 import kr.co.inception.message.vo.MessageListVO;
 
@@ -17,8 +18,17 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public List<MessageListVO> showMessageList(String targetuserid) {
-		System.out.println("서비스쪽  "+targetuserid);
 		return messageDAO.showMessageList(targetuserid);
 
+	}
+
+	@Override
+	public List<MessageListVO> showMessageRoom(MessageListDTO messagelistDTO) {
+		return messageDAO.showMessageRoom(messagelistDTO);
+	}
+
+	@Override
+	public void messageInsert(MessageListDTO messagelistDTO) {
+		messageDAO.messageInsert(messagelistDTO);
 	}
 }

@@ -33,5 +33,5 @@ public interface BoardDAO {
 	public List<BaderListVO> showBaderList(String bidx);
 	public List<ReplyListVO> showReplyList(String bidx);
 	public List<ScraperListVO> showScraperList(String bidx);
-
+	public List<BoardListVO> searchkeyword(String searchkeyword);
 }

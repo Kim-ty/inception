@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.inception.board.dto.BoardInsertDTO;
@@ -18,12 +19,13 @@ import kr.co.inception.board.dto.ReplyDTO;
 import kr.co.inception.board.dto.ScrapeDTO;
 import kr.co.inception.board.service.BoardService;
 import kr.co.inception.board.vo.BoardListVO;
+import kr.co.inception.message.vo.MessageListVO;
 
 @Controller
 @RequestMapping("/board")
 public class BoardController {
 
-//	private Logger logger = LoggerFactory.getLogger(BoardController.class);
+	// private Logger logger = LoggerFactory.getLogger(BoardController.class);
 
 	@Autowired
 	private BoardService boardService;
@@ -37,13 +39,24 @@ public class BoardController {
 		return boardList;
 
 	}
-	
-//	@RequestMapping(value = "/boardInsert")
-//	@ResponseBody
-//	public Boolean androidboardInsert(BoardInsertDTO boardInsertDTO) {
-//		//편집기 완성되면 시작합시다
-//		return false;
-//	}
+
+	// android
+	@RequestMapping(value = "/andboardsearch")
+	@ResponseBody
+	public List<BoardListVO> andboardsearch(@RequestParam("searchkeyword") String searchkeyword) {
+		searchkeyword = "%"+searchkeyword+"%";
+		List<BoardListVO> boardlist = boardService.searchkeyword(searchkeyword);
+
+		return boardlist;
+
+	}
+
+	// @RequestMapping(value = "/boardInsert")
+	// @ResponseBody
+	// public Boolean androidboardInsert(BoardInsertDTO boardInsertDTO) {
+	// //편집기 완성되면 시작합시다
+	// return false;
+	// }
 
 	@RequestMapping(value = "/boardList")
 	public String boardList(Model model) {
@@ -52,22 +65,19 @@ public class BoardController {
 
 		return "BoardList";
 	}
-	
+
 	@RequestMapping(value = "/boardList/{param1}")
-	public String boardList(@PathVariable("param1") String category,Model model){
-<<<<<<< HEAD
-		List<BoardListVO> boardList = boardService.showBoardListCa(category);		
-		model.addAttribute("boardList",boardList);
-=======
-		List<BoardListVO> boardListVO = boardService.showBoardListCa(category);
-		model.addAttribute("boardList",boardListVO);
->>>>>>> 015d2b2fe4c4fe79f3beecd6c9a86d40b4f492ab
+	public String boardList(@PathVariable("param1") String category, Model model) {
+
+		List<BoardListVO> boardList = boardService.showBoardListCa(category);
+		model.addAttribute("boardList", boardList);
+
 		return "BoardList";
 	}
-	
+
 	@RequestMapping(value = "/boardInsert")
 	public String boardInsert(BoardInsertDTO boardInsertDTO, Model model) {
-		
+
 		return "/boardList";
 	}
 
