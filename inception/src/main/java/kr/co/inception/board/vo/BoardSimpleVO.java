@@ -13,6 +13,7 @@ public class BoardSimpleVO {
 	private String good;
 	private String bad;
 	private String scrapecount;
+	private String replycount;
 	
 	
 	public String getBidx() {
@@ -80,6 +81,12 @@ public class BoardSimpleVO {
 	}
 	public void setScrapecount(String scrapecount) {
 		this.scrapecount = scrapecount;
+	}
+	public String getReplycount() {
+		return replycount;
+	}
+	public void setReplycount(String replycount) {
+		this.replycount = replycount;
 	}
 	
 	

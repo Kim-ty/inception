@@ -85,7 +85,7 @@
 
 	<select id="boardSimple" resultType="kr.co.inception.board.vo.BoardSimpleVO">
 		<![CDATA[
-			select b.bidx,b.title,b.userid,b.writedate,b.contents,b.hitcount,b.category,t.tag,g.good,b.bad,s.scrapecount
+			select b.bidx,b.title,b.userid,b.writedate,b.contents,b.hitcount,b.category,t.tag,g.good,b.bad,s.scrapecount,r.replycount
 			from board b,
     			(select listagg(tag,',')within group(order by bidx) as tag
     			from boardtag
@@ -101,7 +101,11 @@
     			(select count(*) as scrapecount
     			from scrape
     			where bidx=#{bidx}
-    			) s
+    			) s,
+   				(select count(*) as replycount
+   				from boardreply
+   				where bidx=#{bidx}
+   				) r
 			where b.bidx = #{bidx}
 		]]>
 
