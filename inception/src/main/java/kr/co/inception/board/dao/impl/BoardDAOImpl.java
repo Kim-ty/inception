@@ -115,4 +115,9 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlSession.insert(namespace+".hit",bidx);
 	}
 
+	@Override
+	public int scrapscheck(ScrapeDTO scrapeDTO) {
+		return sqlSession.selectOne(namespace+".scrapcheck", scrapeDTO);
+	}
+
 }

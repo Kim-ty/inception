@@ -35,6 +35,8 @@ public interface BoardService {
 	public List<ScraperListVO> showScraperList(String bidx);
 	public List<BoardListVO> searchkeyword(String searchkeyword);
 	public int hit(String bidx);
+	public int scrapscheck(ScrapeDTO scrapeDTO);
+	
 
 
 	
