@@ -55,13 +55,8 @@ public class BoardController {
 	
 	@RequestMapping(value = "/boardList/{param1}")
 	public String boardList(@PathVariable("param1") String category,Model model){
-<<<<<<< HEAD
 		List<BoardListVO> boardList = boardService.showBoardListCa(category);		
 		model.addAttribute("boardList",boardList);
-=======
-		List<BoardListVO> boardListVO = boardService.showBoardListCa(category);
-		model.addAttribute("boardList",boardListVO);
->>>>>>> 015d2b2fe4c4fe79f3beecd6c9a86d40b4f492ab
 		return "BoardList";
 	}
 	

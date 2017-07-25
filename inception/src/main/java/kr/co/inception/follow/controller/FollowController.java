@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,11 +32,12 @@ public class FollowController {
 	private FollowService followService;
 
 	
-	@RequestMapping(value = "/followcheck")
-	public String followcheck(@RequestParam("follow") String follow,HttpSession session, HttpServletRequest request) {
+	@RequestMapping(value = "/followcheck", method = RequestMethod.POST)
+	public String followcheck(@RequestParam("follow") String follow, HttpSession session,HttpServletRequest request) {
+		System.out.println("씨이이압ㄹ");
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		String loginid = loginVO.getUserid();
-		System.out.println(follow);
+		System.out.println("팔로우할 아이디"+follow);
 		FollowInsertOrDeleteDTO followInsertOrDeleteDTO = new FollowInsertOrDeleteDTO();
 		followInsertOrDeleteDTO.setUserid(loginid);
 		followInsertOrDeleteDTO.setFollow(follow);
@@ -43,9 +45,9 @@ public class FollowController {
 		followInsertOrDeleteDTO.getFollow();
 		request.setAttribute("followid", follow);
 		if (followService.followcheck(followInsertOrDeleteDTO) == 1) {
-			return "forward:/unfollow";
+			return "forward:/follow/unfollow";
 		} else {
-			return "forward:/follow";
+			return "forward:/follow/follow";
 		}
 	}
 
