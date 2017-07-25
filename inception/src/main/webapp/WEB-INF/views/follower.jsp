@@ -18,6 +18,39 @@
 	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
 	crossorigin="anonymous">
 
+<script type="text/javascript">
+
+// 	$(function() {
+// 			$(this).html($(this).attr("id"));
+// 	});
+
+// 	function folunfol(asdf) {
+// 		$(this).html(asdf);
+// 	}
+
+// 	$(function folunfol(asdfasdfasdf) {
+// 		$(this).html(asdfasdfasdf);
+// 	});
+
+	$(document).ready(function() {
+
+		$('.followbtn').click(function() {
+			var follow = $(this).attr("id");
+			$.ajax({
+				url : "/follow/followcheck",
+				type : "POST",
+				dataType : "text",
+				data : {
+					follow : $(this).attr("id")
+				},
+				success : function(fck) {
+					$(document).find("button[id="+follow+"]").html(fck);
+				}
+			});
+		});
+	});
+</script>
+
 </head>
 
 <body>
@@ -42,15 +75,13 @@
 			<!-- <tr></tr> => row1  Table Row -->
 			<tr class="active">
 				<!-- <td></td> => DATA Table DATA -->
-				<th><a href="/profile/${vo.userid}">${vo.follower}</a></th>
-				<th><button id="${vo.follower}">
-						${vo.loginid}					
-					</button>
-						</th>
+				<th><a href="/profile/${vo.follower}">${vo.follower}</a></th>
+				<th><button id="${vo.follower}" class="followbtn">${vo.loginid}</button></th>
 			</tr>
 
 		</c:forEach>
 	</table>
+	<button id="asdfasdf" class="asdf">안녕</button>
 </body>
 
 </html>

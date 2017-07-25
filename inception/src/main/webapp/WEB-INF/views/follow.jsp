@@ -28,7 +28,7 @@
 				dataType : "text",
 				data : { follow : $(this).attr("id") },
 				success : function(fck) {
-					$(this).html("fck");
+					$(document).find("button[id="+follow+"]").html(fck);
 				}
 			});
 		});
