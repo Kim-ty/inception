@@ -60,6 +60,57 @@ public class BoardController {
 		return boardSimple;
 
 	}
+	
+	@RequestMapping(value = "/andcontentsscrap")
+	@ResponseBody
+	public String andcontentsscrap(@RequestParam("bidx") String bidx,@RequestParam("userid") String userid) {
+		ScrapeDTO scrapeDTO = new ScrapeDTO();
+		scrapeDTO.setBidx(bidx);
+		scrapeDTO.setUserid(userid);
+		boardService.Scrape(scrapeDTO);
+		return "짜쟌";
+	}
+	
+	@RequestMapping(value = "/andscrapecheck")
+	@ResponseBody
+	public int andscrapcheck(@RequestParam("bidx") String bidx,@RequestParam("userid") String userid) {
+		ScrapeDTO scrapeDTO = new ScrapeDTO();
+		scrapeDTO.setBidx(bidx);
+		scrapeDTO.setUserid(userid);
+		int result = boardService.scrapscheck(scrapeDTO);
+		if(result ==1){
+			System.out.println("이미 스크랩 하셨습니다");
+			return result;
+		}
+			System.out.println("스크랩 하셨씁니다");
+		
+		return result;
+
+	}
+	
+	@RequestMapping(value = "/andcontentsgood")
+	@ResponseBody
+	public void andcontentsgood(@RequestParam("bidx") String bidx,@RequestParam("userid") String userid) {
+		GoodDTO goodDTO = new GoodDTO();
+		goodDTO.setBidx(bidx);
+		goodDTO.setUserid(userid);
+		boardService.good(goodDTO);
+
+	}
+	@RequestMapping(value = "/andgoodcheck")
+	@ResponseBody
+	public int andgoodcheck(@RequestParam("bidx") String bidx,@RequestParam("userid") String userid) {
+		GoodDTO goodDTO = new GoodDTO();
+		goodDTO.setBidx(bidx);
+		goodDTO.setUserid(userid);
+		int result = boardService.goodcheck(goodDTO);
+		if(result ==1 ){
+			System.out.println("이미 따봉 했당게");
+			return result;
+		}
+		System.out.println("따봉 ㄳ");
+		return result;
+	}
 
 	// @RequestMapping(value = "/boardInsert")
 	// @ResponseBody

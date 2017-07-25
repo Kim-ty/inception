@@ -110,5 +110,15 @@ public class BoardServiceImpl implements BoardService{
 		return boardDAO.hit(bidx);
 	}
 
+	@Override
+	public int scrapscheck(ScrapeDTO scrapeDTO) {
+		return boardDAO.scrapscheck(scrapeDTO);
+	}
+
+	@Override
+	public int goodcheck(GoodDTO goodDTO) {
+		return boardDAO.goodcheck(goodDTO);
+	}
+
 
 }

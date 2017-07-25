@@ -33,21 +33,33 @@
 
 	<insert id="Scrape">
 		<![CDATA[
-			insert into scrape(bidx,userid,scrapedate) values(#{bidx},#{userid},sysdate);
+			insert into scrape(bidx,userid,scrapedate) values(#{bidx},#{userid},sysdate)
 		]]>
 
 	</insert>
+	
+	<select id="scrapcheck" resultType="int">
+		<![CDATA[
+			select count(*) from scrape where bidx=#{bidx} and userid=#{userid}
+		]]>
+	</select>
 
 	<insert id="good">
 		<![CDATA[
-			insert into goodbad(bidx,g_b_count,userid) VALUES(2,0,#{userid});
+			insert into goodbad(bidx,g_b_count,userid) VALUES(#{bidx},0,#{userid})
 		]]>
 
 	</insert>
+	
+	<select id="goodcheck" resultType="int">
+		<![CDATA[
+			select count(*) from goodbad where bidx=#{bidx} and userid = #{userid}
+		]]>
+	</select>
 
 	<insert id="bad">
 		<![CDATA[
-			insert into goodbad(bidx,g_b_count,userid) VALUES(2,1,#{userid});
+			insert into goodbad(bidx,g_b_count,userid) VALUES(#{bidx},1,#{userid})
 		]]>
 
 	</insert>
