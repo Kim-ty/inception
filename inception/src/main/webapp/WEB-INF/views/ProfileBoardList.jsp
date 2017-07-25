@@ -42,8 +42,7 @@
 			<!-- <tr></tr> => row1  Table Row -->
 			<tr class="active">
 				<!-- <td></td> => DATA Table DATA -->
-				<th>${vo.bidx}</th>
-				<th>${ vo.title }</th>
+				<th><a href="/board/boardDetail/${vo.bidx}">${ vo.title }</a></th>
 				<th>${vo.contents}</th>
 				<th><a href="/profile/${vo.userid}">${ vo.userid }</a></th>
 				<th>${ vo.writedate }</th>

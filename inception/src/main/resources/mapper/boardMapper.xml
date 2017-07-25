@@ -127,7 +127,7 @@
 
 	<select id="replyList" resultType="kr.co.inception.board.vo.ReplyListVO">
 		<![CDATA[
-			select ridx,targetreply,lpad(' ',3*(level-1)) || contents as contents,level,bidx
+			select ridx,targetreply,contents,level,bidx
 			from BOARDREPLY
 			where bidx = #{bidx}
 			start with targetreply is null

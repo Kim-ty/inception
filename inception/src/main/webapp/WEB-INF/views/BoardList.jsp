@@ -18,38 +18,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-
-				$("#btnbidx").click(
-						function() {
-							var userinfo = $("#insert_form").serialize();
-							$.ajax({
-								type : "GET",
-								url : "/user/emailchk",
-								data : userinfo,
-								success : function(emailchk) {
-									if (1 == emailchk) {
-										$("#content4").text("중복된 이메일입니다").css(
-												"color", "red");
-										emailFlag2 = false;
-										joinChecker();
-									} else if (-1 == emailchk) {
-										$("#content4").text("이메일이 너무짧습니다").css(
-												"color", "black");
-										emailFlag2 = false;
-										joinChecker();
-									} else {
-										$("#content4").text("사용가능한 이메일 입니다")
-												.css("color", "blue");
-										emailFlag2 = true;
-										joinChecker();
-									}
-
-								}
-							});
-						});
-			});
 	$(function() {
 		$("#popbutton").click(function() {
 			$('div.modal').modal({
@@ -191,15 +159,13 @@ to {
 					<!-- <td></td> => DATA Table DATA -->
 					<th>${vo.bidx}</th>
 					<th>${vo.title }</th>
-					<th>
-												<a data-toggle="modal" href="BoardList/${vo.bidx}" data-target="#modal-testNew" 
-												role="button" data-backdrop="static" 						>
-						 							<span id = "btnbidx" class="btn btn-xs btn-success">${vo.contents}</span>
-												</a> 					
-<!-- 												Trigger/Open The Modal onClick with Content  -->
-<!-- 						<span id="myBtn" onclick="" style="cursor: pointer"> -->
-<%-- 							${vo.contents }</span> --%>
-					</th>
+					<th><a href="/board/boardDetail/${vo.bidx}">${vo.contents}</a></th>
+<%-- 					<a data-toggle="modal" href="BoardList/${vo.bidx}" --%>
+<!-- 						data-target="#modal-testNew" role="button" data-backdrop="static"> -->
+<%-- 							<span id="btnbidx" class="btn btn-xs btn-success">${vo.contents}</span> --%>
+<!-- 					</a> 												Trigger/Open The Modal onClick with Content  -->
+						<!-- 						<span id="myBtn" onclick="" style="cursor: pointer"> -->
+						<%-- 							${vo.contents }</span> --%></th>
 					<th>${ vo.userid }</th>
 					<th>${ vo.writedate }</th>
 					<th>${ vo.category }</th>

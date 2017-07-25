@@ -19,6 +19,7 @@ import kr.co.inception.board.dto.ReplyDTO;
 import kr.co.inception.board.dto.ScrapeDTO;
 import kr.co.inception.board.service.BoardService;
 import kr.co.inception.board.vo.BoardListVO;
+import kr.co.inception.board.vo.BoardSimpleVO;
 import kr.co.inception.message.vo.MessageListVO;
 
 @Controller
@@ -66,8 +67,15 @@ public class BoardController {
 		return "BoardList";
 	}
 
+	@RequestMapping(value ="/boardDetail/{param1}")
+	public String boardDetail(@PathVariable("param1") String bidx,Model model){
+		BoardSimpleVO boardSimple = boardService.showBoardSimple(bidx);
+		model.addAttribute("boardSimple",boardSimple);
+		return "BoardDetail";
+	}
+	
+	
 	@RequestMapping(value = "/boardList/{param1}")
-
 	public String boardList(@PathVariable("param1") String category, Model model) {
 
 		List<BoardListVO> boardList = boardService.showBoardListCa(category);
