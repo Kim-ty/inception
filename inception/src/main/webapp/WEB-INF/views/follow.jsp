@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,27 +19,20 @@
 	crossorigin="anonymous">
 <!--   <script src="follow.js" ></script> -->
 <script type="text/javascript">
-	var btnid;
-	
-function foll(btnid){
-	alert(btnid);
-}
-
-$(document).ready(
-			function(){
-				$(btnid).click(function() {
-						var follow = $(this).attr('id');
-					$.ajax({
-						type : "GET",
-						url : "/follow/followcheck",
-						data : follow,
-						datatype : "text",
-						success : function(followcheck) {
-							$(this).val(followcheck);
-						}
-					});
-				});
+	$(document).ready(function() {
+		$('.followbtn').click(function() {
+			var follow = $(this).attr("id");
+			$.ajax({
+				url : "/follow/followcheck",
+				type : "POST",
+				dataType : "text",
+				data : { follow : $(this).attr("id") },
+				success : function(fck) {
+					$(this).html("fck");
+				}
 			});
+		});
+	});
 </script>
 </head>
 
@@ -62,19 +55,16 @@ $(document).ready(
 
 	<table class="table table-striped table-hover">
 		<c:forEach var="vo" items="${followList}">
- 				<!-- <tr></tr> => row1  Table Row -->
+			<!-- <tr></tr> => row1  Table Row -->
 			<tr class="active">
 				<!-- <td></td> => DATA Table DATA -->
 				<th><a href="/profile/${vo.follow}">${vo.follow}</a></th>
 				<th>
-				<button id="${vo.follow}" onclick="foll(<c:out value ="${vo.follow}"/>)">
-						${vo.loginid}					
-					</button>
-						</th>
+					<button id="${vo.follow}" class="followbtn">${vo.loginid}</button>
+				</th>
 			</tr>
 		</c:forEach>
 	</table>
-	<button id="asdf"></button>
 </body>
 
 </html>
