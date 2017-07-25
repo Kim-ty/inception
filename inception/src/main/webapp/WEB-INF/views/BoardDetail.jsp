@@ -70,7 +70,7 @@
 		<td><a id="replymore">댓글보기</a></td>
 		</tr>
 		<tr>
-	<include>
+	<include >
 	
 	</include>
 	</tr>

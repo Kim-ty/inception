@@ -13,7 +13,7 @@ public class BoardListVO{
 	private String userid;
 	private String writedate;
 	private String category;
-	private int hitcnt;
+	private String hitcnt;
 	private String gcnt;
 	private String bcnt;
 	private String scrapecnt;
@@ -25,10 +25,10 @@ public class BoardListVO{
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public int getHitcnt() {
+	public String getHitcnt() {
 		return hitcnt;
 	}
-	public void setHitcnt(int hitcnt) {
+	public void setHitcnt(String hitcnt) {
 		this.hitcnt = hitcnt;
 	}
 	public String getTitle() {
