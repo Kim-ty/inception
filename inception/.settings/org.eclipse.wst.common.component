@@ -2,9 +2,18 @@
 	<wb-module deploy-name="inception-1.0.0-BUILD-SNAPSHOT">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
 		<wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
         	<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         	<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
    	     	<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
+>>>>>>> 0db271049a69fd89d0a9462b6a027bcc24b63682
+=======
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
+>>>>>>> parent of 0db2710... 서버 뻑남
 		<property name="java-output-path" value="target/classes"/>
         <property name="context-root" value="inception"/>
 	</wb-module>

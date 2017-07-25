@@ -2,6 +2,8 @@ package kr.co.inception.board.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.inception.board.dto.BadDTO;
 import kr.co.inception.board.dto.BoardInsertDTO;
 import kr.co.inception.board.dto.BoardUpdateDTO;
 import kr.co.inception.board.dto.GoodDTO;
@@ -19,6 +20,7 @@ import kr.co.inception.board.dto.ScrapeDTO;
 import kr.co.inception.board.service.BoardService;
 import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.board.vo.BoardSimpleVO;
+import kr.co.inception.message.vo.MessageListVO;
 
 @Controller
 @RequestMapping("/board")
@@ -102,22 +104,12 @@ public class BoardController {
 		goodDTO.setBidx(bidx);
 		goodDTO.setUserid(userid);
 		int result = boardService.goodcheck(goodDTO);
-		if(result == 1 ){
+		if(result ==1 ){
 			System.out.println("이미 따봉 했당게");
 			return result;
 		}
 		System.out.println("따봉 ㄳ");
 		return result;
-	}
-	
-	@RequestMapping(value = "/andcontentsbad")
-	@ResponseBody
-	public void andcontentsbad(@RequestParam("bidx") String bidx,@RequestParam("userid") String userid) {
-		BadDTO badDTO = new BadDTO();
-		badDTO.setBidx(bidx);
-		badDTO.setUserid(userid);
-		boardService.bad(badDTO);
-
 	}
 
 	// @RequestMapping(value = "/boardInsert")
@@ -189,13 +181,6 @@ public class BoardController {
 	@RequestMapping(value = "/good")
 	public String good(GoodDTO goodDTO) {
 		boardService.good(goodDTO);
-
-		return "/boardSimple";
-	}
-	
-	@RequestMapping(value = "/bad")
-	public String bad(BadDTO badDTO) {
-		boardService.bad(badDTO);
 
 		return "/boardSimple";
 	}
