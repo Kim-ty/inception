@@ -55,19 +55,17 @@
 			<th>${ vo.hitcount }</th>
 		</tr>
 		<tr>
-			<th>${ vo.good }</th>
-		</tr>
-		<tr>
-			<th>${ vo.bad }</th>
-		</tr>
-		<tr>
-			<th>${ vo.scrapecount }</th>
-		</tr>
-		<tr>
+			<th id="gooder">${ vo.good }</th>
+			<th>좋아요</th>
+			<th id="bader">${ vo.bad }</th>
+			<th>나빠요</th>
+			<th id="scraper">${ vo.scrapecount }</th>
+			<th>스크랩하기</th>
 			<th>${ vo.replycount }</th>
+		<td><a id="replymore" href="/board/boardreply">댓글보기</a></td>
 		</tr>
 		<tr>
-		<td><a id="replymore">댓글보기</a></td>
+			<th>${vo.tag }</th>
 		</tr>
 		<tr>
 	<include >

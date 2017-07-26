@@ -174,9 +174,19 @@ public class BoardController {
 
 		boardService.replyInsert(replyDTO);
 
-		return "/boardSimple";
+		return "/boardDetail";
 	}
-
+	
+	@RequestMapping(value="/replyList/{param1}")
+	public String replyList(@PathVariable("param1") String bidx,Model model){
+		
+		List<ReplyListVO> replyList = boardService.showReplyList(bidx);
+		model.addAttribute("replyList",replyList);
+		
+		return "/reply";
+	}
+	
+	
 	@RequestMapping(value = "/scrape")
 	public String scrape(ScrapeDTO scrapeDTO) {
 
