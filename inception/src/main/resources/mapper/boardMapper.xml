@@ -139,7 +139,7 @@
 
 	<select id="replyList" resultType="kr.co.inception.board.vo.ReplyListVO">
 		<![CDATA[
-			select ridx,targetreply,contents,level,bidx
+			select ridx,targetreply,contents,level,bidx,writedate,userid
 			from BOARDREPLY
 			where bidx = #{bidx}
 			start with targetreply is null

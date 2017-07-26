@@ -7,6 +7,8 @@ public class ReplyListVO {
 	private String contents;
 	private String level;
 	private String bidx;
+	private String writedate;
+	private String userid;
 	
 	public String getRidx() {
 		return ridx;
@@ -37,6 +39,18 @@ public class ReplyListVO {
 	}
 	public void setBidx(String bidx) {
 		this.bidx = bidx;
+	}
+	public String getWritedate() {
+		return writedate;
+	}
+	public void setWritedate(String writedate) {
+		this.writedate = writedate;
+	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 	
 	
