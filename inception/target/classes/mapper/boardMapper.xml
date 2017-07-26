@@ -18,8 +18,8 @@
 	<update id="boardUpdate" >
 		<![CDATA[
 			update board
-			set CONTENTS = 'adsfasdfasdfasdf'
-			where bidx = '2'
+			set CONTENTS = #{contents}
+			where bidx = #{bidx}
 		]]>
 
 	</update>
@@ -144,6 +144,16 @@
 			where bidx = #{bidx}
 			start with targetreply is null
 			connect by prior ridx = TARGETREPLY
+		]]>
+
+	</select>
+	<select id="replyList2" resultType="kr.co.inception.board.vo.ReplyListVO">
+		<![CDATA[
+			select ridx,TARGETREPLY,lpad('└ ',3*(level-1)) || contents  as contents,userid,writedate,level,bidx
+from BOARDREPLY
+where bidx =#{bidx}
+start with targetreply is null
+connect by prior ridx = TARGETREPLY
 		]]>
 
 	</select>
