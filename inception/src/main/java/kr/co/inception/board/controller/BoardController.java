@@ -2,8 +2,6 @@ package kr.co.inception.board.controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +18,7 @@ import kr.co.inception.board.dto.ScrapeDTO;
 import kr.co.inception.board.service.BoardService;
 import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.board.vo.BoardSimpleVO;
-import kr.co.inception.message.vo.MessageListVO;
+import kr.co.inception.board.vo.ReplyListVO;
 
 @Controller
 @RequestMapping("/board")
@@ -110,6 +108,15 @@ public class BoardController {
 		}
 		System.out.println("따봉 ㄳ");
 		return result;
+	}
+	
+	@RequestMapping(value = "/andreplylist")
+	@ResponseBody
+	public List<ReplyListVO> andreplylist(@RequestParam("bidx") String bidx) {
+		List<ReplyListVO> replylist = boardService.showReplyList(bidx);
+		
+	
+		return replylist;
 	}
 
 	// @RequestMapping(value = "/boardInsert")
