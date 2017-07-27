@@ -120,5 +120,10 @@ public class BoardServiceImpl implements BoardService{
 		return boardDAO.goodcheck(goodDTO);
 	}
 
+	@Override
+	public List<ReplyListVO> showReplyList2(String bidx) {
+		return boardDAO.showReplyList2(bidx);
+	}
+
 
 }

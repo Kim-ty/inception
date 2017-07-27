@@ -57,7 +57,24 @@ public class BoardController {
 		boardService.hit(bidx);
 		BoardSimpleVO boardSimple = boardService.showBoardSimple(bidx);
 		return boardSimple;
-
+	}
+	//android 수정용 데이터불러오기
+	@RequestMapping(value = "/andboarddetail2")
+	@ResponseBody
+	public BoardSimpleVO andboard2(@RequestParam("bidx") String bidx) {
+		BoardSimpleVO boardSimple = boardService.showBoardSimple(bidx);
+		return boardSimple;
+	}
+	
+	@RequestMapping(value = "/andcontentsupdate")
+	@ResponseBody
+	public String andcontentsupdate(@RequestParam("bidx") String bidx,@RequestParam("contents") String contents) {
+		BoardUpdateDTO boardupdateDTO = new BoardUpdateDTO ();
+		boardupdateDTO.setBidx(bidx);
+		boardupdateDTO.setContents(contents);
+		boardService.boardUpdate(boardupdateDTO);
+		System.out.println(contents);
+		return "Success";
 	}
 	
 	@RequestMapping(value = "/andcontentsscrap")
@@ -110,6 +127,30 @@ public class BoardController {
 		System.out.println("따봉 ㄳ");
 		return result;
 	}
+	
+	@RequestMapping(value = "/andreplylist")
+	@ResponseBody
+	public List<ReplyListVO> andreplylist(@RequestParam("bidx") String bidx) {
+		List<ReplyListVO> replylist = boardService.showReplyList2(bidx);
+		
+	
+		return replylist;
+	}
+	@RequestMapping(value = "/andreplyinsert")
+	@ResponseBody
+	public String andreplyinsert(@RequestParam("bidx") String bidx,@RequestParam("userid") String userid,@RequestParam("contents") String contents,@RequestParam("targetreply") String targetreply) {
+		ReplyDTO replyDTO = new ReplyDTO();
+		replyDTO.setBidx(bidx);
+		replyDTO.setUserid(userid);
+		replyDTO.setContents(contents);
+		replyDTO.setTargetreply(targetreply);
+		boardService.replyInsert(replyDTO);
+		
+	
+		return "Success";
+	}
+	
+	
 
 	// @RequestMapping(value = "/boardInsert")
 	// @ResponseBody
@@ -169,9 +210,14 @@ public class BoardController {
 		return "/boardDetail";
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping(value="/replyList")
 	@ResponseBody 
 	public List<ReplyListVO> replyList(@RequestParam("bidx")  String bidx){
+=======
+	@RequestMapping(value="/replyList/")
+	public String replyList(@RequestParam("bidx") String bidx,Model model){
+>>>>>>> 4c6e0164f1000a1125227fe2ffdd2cc943f7971d
 		
 		List<ReplyListVO> replyList = boardService.showReplyList(bidx);
 		

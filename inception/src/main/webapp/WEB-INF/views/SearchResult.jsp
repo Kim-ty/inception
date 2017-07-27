@@ -10,11 +10,12 @@
 </head>
 <body>
 이미지 분석 결과값</br>
-${Rank1}</br>
-${Rank2}</br>
-${Rank3}</br>
-${Rank4}</br>
-${Rank5}</br>
+
+<a href="../mongo/list/${Rank1} "> ${Rank1} </a>	
+<a href="../mongo/list/${Rank2} "> ${Rank2} </a>	
+<a href="../mongo/list/${Rank3} "> ${Rank3} </a>	
+<a href="../mongo/list/${Rank4} "> ${Rank4} </a>	
+<a href="../mongo/list/${Rank5} "> ${Rank5} </a>	
 
 </body>
 </html>
