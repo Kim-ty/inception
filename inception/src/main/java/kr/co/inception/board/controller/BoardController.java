@@ -1,6 +1,7 @@
 package kr.co.inception.board.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -168,13 +169,13 @@ public class BoardController {
 		return "/boardDetail";
 	}
 	
-	@RequestMapping(value="/replyList/{param1}")
-	public String replyList(@PathVariable("param1") String bidx,Model model){
+	@RequestMapping(value="/replyList")
+	@ResponseBody 
+	public List<ReplyListVO> replyList(@RequestParam("bidx")  String bidx){
 		
 		List<ReplyListVO> replyList = boardService.showReplyList(bidx);
-		model.addAttribute("replyList",replyList);
 		
-		return "/reply";
+		return replyList;
 	}
 	
 	
