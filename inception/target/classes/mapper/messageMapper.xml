@@ -30,6 +30,24 @@ order by writedate asc
 values(#{userid},#{message},#{targetuserid},sysdate)]]>
   </insert>
   
+  <insert id="notifyinsert">
+	<![CDATA[
+	insert into notify (userid,message,targetuserid,writedate)
+values(#{userid},#{message},#{targetuserid},sysdate)
+	]]>
+  </insert>
+  <select id="notifycheck" resultType="kr.co.inception.message.vo.MessageListVO">
+  	<![CDATA[
+  		select * from notify where targetuserid = #{targetuserid}
+  	]]>
+  </select>
+  
+  <delete id="notifydelete">
+  	<![CDATA[
+  		delete from notify where targetuserid=#{targetuserid}
+  	]]>
+  </delete>
+  
   
 	
   

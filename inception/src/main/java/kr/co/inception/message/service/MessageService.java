@@ -10,4 +10,8 @@ public interface MessageService {
 	public List<MessageListVO> showMessageList(String targetuserid);
 	public List<MessageListVO> showMessageRoom(MessageListDTO messagelistDTO);
 	public void messageInsert(MessageListDTO messagelistDTO);
+	public void notifyInsert(MessageListDTO messagelistDTO);
+	public List<MessageListVO> notyfiCheck(String targetuserid);
+	public void notyfidelete(String targetuserid);
+
 }
