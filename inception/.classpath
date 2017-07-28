@@ -28,13 +28,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="D:/apachetomcat/apache-tomcat-8.5.16-windows-x64/apache-tomcat-8.5.16/lib/cos.jar"/>
-=======
-
 	<classpathentry kind="lib" path="C:/apache-tomcat-8.0.42/lib/cos.jar"/>
-
->>>>>>> 4c6e0164f1000a1125227fe2ffdd2cc943f7971d
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
 		<attributes>

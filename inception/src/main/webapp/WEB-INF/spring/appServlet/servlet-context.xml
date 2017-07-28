@@ -23,7 +23,6 @@
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	 <beans:property name="maxUploadSize" value="50000000" /> 
 	 </beans:bean>
-
 	
 	<context:component-scan base-package="kr.co.inception.user.controller" />
 	<context:component-scan base-package="kr.co.inception" />

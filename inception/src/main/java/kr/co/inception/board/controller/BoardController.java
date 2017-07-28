@@ -210,18 +210,18 @@ public class BoardController {
 		return "/boardDetail";
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping(value="/replyList")
 	@ResponseBody 
 	public List<ReplyListVO> replyList(@RequestParam("bidx")  String bidx){
-=======
-	@RequestMapping(value="/replyList/")
-	public String replyList(@RequestParam("bidx") String bidx,Model model){
->>>>>>> 4c6e0164f1000a1125227fe2ffdd2cc943f7971d
 		
 		List<ReplyListVO> replyList = boardService.showReplyList(bidx);
 		
 		return replyList;
+	}
+	
+	@RequestMapping(value="/write")
+	public String boardInert(){
+		return "boardInsert";
 	}
 	
 	
