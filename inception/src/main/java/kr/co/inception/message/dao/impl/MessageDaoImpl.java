@@ -32,4 +32,21 @@ public class MessageDaoImpl implements MessageDAO{
 		sqlSession.insert(namespace+".messageinsert",messagelistDTO);
 	}
 
+	@Override
+	public void notifyInsert(MessageListDTO messagelistDTO) {
+		sqlSession.insert(namespace+".notifyinsert",messagelistDTO);
+	}
+
+	@Override
+	public List<MessageListVO> notyfiCheck(String targetuserid) {
+		return sqlSession.selectList(namespace+".notifycheck",targetuserid);
+	}
+
+	@Override
+	public void notyfidelete(String targetuserid) {
+		sqlSession.delete(namespace+".notifydelete",targetuserid);
+	}
+
+	
+
 }

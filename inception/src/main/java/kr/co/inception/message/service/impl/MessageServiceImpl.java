@@ -31,4 +31,19 @@ public class MessageServiceImpl implements MessageService {
 	public void messageInsert(MessageListDTO messagelistDTO) {
 		messageDAO.messageInsert(messagelistDTO);
 	}
+
+	@Override
+	public void notifyInsert(MessageListDTO messagelistDTO) {
+		messageDAO.notifyInsert(messagelistDTO);
+	}
+
+	@Override
+	public List<MessageListVO> notyfiCheck(String targetuserid) {
+		return messageDAO.notyfiCheck(targetuserid);
+	}
+
+	@Override
+	public void notyfidelete(String targetuserid) {
+		messageDAO.notyfidelete(targetuserid);
+	}
 }

@@ -1,7 +1,14 @@
 package kr.co.inception.message.vo;
 
 public class MessageListVO {
-
+	
+	private String targetuserid;
+	public String getTargetuserid() {
+		return targetuserid;
+	}
+	public void setTargetuserid(String targetuserid) {
+		this.targetuserid = targetuserid;
+	}
 	private String userid;
 	private String writedate;
 	private String message;
