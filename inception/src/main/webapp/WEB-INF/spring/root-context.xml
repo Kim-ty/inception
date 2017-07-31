@@ -62,6 +62,8 @@
 	<context:component-scan base-package="kr.co.inception.follow.service" />
 	<context:component-scan base-package="kr.co.inception.message.dao" />
 	<context:component-scan base-package="kr.co.inception.message.service" />
+	<context:component-scan base-package="kr.co.inception.search.dao" />
+	<context:component-scan base-package="kr.co.inception.search.service" />
 	<!-- aop 설정하기 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<context:component-scan base-package="kr.co.inception.aop"></context:component-scan>

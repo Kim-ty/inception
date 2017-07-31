@@ -131,5 +131,10 @@ public class BoardDAOImpl implements BoardDAO{
 
 	}
 
+	@Override
+	public List<BoardListVO> selectcategory(String category) {
+		return sqlSession.selectList(namespace+".boardListCategory",category);
+	}
+
 
 }
