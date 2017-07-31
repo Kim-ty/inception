@@ -48,9 +48,28 @@ public class MessageContontroller {
 		messageListDTO.setTargetuserid(targetuserid);		
 		messageListDTO.setUserid(userid);
 		messageListDTO.setMessage(message);
+		messageService.notifyInsert(messageListDTO);
 		messageService.messageInsert(messageListDTO);
 
 		
 
 	}
+	@RequestMapping(value = "/andnotifycheck")
+	@ResponseBody
+	public List<MessageListVO> andnotiftcheck(@RequestParam("targetuserid") String targetuserid) {
+		List<MessageListVO> messageList = messageService.notyfiCheck(targetuserid);
+
+		return messageList;
+
+	}
+	@RequestMapping(value = "/andnotifydelete")
+	@ResponseBody
+	public void andnotyfidelete(@RequestParam("targetuserid") String targetuserid) {
+		messageService.notyfidelete(targetuserid);
+
+		
+
+	}
+	
+	
 }

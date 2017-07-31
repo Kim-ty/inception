@@ -125,4 +125,16 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlSession.selectOne(namespace+".goodcheck",goodDTO);
 	}
 
+	@Override
+	public List<ReplyListVO> showReplyList2(String bidx) {
+		return sqlSession.selectList(namespace+".replyList2",bidx);
+
+	}
+
+	@Override
+	public List<BoardListVO> selectcategory(String category) {
+		return sqlSession.selectList(namespace+".boardListCategory",category);
+	}
+
+
 }

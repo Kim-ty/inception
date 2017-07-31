@@ -32,9 +32,11 @@ public interface BoardDAO {
 	public List<GooderListVO> showGooderList(String bidx);
 	public List<BaderListVO> showBaderList(String bidx);
 	public List<ReplyListVO> showReplyList(String bidx);
+	public List<ReplyListVO> showReplyList2(String bidx);
 	public List<ScraperListVO> showScraperList(String bidx);
 	public List<BoardListVO> searchkeyword(String searchkeyword);
 	public int hit(String bidx);
 	public int scrapscheck(ScrapeDTO scrapeDTO);
 	public int goodcheck(GoodDTO goodDTO);
+	public List<BoardListVO> selectcategory(String category);
 }

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
@@ -62,6 +60,8 @@
 	<context:component-scan base-package="kr.co.inception.follow.service" />
 	<context:component-scan base-package="kr.co.inception.message.dao" />
 	<context:component-scan base-package="kr.co.inception.message.service" />
+	<context:component-scan base-package="kr.co.inception.search.dao" />
+	<context:component-scan base-package="kr.co.inception.search.service" />
 	<!-- aop 설정하기 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<context:component-scan base-package="kr.co.inception.aop"></context:component-scan>
@@ -103,6 +103,10 @@
 
 	</bean>
 
+	<bean name="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10000000"></property>
+	</bean>
 
 
 

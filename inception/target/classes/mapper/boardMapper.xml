@@ -18,8 +18,8 @@
 	<update id="boardUpdate" >
 		<![CDATA[
 			update board
-			set CONTENTS = 'adsfasdfasdfasdf'
-			where bidx = '2'
+			set CONTENTS = #{contents}
+			where bidx = #{bidx}
 		]]>
 
 	</update>
@@ -139,11 +139,21 @@
 
 	<select id="replyList" resultType="kr.co.inception.board.vo.ReplyListVO">
 		<![CDATA[
-			select ridx,targetreply,contents,level,bidx,writedate,userid
+			select ridx,nvl(TARGETREPLY,0) as targetreply,contents,level,bidx,writedate,userid
 			from BOARDREPLY
 			where bidx = #{bidx}
 			start with targetreply is null
 			connect by prior ridx = TARGETREPLY
+		]]>
+
+	</select>
+	<select id="replyList2" resultType="kr.co.inception.board.vo.ReplyListVO">
+		<![CDATA[
+			select ridx,TARGETREPLY,lpad('└ ',3*(level-1)) || contents  as contents,userid,writedate,level,bidx
+from BOARDREPLY
+where bidx =#{bidx}
+start with targetreply is null
+connect by prior ridx = TARGETREPLY
 		]]>
 
 	</select>
@@ -157,11 +167,11 @@
 	
 	<select id="searchkeyword" resultType="kr.co.inception.board.vo.BoardListVO">
 		<![CDATA[
-		select * from board where title like #{searchkeyword}
-union
-select * from board where userid like #{searchkeword}
-union
-select * from board where contents like #{searchkeword}
+		select b.bidx,b.hitcount as hitcnt,SUBSTR(b.contents, 1, 25) as contents,b.title,b.userid,b.writedate,b.category,nvl(gb.gcnt,0) AS gcnt,nvl(gb.bcnt,0) as bcnt,nvl(s.scrapecnt,0) AS scrapecnt,nvl(rp.rpcnt,0) as rpcnt
+			from ( select distinct bidx,HITCOUNT,contents,TITLE,USERID,WRITEDATE,CATEGORY from board ) b
+			left join ( select bidx, count(decode(g_b_count,'0','1')) as gcnt,count(decode(g_b_count,'1','1')) as bcnt from goodbad group by bidx ) gb ON b.bidx = gb.bidx
+			left join ( select bidx, count(*) as scrapecnt from scrape group by bidx ) s ON b.bidx = s.bidx
+			left join ( select bidx, count(*) as rpcnt from BoardReply group by bidx) rp on b.bidx = rp.bidx where title like #{searchkeyword} or userid like #{searchkeyword} or contents like #{searchkeyword}
 		]]>
 	</select>
 	
