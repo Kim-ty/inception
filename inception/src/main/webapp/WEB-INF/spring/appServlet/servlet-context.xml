@@ -34,6 +34,5 @@
 	<context:component-scan base-package="kr.co.inception.board.controller" />
 	<context:component-scan base-package="kr.co.inception.profile.controller" />
 	<context:component-scan base-package="kr.co.inception.message.controller" />
-
-
+	<context:component-scan base-package="kr.co.inception.search.controller" />
 </beans:beans>

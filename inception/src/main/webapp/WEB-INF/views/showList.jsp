@@ -21,7 +21,7 @@ body, html {
 </style>
 <body>
 	<c:forEach var="list" items="${list}">
-	 catgory :	<a href="../list/${list.id } "> ${list.id } </a>		  total collections : ${list.total} <br>
+	 catgory :	<a href="./${list.id } "> ${list.id } </a>		  total collections : ${list.total} <br>
 
 	</c:forEach>
 

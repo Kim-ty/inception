@@ -125,5 +125,10 @@ public class BoardServiceImpl implements BoardService{
 		return boardDAO.showReplyList2(bidx);
 	}
 
+	@Override
+	public List<BoardListVO> selectcategory(String category) {
+		return boardDAO.selectcategory(category);
+	}
+
 
 }

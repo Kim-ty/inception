@@ -38,6 +38,7 @@ public interface BoardService {
 	public int hit(String bidx);
 	public int scrapscheck(ScrapeDTO scrapeDTO);
 	public int goodcheck(GoodDTO goodDTO);
+	public List<BoardListVO> selectcategory(String category);
 
 	
 
