@@ -2,12 +2,16 @@ package kr.co.inception.board.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import kr.co.inception.board.dto.BoardInsertDTO;
@@ -29,8 +33,6 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 
-	@Autowired
-	MappingJackson2JsonView jsonView;
 	
 	// android
 	@RequestMapping(value = "/andallboardlist")
@@ -161,6 +163,16 @@ public class BoardController {
 	// return false;
 	// }
 
+	
+	//Web
+	
+	@RequestMapping(value ="/boardInertForm")
+	public String boardInsertForm(){
+		return "boardInsert";
+	}
+	
+	
+	
 	@RequestMapping(value = "/boardList")
 	public String boardList(Model model) {
 		List<BoardListVO> boardList = boardService.showBoardList();
@@ -237,13 +249,14 @@ public class BoardController {
 		return "/boardSimple";
 	}
 
-	@RequestMapping(value = "/uploadImage")
-	@ResponseBody
-	public String uploadImage(@RequestParam("data") String data) {
+    @RequestMapping(value="/uploadImage", method=RequestMethod.POST, produces="text/plain;charset=utf-8")
+    @ResponseBody
+    public String uploadAjax(MultipartFile file) throws Exception {
+		System.out.println("파일업로드시작");
+		String fileURL= FileUploadAjax.uploadFile("C:/uploadimage/", file.getOriginalFilename(), file.getBytes());
 
-		System.out.println();
-
-		return "url";
+		return "/uploadimage/"+fileURL;
 	}
+	
 
 }

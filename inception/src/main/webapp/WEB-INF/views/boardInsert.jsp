@@ -9,11 +9,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <script
 	src="//netdna.bootstrapcdn.com/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script
+	src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
 
 <link rel="stylesheet" href="/resources/summernote/dist/summernote.css">
 <script src="/resources/summernote/dist/summernote.js"></script>
@@ -24,36 +25,67 @@
 </head>
 
 <body>
-	<div id="summernote"></div>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#summernote').summernote({
-				onImageUpload : function(files, editor, welEditable) {
-					sendFile(files[0], editor, welEditable);
+	<div id="summernote" ng-model="htmlcontent"></div>
+<!-- 	<textarea id="preview" ng-model="htmlcontent" -->
+<!-- 		style="width: 100%; display: none"></textarea> -->
+    <button class="btn btn-primary saveBtn" ng-click="saveContent()">Save</button>
+	<summernote id="editor" height="400" ng-model="text"></summernote>
 
+    <div class="preview" ng-show="item == 'preview'">
+        <div ng-bind-html="content| trusted"></div>
+    </div>
+<script type="text/javascript">
+	function DemoController($scope) {
+		  $scope.text = "Hello World";
+		}
+
+	
+	$(document).ready(function() {
+			$('#summernote').summernote({
+				height : 500,
+				callbacks : {
+					onImageUpload : function(files) {
+						for (var i = 0; i < files.length; i++) {
+							send(files[i]);
+						}
+
+					}
 				}
 			});
 		});
-		
-		function sendFile(file,editor,welEditable){
-			alter("파일을 보냅니다")
-			data = new FormData();
-			data.append("file",file);
-			$.ajax({
-				data: data,
-				dataType:'json',
-				type:"POST",
-				url:"/board/uploadImage",
-				cache:false,
-				contentType:false,
-				processData:false,
-				succenss:function(url){
-					alter("성공적으로 받았습니닷")
-					editor.insertImage(welEditable,url);
-				}
-			})
+
+		function send(file) {
+			alert("파일업로드시작");
+			if (file.type.includes('image')) {
+				var name = file.name.split(".");
+				name = name[0];
+				var data = new FormData();
+				data.append('file', file);
+				$.ajax({
+					url : '/board/uploadImage',
+					type : 'POST',
+					contentType : false,
+					cache : false,
+					processData : false,
+					data : data,
+					success : function(url) {
+						alert(url);
+						$('#summernote').summernote('insertImage', url);
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						alert(textStatus + " " + errorThrown);
+					}
+				});
+			}
 		}
 	</script>
+	<script>
+	angular.module('app.filters')
+    .filter('trusted', function($sce){
+       return function(html){
+           return $sce.trustAsHtml(html)
+       }
+    })	</script>
 </body>
 
 </html>
