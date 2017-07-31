@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.inception.board.vo.BoardListVO;
+import kr.co.inception.board.vo.TagListVO;
 import kr.co.inception.main.dao.MainDao;
 import kr.co.inception.main.service.MainService;
 import kr.co.inception.main.vo.CategoryListVO;
@@ -64,5 +65,5 @@ public class MainServiceImpl implements MainService{
 	@Override
 	public List<BoardListVO> CarList() {
 		return mainDao.CarList();
-	} 
+	}
 }
