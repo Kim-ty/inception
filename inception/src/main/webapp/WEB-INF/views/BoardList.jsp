@@ -135,7 +135,7 @@ to {
 </head>
 
 <body>
-
+<a href="/board/write">글쓰기</a>
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
