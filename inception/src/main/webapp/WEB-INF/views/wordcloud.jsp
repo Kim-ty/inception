@@ -17,7 +17,7 @@
 <script type="text/javascript">
       var words= [
 				<c:forEach var="tags" items="${tags}">
-          {text: "${tags.hashtag }", weight: "${tags.weight}", link: "../list?&detail=${tags.hashtag }"},
+          {text: "${tags.hashtag }", weight: "${tags.weight}", link: "./hashtag?&detail=${tags.hashtag }"},
 				</c:forEach>
           ];
       $(function() {
@@ -50,7 +50,7 @@ body, html {
 <body>
 
 
-	<a href="./show">목록보기</a>
+	<a href="./list">목록보기</a>
 	<br> ${searchWord }
 	<br>
 

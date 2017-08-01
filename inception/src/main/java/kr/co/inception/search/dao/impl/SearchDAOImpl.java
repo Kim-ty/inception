@@ -35,13 +35,13 @@ public class SearchDAOImpl implements SearchDAO {
 	}
 
 	@Override
-	public HashtagVO test(String param) {
+	public HashtagVO wordCloud(String param) {
 		Query query = new Query(new Criteria().andOperator(Criteria.where("_id").is(param)));
 		return mongoTemplate.findOne(query, HashtagVO.class, "tags");
 	}
 
 	@Override
-	public List<showVO> show() {
+	public List<showVO> showList() {
 		Aggregation agg = newAggregation(group("searchWord").count().as("total"));
 		AggregationResults<showVO> groupResults = mongoTemplate.aggregate(agg, "search", showVO.class);
 		List<showVO> result = groupResults.getMappedResults();
@@ -52,7 +52,6 @@ public class SearchDAOImpl implements SearchDAO {
 	@Override
 	public List<DetailVO> detail(String searchWord, String detail) {
 		Aggregation agg = newAggregation(match(Criteria.where("searchWord").is(searchWord).and("tags").in(detail)), // forwarding
-																													// 사용시
 				// match(Criteria.where("tags").in(detail)),
 				project("title", "url", "imageURL", "totalImage"));
 		AggregationResults<DetailVO> groupResults = mongoTemplate.aggregate(agg, "search", DetailVO.class);

@@ -20,6 +20,7 @@ import kr.co.inception.board.vo.BoardSimpleVO;
 import kr.co.inception.board.vo.GooderListVO;
 import kr.co.inception.board.vo.ReplyListVO;
 import kr.co.inception.board.vo.ScraperListVO;
+import kr.co.inception.board.vo.TagListVO;
 @Service
 public class BoardServiceImpl implements BoardService{
 
@@ -124,6 +125,21 @@ public class BoardServiceImpl implements BoardService{
 	public List<ReplyListVO> showReplyList2(String bidx) {
 		return boardDAO.showReplyList2(bidx);
 	}
+
+	@Override
+	public List<BoardListVO> selectcategory(String category) {
+		return boardDAO.selectcategory(category);
+	}
+
+	@Override
+	public List<TagListVO> tagList() {
+		return boardDAO.tagList();
+	}
+
+	@Override
+	public List<BoardListVO> showBoardListTag(String tag) {
+		return boardDAO.showBoardListTag(tag);
+	} 
 
 
 }

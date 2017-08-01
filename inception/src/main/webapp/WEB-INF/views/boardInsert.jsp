@@ -25,15 +25,10 @@
 </head>
 
 <body>
-	<div id="summernote" ng-model="htmlcontent"></div>
+	<div id="summernote"></div>
 <!-- 	<textarea id="preview" ng-model="htmlcontent" -->
 <!-- 		style="width: 100%; display: none"></textarea> -->
-    <button class="btn btn-primary saveBtn" ng-click="saveContent()">Save</button>
-	<summernote id="editor" height="400" ng-model="text"></summernote>
 
-    <div class="preview" ng-show="item == 'preview'">
-        <div ng-bind-html="content| trusted"></div>
-    </div>
 <script type="text/javascript">
 	function DemoController($scope) {
 		  $scope.text = "Hello World";
@@ -79,13 +74,10 @@
 			}
 		}
 	</script>
-	<script>
-	angular.module('app.filters')
-    .filter('trusted', function($sce){
-       return function(html){
-           return $sce.trustAsHtml(html)
-       }
-    })	</script>
+
+	
+
+
 </body>
 
 </html>

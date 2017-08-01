@@ -15,6 +15,7 @@ import kr.co.inception.board.vo.BoardSimpleVO;
 import kr.co.inception.board.vo.GooderListVO;
 import kr.co.inception.board.vo.ReplyListVO;
 import kr.co.inception.board.vo.ScraperListVO;
+import kr.co.inception.board.vo.TagListVO;
 
 public interface BoardService {
 
@@ -26,6 +27,7 @@ public interface BoardService {
 	public void bad(BadDTO badDTO);
 	public List<BoardListVO> showBoardList();
 	public List<BoardListVO> showBoardListCa(String category);
+	public List<BoardListVO> showBoardListTag(String tag);
 	public List<BoardListVO> showMyBoardList(String userid);
 	public BoardDetailVO showBoardDetail(String bidx);
 	public BoardSimpleVO showBoardSimple(String bidx);
@@ -38,8 +40,8 @@ public interface BoardService {
 	public int hit(String bidx);
 	public int scrapscheck(ScrapeDTO scrapeDTO);
 	public int goodcheck(GoodDTO goodDTO);
-
-	
+	public List<BoardListVO> selectcategory(String category);
+	public List<TagListVO> tagList();	
 
 
 	
