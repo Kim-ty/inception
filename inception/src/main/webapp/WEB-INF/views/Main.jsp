@@ -157,7 +157,7 @@ div.logo {
 			<div>
 				<a href="javascript:void(0)"
 					class="w3-bar-item w3-button w3-left  w3-hide-large w3-hide-medium"
-					onclick="w3_open()"> Hashtag </a>
+					onclick="w3_open2()"> Hashtag </a>
 			</div>
 
 			<nav
@@ -179,13 +179,14 @@ div.logo {
 				class="w3-sidebar w3-bar-block w3-light-grey w3-card-2 w3-animate-left w3-hide-medium w3-hide-large"
 				style="display: none" id="mySideTags">
 
-				<a href="javascript:void(0)" onclick="w3_close()"
+				<a href="javascript:void(0)" onclick="w3_close2()"
 					class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
 
 				<c:forEach var="vo" items="${categoryList }">
 						tags<br>
-					<a href="/board/boardList/${vo.category }" onclick="w3_close()"
-						class="w3-bar-item w3-button">${vo.category }</a>
+						tags<br>
+						tags<br>
+						tags<br>
 
 				</c:forEach>
 			</nav>
@@ -260,9 +261,10 @@ div.logo {
 
 
 
-
+mySideTags
 
 	<script>
+
 		// Toggle between showing and hiding the sidebar when clicking the menu icon
 		var mySidebar = document.getElementById("mySidebar");
 		function w3_open() {
@@ -275,6 +277,19 @@ div.logo {
 		// Close the sidebar with the close button
 		function w3_close() {
 			mySidebar.style.display = "none";
+		}
+
+		var mySideTags = document.getElementById("mySideTags");
+		function w3_open2() {
+			if (mySideTags.style.display === 'block') {
+				mySideTags.style.display = 'none';
+			} else {
+				mySideTags.style.display = 'block';
+			}
+		}
+		// Close the sidebar with the close button
+		function w3_close2() {
+			mySideTags.style.display = "none";
 		}
 	</script>
 </body>

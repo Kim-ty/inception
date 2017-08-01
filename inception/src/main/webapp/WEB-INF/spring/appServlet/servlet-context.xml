@@ -35,8 +35,4 @@
 	<context:component-scan base-package="kr.co.inception.profile.controller" />
 	<context:component-scan base-package="kr.co.inception.message.controller" />
 	<context:component-scan base-package="kr.co.inception.search.controller" />
-<<<<<<< HEAD
-	
-=======
->>>>>>> aa5338ca43e8df1e7493ad696d381cdd3e8ef765
 </beans:beans>
