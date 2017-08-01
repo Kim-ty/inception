@@ -151,7 +151,7 @@ public class MainController {
 			            }else if(result[i].substring(0,index-1).equals("one piece")){
 			            	result[i]="원피스";
 			            }else if(result[i].substring(0,index-1).equals("rash guard")){
-			            	result[i]="래쉬가드";
+			            	result[i]="래시가드";
 			            }else if(result[i].substring(0,index-1).equals("running shoes")){
 			            	result[i]="운동화";
 			            }else if(result[i].substring(0,index-1).equals("sandle")){
@@ -313,7 +313,7 @@ public class MainController {
 		            }else if(result[i].substring(0,index-1).equals("one piece")){
 		            	result[i]="원피스";
 		            }else if(result[i].substring(0,index-1).equals("rash guard")){
-		            	result[i]="래쉬가드";
+		            	result[i]="래시가드";
 		            }else if(result[i].substring(0,index-1).equals("running shoes")){
 		            	result[i]="운동화";
 		            }else if(result[i].substring(0,index-1).equals("sandle")){
