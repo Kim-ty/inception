@@ -33,10 +33,7 @@
 			where category ='차'
 			order by b.writedate desc
 		]]>
-	</select>
-  
-  
-  
+	</select>  
 	
   
 </mapper>

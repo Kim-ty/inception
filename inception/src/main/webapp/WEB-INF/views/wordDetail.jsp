@@ -30,7 +30,7 @@ body, html {
 </style>
 <body>
 
-	<a href="./list/show">카테고리 보러가기</a>
+	<a href="./list">카테고리 보러가기</a>
 	<br>
 
 	<br>Tensor Result = ${search }

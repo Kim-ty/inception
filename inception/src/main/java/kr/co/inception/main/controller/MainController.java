@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.inception.board.vo.BoardListVO;
+import kr.co.inception.board.vo.TagListVO;
 import kr.co.inception.main.service.MainService;
 import kr.co.inception.main.service.inception_label_image;
 import kr.co.inception.main.vo.CategoryListVO;
@@ -49,6 +50,7 @@ public class MainController {
 			model.addAttribute("categoryListSize",categoryListVO.size());
 			return "Main";
 		}
+				
 		@RequestMapping(value = "/andfashionlist")
 		@ResponseBody
 		public List<BoardListVO> FashionListJson(Model model){
@@ -357,3 +359,4 @@ public class MainController {
 		}
 
 }
+
