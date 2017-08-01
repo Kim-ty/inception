@@ -151,26 +151,26 @@ div.logo {
 			<div>
 				<a href="javascript:void(0)"
 					class="w3-bar-item w3-button w3-left  w3-hide-large w3-hide-medium"
-					onclick="w3_open()"> Category </a>
+					onclick="w3_open(mySidebar)"> Category </a>
 			</div>
-			
+
 			<div>
 				<a href="javascript:void(0)"
 					class="w3-bar-item w3-button w3-left  w3-hide-large w3-hide-medium"
-					onclick="w3_open2()"> Hashtag </a>
+					onclick="w3_open(mySideTags)"> Hashtag </a>
 			</div>
 
 			<nav
 				class="w3-sidebar w3-bar-block w3-light-grey w3-card-2 w3-animate-left w3-hide-medium w3-hide-large"
 				style="display: none" id="mySidebar">
 
-				<a href="javascript:void(0)" onclick="w3_close()"
+				<a href="javascript:void(0)" onclick="w3_close(mySidebar)"
 					class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
 
 				<c:forEach var="vo" items="${categoryList }">
 
-					<a href="/board/boardList/${vo.category }" onclick="w3_close()"
-						class="w3-bar-item w3-button">${vo.category }</a>
+					<a href="/board/boardList/${vo.category }"
+						onclick="w3_close(mySidebar)" class="w3-bar-item w3-button">${vo.category }</a>
 
 				</c:forEach>
 			</nav>
@@ -179,14 +179,13 @@ div.logo {
 				class="w3-sidebar w3-bar-block w3-light-grey w3-card-2 w3-animate-left w3-hide-medium w3-hide-large"
 				style="display: none" id="mySideTags">
 
-				<a href="javascript:void(0)" onclick="w3_close2()"
+				<a href="javascript:void(0)" onclick="w3_close(mySideTags)"
 					class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
 
-				<c:forEach var="vo" items="${categoryList }">
-						tags<br>
-						tags<br>
-						tags<br>
-						tags<br>
+				<c:forEach var="tagList" items="${tagList}">
+					<a href="/board/boardList/tag${tagList.tag}"
+						onclick="w3_close(mySideTags)" class="w3-bar-item w3-button">${tagList.tag}</a>
+
 
 				</c:forEach>
 			</nav>
@@ -232,64 +231,30 @@ div.logo {
 			<div class="w3-card-2 w3-container" style="min-height: 460px">
 				<h2>Hashtags</h2>
 				<ul>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
-					<li>#tag</li>
+
+					<c:forEach var="tagList" items="${tagList}">
+						<li><a href="/board/boardList/tag${tagList.tag}">${tagList.tag}</a></li>
+
+					</c:forEach>
+
 				</ul>
 			</div>
 		</div>
 	</div>
 
 
-
-
-mySideTags
-
 	<script>
-
 		// Toggle between showing and hiding the sidebar when clicking the menu icon
-		var mySidebar = document.getElementById("mySidebar");
-		function w3_open() {
-			if (mySidebar.style.display === 'block') {
-				mySidebar.style.display = 'none';
+		function w3_open(element) {
+			if (element.style.display === 'block') {
+				element.style.display = 'none';
 			} else {
-				mySidebar.style.display = 'block';
+				element.style.display = 'block';
 			}
 		}
 		// Close the sidebar with the close button
-		function w3_close() {
-			mySidebar.style.display = "none";
-		}
-
-		var mySideTags = document.getElementById("mySideTags");
-		function w3_open2() {
-			if (mySideTags.style.display === 'block') {
-				mySideTags.style.display = 'none';
-			} else {
-				mySideTags.style.display = 'block';
-			}
-		}
-		// Close the sidebar with the close button
-		function w3_close2() {
-			mySideTags.style.display = "none";
+		function w3_close(element) {
+			element.style.display = "none";
 		}
 	</script>
 </body>
