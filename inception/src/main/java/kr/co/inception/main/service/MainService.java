@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.inception.board.vo.BoardListVO;
+import kr.co.inception.board.vo.TagListVO;
 import kr.co.inception.main.vo.CategoryListVO;
 
 public interface MainService {

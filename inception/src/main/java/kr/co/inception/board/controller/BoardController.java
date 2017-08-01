@@ -21,6 +21,7 @@ import kr.co.inception.board.service.BoardService;
 import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.board.vo.BoardSimpleVO;
 import kr.co.inception.board.vo.ReplyListVO;
+import kr.co.inception.board.vo.TagListVO;
 
 @Controller
 @RequestMapping("/board")
@@ -167,6 +168,13 @@ public class BoardController {
 		return "boardInsert";
 	}
 
+	@RequestMapping(value = "/hottagList")
+	public String hottag(Model model) {
+		List<TagListVO> tagListVO = boardService.tagList();
+		model.addAttribute("tagList", tagListVO);
+		return "tagList";
+	}
+
 	@RequestMapping(value = "/boardList")
 	public String boardList(Model model) {
 		List<BoardListVO> boardList = boardService.showBoardList();
@@ -185,10 +193,17 @@ public class BoardController {
 
 	@RequestMapping(value = "/boardList/{param1}")
 	public String boardList(@PathVariable("param1") String category, Model model) {
-
-		List<BoardListVO> boardList = boardService.showBoardListCa(category);
+		System.out.println(category);
+			List<BoardListVO> boardList = null;
+		if (category.contains("tag") == true) {
+			String tag=category.substring(3);
+			System.out.println(tag);
+			boardList = boardService.showBoardListTag(tag);
+		} else {
+			System.out.println("카테고리출력");
+			boardList = boardService.showBoardListCa(category);
+		}
 		model.addAttribute("boardList", boardList);
-
 		return "BoardList";
 	}
 

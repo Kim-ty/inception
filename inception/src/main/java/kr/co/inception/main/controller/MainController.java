@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.inception.board.vo.BoardListVO;
+import kr.co.inception.board.vo.TagListVO;
 import kr.co.inception.main.service.MainService;
 import kr.co.inception.main.service.inception_label_image;
 import kr.co.inception.main.vo.CategoryListVO;
@@ -49,6 +50,7 @@ public class MainController {
 			model.addAttribute("categoryListSize",categoryListVO.size());
 			return "Main";
 		}
+				
 		@RequestMapping(value = "/andfashionlist")
 		@ResponseBody
 		public List<BoardListVO> FashionListJson(Model model){
@@ -151,7 +153,7 @@ public class MainController {
 			            }else if(result[i].substring(0,index-1).equals("one piece")){
 			            	result[i]="원피스";
 			            }else if(result[i].substring(0,index-1).equals("rash guard")){
-			            	result[i]="래쉬가드";
+			            	result[i]="래시가드";
 			            }else if(result[i].substring(0,index-1).equals("running shoes")){
 			            	result[i]="운동화";
 			            }else if(result[i].substring(0,index-1).equals("sandle")){
@@ -313,7 +315,7 @@ public class MainController {
 		            }else if(result[i].substring(0,index-1).equals("one piece")){
 		            	result[i]="원피스";
 		            }else if(result[i].substring(0,index-1).equals("rash guard")){
-		            	result[i]="래쉬가드";
+		            	result[i]="래시가드";
 		            }else if(result[i].substring(0,index-1).equals("running shoes")){
 		            	result[i]="운동화";
 		            }else if(result[i].substring(0,index-1).equals("sandle")){
@@ -357,3 +359,4 @@ public class MainController {
 		}
 
 }
+

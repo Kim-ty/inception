@@ -20,6 +20,7 @@ import kr.co.inception.board.vo.BoardSimpleVO;
 import kr.co.inception.board.vo.GooderListVO;
 import kr.co.inception.board.vo.ReplyListVO;
 import kr.co.inception.board.vo.ScraperListVO;
+import kr.co.inception.board.vo.TagListVO;
 
 
 @Repository
@@ -136,5 +137,15 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlSession.selectList(namespace+".boardListCategory",category);
 	}
 
+	@Override
+	public List<TagListVO> tagList() {
+		return sqlSession.selectList(namespace+".tagList");
+	}
+
+	@Override
+	public List<BoardListVO> showBoardListTag(String tag) {
+		return sqlSession.selectList(namespace+".boardListTag",tag);
+	}
+	
 
 }

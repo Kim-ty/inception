@@ -8,7 +8,7 @@ System.out.println("Filename: "+ fileName);
 if(imgEncodedStr != null){
 	ManipulateImage.convertStringtoImage(imgEncodedStr, fileName);
 	System.out.println("Inside if");
-	out.print("Image upload complete, Please check your directory");
+	out.print("이미지를 분석중입니다. 잠시만 기다려주세요");
 } else{
 	System.out.println("Inside else");
 	out.print("Image is empty");	
