@@ -73,26 +73,26 @@ public class MongoController {
 		System.out.println("블로그 개수 " + list.size());
 		return "wordDetail";
 	}
-
-	@RequestMapping("img")
-	public String imageURLList(@ModelAttribute("detail") String hashtag, Model model, HttpServletRequest request)
-			throws Exception {
-		String searchWord = (String) request.getSession().getAttribute("searchWord");
-		List<DetailVO> list = searchService.detail(searchWord, hashtag);
-		// List<ShopVO> shopList = searchService.shop(searchWord, hashtag);
-
-		List<GiBeomVO> giBeomVO = new ArrayList<GiBeomVO>();
-		for (DetailVO detailVO : list) {
-			for (ImageURLVO imageURLVO : detailVO.getImageURL()) {
-				GiBeomVO vo = new GiBeomVO(detailVO.getUrl(), imageURLVO.getUrl());
-				giBeomVO.add(vo);
-			}
-		}
-
-		model.addAttribute("giBeomVO", giBeomVO);
-		model.addAttribute("list", list);
-		return "test";
-	}
+	//상휘님작품
+//	@RequestMapping("img")
+//	public String imageURLList(@ModelAttribute("detail") String hashtag, Model model, HttpServletRequest request)
+//			throws Exception {
+//		String searchWord = (String) request.getSession().getAttribute("searchWord");
+//		List<DetailVO> list = searchService.detail(searchWord, hashtag);
+//		// List<ShopVO> shopList = searchService.shop(searchWord, hashtag);
+//
+//		List<GiBeomVO> giBeomVO = new ArrayList<GiBeomVO>();
+//		for (DetailVO detailVO : list) {
+//			for (ImageURLVO imageURLVO : detailVO.getImageURL()) {
+//				GiBeomVO vo = new GiBeomVO(detailVO.getUrl(), imageURLVO.getUrl());
+//				giBeomVO.add(vo);
+//			}
+//		}
+//
+//		model.addAttribute("giBeomVO", giBeomVO);
+//		model.addAttribute("list", list);
+//		return "test";
+//	}
 
 	// android
 
@@ -108,23 +108,21 @@ public class MongoController {
 
 	@RequestMapping(value = "/andlistdetail")
 	@ResponseBody
-	public List<DetailVO> andlistdetail(@RequestParam("detail") String hashtag,
+	public List<GiBeomVO> andlistdetail(@RequestParam("detail") String hashtag,
 			@RequestParam("searchWord") String searchWord) {
 		List<DetailVO> list = searchService.detail(searchWord, hashtag);
-
-		return list;
+		List<GiBeomVO> giBeomVO = new ArrayList<GiBeomVO>();
+		for (DetailVO detailVO : list) {
+			for (ImageURLVO imageURLVO : detailVO.getImageURL()) {
+				GiBeomVO vo = new GiBeomVO(detailVO.getUrl(), imageURLVO.getUrl());
+				giBeomVO.add(vo);
+			}
+		}
+		return giBeomVO;
 
 	}
 
-	@RequestMapping(value = "/andlistdetail2")
-	@ResponseBody
-	public List<DetailVO> andlistdetail2(@RequestParam("detail") String hashtag,
-			@RequestParam("searchWord") String searchWord) {
-		List<DetailVO> list = searchService.detail(searchWord, hashtag);
-
-		return list;
-
-	}
+	
 
 	@RequestMapping(value = "/andlistshop")
 	@ResponseBody

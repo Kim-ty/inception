@@ -156,6 +156,15 @@ public class BoardController {
 
 		return "Success";
 	}
+	@RequestMapping(value = "/andselectcategory")
+	@ResponseBody
+	public List<BoardListVO> andselectcategory(@RequestParam("category") String category) {
+	    List<BoardListVO> boardList = boardService.selectcategory(category);
+
+	    return boardList;
+
+	}
+
 
 	// @RequestMapping(value = "/boardInsert")
 	// @ResponseBody
