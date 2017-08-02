@@ -202,8 +202,8 @@ div.logo {
 
 				<form>
 					<h4>Search</h4>
-					<input type="text" name="" placeholder="http://example.com">
-					<br>
+					<input type="text" name="" placeholder="Search">
+					<br><br>
 					<button type="submit" name="" class="btn btn-default">search</button>
 				</form>
 				<br> or
@@ -218,9 +218,9 @@ div.logo {
 					</p>
 					<h4>Click the Camera and Upload your Image</h4>
 
-					<br> <img id="blah" src="" style="width: 80%; height: auto;" />
+					<br> <img id="blah" style="width: 80%; height: auto;" />
 
-					<br> <input type="submit" value="Search"
+					<br><br> <input type="submit" value="Search"
 						class="btn btn-default">
 
 				</form>
