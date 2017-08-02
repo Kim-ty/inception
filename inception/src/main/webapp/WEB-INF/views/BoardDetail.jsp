@@ -30,9 +30,19 @@
 		}
 	}
 	
-
 	
-	$(document).ready(function(){
+	$(document).ready(function(){		
+				
+		function(votag){
+			alert(votag);
+			var tagArray=(votag).split(',');
+			for(var i in tagArray){
+				$("#tags").append("<th><a href='/board/boardList/tag"+tagArray[i]+"'>"+tagArray[i]+"</a></th>");
+			}
+		}
+		
+		
+		
 		$('#replymore').click(function(){
 			$.ajax({
 				url:"/board/replyList",
@@ -114,7 +124,7 @@
 			<th>${ vo.replycount }</th>
 			<th><a id="replymore">댓글보기</a></th>
 		</tr>
-		<tr>
+		<tr id="tags" onload="javascript:taglink(${vo.tag});">
 			<th>${vo.tag }</th>
 		</tr>
 		<tr>
