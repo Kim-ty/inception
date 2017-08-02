@@ -196,7 +196,7 @@ connect by prior ridx = TARGETREPLY
 		
 	<select id="tagList" resultType="kr.co.inception.board.vo.TagListVO">
 		<![CDATA[
-			select tag from boardtag group by tag order by count(*) desc
+			select tag from boardtag where tag is not null group by tag order by count(tag) desc
 		]]>
 	</select>
   
