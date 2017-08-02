@@ -1,7 +1,13 @@
 package kr.co.inception.board.controller;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Panel;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -278,7 +284,6 @@ public class BoardController {
 	public String uploadAjax(MultipartFile file) throws Exception {
 		System.out.println("파일업로드시작");
 		String fileURL = FileUploadAjax.uploadFile("C:/uploadimage", file.getOriginalFilename(), file.getBytes());
-
 		return "/uploadimage/" + fileURL;
 	}
 

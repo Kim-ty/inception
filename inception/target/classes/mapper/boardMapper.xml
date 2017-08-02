@@ -248,7 +248,11 @@ connect by prior ridx = TARGETREPLY
 	<select id="tagList" resultType="kr.co.inception.board.vo.TagListVO">
 		<![CDATA[
 			select tag from boardtag where tag is not null group by tag order by count(tag) desc
+<<<<<<< HEAD
+		]]>
+=======
 					]]>
+>>>>>>> f21b39a79259865bbd7354fa50d908cf76df9633
 	</select>
 
 

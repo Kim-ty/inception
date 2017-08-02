@@ -16,7 +16,7 @@ public class FileUploadAjax {
         // UUID 발급
         UUID uuid = UUID.randomUUID();
         // 저장할 파일명 = UUID + 원본이름
-        String savedName = uuid.toString() + "_" + originalName;
+        String savedName = uuid.toString() + "!!!!" + originalName;
         // 업로드할 디렉토리(날짜별 폴더) 생성 
         String savedPath = calcPath(uploadPath);
         // 파일 경로(기존의 업로드경로+날짜별경로), 파일명을 받아 파일 객체 생성
