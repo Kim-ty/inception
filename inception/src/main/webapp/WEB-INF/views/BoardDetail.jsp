@@ -38,11 +38,7 @@
 			}
 		}
 	
-	$(document).ready(function(){
-		
-		
-		taglink(${boardSimple.tag});		
-		
+	$(document).ready(function(){		
 		
 		$('#replymore').click(function(){
 			$.ajax({
@@ -70,7 +66,6 @@
 				}
 			});
 		});
-		
 		
 	});
 	
@@ -100,7 +95,6 @@
 			<!-- 					</a> 												Trigger/Open The Modal onClick with Content  -->
 			<!-- 						<span id="myBtn" onclick="" style="cursor: pointer"> -->
 			<%-- 							${vo.contents }</span> --%>
-			</th>
 		</tr>
 		<tr>
 
@@ -126,24 +120,29 @@
 			<th><a id="replymore">댓글보기</a></th>
 		</tr>
 		<tr id="tags">
-			<th id="taglist">${vo.tag }</th>
+			<th>
+		<c:forEach var="tag" items="${vo.tag}">
+		<a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
+		</c:forEach>
+		</th>
 		</tr>
 		<tr>
 		</tr>
 	</table>
 
 	<table id="reply" style="visibility: hidden;">
-	 <tbody id=replycontents>
-	 
-	 </tbody>
+		<tbody id=replycontents>
+
+		</tbody>
 	</table>
-	
-		
+
+
 	<div id="myModal" class="modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
 					<jsp:include page="replyinsert.jsp" />
@@ -151,7 +150,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<script>
 	function Replyinsert(){
 		modal.style.display = "block";
@@ -178,6 +177,6 @@
 	}
 
 	</script>
-	
+
 </body>
 </html>

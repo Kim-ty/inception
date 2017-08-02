@@ -111,11 +111,61 @@
 		]]>
 	</select>
 
-	<select id="boardSimple" resultType="kr.co.inception.board.vo.BoardSimpleVO">
+	<resultMap id="boardSimple2" type="kr.co.inception.board.vo.BoardSimpleVO">
+		<id property="bidx" column="bidx" />
+		<result property="title" column="title" />
+		<result property="userid" column="userid" />
+		<result property="writedate" column="writedate" />
+		<result property="contents" column="contents" />
+		<result property="hitcount" column="hitcount" />
+		<result property="category" column="category" />
+		<result property="good" column="good" />
+		<result property="bad" column="bad" />
+		<result property="scrapecount" column="scrapecount" />
+		<result property="replycount" column="replycount" />
+		<collection property="tag" column="tag" javaType="java.util.List"
+			resultMap="tagList"/>
+	</resultMap>
+	<resultMap id="tagList" type="kr.co.inception.board.vo.TagListVO">
+		<id property="tag" column="tag"/>
+	</resultMap>
+<!-- 	<select id="getBoardById" > -->
+<!-- 		<![CDATA[ -->
+<!-- 			select b.bidx,b.title,b.userid,b.writedate,b.contents,b.hitcount,b.category,t.tag,g.good,b.bad,s.scrapecount,r.replycount -->
+<!-- 			from board b, -->
+<!--     			(select count(g_b_count) as good -->
+<!--     			from goodbad -->
+<!--     			where bidx=#{bidx} and g_b_count = 0 -->
+<!--     			) g, -->
+<!--     			(select count(g_b_count) as bad -->
+<!--     			from goodbad -->
+<!--     			where bidx=#{bidx} and g_b_count =1) b, -->
+<!--     			(select count(*) as scrapecount -->
+<!--     			from scrape -->
+<!--     			where bidx=#{bidx} -->
+<!--     			) s, -->
+<!--    				(select count(*) as replycount -->
+<!--    				from boardreply -->
+<!--    				where bidx=#{bidx} -->
+<!--    				) r -->
+<!-- 			where b.bidx = #{bidx} -->
+<!-- 		]]> -->
+<!-- 	</select> -->
+<!-- 	<select id="boardtagList" resultType="kr.co.inception.board.vo.TagListVO"> -->
+<!--     			<![CDATA[ -->
+<!--     			select tag -->
+<!--     			from boardtag -->
+<!--     			where bidx=#{bidx} -->
+<!-- 				]]> -->
+<!-- 	</select> -->
+
+
+
+	<select id="boardSimple" resultMap="boardSimple2">
 		<![CDATA[
 			select b.bidx,b.title,b.userid,b.writedate,b.contents,b.hitcount,b.category,t.tag,g.good,b.bad,s.scrapecount,r.replycount
 			from board b,
-    			(select listagg(tag,' ')within group(order by bidx) as tag
+    			(select tag
     			from boardtag
     			where bidx=#{bidx}
     			) t,
@@ -136,7 +186,6 @@
    				) r
 			where b.bidx = #{bidx}
 		]]>
-
 	</select>
 
 	<select id="GooderList" resultType="kr.co.inception.board.vo.GooderListVO">
