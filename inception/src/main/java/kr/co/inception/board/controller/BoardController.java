@@ -194,6 +194,9 @@ public class BoardController {
 	public String boardDetail(@PathVariable("param1") String bidx, Model model) {
 		boardService.hit(bidx);
 		BoardSimpleVO boardSimple = boardService.showBoardSimple(bidx);
+		for(TagListVO tag:boardSimple.getTag()){
+			System.out.println(tag.getTag());			
+		}
 		model.addAttribute("boardSimple", boardSimple);
 		return "BoardDetail";
 	}
