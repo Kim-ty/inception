@@ -2,6 +2,8 @@ package kr.co.inception.board.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,7 @@ import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.board.vo.BoardSimpleVO;
 import kr.co.inception.board.vo.ReplyListVO;
 import kr.co.inception.board.vo.TagListVO;
+import kr.co.inception.user.vo.LoginVO;
 
 @Controller
 @RequestMapping("/board")
@@ -172,11 +175,6 @@ public class BoardController {
 
 	// Web
 
-	@RequestMapping(value = "/boardInertForm")
-	public String boardInsertForm() {
-		return "boardInsert";
-	}
-
 	@RequestMapping(value = "/hottagList")
 	public String hottag(Model model) {
 		List<TagListVO> tagListVO = boardService.tagList();
@@ -217,9 +215,14 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/boardInsert")
-	public String boardInsert(BoardInsertDTO boardInsertDTO, Model model) {
-
-		return "/boardList";
+	public String boardInsert(BoardInsertDTO boardInsertDTO,HttpSession session,Model model) {
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		
+		boardInsertDTO.setUserid(loginVO.getUserid());
+		
+		boardService.boardInsert(boardInsertDTO);
+		
+		return "redirect:/board/boardList";
 	}
 
 	@RequestMapping(value = "/boardUpdate")
@@ -271,7 +274,7 @@ public class BoardController {
 	@ResponseBody
 	public String uploadAjax(MultipartFile file) throws Exception {
 		System.out.println("파일업로드시작");
-		String fileURL = FileUploadAjax.uploadFile("C:/uploadimage/", file.getOriginalFilename(), file.getBytes());
+		String fileURL = FileUploadAjax.uploadFile("C:/uploadimage", file.getOriginalFilename(), file.getBytes());
 
 		return "/uploadimage/" + fileURL;
 	}

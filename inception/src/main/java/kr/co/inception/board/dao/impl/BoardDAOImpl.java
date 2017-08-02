@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.inception.board.dao.BoardDAO;
 import kr.co.inception.board.dto.BadDTO;
 import kr.co.inception.board.dto.BoardInsertDTO;
+import kr.co.inception.board.dto.BoardTagDTO;
 import kr.co.inception.board.dto.BoardUpdateDTO;
 import kr.co.inception.board.dto.GoodDTO;
 import kr.co.inception.board.dto.ReplyDTO;
@@ -33,6 +34,13 @@ public class BoardDAOImpl implements BoardDAO{
 	
 	@Override
 	public void boardInsert(BoardInsertDTO boardInsertDTO) {
+		System.out.println(boardInsertDTO.getTitle());
+		System.out.println(boardInsertDTO.getContents());
+		System.out.println(boardInsertDTO.getUserid());
+		System.out.println(boardInsertDTO.getCategory());
+		for(BoardTagDTO i:boardInsertDTO.getTagList()){
+			System.out.println(i.getTag());
+		}
 		sqlSession.insert(namespace+".boardInsert", boardInsertDTO);
 	}
 
