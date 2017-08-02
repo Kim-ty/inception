@@ -113,7 +113,7 @@
 		<![CDATA[
 			select b.bidx,b.title,b.userid,b.writedate,b.contents,b.hitcount,b.category,t.tag,g.good,b.bad,s.scrapecount,r.replycount
 			from board b,
-    			(select listagg(tag,',')within group(order by bidx) as tag
+    			(select listagg(tag,' ')within group(order by bidx) as tag
     			from boardtag
     			where bidx=#{bidx}
     			) t,
@@ -197,7 +197,11 @@ connect by prior ridx = TARGETREPLY
 	<select id="tagList" resultType="kr.co.inception.board.vo.TagListVO">
 		<![CDATA[
 			select tag from boardtag where tag is not null group by tag order by count(tag) desc
+<<<<<<< HEAD
 		]]>
+=======
+					]]>
+>>>>>>> f21b39a79259865bbd7354fa50d908cf76df9633
 	</select>
   
 	
