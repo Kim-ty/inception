@@ -2220,6 +2220,7 @@ org.eclipse.recommenders.utils.Logs$LogTraceException
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2017-07-31 11:59:07.688
 !MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+<<<<<<< HEAD
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2017-07-31 14:18:32.413
 !MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
@@ -3282,19 +3283,138 @@ java.lang.IllegalArgumentException: Index out of bounds [offset value: 34]
 !SESSION 2017-08-02 09:05:59.583 -----------------------------------------------
 eclipse.buildId=3.8.4.201703310825-RELEASE-e46
 java.version=1.8.0_121
+=======
+!SESSION 2017-07-31 09:30:16.269 -----------------------------------------------
+eclipse.buildId=3.8.4.201703310825-RELEASE-e46
+java.version=1.8.0_131
+>>>>>>> 117375eb1e87314b7c9acc2f81e9860e6150aba9
 java.vendor=Oracle Corporation
 BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
 Framework arguments:  -product org.springsource.sts.ide
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springsource.sts.ide
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.egit.ui 2 0 2017-08-02 09:07:45.078
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'C:\Users\KimTY'. If this is
+=======
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2017-07-31 09:31:13.475
+!MESSAGE Error changing index details file:/C:/Users/Bit/.m2/repository/
+!STACK 0
+java.io.FileNotFoundException: C:\Users\Bit\inception\.metadata\.plugins\org.eclipse.m2e.core\nexus\b6cf3d354a07813d234cde9296d64e2f\_0.cfs (지정된 파일을 찾을 수 없습니다)
+	at java.io.RandomAccessFile.open0(Native Method)
+	at java.io.RandomAccessFile.open(Unknown Source)
+	at java.io.RandomAccessFile.<init>(Unknown Source)
+	at org.apache.lucene.store.FSDirectory$FSIndexInput$Descriptor.<init>(FSDirectory.java:552)
+	at org.apache.lucene.store.FSDirectory$FSIndexInput.<init>(FSDirectory.java:582)
+	at org.apache.lucene.store.FSDirectory.openInput(FSDirectory.java:488)
+	at org.apache.lucene.index.CompoundFileReader.<init>(CompoundFileReader.java:70)
+	at org.apache.lucene.index.SegmentReader.initialize(SegmentReader.java:321)
+	at org.apache.lucene.index.SegmentReader.get(SegmentReader.java:306)
+	at org.apache.lucene.index.SegmentReader.get(SegmentReader.java:236)
+	at org.apache.lucene.index.DocumentsWriter.applyDeletes(DocumentsWriter.java:915)
+	at org.apache.lucene.index.IndexWriter.applyDeletes(IndexWriter.java:4339)
+	at org.apache.lucene.index.IndexWriter.doFlush(IndexWriter.java:3579)
+	at org.apache.lucene.index.IndexWriter.flush(IndexWriter.java:3450)
+	at org.apache.lucene.index.IndexWriter.closeInternal(IndexWriter.java:1638)
+	at org.apache.lucene.index.IndexWriter.close(IndexWriter.java:1602)
+	at org.apache.lucene.index.IndexWriter.close(IndexWriter.java:1578)
+	at org.apache.maven.index.context.NexusIndexWriter.close(NexusIndexWriter.java:58)
+	at org.apache.maven.index.context.DefaultIndexingContext.prepareCleanIndex(DefaultIndexingContext.java:235)
+	at org.apache.maven.index.context.DefaultIndexingContext.prepareIndex(DefaultIndexingContext.java:205)
+	at org.apache.maven.index.context.DefaultIndexingContext.<init>(DefaultIndexingContext.java:173)
+	at org.apache.maven.index.DefaultNexusIndexer.addIndexingContextForced(DefaultNexusIndexer.java:160)
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.createIndexingContext(NexusIndexManager.java:965)
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.setIndexDetails(NexusIndexManager.java:932)
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.repositoryAdded(NexusIndexManager.java:878)
+	at org.eclipse.m2e.core.internal.repository.RepositoryRegistry.addRepository(RepositoryRegistry.java:163)
+	at org.eclipse.m2e.core.internal.repository.RepositoryRegistry.updateRegistry(RepositoryRegistry.java:241)
+	at org.eclipse.m2e.core.internal.repository.RepositoryRegistryUpdateJob.run(RepositoryRegistryUpdateJob.java:47)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2017-07-31 09:31:13.484
+!MESSAGE Could not add repository index
+!STACK 1
+org.eclipse.core.runtime.CoreException: Could not add repository index
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.setIndexDetails(NexusIndexManager.java:945)
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.repositoryAdded(NexusIndexManager.java:878)
+	at org.eclipse.m2e.core.internal.repository.RepositoryRegistry.addRepository(RepositoryRegistry.java:163)
+	at org.eclipse.m2e.core.internal.repository.RepositoryRegistry.updateRegistry(RepositoryRegistry.java:241)
+	at org.eclipse.m2e.core.internal.repository.RepositoryRegistryUpdateJob.run(RepositoryRegistryUpdateJob.java:47)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: java.io.FileNotFoundException: C:\Users\Bit\inception\.metadata\.plugins\org.eclipse.m2e.core\nexus\b6cf3d354a07813d234cde9296d64e2f\_0.cfs (지정된 파일을 찾을 수 없습니다)
+	at java.io.RandomAccessFile.open0(Native Method)
+	at java.io.RandomAccessFile.open(Unknown Source)
+	at java.io.RandomAccessFile.<init>(Unknown Source)
+	at org.apache.lucene.store.FSDirectory$FSIndexInput$Descriptor.<init>(FSDirectory.java:552)
+	at org.apache.lucene.store.FSDirectory$FSIndexInput.<init>(FSDirectory.java:582)
+	at org.apache.lucene.store.FSDirectory.openInput(FSDirectory.java:488)
+	at org.apache.lucene.index.CompoundFileReader.<init>(CompoundFileReader.java:70)
+	at org.apache.lucene.index.SegmentReader.initialize(SegmentReader.java:321)
+	at org.apache.lucene.index.SegmentReader.get(SegmentReader.java:306)
+	at org.apache.lucene.index.SegmentReader.get(SegmentReader.java:236)
+	at org.apache.lucene.index.DocumentsWriter.applyDeletes(DocumentsWriter.java:915)
+	at org.apache.lucene.index.IndexWriter.applyDeletes(IndexWriter.java:4339)
+	at org.apache.lucene.index.IndexWriter.doFlush(IndexWriter.java:3579)
+	at org.apache.lucene.index.IndexWriter.flush(IndexWriter.java:3450)
+	at org.apache.lucene.index.IndexWriter.closeInternal(IndexWriter.java:1638)
+	at org.apache.lucene.index.IndexWriter.close(IndexWriter.java:1602)
+	at org.apache.lucene.index.IndexWriter.close(IndexWriter.java:1578)
+	at org.apache.maven.index.context.NexusIndexWriter.close(NexusIndexWriter.java:58)
+	at org.apache.maven.index.context.DefaultIndexingContext.prepareCleanIndex(DefaultIndexingContext.java:235)
+	at org.apache.maven.index.context.DefaultIndexingContext.prepareIndex(DefaultIndexingContext.java:205)
+	at org.apache.maven.index.context.DefaultIndexingContext.<init>(DefaultIndexingContext.java:173)
+	at org.apache.maven.index.DefaultNexusIndexer.addIndexingContextForced(DefaultNexusIndexer.java:160)
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.createIndexingContext(NexusIndexManager.java:965)
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.setIndexDetails(NexusIndexManager.java:932)
+	... 5 more
+!SUBENTRY 1 org.eclipse.m2e.core 4 -1 2017-07-31 09:31:13.485
+!MESSAGE Could not add repository index
+!STACK 0
+java.io.FileNotFoundException: C:\Users\Bit\inception\.metadata\.plugins\org.eclipse.m2e.core\nexus\b6cf3d354a07813d234cde9296d64e2f\_0.cfs (지정된 파일을 찾을 수 없습니다)
+	at java.io.RandomAccessFile.open0(Native Method)
+	at java.io.RandomAccessFile.open(Unknown Source)
+	at java.io.RandomAccessFile.<init>(Unknown Source)
+	at org.apache.lucene.store.FSDirectory$FSIndexInput$Descriptor.<init>(FSDirectory.java:552)
+	at org.apache.lucene.store.FSDirectory$FSIndexInput.<init>(FSDirectory.java:582)
+	at org.apache.lucene.store.FSDirectory.openInput(FSDirectory.java:488)
+	at org.apache.lucene.index.CompoundFileReader.<init>(CompoundFileReader.java:70)
+	at org.apache.lucene.index.SegmentReader.initialize(SegmentReader.java:321)
+	at org.apache.lucene.index.SegmentReader.get(SegmentReader.java:306)
+	at org.apache.lucene.index.SegmentReader.get(SegmentReader.java:236)
+	at org.apache.lucene.index.DocumentsWriter.applyDeletes(DocumentsWriter.java:915)
+	at org.apache.lucene.index.IndexWriter.applyDeletes(IndexWriter.java:4339)
+	at org.apache.lucene.index.IndexWriter.doFlush(IndexWriter.java:3579)
+	at org.apache.lucene.index.IndexWriter.flush(IndexWriter.java:3450)
+	at org.apache.lucene.index.IndexWriter.closeInternal(IndexWriter.java:1638)
+	at org.apache.lucene.index.IndexWriter.close(IndexWriter.java:1602)
+	at org.apache.lucene.index.IndexWriter.close(IndexWriter.java:1578)
+	at org.apache.maven.index.context.NexusIndexWriter.close(NexusIndexWriter.java:58)
+	at org.apache.maven.index.context.DefaultIndexingContext.prepareCleanIndex(DefaultIndexingContext.java:235)
+	at org.apache.maven.index.context.DefaultIndexingContext.prepareIndex(DefaultIndexingContext.java:205)
+	at org.apache.maven.index.context.DefaultIndexingContext.<init>(DefaultIndexingContext.java:173)
+	at org.apache.maven.index.DefaultNexusIndexer.addIndexingContextForced(DefaultNexusIndexer.java:160)
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.createIndexingContext(NexusIndexManager.java:965)
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.setIndexDetails(NexusIndexManager.java:932)
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.repositoryAdded(NexusIndexManager.java:878)
+	at org.eclipse.m2e.core.internal.repository.RepositoryRegistry.addRepository(RepositoryRegistry.java:163)
+	at org.eclipse.m2e.core.internal.repository.RepositoryRegistry.updateRegistry(RepositoryRegistry.java:241)
+	at org.eclipse.m2e.core.internal.repository.RepositoryRegistryUpdateJob.run(RepositoryRegistryUpdateJob.java:47)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-07-31 09:31:14.847
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Bit'. If this is
+>>>>>>> 117375eb1e87314b7c9acc2f81e9860e6150aba9
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.epp.logging.aeri.ide 2 17 2017-08-02 09:07:45.168
+=======
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 17 2017-07-31 09:31:14.888
+>>>>>>> 117375eb1e87314b7c9acc2f81e9860e6150aba9
 !MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: com.google.gson.stream.MalformedJsonException: Expected ':' at line 4 column 10. ; version: 2.0.4.v20170307-1435
 !STACK 0
 com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: Expected ':' at line 4 column 10
@@ -3306,7 +3426,11 @@ com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonExcepti
 	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:121)
 	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
 	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+<<<<<<< HEAD
 	at java.lang.Thread.run(Thread.java:745)
+=======
+	at java.lang.Thread.run(Unknown Source)
+>>>>>>> 117375eb1e87314b7c9acc2f81e9860e6150aba9
 Caused by: com.google.gson.stream.MalformedJsonException: Expected ':' at line 4 column 10
 	at com.google.gson.stream.JsonReader.syntaxError(JsonReader.java:1505)
 	at com.google.gson.stream.JsonReader.doPeek(JsonReader.java:519)
@@ -3315,7 +3439,11 @@ Caused by: com.google.gson.stream.MalformedJsonException: Expected ':' at line 4
 	at com.google.gson.Gson.fromJson(Gson.java:803)
 	... 8 more
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.epp.logging.aeri.ide 2 17 2017-08-02 09:07:45.204
+=======
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 17 2017-07-31 09:31:14.991
+>>>>>>> 117375eb1e87314b7c9acc2f81e9860e6150aba9
 !MESSAGE Server ‘com.genuitec.eclipse.aeri.server1’ failed with exception: com.google.gson.stream.MalformedJsonException: Expected ':' at line 4 column 10. ; version: 2.0.4.v20170307-1435
 !STACK 0
 com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: Expected ':' at line 4 column 10
@@ -3327,7 +3455,11 @@ com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonExcepti
 	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:121)
 	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
 	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+<<<<<<< HEAD
 	at java.lang.Thread.run(Thread.java:745)
+=======
+	at java.lang.Thread.run(Unknown Source)
+>>>>>>> 117375eb1e87314b7c9acc2f81e9860e6150aba9
 Caused by: com.google.gson.stream.MalformedJsonException: Expected ':' at line 4 column 10
 	at com.google.gson.stream.JsonReader.syntaxError(JsonReader.java:1505)
 	at com.google.gson.stream.JsonReader.doPeek(JsonReader.java:519)
@@ -3336,6 +3468,7 @@ Caused by: com.google.gson.stream.MalformedJsonException: Expected ':' at line 4
 	at com.google.gson.Gson.fromJson(Gson.java:803)
 	... 8 more
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2017-08-02 09:07:58.079
 !MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
 
@@ -3508,4 +3641,10 @@ Caused by: com.google.gson.stream.MalformedJsonException: Expected ':' at line 4
 !MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2017-08-02 10:51:11.176
+=======
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-07-31 09:31:24.115
+!MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-07-31 09:31:24.198
+>>>>>>> 117375eb1e87314b7c9acc2f81e9860e6150aba9
 !MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!

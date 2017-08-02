@@ -1,5 +1,6 @@
 package kr.co.inception.search.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,11 +11,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.profile.dto.ProfileDTO;
+import kr.co.inception.search.dao.SearchDAO;
 import kr.co.inception.search.service.SearchService;
 import kr.co.inception.search.vo.DetailVO;
+import kr.co.inception.search.vo.GiBeomVO;
 import kr.co.inception.search.vo.HashtagVO;
+import kr.co.inception.search.vo.ImageURLVO;
 import kr.co.inception.search.vo.ShopVO;
 import kr.co.inception.search.vo.TagVO;
 import kr.co.inception.search.vo.showVO;
@@ -65,5 +72,66 @@ public class MongoController {
 		model.addAttribute("shop", shopList);
 		System.out.println("블로그 개수 " + list.size());
 		return "wordDetail";
+	}
+
+	@RequestMapping("img")
+	public String imageURLList(@ModelAttribute("detail") String hashtag, Model model, HttpServletRequest request)
+			throws Exception {
+		String searchWord = (String) request.getSession().getAttribute("searchWord");
+		List<DetailVO> list = searchService.detail(searchWord, hashtag);
+		// List<ShopVO> shopList = searchService.shop(searchWord, hashtag);
+
+		List<GiBeomVO> giBeomVO = new ArrayList<GiBeomVO>();
+		for (DetailVO detailVO : list) {
+			for (ImageURLVO imageURLVO : detailVO.getImageURL()) {
+				GiBeomVO vo = new GiBeomVO(detailVO.getUrl(), imageURLVO.getUrl());
+				giBeomVO.add(vo);
+			}
+		}
+
+		model.addAttribute("giBeomVO", giBeomVO);
+		model.addAttribute("list", list);
+		return "test";
+	}
+
+	// android
+
+	@RequestMapping(value = "/andlist2")
+	@ResponseBody
+	public List<TagVO> andlist2(@RequestParam("param") String param) {
+		HashtagVO vo = searchService.wordCloud(param);
+		List<TagVO> tagList = vo.tags;
+
+		return tagList;
+
+	}
+
+	@RequestMapping(value = "/andlistdetail")
+	@ResponseBody
+	public List<DetailVO> andlistdetail(@RequestParam("detail") String hashtag,
+			@RequestParam("searchWord") String searchWord) {
+		List<DetailVO> list = searchService.detail(searchWord, hashtag);
+
+		return list;
+
+	}
+
+	@RequestMapping(value = "/andlistdetail2")
+	@ResponseBody
+	public List<DetailVO> andlistdetail2(@RequestParam("detail") String hashtag,
+			@RequestParam("searchWord") String searchWord) {
+		List<DetailVO> list = searchService.detail(searchWord, hashtag);
+
+		return list;
+
+	}
+
+	@RequestMapping(value = "/andlistshop")
+	@ResponseBody
+	public List<ShopVO> andlistshop(@RequestParam("detail") String hashtag,
+			@RequestParam("searchWord") String searchWord) {
+		List<ShopVO> shopList = searchService.shop(searchWord, hashtag);
+		return shopList;
+
 	}
 }
