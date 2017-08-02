@@ -129,36 +129,6 @@
 	<resultMap id="tagList" type="kr.co.inception.board.vo.TagListVO">
 		<id property="tag" column="tag"/>
 	</resultMap>
-<!-- 	<select id="getBoardById" > -->
-<!-- 		<![CDATA[ -->
-<!-- 			select b.bidx,b.title,b.userid,b.writedate,b.contents,b.hitcount,b.category,t.tag,g.good,b.bad,s.scrapecount,r.replycount -->
-<!-- 			from board b, -->
-<!--     			(select count(g_b_count) as good -->
-<!--     			from goodbad -->
-<!--     			where bidx=#{bidx} and g_b_count = 0 -->
-<!--     			) g, -->
-<!--     			(select count(g_b_count) as bad -->
-<!--     			from goodbad -->
-<!--     			where bidx=#{bidx} and g_b_count =1) b, -->
-<!--     			(select count(*) as scrapecount -->
-<!--     			from scrape -->
-<!--     			where bidx=#{bidx} -->
-<!--     			) s, -->
-<!--    				(select count(*) as replycount -->
-<!--    				from boardreply -->
-<!--    				where bidx=#{bidx} -->
-<!--    				) r -->
-<!-- 			where b.bidx = #{bidx} -->
-<!-- 		]]> -->
-<!-- 	</select> -->
-<!-- 	<select id="boardtagList" resultType="kr.co.inception.board.vo.TagListVO"> -->
-<!--     			<![CDATA[ -->
-<!--     			select tag -->
-<!--     			from boardtag -->
-<!--     			where bidx=#{bidx} -->
-<!-- 				]]> -->
-<!-- 	</select> -->
-
 
 
 	<select id="boardSimple" resultMap="boardSimple2">
@@ -248,11 +218,8 @@ connect by prior ridx = TARGETREPLY
 	<select id="tagList" resultType="kr.co.inception.board.vo.TagListVO">
 		<![CDATA[
 			select tag from boardtag where tag is not null group by tag order by count(tag) desc
-<<<<<<< HEAD
+
 		]]>
-=======
-					]]>
->>>>>>> f21b39a79259865bbd7354fa50d908cf76df9633
 	</select>
 
 
