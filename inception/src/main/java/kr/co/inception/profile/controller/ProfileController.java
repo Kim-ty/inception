@@ -53,7 +53,6 @@ public class ProfileController {
 		
 		return "forward:/profile/"+userid+"/board2";
 	}
-
 	
 	@RequestMapping(value = "/{param1}/board2")
 	public String showProfileBoard(@PathVariable("param1") String userid, Model model) throws Exception {

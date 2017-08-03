@@ -39,6 +39,10 @@ body, html {
 	<!-- Promo Section "Statistics" -->
 	<div class="w3-container w3-row w3-center w3-blue-gray w3-padding-16">
 		<div>
+			<img class="profile-user-img img-responsive img-circle" style="width: 50px;height:auto"
+				src="${profile.profilepicture}" alt="User profile picture">
+		</div>
+		<div>
 			<h1>
 				<a href="/profile/${profile.userid}">${profile.userid}</a>
 			</h1>
@@ -61,12 +65,12 @@ body, html {
 
 
 				<div>
-					<h3><a href="/board/boardDetail/${vo.bidx}">${ vo.title }</a></h3>
-					${vo.contents} <br> 
-					written by <a href="/profile/${vo.userid}">${ vo.userid }</a>
-					${ vo.writedate } ${ vo.category } 조회수.${ vo.hitcnt } 좋아요.${ vo.gcnt } 
-					나빠요.${vo.bcnt } 스크랩.${ vo.scrapecnt } 댓글수.${ vo.rpcnt }
-					<br>=========================================
+					<h3>
+						<a href="/board/boardDetail/${vo.bidx}">${ vo.title }</a>
+					</h3>
+					${vo.contents} <br> written by <a href="/profile/${vo.userid}">${ vo.userid }</a>
+					${ vo.writedate } ${ vo.category } 조회수.${ vo.hitcnt } 좋아요.${ vo.gcnt }
+					나빠요.${vo.bcnt } 스크랩.${ vo.scrapecnt } 댓글수.${ vo.rpcnt } <br>=========================================
 				</div>
 			</c:forEach>
 		</div>
