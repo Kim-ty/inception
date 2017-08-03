@@ -52,8 +52,8 @@ body, html {
 				<a href="/profile/${profile.userid}">${profile.userid}</a>
 			</h1>
 			<a href="/profile/${profile.userid}/followlist">${profile.followCount}
-				follow</a> <a href="/profile/${profile.userid}/followerlist">${profile.followerCount}
-				follower</a>
+				follows</a> <a href="/profile/${profile.userid}/followerlist">${profile.followerCount}
+				followers</a>
 		</div>
 	</div>
 
