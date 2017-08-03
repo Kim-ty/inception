@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <head>
 
 <script
@@ -89,6 +88,7 @@ body {
 		</div>
 		<div class="w3-quarter w3-hide-small" style="width: 15%" align="left">
 			<div class="w3-card-2 w3-container" style="min-height: 460px">
+<<<<<<< HEAD
 				<h3>
 					Hashtags
 					<hr>
@@ -99,6 +99,13 @@ body {
 						<a href="/board/boardList/tag${tagList.tag}">${tagList.tag}</a>
 					</p>
 
+=======
+				<h2>Hashtags</h2>
+
+				<c:forEach var="tagList" items="${tagList}">
+					<a href="/board/boardList/tag${tagList.tag}">${tagList.tag}</a>
+					<br>
+>>>>>>> 928fc19c3355561caaea4404ba54fc4182f3d0d1
 				</c:forEach>
 
 			</div>

@@ -133,12 +133,11 @@ to {
 }
 </style>
 
-
-
 </head>
 
 <body>
 
+<<<<<<< HEAD
 	<jsp:include page="header.jsp" flush="false" />
 
 	<table class="table table-striped table-hover">
@@ -185,6 +184,83 @@ to {
 			</c:forEach>
 		</tbody>
 	</table>
+=======
+	<c:import url="/category"></c:import>
+
+
+	<div class="w3-row-padding w3-center w3-margin-top">
+		<div class="w3-threequarter">
+			<div class="w3-card-2 w3-container" style="min-height: 460px">
+
+
+				<a href="/board/write">글쓰기</a>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>sumnale</th>
+							<th>title</th>
+							<th>contents</th>
+							<th>userid</th>
+							<th>writedate</th>
+							<th>category</th>
+							<th>hitcount</th>
+							<th>good</th>
+							<th>bad</th>
+							<th>scrape</th>
+							<th>scrapecount</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="vo" items="${boardList}">
+							<!-- <tr></tr> => row1  Table Row -->
+							<tr class="active">
+								<!-- <td></td> => DATA Table DATA -->
+								<th>${vo.bidx}</th>
+								<th><a href="/board/boardDetail/${vo.bidx}">${vo.title }</a></th>
+								<th><a href="/board/boardDetail/${vo.bidx}">${vo.contents}</a></th>
+								<%-- 					<a data-toggle="modal" href="BoardList/${vo.bidx}" --%>
+								<!-- 						data-target="#modal-testNew" role="button" data-backdrop="static"> -->
+								<%-- 							<span id="btnbidx" class="btn btn-xs btn-success">${vo.contents}</span> --%>
+								<!-- 					</a> 												Trigger/Open The Modal onClick with Content  -->
+								<!-- 						<span id="myBtn" onclick="" style="cursor: pointer"> -->
+								<%-- 							${vo.contents }</span> --%>
+								</th>
+								<th>${ vo.userid }</th>
+								<th>${ vo.writedate }</th>
+								<th>${ vo.category }</th>
+								<th>${ vo.hitcnt }</th>
+								<th>${ vo.gcnt }</th>
+								<th>${ vo.bcnt }</th>
+								<th>${ vo.scrapecnt }</th>
+								<th>${ vo.rpcnt }</th>
+							</tr>
+
+						</c:forEach>
+					</tbody>
+				</table>
+
+
+			</div>
+		</div>
+
+
+		<div class="w3-quarter w3-hide-small">
+			<div class="w3-card-2 w3-container" style="min-height: 460px">
+				<h2>Hashtags</h2>
+
+				<c:import url="/board/hottagList"></c:import>
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+>>>>>>> 928fc19c3355561caaea4404ba54fc4182f3d0d1
 
 	<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog"
 		aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
