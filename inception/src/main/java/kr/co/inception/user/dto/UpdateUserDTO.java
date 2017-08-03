@@ -5,7 +5,7 @@ public class UpdateUserDTO {
 	private String userpw;
 	private String useremail;
 	private String profilepicture;
-	private String sex;
+
 	public String getUserid() {
 		return userid;
 	}
@@ -30,15 +30,10 @@ public class UpdateUserDTO {
 	public void setProfilepicture(String profilepicture) {
 		this.profilepicture = profilepicture;
 	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
+
 	@Override
 	public String toString() {
 		return "UpdateUserDTO [userid=" + userid + ", userpw=" + userpw + ", useremail=" + useremail
-				+ ", profilepicture=" + profilepicture + ", sex=" + sex + "]";
+				+ ", profilepicture=" + profilepicture + ", sex="  + "]";
 	}
 }

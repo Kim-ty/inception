@@ -39,7 +39,7 @@ body, html {
 	<!-- Promo Section "Statistics" -->
 	<div class="w3-container w3-row w3-center w3-blue-gray w3-padding-16">
 		<div>
-			<img class="profile-user-img img-responsive img-circle" style="width: 50px;height:auto"
+			<img style="width: 50px;height:auto"
 				src="${profile.profilepicture}" alt="User profile picture">
 		</div>
 		<div>
