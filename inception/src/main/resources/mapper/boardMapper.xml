@@ -5,17 +5,19 @@
 
 <mapper namespace="kr.co.inception.mapper.boardMapper">
 
-	<insert id="boardInsert" >
-			insert all
-			into board(BIDX,TITLE,USERID,WRITEDATE,CONTENTS,CATEGORY) VALUES(createbidx.nextval,#{title},#{userid},sysdate,#{contents},#{category})
-			<foreach collection="tagList" item="tagitem" index="index">
-			into boardtag(bidx,tag) values(createbidx.nextval,#{tagitem.tag})
-			</foreach>
-			SELECT * FROM dual
-			
+	<insert id="boardInsert">
+		insert all
+		into board(BIDX,TITLE,USERID,WRITEDATE,CONTENTS,CATEGORY)
+		VALUES(createbidx.nextval,#{title},#{userid},sysdate,#{contents},#{category})
+		<foreach collection="tagList" item="tagitem" index="index">
+			into
+			boardtag(bidx,tag) values(createbidx.nextval,#{tagitem.tag})
+		</foreach>
+		SELECT * FROM dual
+
 	</insert>
 
-	<update id="boardUpdate" >
+	<update id="boardUpdate">
 		<![CDATA[
 			update board
 			set CONTENTS = #{contents}
@@ -37,7 +39,7 @@
 		]]>
 
 	</insert>
-	
+
 	<select id="scrapcheck" resultType="int">
 		<![CDATA[
 			select count(*) from scrape where bidx=#{bidx} and userid=#{userid}
@@ -50,7 +52,7 @@
 		]]>
 
 	</insert>
-	
+
 	<select id="goodcheck" resultType="int">
 		<![CDATA[
 			select count(*) from goodbad where bidx=#{bidx} and userid = #{userid}
@@ -75,8 +77,8 @@
 			
 		]]>
 	</select>
-	
-	<select id ="boardListCategory" resultType="kr.co.inception.board.vo.BoardListVO">
+
+	<select id="boardListCategory" resultType="kr.co.inception.board.vo.BoardListVO">
 		<![CDATA[ 
 			select b.bidx,b.hitcount as hitcnt,SUBSTR(REGEXP_REPLACE(b.contents, '<[^>]*>|\&([^;])*;', ''),1,25) as contents,b.title,b.userid,b.writedate,b.category,nvl(gb.gcnt,0) AS gcnt,nvl(gb.bcnt,0) as bcnt,nvl(s.scrapecnt,0) AS scrapecnt,nvl(rp.rpcnt,0) as rpcnt
 			from ( select distinct bidx,HITCOUNT,contents,TITLE,USERID,WRITEDATE,CATEGORY from board ) b
@@ -85,10 +87,10 @@
 			left join ( select bidx, count(*) as rpcnt from BoardReply group by bidx) rp on b.bidx = rp.bidx
 			where category =#{category}
 			order by b.writedate desc
-		]]>		
+		]]>
 	</select>
-	
-	<select id = "boardListTag" resultType="kr.co.inception.board.vo.BoardListVO">
+
+	<select id="boardListTag" resultType="kr.co.inception.board.vo.BoardListVO">
 		<![CDATA[ 
 			select b.bidx,b.hitcount as hitcnt,SUBSTR(REGEXP_REPLACE(b.contents, '<[^>]*>|\&([^;])*;', ''),1,25) as contents,b.title,b.userid,b.writedate,b.category,nvl(gb.gcnt,0) AS gcnt,nvl(gb.bcnt,0) as bcnt,nvl(s.scrapecnt,0) AS scrapecnt,nvl(rp.rpcnt,0) as rpcnt
 			from ( select distinct bidx,HITCOUNT,contents,TITLE,USERID,WRITEDATE,CATEGORY from board ) b
@@ -98,10 +100,10 @@
 			left join ( select bidx, tag from boardtag) t on b.bidx = t.bidx
 			where tag =#{tag}
 			order by b.writedate desc
-		]]>		
-		
+		]]>
+
 	</select>
-	
+
 	<select id="boardDetail" resultType="kr.co.inception.board.vo.BoardDetailVO">
 		<![CDATA[
 		
@@ -109,11 +111,61 @@
 		]]>
 	</select>
 
-	<select id="boardSimple" resultType="kr.co.inception.board.vo.BoardSimpleVO">
+	<resultMap id="boardSimple2" type="kr.co.inception.board.vo.BoardSimpleVO">
+		<id property="bidx" column="bidx" />
+		<result property="title" column="title" />
+		<result property="userid" column="userid" />
+		<result property="writedate" column="writedate" />
+		<result property="contents" column="contents" />
+		<result property="hitcount" column="hitcount" />
+		<result property="category" column="category" />
+		<result property="good" column="good" />
+		<result property="bad" column="bad" />
+		<result property="scrapecount" column="scrapecount" />
+		<result property="replycount" column="replycount" />
+		<collection property="tag" column="tag" javaType="java.util.List"
+			resultMap="tagList"/>
+	</resultMap>
+	<resultMap id="tagList" type="kr.co.inception.board.vo.TagListVO">
+		<id property="tag" column="tag"/>
+	</resultMap>
+<!-- 	<select id="getBoardById" > -->
+<!-- 		<![CDATA[ -->
+<!-- 			select b.bidx,b.title,b.userid,b.writedate,b.contents,b.hitcount,b.category,t.tag,g.good,b.bad,s.scrapecount,r.replycount -->
+<!-- 			from board b, -->
+<!--     			(select count(g_b_count) as good -->
+<!--     			from goodbad -->
+<!--     			where bidx=#{bidx} and g_b_count = 0 -->
+<!--     			) g, -->
+<!--     			(select count(g_b_count) as bad -->
+<!--     			from goodbad -->
+<!--     			where bidx=#{bidx} and g_b_count =1) b, -->
+<!--     			(select count(*) as scrapecount -->
+<!--     			from scrape -->
+<!--     			where bidx=#{bidx} -->
+<!--     			) s, -->
+<!--    				(select count(*) as replycount -->
+<!--    				from boardreply -->
+<!--    				where bidx=#{bidx} -->
+<!--    				) r -->
+<!-- 			where b.bidx = #{bidx} -->
+<!-- 		]]> -->
+<!-- 	</select> -->
+<!-- 	<select id="boardtagList" resultType="kr.co.inception.board.vo.TagListVO"> -->
+<!--     			<![CDATA[ -->
+<!--     			select tag -->
+<!--     			from boardtag -->
+<!--     			where bidx=#{bidx} -->
+<!-- 				]]> -->
+<!-- 	</select> -->
+
+
+
+	<select id="boardSimple" resultMap="boardSimple2">
 		<![CDATA[
 			select b.bidx,b.title,b.userid,b.writedate,b.contents,b.hitcount,b.category,t.tag,g.good,b.bad,s.scrapecount,r.replycount
 			from board b,
-    			(select listagg(tag,' ')within group(order by bidx) as tag
+    			(select tag
     			from boardtag
     			where bidx=#{bidx}
     			) t,
@@ -134,7 +186,6 @@
    				) r
 			where b.bidx = #{bidx}
 		]]>
-
 	</select>
 
 	<select id="GooderList" resultType="kr.co.inception.board.vo.GooderListVO">
@@ -178,7 +229,7 @@ connect by prior ridx = TARGETREPLY
 		]]>
 
 	</select>
-	
+
 	<select id="searchkeyword" resultType="kr.co.inception.board.vo.BoardListVO">
 		<![CDATA[
 		select b.bidx,b.hitcount as hitcnt,SUBSTR(b.contents, 1, 25) as contents,b.title,b.userid,b.writedate,b.category,nvl(gb.gcnt,0) AS gcnt,nvl(gb.bcnt,0) as bcnt,nvl(s.scrapecnt,0) AS scrapecnt,nvl(rp.rpcnt,0) as rpcnt
@@ -188,19 +239,19 @@ connect by prior ridx = TARGETREPLY
 			left join ( select bidx, count(*) as rpcnt from BoardReply group by bidx) rp on b.bidx = rp.bidx where title like #{searchkeyword} or userid like #{searchkeyword} or contents like #{searchkeyword}
 		]]>
 	</select>
-	
+
 	<update id="hit">
   		<![CDATA[update board set hitcount = hitcount+1 where bidx =#{bidx}]]>
 	</update>
-	
-		
+
+
 	<select id="tagList" resultType="kr.co.inception.board.vo.TagListVO">
 		<![CDATA[
 			select tag from boardtag where tag is not null group by tag order by count(tag) desc
 		]]>
 	</select>
-  
-	
+
+
 
 </mapper>
   

@@ -1,5 +1,7 @@
 package kr.co.inception.board.vo;
 
+import java.util.List;
+
 public class BoardSimpleVO {
 	
 	private String bidx;
@@ -9,7 +11,7 @@ public class BoardSimpleVO {
 	private String contents;
 	private String hitcount;
 	private String category;
-	private String tag;
+	private List<TagListVO> tag;
 	private String good;
 	private String bad;
 	private String scrapecount;
@@ -58,12 +60,7 @@ public class BoardSimpleVO {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getTag() {
-		return tag;
-	}
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
+	
 	public String getGood() {
 		return good;
 	}
@@ -87,6 +84,12 @@ public class BoardSimpleVO {
 	}
 	public void setReplycount(String replycount) {
 		this.replycount = replycount;
+	}
+	public List<TagListVO> getTag() {
+		return tag;
+	}
+	public void setTag(List<TagListVO> tag) {
+		this.tag = tag;
 	}
 	
 	
