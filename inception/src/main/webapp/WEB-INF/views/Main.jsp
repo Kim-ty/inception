@@ -9,11 +9,12 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<link
+ <link
 	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
-	crossorigin="anonymous">
+	crossorigin="anonymous"> 
+	
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 

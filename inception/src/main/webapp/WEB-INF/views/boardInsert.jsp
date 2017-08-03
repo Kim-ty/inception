@@ -68,6 +68,8 @@
 </head>
 
 <body>
+
+
 	<form id="boardInsert" name="write" role="form" method="post"
 		action="/board/boardInsert">
 		<div class="form-group">
