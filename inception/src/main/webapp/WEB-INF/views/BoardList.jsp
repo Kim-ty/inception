@@ -141,11 +141,10 @@ to {
 
 	<jsp:include page="header.jsp" flush="false" />
 
-	<a href="/board/write">글쓰기</a>
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th>sumnale</th>
+				<th></th>
 				<th>title</th>
 				<th>contents</th>
 				<th>userid</th>
