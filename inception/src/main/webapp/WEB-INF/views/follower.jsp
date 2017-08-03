@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,18 +18,17 @@
 	crossorigin="anonymous">
 
 <script type="text/javascript">
+	// 	$(function() {
+	// 			$(this).html($(this).attr("id"));
+	// 	});
 
-// 	$(function() {
-// 			$(this).html($(this).attr("id"));
-// 	});
+	// 	function folunfol(asdf) {
+	// 		$(this).html(asdf);
+	// 	}
 
-// 	function folunfol(asdf) {
-// 		$(this).html(asdf);
-// 	}
-
-// 	$(function folunfol(asdfasdfasdf) {
-// 		$(this).html(asdfasdfasdf);
-// 	});
+	// 	$(function folunfol(asdfasdfasdf) {
+	// 		$(this).html(asdfasdfasdf);
+	// 	});
 
 	$(document).ready(function() {
 
@@ -44,7 +42,7 @@
 					follow : $(this).attr("id")
 				},
 				success : function(fck) {
-					$(document).find("button[id="+follow+"]").html(fck);
+					$(document).find("button[id=" + follow + "]").html(fck);
 				}
 			});
 		});
@@ -54,13 +52,20 @@
 </head>
 
 <body>
-	<table class="table table-striped table-hover" border="1">
-		<tr class="active">
-			<td><a href="/profile/${profile.userid}">${profile.userid}</a></td>
-			<td><a href="/profile/${profile.userid}/followlist">${profile.followCount}</a></td>
-			<td><a href="/profile/${profile.userid}/followerlist">${profile.followerCount}</a></td>
-		</tr>
-	</table>
+	<jsp:include page="header.jsp" flush="false" />
+
+
+	<div class="w3-container w3-row w3-center w3-blue-gray w3-padding-16">
+		<div>
+			<h1>
+				<a href="/profile/${profile.userid}">${profile.userid}</a>
+			</h1>
+			<a href="/profile/${profile.userid}/followlist">${profile.followCount}
+				follow</a> <a href="/profile/${profile.userid}/followerlist">${profile.followerCount}
+				follower</a>
+		</div>
+	</div>
+
 
 	<table class="table table-striped table-hover">
 		<tr class="active">
