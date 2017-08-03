@@ -281,6 +281,13 @@ public class BoardController {
 	public String uploadAjax(MultipartFile file) throws Exception {
 		System.out.println("파일업로드시작");
 		String fileURL = FileUploadAjax.uploadFile("C:/uploadimage", file.getOriginalFilename(), file.getBytes());
+		Image originalImage = ImageIO.read(new File("/uploadimage/" + fileURL));
+		Image resizeImage = originalImage.getScaledInstance(1000, 1000, Image.SCALE_SMOOTH);
+		BufferedImage newImage = new BufferedImage(1000,1000,BufferedImage.TYPE_INT_RGB);
+		Graphics g = newImage.getGraphics();
+		g.drawImage(resizeImage, 0,0,new Panel());
+		g.dispose();
+		ImageIO.write(newImage, "jpg", new File("/uploadimage/" + fileURL.replaceAll("!!!!", "android!!!!")));
 		return "/uploadimage/" + fileURL;
 	}
 
