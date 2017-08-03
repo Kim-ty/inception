@@ -95,6 +95,17 @@
 
 					});
 </script>
+<style>
+p img {
+   resize: both; /* 이미지 최대 사이즈에 적용 */
+   float: center; /* 가운데 정렬 */
+   max-width: 100%; /* 넓이를 지정 */
+   height: auto; /* 높이를 지정 */
+   margin: 5px 0; /* 여백을 적용 4가지 조건이 가능 위쪽, 오른쪽, 아래쪽, 왼쪽 순서 */
+}
+
+</style>
+
 <title>boardDetail</title>
 </head>
 <body>
@@ -109,17 +120,15 @@
 			<img src="/w3images/woods.jpg" alt="Nature" style="width: 100%">
 			<div class="w3-container">
 				<h3>
-					<b>BIDX.${vo.bidx}</b>
-					<b>${vo.title}</b>
+					<b>BIDX.${vo.bidx}</b> <b>${vo.title}</b>
 				</h3>
 				<h5>
-					<a href="/profile/${vo.userid}">${ vo.userid }</a>
-					<span class="w3-opacity">${ vo.writedate }</span>
-					<span class="w3-opacity">${ vo.category }</span>
-					<span class="w3-opacity">조회수.${ vo.hitcount }</span>
-					<span class="w3-opacity">좋아요.${ vo.good }</span>
-					<span class="w3-opacity">나빠요.${ vo.bad }</span>
-					<span class="w3-opacity">스크랩.${ vo.scrapecount }</span>
+					<a href="/profile/${vo.userid}">${ vo.userid }</a> <span
+						class="w3-opacity">${ vo.writedate }</span> <span
+						class="w3-opacity">${ vo.category }</span> <span
+						class="w3-opacity">조회수.${ vo.hitcount }</span> <span
+						class="w3-opacity">좋아요.${ vo.good }</span> <span
+						class="w3-opacity">나빠요.${ vo.bad }</span> <span class="w3-opacity">스크랩.${ vo.scrapecount }</span>
 				</h5>
 			</div>
 
@@ -144,20 +153,20 @@
 		</div>
 
 
-	<div class="w3-card-2 w3-margin">
-		<div class="w3-container w3-padding">
-			<h4>Tags</h4>
+		<div class="w3-card-2 w3-margin">
+			<div class="w3-container w3-padding">
+				<h4>Tags</h4>
+			</div>
+			<div class="w3-container w3-white">
+				<p>
+					<c:forEach var="tag" items="${vo.tag}">
+						<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
+							<a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
+						</span>
+					</c:forEach>
+				</p>
+			</div>
 		</div>
-		<div class="w3-container w3-white">
-			<p>
-				<c:forEach var="tag" items="${vo.tag}">
-					<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
-						<a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
-					</span>
-				</c:forEach>
-			</p>
-		</div>
-	</div>
 	</div>
 
 
