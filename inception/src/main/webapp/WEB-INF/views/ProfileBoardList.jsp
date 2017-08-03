@@ -13,8 +13,8 @@
 	rel="stylesheet"
 	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
 	crossorigin="anonymous">
-	
-	
+
+
 <style>
 body, h1, h2, h3, h4, h5, h6 {
 	font-family: "Raleway", sans-serif
@@ -43,16 +43,22 @@ body, html {
 	<!-- Promo Section "Statistics" -->
 	<div class="w3-container w3-row w3-center w3-blue-gray w3-padding-16">
 		<div>
-			<img class="profile-user-img img-responsive img-circle" style="width: 50px;height:auto"
+<<<<<<< HEAD
+			<img style="width: 50px;height:auto"
 				src="${profile.profilepicture}" alt="User profile picture">
+=======
+			<img class="profile-user-img img-responsive img-circle"
+				style="width: 50px; height: auto" src="${profile.profilepicture}"
+				alt="User profile picture">
+>>>>>>> b620432610e0639964f44183222a3f7ac2e3750c
 		</div>
 		<div>
 			<h1>
 				<a href="/profile/${profile.userid}">${profile.userid}</a>
 			</h1>
 			<a href="/profile/${profile.userid}/followlist">${profile.followCount}
-				follow</a> <a href="/profile/${profile.userid}/followerlist">${profile.followerCount}
-				follower</a>
+				follows</a> <a href="/profile/${profile.userid}/followerlist">${profile.followerCount}
+				followers</a>
 		</div>
 	</div>
 
@@ -61,7 +67,9 @@ body, html {
 			href="/profile/${profile.userid}/reply">reply</a> <a
 			href="/profile/${profile.userid}/scrap">scrap</a>
 	</div>
-
+	<a href="/user/update"> <input class="btn btn-default"
+		type="submit" name="userupdate" value="UserUpdate">
+	</a>
 	<!-- Skills Section -->
 	<div class="w3-container w3-light-grey w3-padding-64">
 		<div class="w3-row-padding">

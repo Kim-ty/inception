@@ -132,6 +132,16 @@ public class UserController {
 		}
 		return true;
 	}
+	
+	@RequestMapping(value="/updateUser",method= RequestMethod.POST)
+	public String updateUserInfo(UpdateUserDTO updateuserDTO,HttpSession session){
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		System.out.println(updateuserDTO.getProfilepicture());
+		System.out.println(updateuserDTO.getUseremail());
+		updateuserDTO.setUserid(loginVO.getUserid());
+		userService.updateUser(updateuserDTO);
+		return "redirect:/";
+	}
 
 	@RequestMapping(value = "updatechk", method = RequestMethod.POST)
 	public String updateUser(UpdateUserDTO updateuserDTO) {
