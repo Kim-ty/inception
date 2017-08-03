@@ -42,6 +42,11 @@ public class UserController {
 	public String move_login() {
 		return "Login";
 	}
+	
+	@RequestMapping("/update")
+	public String move_update(){
+		return "UserUpdate";
+	}
 
 	@RequestMapping(value = "joinchk", method = RequestMethod.POST)
 	public String joinUser(JoinDTO joinDTO) throws Exception {

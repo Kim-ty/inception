@@ -29,7 +29,7 @@
 		$("#contents").val(contents);
 		var boardForm = document.write;
 		if ($("#tag").val() != ' ') {
-			var strArray = ($("#tag").val()).split(' ');
+			var strArray = ($("#tag").val()).split('#');
 			for ( var i in strArray) {
 				var input = document.createElement("input");
 				input.type = "text";

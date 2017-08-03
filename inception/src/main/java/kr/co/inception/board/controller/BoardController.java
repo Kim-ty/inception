@@ -293,5 +293,21 @@ public class BoardController {
 		ImageIO.write(newImage, "jpg", new File("/uploadimage/" + fileURL.replaceAll("!!!!", "android!!!!")));
 		return "/uploadimage/" + fileURL;
 	}
+	@RequestMapping(value = "/replyList")
+	@ResponseBody
+	public void andboardinsert(@RequestParam("title") String title,@RequestParam("userid") String userid,@RequestParam("contents") String contents
+			,@RequestParam("category") String category,@RequestParam("tag") String tag) {
+		BoardInsertDTO boardInsertDTO = new BoardInsertDTO();
+		boardInsertDTO.setTitle(title);
+		boardInsertDTO.setUserid(userid);
+		boardInsertDTO.setCategory(category);
+		boardInsertDTO.setContents(contents);
+//		boardInsertDTO.setTagList(tagList);
+//		tag.split(regex)
+//		boardService.boardInsert(boardInsertDTO);
+//		
+		
+
+	}
 
 }
