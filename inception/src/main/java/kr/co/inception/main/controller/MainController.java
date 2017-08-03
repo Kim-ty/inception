@@ -57,12 +57,12 @@ public class MainController {
 		model.addAttribute("tagList", tagListVO);
 		return "Main";
 	}
-	
+
 	@RequestMapping("/category")
-	public String categoryList(Model model){
+	public String categoryList(Model model) {
 		List<CategoryListVO> categoryListVO = mainService.CategoryListView();
-		model.addAttribute("categoryList",categoryListVO);
-		
+		model.addAttribute("categoryList", categoryListVO);
+
 		return "header";
 	}
 

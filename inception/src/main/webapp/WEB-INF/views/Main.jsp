@@ -3,18 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <head>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
- <link
+<link
 	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
-	crossorigin="anonymous"> 
-	
+	crossorigin="anonymous">
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
@@ -90,14 +89,12 @@ body {
 		<div class="w3-quarter w3-hide-small">
 			<div class="w3-card-2 w3-container" style="min-height: 460px">
 				<h2>Hashtags</h2>
-				<ul>
 
-					<c:forEach var="tagList" items="${tagList}">
-						<li><a href="/board/boardList/tag${tagList.tag}">${tagList.tag}</a></li>
+				<c:forEach var="tagList" items="${tagList}">
+					<a href="/board/boardList/tag${tagList.tag}">${tagList.tag}</a>
+					<br>
+				</c:forEach>
 
-					</c:forEach>
-
-				</ul>
 			</div>
 		</div>
 	</div>

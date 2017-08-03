@@ -25,7 +25,7 @@
 		} else {
 			$("#replycontents").empty();
 			$(document).find("#replymore").html("댓글보기");
-			$("reply").append("<tbody id=replycontents></tbody>");
+			$("reply").append("<div id=replycontents></div>");
 		}
 	}
 
@@ -65,24 +65,29 @@
 																			function(
 																					key,
 																					value) {
-																				var sibal
+																				var sibal = " ";
 																				if (value.level > 1) {
 																					for (var i = 0; i <= value.level; i++) {
-																						sibal += "&nbsp;";
+																						sibal += "&nbsp;&nbsp;";
 																					}
 																				}
-																				var row = $("<tr><td align='left'>"
+																				var row = $("<p>"
+																						+ "<span>"
 																						+ sibal
-																						+ " └"
-																						+ value.contents
-																						+ "</td>"
-																						+ "<td>"
+																						+ "<span>"
 																						+ value.userid
-																						+ "</td>"
-																						+ "<td>"
+																						+ "&nbsp"
 																						+ value.writedate
-																						+ "</td>"
-																						+ "<td><a href='javascript:Replyinsert()'>답글달기</a></td></tr>");
+																						+ "<br>"
+																						+ "<span>"
+																						+ sibal
+																						+ "<span>"
+																						+ value.contents
+																						+ "<br>"
+																						+ "<span>"
+																						+ sibal
+																						+ "<span>"
+																						+ "<a href='javascript:Replyinsert()'>답글달기</a></p>");
 																				$(
 																						"#replycontents")
 																						.append(
@@ -97,13 +102,12 @@
 </script>
 <style>
 p img {
-   resize: both; /* 이미지 최대 사이즈에 적용 */
-   float: center; /* 가운데 정렬 */
-   max-width: 100%; /* 넓이를 지정 */
-   height: auto; /* 높이를 지정 */
-   margin: 5px 0; /* 여백을 적용 4가지 조건이 가능 위쪽, 오른쪽, 아래쪽, 왼쪽 순서 */
+	resize: both; /* 이미지 최대 사이즈에 적용 */
+	float: center; /* 가운데 정렬 */
+	max-width: 100%; /* 넓이를 지정 */
+	height: auto; /* 높이를 지정 */
+	margin: 5px 0; /* 여백을 적용 4가지 조건이 가능 위쪽, 오른쪽, 아래쪽, 왼쪽 순서 */
 }
-
 </style>
 
 <title>boardDetail</title>
@@ -120,11 +124,7 @@ p img {
 
 			<div class="w3-container">
 				<h3>
-<<<<<<< HEAD
-					<b>${vo.bidx}</b> <b>${vo.title}</b>
-=======
-					<b>BIDX.${vo.bidx}</b> <b>${vo.title}</b>
->>>>>>> 8e891ea6aed66981d595287f875123e7d06c7ca6
+					<span id="bidx">${vo.bidx}</span> <b>${vo.title}</b>
 				</h3>
 				<h5>
 					<a href="/profile/${vo.userid}">${ vo.userid }</a> <span
@@ -135,17 +135,12 @@ p img {
 						class="w3-opacity">나빠요.${ vo.bad }</span> <span class="w3-opacity">스크랩.${ vo.scrapecount }</span>
 				</h5>
 
-
-
-
 			</div>
 
 			<div class="w3-container">
 				<p>${vo.contents}.</p>
 
 			</div>
-
-
 			<div class="w3-card-2 w3-margin">
 				<div class="w3-container w3-padding">
 					<h4>Tags</h4>
@@ -177,84 +172,18 @@ p img {
 				</div>
 			</div>
 
-<<<<<<< HEAD
-		</div>
 
-=======
-		<div class="w3-card-2 w3-margin">
-			<div class="w3-container w3-padding">
-				<h4>Tags</h4>
+			<div  id="reply"   class="w3-container w3-white"  style="visibility: hidden;">
+				<div  id=replycontents>
+				
+				</div>
 			</div>
-			<div class="w3-container w3-white">
-				<p>
-					<c:forEach var="tag" items="${vo.tag}">
-						<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
-							<a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
-						</span>
-					</c:forEach>
-				</p>
-			</div>
+
 		</div>
->>>>>>> 8e891ea6aed66981d595287f875123e7d06c7ca6
 	</div>
 
 
-	<table class="active">
-		<c:set var="vo" value="${boardSimple}" />
-		<!-- <tr></tr> => row1  Table Row -->
-		<tr>
-			<!-- <td></td> => DATA Table DATA -->
-			<th id="bidx">${vo.bidx}</th>
-		</tr>
-		<tr>
-			<th>${vo.title}</th>
-		</tr>
-		<tr>
-			<th>${vo.contents}</th>
-			<%-- 					<a data-toggle="modal" href="BoardList/${vo.bidx}" --%>
-			<!-- 						data-target="#modal-testNew" role="button" data-backdrop="static"> -->
-			<%-- 							<span id="btnbidx" class="btn btn-xs btn-success">${vo.contents}</span> --%>
-			<!-- 					</a> 												Trigger/Open The Modal onClick with Content  -->
-			<!-- 						<span id="myBtn" onclick="" style="cursor: pointer"> -->
-			<%-- 							${vo.contents }</span> --%>
-		</tr>
-		<tr>
 
-			<th><a href="/profile/${vo.userid}">${ vo.userid }</a></th>
-		</tr>
-		<tr>
-			<th>${ vo.writedate }</th>
-		</tr>
-		<tr>
-			<th>${ vo.category }</th>
-		</tr>
-		<tr>
-			<th>${ vo.hitcount }</th>
-		</tr>
-		<tr>
-			<th id="gooder">${ vo.good }</th>
-			<th>좋아요</th>
-			<th id="bader">${ vo.bad }</th>
-			<th>나빠요</th>
-			<th id="scraper">${ vo.scrapecount }</th>
-			<th>스크랩하기</th>
-			<th>${ vo.replycount }</th>
-			<th><a id="replymore">댓글보기</a></th>
-		</tr>
-		<tr id="tags">
-			<th><c:forEach var="tag" items="${vo.tag}">
-					<a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
-				</c:forEach></th>
-		</tr>
-		<tr>
-		</tr>
-	</table>
-
-	<table id="reply" style="visibility: hidden;">
-		<tbody id=replycontents>
-
-		</tbody>
-	</table>
 
 
 	<div id="myModal" class="modal">
