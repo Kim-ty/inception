@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <head>
 
 <script
@@ -14,6 +13,7 @@
 	rel="stylesheet"
 	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
 	crossorigin="anonymous">
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
@@ -86,17 +86,28 @@ body {
 
 			</div>
 		</div>
-		<div class="w3-quarter w3-hide-small">
+		<div class="w3-quarter w3-hide-small" style="width: 15%" align="left">
 			<div class="w3-card-2 w3-container" style="min-height: 460px">
+<<<<<<< HEAD
+				<h3>
+					Hashtags
+					<hr>
+				</h3>
+
+				<c:forEach var="tagList" items="${tagList}">
+					<p>
+						<a href="/board/boardList/tag${tagList.tag}">${tagList.tag}</a>
+					</p>
+
+=======
 				<h2>Hashtags</h2>
-				<ul>
 
-					<c:forEach var="tagList" items="${tagList}">
-						<li><a href="/board/boardList/tag${tagList.tag}">${tagList.tag}</a></li>
+				<c:forEach var="tagList" items="${tagList}">
+					<a href="/board/boardList/tag${tagList.tag}">${tagList.tag}</a>
+					<br>
+>>>>>>> 928fc19c3355561caaea4404ba54fc4182f3d0d1
+				</c:forEach>
 
-					</c:forEach>
-
-				</ul>
 			</div>
 		</div>
 	</div>

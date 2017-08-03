@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.Panel;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.inception.board.dto.BoardInsertDTO;
+import kr.co.inception.board.dto.BoardTagDTO;
 import kr.co.inception.board.dto.BoardUpdateDTO;
 import kr.co.inception.board.dto.GoodDTO;
 import kr.co.inception.board.dto.ReplyDTO;
@@ -30,6 +32,7 @@ import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.board.vo.BoardSimpleVO;
 import kr.co.inception.board.vo.ReplyListVO;
 import kr.co.inception.board.vo.TagListVO;
+import kr.co.inception.main.service.MainService;
 import kr.co.inception.user.vo.LoginVO;
 
 @Controller
@@ -162,15 +165,15 @@ public class BoardController {
 
 		return "Success";
 	}
+
 	@RequestMapping(value = "/andselectcategory")
 	@ResponseBody
 	public List<BoardListVO> andselectcategory(@RequestParam("category") String category) {
-	    List<BoardListVO> boardList = boardService.selectcategory(category);
+		List<BoardListVO> boardList = boardService.selectcategory(category);
 
-	    return boardList;
+		return boardList;
 
 	}
-
 
 	// @RequestMapping(value = "/boardInsert")
 	// @ResponseBody
@@ -200,8 +203,8 @@ public class BoardController {
 	public String boardDetail(@PathVariable("param1") String bidx, Model model) {
 		boardService.hit(bidx);
 		BoardSimpleVO boardSimple = boardService.showBoardSimple(bidx);
-		for(TagListVO tag:boardSimple.getTag()){
-			System.out.println(tag.getTag());			
+		for (TagListVO tag : boardSimple.getTag()) {
+			System.out.println(tag.getTag());
 		}
 		model.addAttribute("boardSimple", boardSimple);
 		return "BoardDetail";
@@ -210,9 +213,9 @@ public class BoardController {
 	@RequestMapping(value = "/boardList/{param1}")
 	public String boardList(@PathVariable("param1") String category, Model model) {
 		System.out.println(category);
-			List<BoardListVO> boardList = null;
+		List<BoardListVO> boardList = null;
 		if (category.contains("tag") == true) {
-			String tag=category.substring(3);
+			String tag = category.substring(3);
 			System.out.println(tag);
 			boardList = boardService.showBoardListTag(tag);
 		} else {
@@ -224,13 +227,13 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/boardInsert")
-	public String boardInsert(BoardInsertDTO boardInsertDTO,HttpSession session,Model model) {
+	public String boardInsert(BoardInsertDTO boardInsertDTO, HttpSession session, Model model) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
-		
+
 		boardInsertDTO.setUserid(loginVO.getUserid());
-		
+
 		boardService.boardInsert(boardInsertDTO);
-		
+
 		return "redirect:/board/boardList";
 	}
 
@@ -286,12 +289,37 @@ public class BoardController {
 		String fileURL = FileUploadAjax.uploadFile("C:/uploadimage", file.getOriginalFilename(), file.getBytes());
 		Image originalImage = ImageIO.read(new File("/uploadimage/" + fileURL));
 		Image resizeImage = originalImage.getScaledInstance(1000, 1000, Image.SCALE_SMOOTH);
-		BufferedImage newImage = new BufferedImage(1000,1000,BufferedImage.TYPE_INT_RGB);
+		BufferedImage newImage = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_RGB);
 		Graphics g = newImage.getGraphics();
-		g.drawImage(resizeImage, 0,0,new Panel());
+		g.drawImage(resizeImage, 0, 0, new Panel());
 		g.dispose();
 		ImageIO.write(newImage, "jpg", new File("/uploadimage/" + fileURL.replaceAll("!!!!", "android!!!!")));
 		return "/uploadimage/" + fileURL;
+	}
+
+	@RequestMapping(value = "/andboardinsert")
+	@ResponseBody
+	public void andboardinsert(@RequestParam("title") String title, @RequestParam("userid") String userid,
+			@RequestParam("contents") String contents, @RequestParam("category") String category,
+			@RequestParam("tag") String tag) {
+		BoardInsertDTO boardInsertDTO = new BoardInsertDTO();
+		boardInsertDTO.setTitle(title);
+		boardInsertDTO.setUserid(userid);
+		boardInsertDTO.setCategory(category);
+		boardInsertDTO.setContents(contents);
+		System.out.println(tag);
+		List<BoardTagDTO> tagList = new ArrayList<BoardTagDTO>();
+		String[] aaa = tag.split("@");
+
+		for (String i : aaa) {
+			BoardTagDTO a = new BoardTagDTO();
+			a.setTag(i);
+			System.out.println(i);
+			tagList.add(a);
+		}
+		boardInsertDTO.setTagList(tagList);
+		boardService.boardInsert(boardInsertDTO);
+
 	}
 
 }

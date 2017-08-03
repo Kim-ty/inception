@@ -34,10 +34,6 @@ public class BoardDAOImpl implements BoardDAO{
 	
 	@Override
 	public void boardInsert(BoardInsertDTO boardInsertDTO) {
-		System.out.println(boardInsertDTO.getTitle());
-		System.out.println(boardInsertDTO.getContents());
-		System.out.println(boardInsertDTO.getUserid());
-		System.out.println(boardInsertDTO.getCategory());
 		for(BoardTagDTO i:boardInsertDTO.getTagList()){
 			System.out.println(i.getTag());
 		}

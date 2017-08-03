@@ -3,17 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <head>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
-	crossorigin="anonymous">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
@@ -73,26 +67,27 @@ div.logo {
 		<header>
 		<div style="border-bottom: 1px solid gold">
 			<div class="logo">
-				Inception
+					<a href="http://localhost:8080/" >Inception</a>
+				
+				
 				<div id="login">
 
-
+				
 					<c:choose>
+								
 						<c:when test="${not empty sessionScope.loginInfo}">
+							<a href="/board/write" class="w3-button w3-small w3-black">Write</a>
 							welcome ${sessionScope.loginInfo.userid} !!
 							<a href="/profile/${sessionScope.loginInfo.userid}/"><input
-								class="btn btn-default" type="submit" name="Profile"
+								class="w3-button w3-small w3-black" type="submit" name="Profile"
 								value="Profile"></a>
-							<a href="/user/update">
-								<input class="btn btn-default" type="submit" name="userupdate" value="UserUpdate">
-							</a>
 
-							<a href="/user/logout"><input class="btn btn-default"
+							<a href="/user/logout"><input class="w3-button w3-small w3-black"
 								type="submit" name="Log out" value="Log out"></a>
 						</c:when>
 						<c:otherwise>
 							<!-- Trigger/Open The Modal -->
-							<button id="myBtn" class="btn btn-default">Login</button>
+							<button id="myBtn" class="w3-button w3-large w3-black">Login</button>
 							<!-- The Modal -->
 							<div id="myModal" class="modal">
 								<div class="modal-dialog">
