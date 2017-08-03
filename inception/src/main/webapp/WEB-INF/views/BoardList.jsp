@@ -139,7 +139,7 @@ to {
 
 <body>
 
-	<jsp:include page="header.jsp" flush="false" />
+	<c:import url="/category"></c:import>
 
 	<a href="/board/write">글쓰기</a>
 	<table class="table table-striped table-hover">

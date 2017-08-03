@@ -106,58 +106,64 @@
 	<div class="w3-col l8 s12">
 		<!-- Blog entry -->
 		<div class="w3-card-4 w3-margin w3-white">
-			<img src="/w3images/woods.jpg" alt="Nature" style="width: 100%">
+
 			<div class="w3-container">
 				<h3>
-					<b>BIDX.${vo.bidx}</b>
-					<b>${vo.title}</b>
+					<b>${vo.bidx}</b> <b>${vo.title}</b>
 				</h3>
 				<h5>
-					<a href="/profile/${vo.userid}">${ vo.userid }</a>
-					<span class="w3-opacity">${ vo.writedate }</span>
-					<span class="w3-opacity">${ vo.category }</span>
-					<span class="w3-opacity">조회수.${ vo.hitcount }</span>
-					<span class="w3-opacity">좋아요.${ vo.good }</span>
-					<span class="w3-opacity">나빠요.${ vo.bad }</span>
-					<span class="w3-opacity">스크랩.${ vo.scrapecount }</span>
+					<a href="/profile/${vo.userid}">${ vo.userid }</a> <span
+						class="w3-opacity">${ vo.writedate }</span> <span
+						class="w3-opacity">${ vo.category }</span> <span
+						class="w3-opacity">조회수.${ vo.hitcount }</span> <span
+						class="w3-opacity">좋아요.${ vo.good }</span> <span
+						class="w3-opacity">나빠요.${ vo.bad }</span> <span class="w3-opacity">스크랩.${ vo.scrapecount }</span>
 				</h5>
+
+
+
+
 			</div>
 
 			<div class="w3-container">
 				<p>${vo.contents}.</p>
-				<div class="w3-row">
-					<div class="w3-col m8 s12">
-						<p>
-							<button class="w3-button w3-padding-large w3-white w3-border">
-								<b><a id="replymore">댓글보기</a></b>
-							</button>
-						</p>
-					</div>
-					<div class="w3-col m4 w3-hide-small">
-						<p>
-							<span class="w3-padding-large w3-right"><b>Comments  </b>
-								<span class="w3-tag">0</span></span>
-						</p>
-					</div>
+
+			</div>
+
+
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Tags</h4>
+				</div>
+				<div class="w3-container w3-white">
+					<p>
+						<c:forEach var="tag" items="${vo.tag}">
+							<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
+								<a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
+							</span>
+						</c:forEach>
+					</p>
 				</div>
 			</div>
+
+			<div class="w3-row">
+				<div class="w3-col m8 s12">
+					<p>
+						<button class="w3-button w3-padding-large w3-white w3-border">
+							<b><a id="replymore">댓글보기</a></b>
+						</button>
+					</p>
+				</div>
+				<div class="w3-col m4 w3-hide-small">
+					<p>
+						<span class="w3-padding-large w3-right"><b>Comments  </b> <span
+							class="w3-tag">${ vo.replycount }</span></span>
+					</p>
+				</div>
+			</div>
+
 		</div>
 
-
-	<div class="w3-card-2 w3-margin">
-		<div class="w3-container w3-padding">
-			<h4>Tags</h4>
-		</div>
-		<div class="w3-container w3-white">
-			<p>
-				<c:forEach var="tag" items="${vo.tag}">
-					<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
-						<a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
-					</span>
-				</c:forEach>
-			</p>
-		</div>
-	</div>
 	</div>
 
 
@@ -261,3 +267,5 @@
 
 </body>
 </html>
+
+

@@ -30,6 +30,7 @@ import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.board.vo.BoardSimpleVO;
 import kr.co.inception.board.vo.ReplyListVO;
 import kr.co.inception.board.vo.TagListVO;
+import kr.co.inception.main.service.MainService;
 import kr.co.inception.user.vo.LoginVO;
 
 @Controller
@@ -180,7 +181,7 @@ public class BoardController {
 	// }
 
 	// Web
-
+	
 	@RequestMapping(value = "/hottagList")
 	public String hottag(Model model) {
 		List<TagListVO> tagListVO = boardService.tagList();
@@ -293,7 +294,7 @@ public class BoardController {
 		ImageIO.write(newImage, "jpg", new File("/uploadimage/" + fileURL.replaceAll("!!!!", "android!!!!")));
 		return "/uploadimage/" + fileURL;
 	}
-	@RequestMapping(value = "/replyList")
+	@RequestMapping(value = "/asdfList")
 	@ResponseBody
 	public void andboardinsert(@RequestParam("title") String title,@RequestParam("userid") String userid,@RequestParam("contents") String contents
 			,@RequestParam("category") String category,@RequestParam("tag") String tag) {

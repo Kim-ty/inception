@@ -57,6 +57,14 @@ public class MainController {
 		model.addAttribute("tagList", tagListVO);
 		return "Main";
 	}
+	
+	@RequestMapping("/category")
+	public String categoryList(Model model){
+		List<CategoryListVO> categoryListVO = mainService.CategoryListView();
+		model.addAttribute("categoryList",categoryListVO);
+		
+		return "header";
+	}
 
 	@RequestMapping(value = "/andfashionlist")
 	@ResponseBody
