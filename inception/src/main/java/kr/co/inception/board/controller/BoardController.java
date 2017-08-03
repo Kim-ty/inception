@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.Panel;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.inception.board.dto.BoardInsertDTO;
+import kr.co.inception.board.dto.BoardTagDTO;
 import kr.co.inception.board.dto.BoardUpdateDTO;
 import kr.co.inception.board.dto.GoodDTO;
 import kr.co.inception.board.dto.ReplyDTO;
@@ -293,7 +295,7 @@ public class BoardController {
 		ImageIO.write(newImage, "jpg", new File("/uploadimage/" + fileURL.replaceAll("!!!!", "android!!!!")));
 		return "/uploadimage/" + fileURL;
 	}
-	@RequestMapping(value = "/replyList")
+	@RequestMapping(value = "/andboardinsert")
 	@ResponseBody
 	public void andboardinsert(@RequestParam("title") String title,@RequestParam("userid") String userid,@RequestParam("contents") String contents
 			,@RequestParam("category") String category,@RequestParam("tag") String tag) {
@@ -302,10 +304,18 @@ public class BoardController {
 		boardInsertDTO.setUserid(userid);
 		boardInsertDTO.setCategory(category);
 		boardInsertDTO.setContents(contents);
-//		boardInsertDTO.setTagList(tagList);
-//		tag.split(regex)
-//		boardService.boardInsert(boardInsertDTO);
-//		
+		System.out.println(tag);
+		List<BoardTagDTO> tagList = new ArrayList<BoardTagDTO>();
+		String[] aaa = tag.split("@");
+		
+		for(String i:aaa){
+			BoardTagDTO a = new BoardTagDTO();
+			a.setTag(i);
+			System.out.println(i);
+			tagList.add(a);
+		}
+		boardInsertDTO.setTagList(tagList);
+		boardService.boardInsert(boardInsertDTO);
 		
 
 	}
