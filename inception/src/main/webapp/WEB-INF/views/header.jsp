@@ -83,10 +83,12 @@ div.logo {
 							<a href="/profile/${sessionScope.loginInfo.userid}/"><input
 								class="btn btn-default" type="submit" name="Profile"
 								value="Profile"></a>
+							<a href="/user/update">
+								<input class="btn btn-default" type="submit" name="userupdate" value="UserUpdate">
+							</a>
 
 							<a href="/user/logout"><input class="btn btn-default"
 								type="submit" name="Log out" value="Log out"></a>
-
 						</c:when>
 						<c:otherwise>
 							<!-- Trigger/Open The Modal -->
