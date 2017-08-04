@@ -22,10 +22,23 @@
 <script src="/resources/summernote/dist/summernote.js"></script>
 <!--   <script src="follow.js" ></script> -->
 <script type="text/javascript">
-	var imgarrCount = 0;
-	function submitForm() {
+
+		function submitForm() {
 
 		var contents = $(".summernote").summernote("code");
+		var regex = /<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>/i;
+			///img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*/g;
+		var src = regex.exec(contents)[0];
+		alert("["+src+"]src선언전")
+		if(regex.exec(contents) == null){
+			src = "/uploadimage/default.jpg";
+			alert(src+"디폴트이미지");
+			thumbnail.value = src;
+		}else{
+			src = regex.exec(contents)[0];
+			$("#thumbnail").html = src;
+			alert($("#thumbnail").html);
+		}
 		$("#contents").val(contents);
 		var boardForm = document.write;
 		if ($("#tag").val() != ' ') {
@@ -45,25 +58,10 @@
 			input.value = " ";
 			boardForm.appendChild(input);
 		}
-		$("#boardInsert").submit();
+
+		//$("#boardInsert").submit();
 	}
 
-	function imageUrlDB(url) {
-		var boardForm = document.write;
-		var input = document.createElement("input");
-		input.type = "hidden";
-		input.name = "imgList[" + imgarrCount + "].imgLink";
-		input.value = url;
-		boardForm.appendChild(input);
-		imgarrCount++;
-	}
-
-	function imgeUrlDel(url) {
-		var boardForm = document.write;
-		var input = document.getElementsByValue(url);
-		boardForm.removeChild(input);
-		imgarrCount--;
-	}
 </script>
 </head>
 
@@ -137,6 +135,10 @@
 		<div class="form-group">
 			<input id="tag" type="text" name="tag" class="form-control"
 				placeholder="Enter tag" />
+		</div>
+		<div class="form-group">
+			<input id="thumbnail" name="thumbnail" class="form-control"
+			style="display:none;">
 		</div>
 	</form>
 

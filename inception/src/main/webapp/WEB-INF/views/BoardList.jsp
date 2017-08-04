@@ -132,59 +132,21 @@ to {
 	color: white;
 }
 </style>
+<style>
+.active img {
+	resize: both; /* 이미지 최대 사이즈에 적용 */
+	float: center; /* 가운데 정렬 */
+	width: 50px; /* 넓이를 지정 */
+	height: auto; /* 높이를 지정 */
+	margin: 5px 0; /* 여백을 적용 4가지 조건이 가능 위쪽, 오른쪽, 아래쪽, 왼쪽 순서 */
+}
+</style>
 
 </head>
 
 <body>
 
-<<<<<<< HEAD
-	<jsp:include page="header.jsp" flush="false" />
 
-	<table class="table table-striped table-hover">
-		<thead>
-			<tr>
-				<th></th>
-				<th>title</th>
-				<th>contents</th>
-				<th>userid</th>
-				<th>writedate</th>
-				<th>category</th>
-				<th>hitcount</th>
-				<th>good</th>
-				<th>bad</th>
-				<th>scrape</th>
-				<th>scrapecount</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="vo" items="${boardList}">
-				<!-- <tr></tr> => row1  Table Row -->
-				<tr class="active">
-					<!-- <td></td> => DATA Table DATA -->
-					<th>${vo.bidx}</th>
-					<th><a href="/board/boardDetail/${vo.bidx}">${vo.title }</a></th>
-					<th><a href="/board/boardDetail/${vo.bidx}">${vo.contents}</a></th>
-					<%-- 					<a data-toggle="modal" href="BoardList/${vo.bidx}" --%>
-					<!-- 						data-target="#modal-testNew" role="button" data-backdrop="static"> -->
-					<%-- 							<span id="btnbidx" class="btn btn-xs btn-success">${vo.contents}</span> --%>
-					<!-- 					</a> 												Trigger/Open The Modal onClick with Content  -->
-					<!-- 						<span id="myBtn" onclick="" style="cursor: pointer"> -->
-					<%-- 							${vo.contents }</span> --%>
-					</th>
-					<th>${ vo.userid }</th>
-					<th>${ vo.writedate }</th>
-					<th>${ vo.category }</th>
-					<th>${ vo.hitcnt }</th>
-					<th>${ vo.gcnt }</th>
-					<th>${ vo.bcnt }</th>
-					<th>${ vo.scrapecnt }</th>
-					<th>${ vo.rpcnt }</th>
-				</tr>
-
-			</c:forEach>
-		</tbody>
-	</table>
-=======
 	<c:import url="/category"></c:import>
 
 
@@ -197,7 +159,7 @@ to {
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th>sumnale</th>
+							<th>thumnale</th>
 							<th>title</th>
 							<th>contents</th>
 							<th>userid</th>
@@ -215,8 +177,7 @@ to {
 							<!-- <tr></tr> => row1  Table Row -->
 							<tr class="active">
 								<!-- <td></td> => DATA Table DATA -->
-								<th>${vo.bidx}</th>
-								<th><a href="/board/boardDetail/${vo.bidx}">${vo.title }</a></th>
+								<th><a href="/board/boardDetail/${vo.bidx}">${vo.thumbnail}</a></th>
 								<th><a href="/board/boardDetail/${vo.bidx}">${vo.contents}</a></th>
 								<%-- 					<a data-toggle="modal" href="BoardList/${vo.bidx}" --%>
 								<!-- 						data-target="#modal-testNew" role="button" data-backdrop="static"> -->
@@ -255,12 +216,6 @@ to {
 	</div>
 
 
-
-
-
-
-
->>>>>>> 928fc19c3355561caaea4404ba54fc4182f3d0d1
 
 	<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog"
 		aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">

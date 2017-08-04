@@ -43,14 +43,9 @@ body, html {
 	<!-- Promo Section "Statistics" -->
 	<div class="w3-container w3-row w3-center w3-blue-gray w3-padding-16">
 		<div>
-<<<<<<< HEAD
-			<img style="width: 50px;height:auto"
-				src="${profile.profilepicture}" alt="User profile picture">
-=======
 			<img class="profile-user-img img-responsive img-circle"
 				style="width: 50px; height: auto" src="${profile.profilepicture}"
 				alt="User profile picture">
->>>>>>> b620432610e0639964f44183222a3f7ac2e3750c
 		</div>
 		<div>
 			<h1>
