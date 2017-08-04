@@ -88,13 +88,6 @@ body {
 		</div>
 		<div class="w3-quarter w3-hide-small" style="width: 13%" align="left">
 			<div class="w3-card-2 w3-container" style="min-height: 460px">
-<<<<<<< HEAD
-				<h2>Hashtags</h2>
-
-				<c:forEach var="tagList" items="${tagList}">
-					<a href="/board/boardList/tag${tagList.tag}">${tagList.tag}</a>
-					<br>
-=======
 
 				<h2>
 					tags
@@ -106,8 +99,6 @@ body {
 						<a href="/board/boardList/tag${tagList.tag}">${tagList.tag}</a>
 					</p>
 
-
->>>>>>> 13885420114754cbfbdd7e99d1110d6e8d49e72c
 				</c:forEach>
 
 			</div>
