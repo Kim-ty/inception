@@ -218,20 +218,15 @@ public class MainController {
 		 * 읽을 수 있는 이미지 포멧들 BMP bmp jpeg wbmp gif JPG png jpg WBMP JPEG
 		 */
 		String readName[] = ImageIO.getReaderFormatNames();
-		// System.out.println( ">> 읽을 수 있는 이미지 포멧들 " );
 		for (int i = 0; i < readName.length; i++) {
-			// System.out.println( readName[i]);
 		}
 
 		/**
 		 * 저장할 수 있는 이미지 포맷들 BMP bmp jpeg wbmp png JPG PNG jpg WBMP JPEG
 		 */
 		String writerName[] = ImageIO.getWriterFormatNames();
-		// System.out.println( ">> 저장할 수 있는 이미지 포맷들" );
 		for (int i = 0; i < writerName.length; i++) {
-			// System.out.println( writerName[i]);
 		}
-		// System.out.println( "======================" );
 	}
 
 	@RequestMapping("image_upload")

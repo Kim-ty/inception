@@ -64,17 +64,17 @@ div.logo {
 <body>
 
 	<div class="jumbotron">
-		<header>
-		<div style="border-bottom: 1px solid gold">
+
+		<div>
 			<div class="logo">
-					<a href="http://localhost:8080/" >Inception</a>
-				
-				
+				<a href="http://localhost:8080/">Inception</a>
+
+
 				<div id="login">
 
-				
+
 					<c:choose>
-								
+
 						<c:when test="${not empty sessionScope.loginInfo}">
 							<a href="/board/write" class="w3-button w3-small w3-black">Write</a>
 							welcome ${sessionScope.loginInfo.userid} !!
@@ -82,8 +82,9 @@ div.logo {
 								class="w3-button w3-small w3-black" type="submit" name="Profile"
 								value="Profile"></a>
 
-							<a href="/user/logout"><input class="w3-button w3-small w3-black"
-								type="submit" name="Log out" value="Log out"></a>
+							<a href="/user/logout"><input
+								class="w3-button w3-small w3-black" type="submit" name="Log out"
+								value="Log out"></a>
 						</c:when>
 						<c:otherwise>
 							<!-- Trigger/Open The Modal -->
@@ -138,6 +139,7 @@ div.logo {
 					</c:choose>
 				</div>
 			</div>
+			<hr>
 		</div>
 
 
@@ -146,9 +148,8 @@ div.logo {
 			<c:when test="${not  empty categoryList}">
 				<div class="w3-hide-small" id="categories" align="left">
 					<c:forEach var="vo" items="${categoryList }">
-						<a href="/board/boardList/${vo.category }"><input
-							type="submit" name="category1" value=${vo.category }
-							class="btn btn-default"></a>
+						<a href="/board/boardList/${vo.category }">
+						<input type="submit" name="category1" value=${vo.category }></a>
 					</c:forEach>
 				</div>
 				<div>
@@ -183,7 +184,8 @@ div.logo {
 					var="tagList" items="${tagList}">
 					<a href="/board/boardList/tag${tagList.tag}"
 						onclick="w3_close(mySideTags)" class="w3-bar-item w3-button">${tagList.tag}</a>
-				</c:forEach> </nav></header>
+				</c:forEach> </nav>
+				<hr>
 	</div>
 	</c:when>
 	<c:otherwise>

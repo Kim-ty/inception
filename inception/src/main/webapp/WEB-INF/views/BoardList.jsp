@@ -155,7 +155,7 @@ to {
 			<div class="w3-card-2 w3-container" style="min-height: 460px">
 
 
-				<a href="/board/write">글쓰기</a>
+
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -217,6 +217,10 @@ to {
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 13885420114754cbfbdd7e99d1110d6e8d49e72c
 	<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog"
 		aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
 		<div class="modal-dialog modal-lg">

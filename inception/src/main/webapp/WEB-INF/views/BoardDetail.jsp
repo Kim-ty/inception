@@ -118,7 +118,7 @@ p img {
 
 	<c:set var="vo" value="${boardSimple}" />
 	<!-- Blog entries -->
-	<div class="w3-col l8 s12">
+	<div>
 		<!-- Blog entry -->
 		<div class="w3-card-4 w3-margin w3-white">
 
@@ -166,17 +166,16 @@ p img {
 				</div>
 				<div class="w3-col m4 w3-hide-small">
 					<p>
-						<span class="w3-padding-large w3-right"><b>Comments  </b> <span
+						<span class="w3-padding-large w3-right"><b>Comments</b> <span
 							class="w3-tag">${ vo.replycount }</span></span>
 					</p>
 				</div>
 			</div>
 
 
-			<div  id="reply"   class="w3-container w3-white"  style="visibility: hidden;">
-				<div  id=replycontents>
-				
-				</div>
+			<div id="reply" class="w3-container w3-white"
+				style="visibility: hidden;">
+				<div id=replycontents></div>
 			</div>
 
 		</div>
