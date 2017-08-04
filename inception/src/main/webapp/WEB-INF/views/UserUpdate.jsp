@@ -16,20 +16,6 @@
 <script
 	src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
 
-
-<script type="text/javascript">
-	function submitForm() {
-
-		var boardForm = document.write;
-		var input = document.createElement("input");
-		input.type = "text";
-		input.name = "profilepicture";
-		input.value = $(".uploadedList").html;
-		alert(input.value);
-		boardForm.appendChild(input);
-		$("#UserUpdate").submit();
-	}
-</script>
 <style>
 .fileDrop {
 	width: 150px;
@@ -48,6 +34,96 @@ small {
 	$(document)
 			.ready(
 					function() {
+						var updateCheck = document.getElementById('update');
+						updateCheck.disabled = true;
+						var pwFlag = false;
+						var emailFlag = false;
+
+						$("#userpw").keypress(
+								function() {
+									var pw = $("#userpw").val();
+									var pw2 = $("#userpw2").val();
+									if (pw.length > 0 && pw.length < 12) {
+										$("#execp").text("비밀번호가 너무 짧습니다").css(
+												"color", "red");
+										pwFlag = false;
+										updateChecker();
+									} else {
+										if (pw != pw2) {
+											$("#execp").text("비밀번호가 일치하지않습니다.")
+													.css("color", "red");
+											pwFlag = false;
+											updateChecker();
+										} else {
+											$("#execp").text("비밀번호가 일치 합니다.")
+													.css("color", "blue");
+											pwFlag = true;
+											updateChecker();
+										}
+									}
+								});
+						
+						$("#userpw2").blur(
+								function() {
+									var pw = $("#userpw").val();
+									var pw2 = $("#userpw2").val();
+										if (pw != pw2) {
+											$("#execp").text("비밀번호가 일치하지않습니다.")
+													.css("color", "red");
+											pwFlag = false;
+											updateChecker();
+										} else {
+											$("#execp").text("비밀번호가 일치 합니다.")
+													.css("color", "blue");
+											pwFlag = true;
+											updateChecker();
+										}
+									} 
+						);
+
+						$("#useremail").keypress(
+								function() {
+									var email = $("#useremail").val();
+									if (email.indexOf("@") != -1
+											&& email.indexOf(".com") != -1) {
+										$("#execp2").text("올바른 이메일입니다.").css(
+												"color", "blue");
+										emailFlag = true;
+										updateChecker();
+									} else {
+										$("#execp2").text("이메일형식이 올바르지 않습니다.")
+												.css("color", "red");
+										emailFlag = false;
+										updateChecker();
+									}
+								});
+
+						$("#useremail").blur(
+								function() {
+									var email = $("#useremail").val();
+									if (email.indexOf("@") != -1
+											&& email.indexOf(".com") != -1) {
+										$("#execp2").text("올바른 이메일입니다.").css(
+												"color", "blue");
+										emailFlag = true;
+										updateChecker();
+									} else {
+										$("#execp2").text("이메일형식이 올바르지 않습니다.")
+												.css("color", "red");
+										emailFlag = false;
+										updateChecker();
+									}
+								});
+
+						function updateChecker() {
+							var updateCheck = document.getElementById('update');
+							if (pwFlag == true && emailFlag == true) {
+								updateCheck.disabled = false;
+							} else {
+								updateCheck.disabled = true;
+							}
+						}
+
 						$(".fileDrop").on("dragenter dragover",
 								function(event) {
 									event.preventDefault(); // 기본효과를 막음
@@ -72,11 +148,8 @@ small {
 														contentType : false,
 														success : function(data) {
 
-															$(".fileDrop")
-																	.html(
-																			"<img src='"+data+"' style='width:100px;height:auto'>");
-															$(".uploadedList")
-																	.html(data);
+															$(".fileDrop").html("<img src='"+data+"' style='width:100px;height:auto'>");
+															$("#profilePicture").val(data);
 														}
 													});
 										});
@@ -90,11 +163,31 @@ small {
 		<div class="fileDrop">Drag And Drop your ProFile Image here</div>
 		<!-- 업로드된 파일 목록 -->
 	</div>
-	<div id="pictureURL" class="uploadedList"></div>
 
-	<form name="write"></form>
-	<input type="button" name="edit" onclick="submitForm()"
-		value="UpdateMyInfo">
+	<form id="updateUser" name="updateuserDTO" role="form" method="post" action="/user/updateUser">
+		<div class="form-group">
+			<label for="profilePicture">ProfilePictureURL</label><br>
+			<input id="profilePicture" name="profilepicture" type="text" readonly>
+		</div>
+		<div class="form-group">
+			<label for="userpw">USER PassWard</label><br> <input id="userpw"
+				type="text" name="userpw">
+		</div>
+		<div class="form-group">
+			<label for="userpw">USER PassWard2</label><br> <input id="userpw2"
+				type="text" name="userpw2"> <span id="execp"></span>
+		</div>
+		<div class="form-group">
+			<label for="useremail">USER Email</label><br> <input id="useremail"
+				type="text" name="useremail"> <span id="execp2"></span>
+		</div>
+
+		<div class="form-group">
+			<input id="update" type="submit" name="edit" value="UpdateMyInfo"/>
+		</div>
+		
+	</form>
+
 
 
 
