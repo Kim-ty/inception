@@ -137,54 +137,7 @@ to {
 
 <body>
 
-<<<<<<< HEAD
-	<jsp:include page="header.jsp" flush="false" />
 
-	<table class="table table-striped table-hover">
-		<thead>
-			<tr>
-				<th></th>
-				<th>title</th>
-				<th>contents</th>
-				<th>userid</th>
-				<th>writedate</th>
-				<th>category</th>
-				<th>hitcount</th>
-				<th>good</th>
-				<th>bad</th>
-				<th>scrape</th>
-				<th>scrapecount</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="vo" items="${boardList}">
-				<!-- <tr></tr> => row1  Table Row -->
-				<tr class="active">
-					<!-- <td></td> => DATA Table DATA -->
-					<th>${vo.bidx}</th>
-					<th><a href="/board/boardDetail/${vo.bidx}">${vo.title }</a></th>
-					<th><a href="/board/boardDetail/${vo.bidx}">${vo.contents}</a></th>
-					<%-- 					<a data-toggle="modal" href="BoardList/${vo.bidx}" --%>
-					<!-- 						data-target="#modal-testNew" role="button" data-backdrop="static"> -->
-					<%-- 							<span id="btnbidx" class="btn btn-xs btn-success">${vo.contents}</span> --%>
-					<!-- 					</a> 												Trigger/Open The Modal onClick with Content  -->
-					<!-- 						<span id="myBtn" onclick="" style="cursor: pointer"> -->
-					<%-- 							${vo.contents }</span> --%>
-					</th>
-					<th>${ vo.userid }</th>
-					<th>${ vo.writedate }</th>
-					<th>${ vo.category }</th>
-					<th>${ vo.hitcnt }</th>
-					<th>${ vo.gcnt }</th>
-					<th>${ vo.bcnt }</th>
-					<th>${ vo.scrapecnt }</th>
-					<th>${ vo.rpcnt }</th>
-				</tr>
-
-			</c:forEach>
-		</tbody>
-	</table>
-=======
 	<c:import url="/category"></c:import>
 
 

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.inception.board.dto.BadDTO;
 import kr.co.inception.board.dto.BoardInsertDTO;
 import kr.co.inception.board.dto.BoardTagDTO;
 import kr.co.inception.board.dto.BoardUpdateDTO;
@@ -32,7 +33,6 @@ import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.board.vo.BoardSimpleVO;
 import kr.co.inception.board.vo.ReplyListVO;
 import kr.co.inception.board.vo.TagListVO;
-import kr.co.inception.main.service.MainService;
 import kr.co.inception.user.vo.LoginVO;
 
 @Controller
@@ -126,6 +126,16 @@ public class BoardController {
 		goodDTO.setBidx(bidx);
 		goodDTO.setUserid(userid);
 		boardService.good(goodDTO);
+
+	}
+
+	@RequestMapping(value = "/andcontentsbad")
+	@ResponseBody
+	public void andcontentsbad(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid) {
+		BadDTO badDTO = new BadDTO();
+		badDTO.setBidx(bidx);
+		badDTO.setUserid(userid);
+		boardService.bad(badDTO);
 
 	}
 
