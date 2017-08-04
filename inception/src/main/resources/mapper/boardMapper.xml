@@ -7,8 +7,9 @@
 
 	<insert id="boardInsert">
 		insert all
-		into board(BIDX,TITLE,USERID,WRITEDATE,CONTENTS,CATEGORY)
-		VALUES(createbidx.nextval,#{title},#{userid},sysdate,#{contents},#{category})
+		into
+		board(BIDX,TITLE,USERID,WRITEDATE,thumbnail,CONTENTS,CATEGORY)
+		VALUES(createbidx.nextval,#{title},#{userid},sysdate,#{thumbnail},#{contents},#{category})
 		<foreach collection="tagList" item="tagitem" index="index">
 			into
 			boardtag(bidx,tag) values(createbidx.nextval,#{tagitem.tag})
@@ -68,8 +69,8 @@
 
 	<select id="boardList" resultType="kr.co.inception.board.vo.BoardListVO">
 		<![CDATA[ 
-			select b.bidx,b.hitcount as hitcnt,SUBSTR(REGEXP_REPLACE(b.contents, '<[^>]*>|\&([^;])*;', ''),1,25) as contents,b.title,b.userid,b.writedate,b.category,nvl(gb.gcnt,0) AS gcnt,nvl(gb.bcnt,0) as bcnt,nvl(s.scrapecnt,0) AS scrapecnt,nvl(rp.rpcnt,0) as rpcnt
-			from ( select distinct bidx,HITCOUNT,contents,TITLE,USERID,WRITEDATE,CATEGORY from board ) b
+			select b.bidx,b.hitcount as hitcnt,b.thumbnail,SUBSTR(REGEXP_REPLACE(b.contents, '<[^>]*>|\&([^;])*;', ''),1,25) as contents,b.title,b.userid,b.writedate,b.category,nvl(gb.gcnt,0) AS gcnt,nvl(gb.bcnt,0) as bcnt,nvl(s.scrapecnt,0) AS scrapecnt,nvl(rp.rpcnt,0) as rpcnt
+			from ( select distinct bidx,thumbnail,HITCOUNT,contents,TITLE,USERID,WRITEDATE,CATEGORY from board ) b
 			left join ( select bidx, count(decode(g_b_count,'0','1')) as gcnt,count(decode(g_b_count,'1','1')) as bcnt from goodbad group by bidx ) gb ON b.bidx = gb.bidx
 			left join ( select bidx, count(*) as scrapecnt from scrape group by bidx ) s ON b.bidx = s.bidx
 			left join ( select bidx, count(*) as rpcnt from BoardReply group by bidx) rp on b.bidx = rp.bidx
@@ -80,8 +81,8 @@
 
 	<select id="boardListCategory" resultType="kr.co.inception.board.vo.BoardListVO">
 		<![CDATA[ 
-			select b.bidx,b.hitcount as hitcnt,SUBSTR(REGEXP_REPLACE(b.contents, '<[^>]*>|\&([^;])*;', ''),1,25) as contents,b.title,b.userid,b.writedate,b.category,nvl(gb.gcnt,0) AS gcnt,nvl(gb.bcnt,0) as bcnt,nvl(s.scrapecnt,0) AS scrapecnt,nvl(rp.rpcnt,0) as rpcnt
-			from ( select distinct bidx,HITCOUNT,contents,TITLE,USERID,WRITEDATE,CATEGORY from board ) b
+			select b.bidx,b.hitcount as hitcnt,b.thumbnail,SUBSTR(REGEXP_REPLACE(b.contents, '<[^>]*>|\&([^;])*;', ''),1,25) as contents,b.title,b.userid,b.writedate,b.category,nvl(gb.gcnt,0) AS gcnt,nvl(gb.bcnt,0) as bcnt,nvl(s.scrapecnt,0) AS scrapecnt,nvl(rp.rpcnt,0) as rpcnt
+			from ( select distinct bidx,HITCOUNT,thumbnail,contents,TITLE,USERID,WRITEDATE,CATEGORY from board ) b
 			left join ( select bidx, count(decode(g_b_count,'0','1')) as gcnt,count(decode(g_b_count,'1','1')) as bcnt from goodbad group by bidx ) gb ON b.bidx = gb.bidx
 			left join ( select bidx, count(*) as scrapecnt from scrape group by bidx ) s ON b.bidx = s.bidx
 			left join ( select bidx, count(*) as rpcnt from BoardReply group by bidx) rp on b.bidx = rp.bidx
@@ -92,8 +93,8 @@
 
 	<select id="boardListTag" resultType="kr.co.inception.board.vo.BoardListVO">
 		<![CDATA[ 
-			select b.bidx,b.hitcount as hitcnt,SUBSTR(REGEXP_REPLACE(b.contents, '<[^>]*>|\&([^;])*;', ''),1,25) as contents,b.title,b.userid,b.writedate,b.category,nvl(gb.gcnt,0) AS gcnt,nvl(gb.bcnt,0) as bcnt,nvl(s.scrapecnt,0) AS scrapecnt,nvl(rp.rpcnt,0) as rpcnt
-			from ( select distinct bidx,HITCOUNT,contents,TITLE,USERID,WRITEDATE,CATEGORY from board ) b
+			select b.bidx,b.hitcount as hitcnt,b.thumbnail,SUBSTR(REGEXP_REPLACE(b.contents, '<[^>]*>|\&([^;])*;', ''),1,25) as contents,b.title,b.userid,b.writedate,b.category,nvl(gb.gcnt,0) AS gcnt,nvl(gb.bcnt,0) as bcnt,nvl(s.scrapecnt,0) AS scrapecnt,nvl(rp.rpcnt,0) as rpcnt
+			from ( select distinct bidx,HITCOUNT,contents,thumbnail,TITLE,USERID,WRITEDATE,CATEGORY from board ) b
 			left join ( select bidx, count(decode(g_b_count,'0','1')) as gcnt,count(decode(g_b_count,'1','1')) as bcnt from goodbad group by bidx ) gb ON b.bidx = gb.bidx
 			left join ( select bidx, count(*) as scrapecnt from scrape group by bidx ) s ON b.bidx = s.bidx
 			left join ( select bidx, count(*) as rpcnt from BoardReply group by bidx) rp on b.bidx = rp.bidx
@@ -124,10 +125,10 @@
 		<result property="scrapecount" column="scrapecount" />
 		<result property="replycount" column="replycount" />
 		<collection property="tag" column="tag" javaType="java.util.List"
-			resultMap="tagList"/>
+			resultMap="tagList" />
 	</resultMap>
 	<resultMap id="tagList" type="kr.co.inception.board.vo.TagListVO">
-		<id property="tag" column="tag"/>
+		<id property="tag" column="tag" />
 	</resultMap>
 
 
@@ -202,8 +203,8 @@ connect by prior ridx = TARGETREPLY
 
 	<select id="searchkeyword" resultType="kr.co.inception.board.vo.BoardListVO">
 		<![CDATA[
-		select b.bidx,b.hitcount as hitcnt,SUBSTR(b.contents, 1, 25) as contents,b.title,b.userid,b.writedate,b.category,nvl(gb.gcnt,0) AS gcnt,nvl(gb.bcnt,0) as bcnt,nvl(s.scrapecnt,0) AS scrapecnt,nvl(rp.rpcnt,0) as rpcnt
-			from ( select distinct bidx,HITCOUNT,contents,TITLE,USERID,WRITEDATE,CATEGORY from board ) b
+		select b.bidx,b.hitcount as hitcnt,b.thumbnail,SUBSTR(b.contents, 1, 25) as contents,b.title,b.userid,b.writedate,b.category,nvl(gb.gcnt,0) AS gcnt,nvl(gb.bcnt,0) as bcnt,nvl(s.scrapecnt,0) AS scrapecnt,nvl(rp.rpcnt,0) as rpcnt
+			from ( select distinct bidx,thumbnail,HITCOUNT,contents,TITLE,USERID,WRITEDATE,CATEGORY from board ) b
 			left join ( select bidx, count(decode(g_b_count,'0','1')) as gcnt,count(decode(g_b_count,'1','1')) as bcnt from goodbad group by bidx ) gb ON b.bidx = gb.bidx
 			left join ( select bidx, count(*) as scrapecnt from scrape group by bidx ) s ON b.bidx = s.bidx
 			left join ( select bidx, count(*) as rpcnt from BoardReply group by bidx) rp on b.bidx = rp.bidx where title like #{searchkeyword} or userid like #{searchkeyword} or contents like #{searchkeyword}
