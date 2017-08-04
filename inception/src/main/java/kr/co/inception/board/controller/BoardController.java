@@ -239,9 +239,14 @@ public class BoardController {
 	@RequestMapping(value = "/boardInsert")
 	public String boardInsert(BoardInsertDTO boardInsertDTO, HttpSession session, Model model) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
-
 		boardInsertDTO.setUserid(loginVO.getUserid());
-
+		System.out.println("title : "+boardInsertDTO.getTitle());
+		System.out.println("contents : "+boardInsertDTO.getContents());
+		for(BoardTagDTO i : boardInsertDTO.getTagList()){
+			System.out.println("tag : "+i);
+		}
+		System.out.println("category : "+boardInsertDTO.getCategory());
+		System.out.println("thumbnail : "+boardInsertDTO.getThumbnail());
 		boardService.boardInsert(boardInsertDTO);
 
 		return "redirect:/board/boardList";

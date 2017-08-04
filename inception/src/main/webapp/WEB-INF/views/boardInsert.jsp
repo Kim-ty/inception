@@ -22,47 +22,43 @@
 <script src="/resources/summernote/dist/summernote.js"></script>
 <!--   <script src="follow.js" ></script> -->
 <script type="text/javascript">
-	var imgarrCount = 0;
 	function submitForm() {
 
 		var contents = $(".summernote").summernote("code");
+		var regex = /<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>/i;
+		///img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*/g;
+		var src
+		if (regex.exec(contents) == null) {
+			src = "/uploadimage/default.jpg";
+			$("thumbnail").val(src);
+		} else {
+			src = regex.exec(contents)[0];
+			$("#thumbnail").val(src);
+			var sibal = $("#thumbnail").val();
+		}
 		$("#contents").val(contents);
 		var boardForm = document.write;
 		if ($("#tag").val() != ' ') {
 			var strArray = ($("#tag").val()).split('#');
 			for ( var i in strArray) {
-				var input = document.createElement("input");
-				input.type = "text";
-				input.name = "tagList[" + i + "].tag";
-				input.value = strArray[i];
-				alert(input.name + ',' + input.value);
-				boardForm.appendChild(input);
+				if (strArray[i] != '') {
+					var input = document.createElement("input");
+					input.type = "text";
+					input.name = "tagList[" + (i-1) + "].tag";
+					input.value = strArray[i];
+					alert(input.name + ',' + input.value);
+					boardForm.appendChild(input);
+				}
 			}
-		}else{
+		} else {
 			var input = document.createElement("input");
-			input.type="text";
-			input.name="tagList[0].tag";
+			input.type = "text";
+			input.name = "tagList[0].tag";
 			input.value = " ";
 			boardForm.appendChild(input);
 		}
+
 		$("#boardInsert").submit();
-	}
-
-	function imageUrlDB(url) {
-		var boardForm = document.write;
-		var input = document.createElement("input");
-		input.type = "hidden";
-		input.name = "imgList[" + imgarrCount + "].imgLink";
-		input.value = url;
-		boardForm.appendChild(input);
-		imgarrCount++;
-	}
-
-	function imgeUrlDel(url) {
-		var boardForm = document.write;
-		var input = document.getElementsByValue(url);
-		boardForm.removeChild(input);
-		imgarrCount--;
 	}
 </script>
 </head>
@@ -137,6 +133,11 @@
 		<div class="form-group">
 			<input id="tag" type="text" name="tag" class="form-control"
 				placeholder="Enter tag" />
+		</div>
+		<div class="form-group">
+			<textarea id="thumbnail" name="thumbnail" class="form-control"
+				style="display: none;">
+			</textarea>
 		</div>
 	</form>
 

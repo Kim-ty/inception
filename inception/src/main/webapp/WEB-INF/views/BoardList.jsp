@@ -132,6 +132,15 @@ to {
 	color: white;
 }
 </style>
+<style>
+.active img {
+	resize: both; /* 이미지 최대 사이즈에 적용 */
+	float: center; /* 가운데 정렬 */
+	width: 50px; /* 넓이를 지정 */
+	height: auto; /* 높이를 지정 */
+	margin: 5px 0; /* 여백을 적용 4가지 조건이 가능 위쪽, 오른쪽, 아래쪽, 왼쪽 순서 */
+}
+</style>
 
 </head>
 
@@ -146,11 +155,11 @@ to {
 			<div class="w3-card-2 w3-container" style="min-height: 460px">
 
 
-				<a href="/board/write">글쓰기</a>
+
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th>sumnale</th>
+							<th>thumnale</th>
 							<th>title</th>
 							<th>contents</th>
 							<th>userid</th>
@@ -168,8 +177,7 @@ to {
 							<!-- <tr></tr> => row1  Table Row -->
 							<tr class="active">
 								<!-- <td></td> => DATA Table DATA -->
-								<th>${vo.bidx}</th>
-								<th><a href="/board/boardDetail/${vo.bidx}">${vo.title }</a></th>
+								<th><a href="/board/boardDetail/${vo.bidx}">${vo.thumbnail}</a></th>
 								<th><a href="/board/boardDetail/${vo.bidx}">${vo.contents}</a></th>
 								<%-- 					<a data-toggle="modal" href="BoardList/${vo.bidx}" --%>
 								<!-- 						data-target="#modal-testNew" role="button" data-backdrop="static"> -->
@@ -209,12 +217,10 @@ to {
 
 
 
+<<<<<<< HEAD
+=======
 
-
-
-
->>>>>>> 928fc19c3355561caaea4404ba54fc4182f3d0d1
-
+>>>>>>> 13885420114754cbfbdd7e99d1110d6e8d49e72c
 	<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog"
 		aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
 		<div class="modal-dialog modal-lg">
