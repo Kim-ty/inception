@@ -316,12 +316,13 @@ public class BoardController {
 	@ResponseBody
 	public void andboardinsert(@RequestParam("title") String title, @RequestParam("userid") String userid,
 			@RequestParam("contents") String contents, @RequestParam("category") String category,
-			@RequestParam("tag") String tag) {
+			@RequestParam("tag") String tag,@RequestParam("thumbnail") String thumbnail) {
 		BoardInsertDTO boardInsertDTO = new BoardInsertDTO();
 		boardInsertDTO.setTitle(title);
 		boardInsertDTO.setUserid(userid);
 		boardInsertDTO.setCategory(category);
 		boardInsertDTO.setContents(contents);
+		boardInsertDTO.setThumbnail(thumbnail);
 		System.out.println(tag);
 		List<BoardTagDTO> tagList = new ArrayList<BoardTagDTO>();
 		String[] aaa = tag.split("@");
