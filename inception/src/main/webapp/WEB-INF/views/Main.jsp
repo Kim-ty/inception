@@ -88,7 +88,6 @@ body {
 		</div>
 		<div class="w3-quarter w3-hide-small" style="width: 13%" align="left">
 			<div class="w3-card-2 w3-container" style="min-height: 460px">
-
 				<h2>
 					tags
 					<hr>

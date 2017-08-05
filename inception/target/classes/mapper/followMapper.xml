@@ -31,8 +31,13 @@
 				left join(select userid,follower from userfollower where follower =#{loginid}) fw on f.follow = fw.userid
         		left join(select userid,profilepicture from tb_user) pi on f.follow = pi.userid
 			order by follow
+<<<<<<< HEAD
 			
 			
+=======
+			union
+			select profilepicture from tb_user where userid=#{userid}	
+>>>>>>> ca9ffbd29f8881b39dc2e32c3f46bfa0a7e78c5b
 		]]>
 	</select>
 
