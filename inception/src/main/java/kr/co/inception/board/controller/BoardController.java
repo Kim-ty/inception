@@ -1,6 +1,15 @@
 package kr.co.inception.board.controller;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Panel;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.inception.board.dto.BadDTO;
 import kr.co.inception.board.dto.BoardInsertDTO;
+import kr.co.inception.board.dto.BoardTagDTO;
 import kr.co.inception.board.dto.BoardUpdateDTO;
 import kr.co.inception.board.dto.GoodDTO;
 import kr.co.inception.board.dto.ReplyDTO;
@@ -22,6 +33,7 @@ import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.board.vo.BoardSimpleVO;
 import kr.co.inception.board.vo.ReplyListVO;
 import kr.co.inception.board.vo.TagListVO;
+import kr.co.inception.user.vo.LoginVO;
 
 @Controller
 @RequestMapping("/board")
@@ -117,6 +129,16 @@ public class BoardController {
 
 	}
 
+	@RequestMapping(value = "/andcontentsbad")
+	@ResponseBody
+	public void andcontentsbad(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid) {
+		BadDTO badDTO = new BadDTO();
+		badDTO.setBidx(bidx);
+		badDTO.setUserid(userid);
+		boardService.bad(badDTO);
+
+	}
+
 	@RequestMapping(value = "/andgoodcheck")
 	@ResponseBody
 	public int andgoodcheck(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid) {
@@ -154,6 +176,15 @@ public class BoardController {
 		return "Success";
 	}
 
+	@RequestMapping(value = "/andselectcategory")
+	@ResponseBody
+	public List<BoardListVO> andselectcategory(@RequestParam("category") String category) {
+		List<BoardListVO> boardList = boardService.selectcategory(category);
+
+		return boardList;
+
+	}
+
 	// @RequestMapping(value = "/boardInsert")
 	// @ResponseBody
 	// public Boolean androidboardInsert(BoardInsertDTO boardInsertDTO) {
@@ -162,11 +193,6 @@ public class BoardController {
 	// }
 
 	// Web
-
-	@RequestMapping(value = "/boardInertForm")
-	public String boardInsertForm() {
-		return "boardInsert";
-	}
 
 	@RequestMapping(value = "/hottagList")
 	public String hottag(Model model) {
@@ -187,6 +213,9 @@ public class BoardController {
 	public String boardDetail(@PathVariable("param1") String bidx, Model model) {
 		boardService.hit(bidx);
 		BoardSimpleVO boardSimple = boardService.showBoardSimple(bidx);
+		for (TagListVO tag : boardSimple.getTag()) {
+			System.out.println(tag.getTag());
+		}
 		model.addAttribute("boardSimple", boardSimple);
 		return "BoardDetail";
 	}
@@ -194,9 +223,9 @@ public class BoardController {
 	@RequestMapping(value = "/boardList/{param1}")
 	public String boardList(@PathVariable("param1") String category, Model model) {
 		System.out.println(category);
-			List<BoardListVO> boardList = null;
+		List<BoardListVO> boardList = null;
 		if (category.contains("tag") == true) {
-			String tag=category.substring(3);
+			String tag = category.substring(3);
 			System.out.println(tag);
 			boardList = boardService.showBoardListTag(tag);
 		} else {
@@ -208,9 +237,19 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/boardInsert")
-	public String boardInsert(BoardInsertDTO boardInsertDTO, Model model) {
+	public String boardInsert(BoardInsertDTO boardInsertDTO, HttpSession session, Model model) {
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		boardInsertDTO.setUserid(loginVO.getUserid());
+		System.out.println("title : "+boardInsertDTO.getTitle());
+		System.out.println("contents : "+boardInsertDTO.getContents());
+		for(BoardTagDTO i : boardInsertDTO.getTagList()){
+			System.out.println("tag : "+i);
+		}
+		System.out.println("category : "+boardInsertDTO.getCategory());
+		System.out.println("thumbnail : "+boardInsertDTO.getThumbnail());
+		boardService.boardInsert(boardInsertDTO);
 
-		return "/boardList";
+		return "redirect:/board/boardList";
 	}
 
 	@RequestMapping(value = "/boardUpdate")
@@ -262,9 +301,41 @@ public class BoardController {
 	@ResponseBody
 	public String uploadAjax(MultipartFile file) throws Exception {
 		System.out.println("파일업로드시작");
-		String fileURL = FileUploadAjax.uploadFile("C:/uploadimage/", file.getOriginalFilename(), file.getBytes());
-
+		String fileURL = FileUploadAjax.uploadFile("C:/uploadimage", file.getOriginalFilename(), file.getBytes());
+		Image originalImage = ImageIO.read(new File("/uploadimage/" + fileURL));
+		Image resizeImage = originalImage.getScaledInstance(1000, 1000, Image.SCALE_SMOOTH);
+		BufferedImage newImage = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_RGB);
+		Graphics g = newImage.getGraphics();
+		g.drawImage(resizeImage, 0, 0, new Panel());
+		g.dispose();
+		ImageIO.write(newImage, "jpg", new File("/uploadimage/" + fileURL.replaceAll("!!!!", "android!!!!")));
 		return "/uploadimage/" + fileURL;
+	}
+
+	@RequestMapping(value = "/andboardinsert")
+	@ResponseBody
+	public void andboardinsert(@RequestParam("title") String title, @RequestParam("userid") String userid,
+			@RequestParam("contents") String contents, @RequestParam("category") String category,
+			@RequestParam("tag") String tag,@RequestParam("thumbnail") String thumbnail) {
+		BoardInsertDTO boardInsertDTO = new BoardInsertDTO();
+		boardInsertDTO.setTitle(title);
+		boardInsertDTO.setUserid(userid);
+		boardInsertDTO.setCategory(category);
+		boardInsertDTO.setContents(contents);
+		boardInsertDTO.setThumbnail(thumbnail);
+		System.out.println(tag);
+		List<BoardTagDTO> tagList = new ArrayList<BoardTagDTO>();
+		String[] aaa = tag.split("@");
+
+		for (String i : aaa) {
+			BoardTagDTO a = new BoardTagDTO();
+			a.setTag(i);
+			System.out.println(i);
+			tagList.add(a);
+		}
+		boardInsertDTO.setTagList(tagList);
+		boardService.boardInsert(boardInsertDTO);
+
 	}
 
 }

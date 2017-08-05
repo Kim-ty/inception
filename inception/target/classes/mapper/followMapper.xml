@@ -29,6 +29,8 @@
 			from (select userid,follow from userfollow where userid = #{userid}) f 
 				left join(select userid,follower from userfollower where follower =#{loginid}) fw on f.follow = fw.userid 
 			order by follow
+			union
+			select profilepicture from tb_user where userid=#{userid}	
 		]]>
 	</select>
 

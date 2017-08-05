@@ -30,7 +30,7 @@
 	</select>
 	
 	<update id="UpdateUser">
-  		<![CDATA[UPDATE tb_user set userpw = #{userpw} , useremail =#{useremail}, profilepicture = #{profilepicture}, sex=#{sex} where userid=#{userid}]]>
+  		<![CDATA[UPDATE tb_user set userpw = #{userpw} , useremail = #{useremail}, profilepicture = #{profilepicture} where userid=#{userid}]]>
 	</update>
 	
 	<select id="idchk" resultType="int">

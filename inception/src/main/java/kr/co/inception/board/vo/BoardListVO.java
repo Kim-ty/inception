@@ -7,6 +7,7 @@ import java.util.ListIterator;
 
 public class BoardListVO{
 	
+	private String thumbnail;
 	private String bidx;
 	private String title;
 	private String contents;
@@ -84,6 +85,12 @@ public class BoardListVO{
 	}
 	public void setBidx(String bidx) {
 		this.bidx = bidx;
+	}
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 	

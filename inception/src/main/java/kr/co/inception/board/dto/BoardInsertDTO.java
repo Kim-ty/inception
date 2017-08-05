@@ -8,6 +8,7 @@ public class BoardInsertDTO {
 	private String userid;
 	private String contents;
 	private String category;
+	private String thumbnail;
 	private List<BoardTagDTO> tagList;
 	
 	public String getTitle() {
@@ -48,6 +49,14 @@ public class BoardInsertDTO {
 
 	public void setTagList(List<BoardTagDTO> tagList) {
 		this.tagList = tagList;
+	}
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 	
 	

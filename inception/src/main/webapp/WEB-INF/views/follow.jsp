@@ -37,13 +37,20 @@
 </head>
 
 <body>
-	<table class="table table-striped table-hover" border="1">
-		<tr class="active">
-			<td><a href="/profile/${profile.userid}">${profile.userid}</a></td>
-			<td><a href="/profile/${profile.userid}/followlist">${profile.followCount}</a></td>
-			<td><a href="/profile/${profile.userid}/followerlist">${profile.followerCount}</a></td>
-		</tr>
-	</table>
+
+	<jsp:include page="header.jsp" flush="false" />
+
+	<div class="w3-container w3-row w3-center w3-blue-gray w3-padding-16">
+		<div>
+			<h1>
+				<a href="/profile/${profile.userid}">${profile.userid}</a>
+			</h1>
+			<a href="/profile/${profile.userid}/followlist">${profile.followCount}
+				follow</a> <a href="/profile/${profile.userid}/followerlist">${profile.followerCount}
+				follower</a>
+		</div>
+	</div>
+
 
 	<table class="table table-striped table-hover">
 		<tr class="active">

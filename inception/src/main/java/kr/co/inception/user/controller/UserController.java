@@ -42,6 +42,11 @@ public class UserController {
 	public String move_login() {
 		return "Login";
 	}
+	
+	@RequestMapping("/update")
+	public String move_update(){
+		return "UserUpdate";
+	}
 
 	@RequestMapping(value = "joinchk", method = RequestMethod.POST)
 	public String joinUser(JoinDTO joinDTO) throws Exception {
@@ -126,6 +131,16 @@ public class UserController {
 			return false;
 		}
 		return true;
+	}
+	
+	@RequestMapping(value="/updateUser",method= RequestMethod.POST)
+	public String updateUserInfo(UpdateUserDTO updateuserDTO,HttpSession session){
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		System.out.println(updateuserDTO.getProfilepicture());
+		System.out.println(updateuserDTO.getUseremail());
+		updateuserDTO.setUserid(loginVO.getUserid());
+		userService.updateUser(updateuserDTO);
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "updatechk", method = RequestMethod.POST)
