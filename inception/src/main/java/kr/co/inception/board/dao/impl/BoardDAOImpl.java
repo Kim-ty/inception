@@ -150,6 +150,11 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<BoardListVO> showBoardListTag(String tag) {
 		return sqlSession.selectList(namespace+".boardListTag",tag);
 	}
+
+	@Override
+	public String boarddetailprofilepicture(String bidx) {
+		return sqlSession.selectOne(namespace+".boarddetailprofilepicture",bidx);
+	}
 	
 
 }
