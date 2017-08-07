@@ -44,7 +44,49 @@
 	$(document)
 			.ready(
 					function() {
-
+						
+						var targetbidx = $(document).find("#bidx").html();
+						
+						$('#good').click(function(){
+							$.ajax({
+								url : "/boad/good",
+								type : "post",
+								dataType : "JSON",
+								data : {
+									bidx : targetbidx},
+								success : :function(){
+									
+								}
+							});
+						});
+						
+						$('#bad').click(function(){
+							$.ajax({
+								url : "/boad/bad",
+								type : "post",
+								dataType : "JSON",
+								data : {
+									bidx : targetbidx},
+								success : :function(){
+									
+								}
+							});
+						});
+						
+						$('#scrape').click(function(){
+							$.ajax({
+								url : "/boad/scrape",
+								type : "post",
+								dataType : "JSON",
+								data : {
+									bidx : targetbidx},
+								success : :function(){
+									
+								}
+							});
+						});
+						
+						
 						$('#replymore')
 								.click(
 										function() {
@@ -131,10 +173,14 @@ p img {
 				<h5>
 					<a href="/profile/${vo.userid}">${ vo.userid }</a> <span
 						class="w3-opacity">${ vo.writedate }</span> <span
-						class="w3-opacity">${ vo.category }</span> <span
+						class="w3-opacity"><a href="board/boardList/${vo.category}">${ vo.category }</a></span> <span
 						class="w3-opacity">조회수.${ vo.hitcount }</span> <span
-						class="w3-opacity">좋아요.${ vo.good }</span> <span
-						class="w3-opacity">나빠요.${ vo.bad }</span> <span class="w3-opacity">스크랩.${ vo.scrapecount }</span>
+						class="w3-opacity"><a id="good">좋아요.</a></span><span
+						class="w3-opacity"><a id="goodLst">${ vo.good }</a></span> <span
+						class="w3-opacity"><a id="bad">나빠요.</a></span><span
+						class="w3-opacity"><a id="badLst">${ vo.bad }</a></span><span 
+						class="w3-opacity"><a id="scrape">스크랩.</a></span><span
+						class="w3-opacity"><a id="scrapeLst">${ vo.scrape }</a></span>
 				</h5>
 
 			</div>

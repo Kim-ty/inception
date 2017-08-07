@@ -4,7 +4,16 @@ public class FollowerListVO {
 
 	private String follower;
 	private String loginid;
+	private String profilepicture;
 	
+	public String getProfilepicture() {
+		return profilepicture;
+	}
+
+	public void setProfilepicture(String profilepicture) {
+		this.profilepicture = profilepicture;
+	}
+
 	public String getFollower() {
 		return follower;
 	}
