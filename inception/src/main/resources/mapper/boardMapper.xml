@@ -185,9 +185,10 @@
 	</select>
 	<select id="replyList2" resultType="kr.co.inception.board.vo.ReplyListVO">
 		<![CDATA[
-			select ridx,TARGETREPLY,lpad('└ ',3*(level-1)) || contents  as contents,userid,writedate,level,bidx
-from BOARDREPLY
-where bidx =#{bidx}
+			select pi.profilepicture,r.ridx,r.TARGETREPLY,lpad('└ ',3*(level-1)) || contents  as contents,r.userid,r.writedate,level,r.bidx
+from BOARDREPLY r
+left join(select userid,profilepicture from tb_user) pi on r.userid = pi.userid
+where bidx = #{bidx}
 start with targetreply is null
 connect by prior ridx = TARGETREPLY
 		]]>

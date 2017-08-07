@@ -9,7 +9,14 @@ public class ReplyListVO {
 	private String bidx;
 	private String writedate;
 	private String userid;
+	private String profilepicture;
 	
+	public String getProfilepicture() {
+		return profilepicture;
+	}
+	public void setProfilepicture(String profilepicture) {
+		this.profilepicture = profilepicture;
+	}
 	public String getRidx() {
 		return ridx;
 	}
