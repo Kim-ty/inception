@@ -133,6 +133,11 @@ to {
 	height: auto; /* 높이를 지정 */
 	margin: 5px 0; /* 여백을 적용 4가지 조건이 가능 위쪽, 오른쪽, 아래쪽, 왼쪽 순서 */
 }
+
+img {
+	max-width: 140px;
+	max-height: auto;
+}
 </style>
 
 </head>

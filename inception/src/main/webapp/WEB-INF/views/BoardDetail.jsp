@@ -73,7 +73,7 @@
 							});
 						});
 						
-						$('#scrape').click(function(){
+						/* $('#scrape').click(function(){
 							$.ajax({
 								url : "/boad/scrape",
 								type : "post",
@@ -84,7 +84,7 @@
 									
 								}
 							});
-						});
+						}); */
 						
 						
 						$('#replymore')
@@ -180,7 +180,7 @@ p img {
 						class="w3-opacity"><a id="bad">나빠요.</a></span><span
 						class="w3-opacity"><a id="badLst">${ vo.bad }</a></span><span 
 						class="w3-opacity"><a id="scrape">스크랩.</a></span><span
-						class="w3-opacity"><a id="scrapeLst">${ vo.scrape }</a></span>
+						class="w3-opacity"><a id="scrapeLst">${ vo.scrapecount }</a></span>
 				</h5>
 
 			</div>
