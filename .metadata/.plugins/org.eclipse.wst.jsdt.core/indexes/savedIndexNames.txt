@@ -1,18 +1,8 @@
-<<<<<<< HEAD
-INDEX VERSION 1.3+D:\WorkSpace\BitComputerfinalproject\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-675597201.index
-1161189337.index
-2239913931.index
-=======
 INDEX VERSION 1.3+C:\Users\Bit\inception\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 2239913931.index
 1161189337.index
-<<<<<<< HEAD
 3900222215.index
 2437403449.index
 1017153937.index
 2826589851.index
 1350204274.index
-=======
->>>>>>> 11371fd2dc33c41d4ff4dc85612821476dcc35e3
->>>>>>> ca9ffbd29f8881b39dc2e32c3f46bfa0a7e78c5b
