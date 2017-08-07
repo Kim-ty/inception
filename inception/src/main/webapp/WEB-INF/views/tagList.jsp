@@ -14,9 +14,16 @@
 
 </head>
 <body>
-	<c:forEach var="tagList" items="${tagList}">
-		<a href="/board/boardList/tag${tagList.tag}">${tagList.tag}</a>
-		<br>
-	</c:forEach>
+
+	<div>
+		<h2>tags</h2>
+		<hr>
+		<c:forEach var="tagList" items="${tagList}">
+			<p align="left">
+				<a href="/board/boardList/tag${tagList.tag}">${tagList.tag}</a>
+			</p>
+		</c:forEach>
+	</div>
+
 </body>
 </html>

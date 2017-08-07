@@ -285,20 +285,41 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/scrape")
-	public String scrape(ScrapeDTO scrapeDTO) {
-
+	@ResponseBody
+	public String scrape(@RequestParam("bidx") String bidx,HttpSession session) {
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		ScrapeDTO scrapeDTO = new ScrapeDTO();
+		scrapeDTO.setBidx(bidx);
+		scrapeDTO.setUserid(loginVO.getUserid());
 		boardService.Scrape(scrapeDTO);
 
 		return "/boardList";
 	}
 
 	@RequestMapping(value = "/good")
-	public String good(GoodDTO goodDTO) {
+	@ResponseBody
+	public String good(@RequestParam("bidx") String bidx,HttpSession session) {
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		GoodDTO goodDTO = new GoodDTO();
+		goodDTO.setBidx(bidx);
+		goodDTO.setUserid(loginVO.getUserid());
 		boardService.good(goodDTO);
 
 		return "/boardSimple";
 	}
 
+	@RequestMapping(value="/bad")
+	@ResponseBody
+	public String bad(@RequestParam("bidx") String bidx,HttpSession session){
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		BadDTO badDTO = new BadDTO();
+		badDTO.setBidx(bidx);
+		badDTO.setUserid(loginVO.getUserid());
+		boardService.bad(badDTO);
+		
+		return "";
+	}
+	
 	@RequestMapping(value = "/uploadImage", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String uploadAjax(MultipartFile file) throws Exception {
