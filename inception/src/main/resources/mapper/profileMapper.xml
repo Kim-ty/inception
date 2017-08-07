@@ -30,7 +30,11 @@
 	<select id="showProfileBoardList" resultType="kr.co.inception.profile.vo.ProfileBoardListVO">
 		<![CDATA[
 			select b.bidx,b.hitcount as hitcnt,b.thumbnail,SUBSTR(REGEXP_REPLACE(b.contents, '<[^>]*>|\&([^;])*;', ''),1,25) as contents,b.title,b.userid,b.writedate,b.category,nvl(gb.gcnt,0) AS gcnt,nvl(gb.bcnt,0) as bcnt,nvl(s.scrapecnt,0) AS scrapecnt,nvl(rp.rpcnt,0) as rpcnt
+<<<<<<< HEAD
+			from ( select distinct bidx,HITCOUNT,thumbnail,contents,TITLE,USERID,WRITEDATE,CATEGORY from board ) b
+=======
 			from ( select distinct bidx,thumbnail,HITCOUNT,contents,TITLE,USERID,WRITEDATE,CATEGORY from board ) b
+>>>>>>> ca9ffbd29f8881b39dc2e32c3f46bfa0a7e78c5b
 			left join ( select bidx, count(decode(g_b_count,'0','1')) as gcnt,count(decode(g_b_count,'1','1')) as bcnt from goodbad group by bidx ) gb ON b.bidx = gb.bidx
 			left join ( select bidx, count(*) as scrapecnt from scrape group by bidx ) s ON b.bidx = s.bidx
 			left join ( select bidx, count(*) as rpcnt from BoardReply group by bidx) rp on b.bidx = rp.bidx where userid=#{userid}

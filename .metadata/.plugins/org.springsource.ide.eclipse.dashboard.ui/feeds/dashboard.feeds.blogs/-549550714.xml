@@ -5,6 +5,9 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
+<<<<<<< HEAD
+  <updated>2017-08-01T12:12:07Z</updated>
+=======
   <updated>2017-08-01T20:44:00Z</updated>
   <entry>
     <title>This Week in Spring - August 1st, 2017</title>
@@ -49,6 +52,7 @@
   &lt;li&gt;Rod Johnson, creator of Spring, look at his company Atomist&amp;rsquo;s technology &lt;a href="https://the-composition.com/no-more-copy-paste-bf6c7f96e445"&gt;for automating and drastically simplifying project initialization&lt;/a&gt;. Atomist looks at more than just code-generation and focuses on infrastructure like cloud-platform integration, lifecycle, repositories, Slack integration, etc.&lt;/li&gt;
 &lt;/ul&gt;</content>
   </entry>
+>>>>>>> 11371fd2dc33c41d4ff4dc85612821476dcc35e3
   <entry>
     <title>Spring Framework 5 Kotlin APIs, the functional way</title>
     <link rel="alternate" href="https://spring.io/blog/2017/08/01/spring-framework-5-kotlin-apis-the-functional-way" />
@@ -57,7 +61,11 @@
       <name>S?bastien Deleuze</name>
     </author>
     <id>tag:spring.io,2017-07-28:2993</id>
+<<<<<<< HEAD
+    <updated>2017-08-01T12:12:07Z</updated>
+=======
     <updated>2017-08-01T12:12:00Z</updated>
+>>>>>>> 11371fd2dc33c41d4ff4dc85612821476dcc35e3
     <content type="html">&lt;p&gt;Since our original announcement (very well received by the community!) of &lt;a href="https://spring.io/blog/2017/01/04/introducing-kotlin-support-in-spring-framework-5-0"&gt;official Kotlin support in Spring Framework 5&lt;/a&gt;, we have continued to work towards even stronger Kotlin support in conjunction with recent refinements in Spring WebFlux.&lt;/p&gt;
 &lt;p&gt;In order to demonstrate these features, and how they could be used together, I have created a new &lt;a href="https://github.com/sdeleuze/spring-kotlin-functional"&gt; &lt;code&gt;spring-kotlin-functional&lt;/code&gt;&lt;/a&gt; demo application which is a standalone Spring WebFlux application, developed in Kotlin, with Mustache template rendering, JSON REST webservices and Server-Sent Events streaming capabilities. Don&amp;rsquo;t hesitate to send us feedbacks and proposals before Spring Framework 5 release expected in September.&lt;/p&gt;&lt;h2&gt;&lt;a href="#programmatic-bootstrap" class="anchor" name="programmatic-bootstrap"&gt;&lt;/a&gt;Programmatic bootstrap&lt;/h2&gt;
 &lt;p&gt;Spring WebFlux and Reactor Netty allow for programmatic bootstrap of the application since they are natively designed to run as an embedded webserver. This is obviously not needed when developing a Spring Boot application but can be very useful for tight deployment units with custom bootstrapping in a microservice architecture or other constrained environments.&lt;/p&gt;
@@ -125,12 +133,20 @@ fun main(args: Array&amp;lt;String&amp;gt;) {&#xD;
     bean&amp;lt;Foo&amp;gt;()&#xD;
   }&#xD;
 }
+<<<<<<< HEAD
+&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;&lt;a href="#null-safety-of-spring-and-reactor-apis" class="anchor" name="null-safety-of-spring-and-reactor-apis"&gt;&lt;/a&gt;Null-safety of Spring and Reactor APIs&lt;/h2&gt;
+&lt;p&gt;One of Kotlin&amp;rsquo;s key features is &lt;a href="https://kotlinlang.org/docs/reference/null-safety.html"&gt;null-safety&lt;/a&gt; which allows to deal with &lt;code&gt;null&lt;/code&gt; values at compile time rather than bumping into the famous &lt;code&gt;NullPointerException&lt;/code&gt; at runtime. This makes your applications safer through clean nullability declarations, expressing &amp;ldquo;value or no value&amp;rdquo; semantics without paying the cost of wrapper like &lt;code&gt;Optional&lt;/code&gt;. (Kotlin allows using functional constructs with nullable values; check out this &lt;a href="http://www.baeldung.com/kotlin-null-safety"&gt;comprehensive guide to Kotlin null-safety&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;Although Java does not allow to express null-safety in its type-system, we have introduced some amount of &lt;a href="https://jira.spring.io/browse/SPR-15540"&gt;null-safety to Spring APIs&lt;/a&gt; via tooling-friendly annotations: &lt;code&gt;@NonNullApi&lt;/code&gt; annotations at package level declare that non-null is the default behavior, and we explicitly put &lt;code&gt;@Nullable&lt;/code&gt; annotations where specific parameters or return values can be &lt;code&gt;null&lt;/code&gt;. We have done this work for the whole Spring Framework API (yes it was a huge effort!), and other projects like &lt;a href="https://jira.spring.io/browse/DATACMNS-1114"&gt;Spring Data&lt;/a&gt; begin to leverage it. Spring annotation are meta-annotated with JSR 305 meta-annotation (a dormant JSR but supported by tools like IDEA, Eclipse, Findbugs, etc.) to provide useful warnings to Java developers.&lt;/p&gt;
+&lt;p&gt;On the Kotlin side, the killer feature is that - as of the upcoming Kotlin 1.1.4 release - these annotations &lt;a href="https://youtrack.jetbrains.com/issue/KT-10942"&gt;are recognized by Kotlin&lt;/a&gt; in order to provide null-safety for the whole Spring API. That means you should never have &lt;code&gt;NullPointerException&lt;/code&gt; in your code when using Spring 5 and Kotlin because the compiler will not allow it. For now, you need to use a &lt;code&gt;-Xjsr305-annotations=enable&lt;/code&gt; flag but that will became the default behavior in an upcoming release of Kotlin.&lt;/p&gt;
+&lt;p&gt;Be careful, &lt;a href="https://youtrack.jetbrains.com/issue/KT-19303"&gt;KT-19303&lt;/a&gt; need to be fixed in order to get null-safety taken in account in IDEA.&lt;/p&gt;&lt;h2&gt;&lt;a href="#functional-routing-with-the-kotlin-dsl-for-spring-webflux" class="anchor" name="functional-routing-with-the-kotlin-dsl-for-spring-webflux"&gt;&lt;/a&gt;Functional routing with the Kotlin DSL for Spring WebFlux&lt;/h2&gt;
+=======
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;Routes(ref(), ref())&lt;/code&gt; is the equivalent of &lt;code&gt;Routes(ref&amp;lt;UserHandler&amp;gt;(), ref&amp;lt;MessageSource&amp;gt;())&lt;/code&gt; (types are not required thanks to Kotlin type inference) where &lt;code&gt;ref&amp;lt;UserHandler&amp;gt;()&lt;/code&gt; is a shortcut for &lt;code&gt;applicationContext.getBean(UserHandler::class.java)&lt;/code&gt;. We may provide an alternative syntax for autowiring classes by constructor which is pretty common in Koltin.&lt;/p&gt;&lt;h2&gt;&lt;a href="#null-safety-of-spring-and-reactor-apis" class="anchor" name="null-safety-of-spring-and-reactor-apis"&gt;&lt;/a&gt;Null-safety of Spring and Reactor APIs&lt;/h2&gt;
 &lt;p&gt;One of Kotlin&amp;rsquo;s key features is &lt;a href="https://kotlinlang.org/docs/reference/null-safety.html"&gt;null-safety&lt;/a&gt; which allows to deal with &lt;code&gt;null&lt;/code&gt; values at compile time rather than bumping into the famous &lt;code&gt;NullPointerException&lt;/code&gt; at runtime. This makes your applications safer through clean nullability declarations, expressing &amp;ldquo;value or no value&amp;rdquo; semantics without paying the cost of wrapper like &lt;code&gt;Optional&lt;/code&gt;. (Kotlin allows using functional constructs with nullable values; check out this &lt;a href="http://www.baeldung.com/kotlin-null-safety"&gt;comprehensive guide to Kotlin null-safety&lt;/a&gt;.)&lt;/p&gt;
 &lt;p&gt;Although Java does not allow to express null-safety in its type-system, we have introduced some amount of &lt;a href="https://jira.spring.io/browse/SPR-15540"&gt;null-safety to Spring APIs&lt;/a&gt; via tooling-friendly annotations: &lt;code&gt;@NonNullApi&lt;/code&gt; annotations at package level declare that non-null is the default behavior, and we explicitly put &lt;code&gt;@Nullable&lt;/code&gt; annotations where specific parameters or return values can be &lt;code&gt;null&lt;/code&gt;. We have done this work for the whole Spring Framework API (yes it was a huge effort!), and other projects like &lt;a href="https://jira.spring.io/browse/DATACMNS-1114"&gt;Spring Data&lt;/a&gt; begin to leverage it. Spring annotation are meta-annotated with JSR 305 meta-annotation (a dormant JSR but supported by tools like IDEA, Eclipse, Findbugs, etc.) to provide useful warnings to Java developers.&lt;/p&gt;
 &lt;p&gt;On the Kotlin side, the killer feature is that - as of the upcoming Kotlin 1.1.4 release - these annotations &lt;a href="https://youtrack.jetbrains.com/issue/KT-10942"&gt;are recognized by Kotlin&lt;/a&gt; in order to provide null-safety for the whole Spring API. That means you should never have &lt;code&gt;NullPointerException&lt;/code&gt; in your code when using Spring 5 and Kotlin because the compiler will not allow it. For now, you need to use a &lt;code&gt;-Xjsr305-annotations=enable&lt;/code&gt; flag but that will became the default behavior in an upcoming release of Kotlin.&lt;/p&gt;
 &lt;p&gt;Make sure to &lt;a href="https://github.com/sdeleuze/spring-kotlin-functional/blob/2d6ac07adfc2b8f25e91681dbb2b58a1c6cdf9a7/build.gradle.kts#L57"&gt;include JSR-305 JAR&lt;/a&gt; until &lt;a href="https://youtrack.jetbrains.com/issue/KT-19419"&gt;KT-19419&lt;/a&gt; is fixed, and be aware that &lt;a href="https://youtrack.jetbrains.com/issue/KT-19303"&gt;KT-19303&lt;/a&gt; need to be fixed in order to get null-safety taken in account in IDEA.&lt;/p&gt;&lt;h2&gt;&lt;a href="#functional-routing-with-the-kotlin-dsl-for-spring-webflux" class="anchor" name="functional-routing-with-the-kotlin-dsl-for-spring-webflux"&gt;&lt;/a&gt;Functional routing with the Kotlin DSL for Spring WebFlux&lt;/h2&gt;
+>>>>>>> 11371fd2dc33c41d4ff4dc85612821476dcc35e3
 &lt;p&gt;Instead of using &lt;code&gt;@RestController&lt;/code&gt; and &lt;code&gt;@RequestMapping&lt;/code&gt;, &lt;code&gt;spring-kotlin-functional&lt;/code&gt; is using the WebFlux functional API via a dedicated Kotlin DSL.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="prettyprint"&gt;router {&#xD;
   accept(TEXT_HTML).nest {&#xD;
@@ -1168,4 +1184,151 @@ Feedback, feature requests and, of course, contributions are welcomed via the us
 &lt;p&gt;With respect to our remaining roadmap, despite being feature-complete already, we opted for an &lt;b&gt;extended release candidate phase&lt;/b&gt;. This allows for further hardening of our revised APIs and in particular for a proper upgrade to Reactor 3.1 GA, JUnit 5.0 GA and Jackson 2.9 GA (all expected by early September). As a consequence, we are aiming for our &lt;b&gt;Spring Framework 5.0 GA release in September&lt;/b&gt; now, close to JDK 9&amp;rsquo;s general availability target.&lt;/p&gt;
 &lt;p&gt;Cheers,&lt;br/&gt;Juergen&lt;/p&gt;</content>
   </entry>
+<<<<<<< HEAD
+  <entry>
+    <title>Spring Cloud Dalston SR2 is available now</title>
+    <link rel="alternate" href="https://spring.io/blog/2017/07/21/spring-cloud-dalston-sr2-is-available-now" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Spencer Gibb</name>
+    </author>
+    <id>tag:spring.io,2017-07-21:2976</id>
+    <updated>2017-07-21T19:37:00Z</updated>
+    <content type="html">&lt;p&gt;On behalf of the community, I am pleased to announce that the Service Release 2 (SR2) of the &lt;a href="https://cloud.spring.io"&gt;Spring Cloud Dalston&lt;/a&gt; Release Train is available today. The release can be found in &lt;a href="http://repo1.maven.org/maven2/org/springframework/cloud/spring-cloud-dependencies/Dalston.SR2/"&gt;Maven Central&lt;/a&gt;. You can check out the Dalston &lt;a href="https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Dalston-Release-Notes"&gt;release notes for more information&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This release is primarily a bug fix release and users are encouraged to upgrade.&lt;/p&gt;&lt;h2&gt;&lt;a href="#end-of-life-for-angel-and-brixton-release-trains" class="anchor" name="end-of-life-for-angel-and-brixton-release-trains"&gt;&lt;/a&gt;End of Life for Angel and Brixton release trains&lt;/h2&gt;
+&lt;p&gt;The Angel and Brixton release trains have reached their end of life. As such, there will be no more releases to those trains. The community is encouraged to upgrade to Camden.SR7 or Dalston.SR2.&lt;/p&gt;
+&lt;p&gt;The following modules were updated as part of Dalston.SR2:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Module &lt;/th&gt;
+      &lt;th&gt;Version &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Commons &lt;/td&gt;
+      &lt;td&gt;1.2.3.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Config &lt;/td&gt;
+      &lt;td&gt;1.3.2.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Boot &lt;/td&gt;
+      &lt;td&gt;1.5.4.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Task &lt;/td&gt;
+      &lt;td&gt;1.1.2.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Build &lt;/td&gt;
+      &lt;td&gt;1.3.3.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Zookeeper &lt;/td&gt;
+      &lt;td&gt;1.1.1.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Boot Starter &lt;/td&gt;
+      &lt;td&gt;1.5.4.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Cloudfoundry &lt;/td&gt;
+      &lt;td&gt;1.1.0.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Stream &lt;/td&gt;
+      &lt;td&gt;Chelsea.SR2 &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Aws &lt;/td&gt;
+      &lt;td&gt;1.2.1.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Dependencies &lt;/td&gt;
+      &lt;td&gt;1.3.3.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Security &lt;/td&gt;
+      &lt;td&gt;1.2.1.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Bus &lt;/td&gt;
+      &lt;td&gt;1.3.1.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Sleuth &lt;/td&gt;
+      &lt;td&gt;1.2.2.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Netflix &lt;/td&gt;
+      &lt;td&gt;1.3.2.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Contract &lt;/td&gt;
+      &lt;td&gt;1.1.2.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Vault &lt;/td&gt;
+      &lt;td&gt;1.0.2.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spring Cloud Consul &lt;/td&gt;
+      &lt;td&gt;1.2.1.RELEASE &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;And, as always, we welcome feedback: either on &lt;a href="https://github.com/spring-cloud/"&gt;GitHub&lt;/a&gt;, on &lt;a href="https://gitter.im/spring-cloud/spring-cloud"&gt;Gitter&lt;/a&gt;, on &lt;a href="http://stackoverflow.com/questions/tagged/spring-cloud"&gt;Stack Overflow&lt;/a&gt;, or on &lt;a href="https://twitter.com/SpringCloud"&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To get started with Maven with a BOM (dependency management only)&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint"&gt;&lt;br/&gt;&amp;lt;dependencyManagement&amp;gt;&#xD;
+    &amp;lt;dependencies&amp;gt;&#xD;
+        &amp;lt;dependency&amp;gt;&#xD;
+            &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
+            &amp;lt;artifactId&amp;gt;spring-cloud-dependencies&amp;lt;/artifactId&amp;gt;&#xD;
+            &amp;lt;version&amp;gt;Dalston.SR2&amp;lt;/version&amp;gt;&#xD;
+            &amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;&#xD;
+            &amp;lt;scope&amp;gt;import&amp;lt;/scope&amp;gt;&#xD;
+        &amp;lt;/dependency&amp;gt;&#xD;
+    &amp;lt;/dependencies&amp;gt;&#xD;
+&amp;lt;/dependencyManagement&amp;gt;&#xD;
+&amp;lt;dependencies&amp;gt;&#xD;
+    &amp;lt;dependency&amp;gt;&#xD;
+        &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
+        &amp;lt;artifactId&amp;gt;spring-cloud-starter-config&amp;lt;/artifactId&amp;gt;&#xD;
+    &amp;lt;/dependency&amp;gt;&#xD;
+    &amp;lt;dependency&amp;gt;&#xD;
+        &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
+        &amp;lt;artifactId&amp;gt;spring-cloud-starter-eureka&amp;lt;/artifactId&amp;gt;&#xD;
+    &amp;lt;/dependency&amp;gt;&#xD;
+    ...&#xD;
+&amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;or with Gradle:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint"&gt;buildscript {&#xD;
+    dependencies {&#xD;
+        classpath &amp;quot;io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE&amp;quot;&#xD;
+    }&#xD;
+}&#xD;
+&#xD;
+&#xD;
+&#xD;
+apply plugin: &amp;quot;io.spring.dependency-management&amp;quot;&#xD;
+&#xD;
+dependencyManagement {&#xD;
+    imports {&#xD;
+        mavenBom &amp;#39;org.springframework.cloud:spring-cloud-dependencies:Dalston.SR2&amp;#39;&#xD;
+    }&#xD;
+}&#xD;
+&#xD;
+dependencies {&#xD;
+    compile &amp;#39;org.springframework.cloud:spring-cloud-starter-config&amp;#39;&#xD;
+    compile &amp;#39;org.springframework.cloud:spring-cloud-starter-eureka&amp;#39;&#xD;
+    ...&#xD;
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+  </entry>
+=======
+>>>>>>> 11371fd2dc33c41d4ff4dc85612821476dcc35e3
 </feed>
