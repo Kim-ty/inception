@@ -42,4 +42,5 @@ public interface BoardDAO {
 	public int goodcheck(GoodDTO goodDTO);
 	public List<BoardListVO> selectcategory(String category);
 	public List<TagListVO> tagList();
+	public String boarddetailprofilepicture(String bidx);
 }

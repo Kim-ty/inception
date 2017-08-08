@@ -3,6 +3,13 @@ package kr.co.inception.message.vo;
 public class MessageListVO {
 	
 	private String targetuserid;
+	private String profilepicture;
+	public String getProfilepicture() {
+		return profilepicture;
+	}
+	public void setProfilepicture(String profilepicture) {
+		this.profilepicture = profilepicture;
+	}
 	public String getTargetuserid() {
 		return targetuserid;
 	}

@@ -16,8 +16,14 @@ public class BoardSimpleVO {
 	private String bad;
 	private String scrapecount;
 	private String replycount;
+	private String profilepicture;
 	
-	
+	public String getProfilepicture() {
+		return profilepicture;
+	}
+	public void setProfilepicture(String profilepicture) {
+		this.profilepicture = profilepicture;
+	}
 	public String getBidx() {
 		return bidx;
 	}

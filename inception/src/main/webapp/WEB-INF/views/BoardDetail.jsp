@@ -5,9 +5,10 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -17,9 +18,14 @@
 	rel="stylesheet"
 	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
 	crossorigin="anonymous">
+<<<<<<< HEAD
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 	
 <script type="text/javascript">
+=======
+	
+<script>
+>>>>>>> d75249796279c5b590e92ddb11c464439f4f4897
 	function ReplyView() {
 		if ($(document).find("#replymore").html() == "댓글보기") {
 			reply.style.visibility = "visible";
@@ -78,6 +84,7 @@
 						var targetbidx = $(document).find("#bidx").html();
 						
 						$('#good').click(function(){
+<<<<<<< HEAD
 		                     $.ajax({
 		                        url : "/boad/good",
 		                        type : "post",
@@ -118,6 +125,45 @@
 		                        }
 		                     });
 		                  });
+=======
+							$.ajax({
+								url : "/boad/good",
+								type : "post",
+								dataType : "JSON",
+								data : {
+									bidx : targetbidx},
+								success : :function(){
+									
+								}
+							});
+						});
+						
+						$('#bad').click(function(){
+							$.ajax({
+								url : "/boad/bad",
+								type : "post",
+								dataType : "JSON",
+								data : {
+									bidx : targetbidx},
+								success : :function(){
+									
+								}
+							});
+						});
+						
+						/* $('#scrape').click(function(){
+							$.ajax({
+								url : "/boad/scrape",
+								type : "post",
+								dataType : "JSON",
+								data : {
+									bidx : targetbidx},
+								success : :function(){
+									
+								}
+							});
+						}); */
+>>>>>>> d75249796279c5b590e92ddb11c464439f4f4897
 						
 						
 						$('#replymore')
@@ -217,7 +263,11 @@ p img {
 						class="w3-opacity"><a id="bad">나빠요.</a></span><span
 						class="w3-opacity"><a id="badLst">${fn:length(vo.bader)}</a></span><span 
 						class="w3-opacity"><a id="scrape">스크랩.</a></span><span
+<<<<<<< HEAD
 						class="w3-opacity"><a id="scrapeLst">${fn:length(vo.scraper)}</a></span>
+=======
+						class="w3-opacity"><a id="scrapeLst">${ vo.scrapecount }</a></span>
+>>>>>>> d75249796279c5b590e92ddb11c464439f4f4897
 				</h5>
 
 			</div>

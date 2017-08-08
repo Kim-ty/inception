@@ -139,6 +139,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<BoardListVO> showBoardListTag(String tag) {
 		return boardDAO.showBoardListTag(tag);
+	}
+
+	@Override
+	public String boarddetailprofilepicture(String bidx) {
+		return boardDAO.boarddetailprofilepicture(bidx);
 	} 
 
 

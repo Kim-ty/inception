@@ -8,20 +8,23 @@
 
 	<select id="messageList" resultType="kr.co.inception.message.vo.MessageListVO">
 		<![CDATA[
-		select userid,targetuserid,message,writedate from(
+		select m.userid,m.targetuserid,p.profilepicture,m.message,m.writedate from(
 select userid,targetuserid,message,writedate,rank()over(partition by userid order by writedate desc) as rank 
 from message where targetuserid = #{targetuserid}
-) where rank = 1 order by writedate desc
+) m left join(select profilepicture,userid from tb_user) p ON m.userid = p.userid where rank = 1 order by writedate desc
 			]]>
 	</select>
 	
 	<select id="messageroomList" resultType="kr.co.inception.message.vo.MessageListVO">
 		<![CDATA[
-		select * from (
-select * from message where userid = #{userid} and targetuserid = #{targetuserid}
+	select * from (
+select m.userid,p.profilepicture,m.message,m.targetuserid,m.writedate from (select userid,message,targetuserid,writedate from message) m
+left join(select profilepicture,userid from tb_user)p ON m.userid = p.userid 
+where m.userid = #{userid} and m.targetuserid = #{targetuserid}
 union
-select * from message where userid = #{targetuserid} and targetuserid = #{userid}
-)
+select m.userid,p.profilepicture,m.message,m.targetuserid,m.writedate from (select userid,message,targetuserid,writedate from message) m
+left join(select profilepicture,userid from tb_user)p ON m.userid = p.userid 
+where m.userid = #{targetuserid} and m.targetuserid = #{userid})
 order by writedate asc
 		]]>
 	</select>
@@ -47,6 +50,7 @@ values(#{userid},#{message},#{targetuserid},sysdate)
   		delete from notify where targetuserid=#{targetuserid}
   	]]>
   </delete>
+  
   
   
 	

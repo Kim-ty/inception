@@ -257,6 +257,14 @@ connect by prior ridx = TARGETREPLY
 			select tag from boardtag where tag is not null group by tag order by count(tag) desc
 		]]>
 	</select>
+	
+	<select id="boarddetailprofilepicture" resultType = "String">
+		<![CDATA[
+			select p.profilepicture as profilepicture from (select bidx,userid from board) b
+left join(select profilepicture,userid from tb_user) p ON b.userid = p.userid where bidx = #{bidx}
+		]]>
+		
+	</select>
 
 
 

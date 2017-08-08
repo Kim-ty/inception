@@ -71,6 +71,8 @@ public class BoardController {
 	public BoardSimpleVO andboard(@RequestParam("bidx") String bidx) {
 		boardService.hit(bidx);
 		BoardSimpleVO boardSimple = boardService.showBoardSimple(bidx);
+		String profilepicture = boardService.boarddetailprofilepicture(bidx);
+		boardSimple.setProfilepicture(profilepicture);
 		return boardSimple;
 	}
 
