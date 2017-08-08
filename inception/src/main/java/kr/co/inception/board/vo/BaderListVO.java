@@ -2,14 +2,14 @@ package kr.co.inception.board.vo;
 
 public class BaderListVO {
 
-	private String userid;
+	private String bader;
 
-	public String getUserid() {
-		return userid;
+	public String getBader() {
+		return bader;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setBader(String bader) {
+		this.bader = bader;
 	}
 	
 	

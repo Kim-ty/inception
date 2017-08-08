@@ -1,5 +1,7 @@
 package kr.co.inception.board.vo;
 
+import java.util.List;
+
 public class BoardDetailVO {
 
 	private String bidx;
@@ -9,12 +11,42 @@ public class BoardDetailVO {
 	private String contents;
 	private String hitcount;
 	private String category;
-	private String tag;
-	private String good;
-	private String bad;
-	private String scrapecount;
+	private List<GooderListVO> gooder;
+	private List<BaderListVO> bader;
+	private List<ScraperListVO> scraper;
+	private List<TagListVO> tag;
+	private String replycount;
 	
-	
+	public List<GooderListVO> getGooder() {
+		return gooder;
+	}
+	public void setGooder(List<GooderListVO> gooder) {
+		this.gooder = gooder;
+	}
+	public List<BaderListVO> getBader() {
+		return bader;
+	}
+	public void setBader(List<BaderListVO> bader) {
+		this.bader = bader;
+	}
+	public List<ScraperListVO> getScraper() {
+		return scraper;
+	}
+	public void setScraper(List<ScraperListVO> scraper) {
+		this.scraper = scraper;
+	}
+	public List<TagListVO> getTag() {
+		return tag;
+	}
+	public void setTag(List<TagListVO> tag) {
+		this.tag = tag;
+	}
+	public String getReplycount() {
+		return replycount;
+	}
+	public void setReplycount(String replycount) {
+		this.replycount = replycount;
+	}
 	public String getBidx() {
 		return bidx;
 	}
@@ -56,30 +88,6 @@ public class BoardDetailVO {
 	}
 	public void setCategory(String category) {
 		this.category = category;
-	}
-	public String getTag() {
-		return tag;
-	}
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-	public String getGood() {
-		return good;
-	}
-	public void setGood(String good) {
-		this.good = good;
-	}
-	public String getBad() {
-		return bad;
-	}
-	public void setBad(String bad) {
-		this.bad = bad;
-	}
-	public String getScrapecount() {
-		return scrapecount;
-	}
-	public void setScrapecount(String scrapecount) {
-		this.scrapecount = scrapecount;
 	}
 	
 }

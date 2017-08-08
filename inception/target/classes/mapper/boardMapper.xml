@@ -105,12 +105,51 @@
 
 	</select>
 
-	<select id="boardDetail" resultType="kr.co.inception.board.vo.BoardDetailVO">
+	<resultMap id="boardDetail2" type="kr.co.inception.board.vo.BoardDetailVO">
+		<id property="bidx" column="bidx" />
+		<result property="title" column="title" />
+		<result property="userid" column="userid" />
+		<result property="writedate" column="writedate" />
+		<result property="contents" column="contents" />
+		<result property="hitcount" column="hitcount" />
+		<result property="category" column="category" />
+		<result property="replycount" column="replycount" />
+		<collection property="tag" column="tag" javaType="java.util.List"
+			resultMap="tagList" />
+		<collection property="gooder" column="gooder" javaType="java.util.List"
+			resultMap="gooderList" />
+		<collection property="bader" column="bader" javaType="java.util.List"
+			resultMap="baderList" />
+		<collection property="scraper" column="scraper" javaType="java.util.List"
+			resultMap="scraperList" />
+	</resultMap>
+	
+	<resultMap id="tagList" type="kr.co.inception.board.vo.TagListVO">
+		<id property="tag" column="tag" />
+	</resultMap>
+	<resultMap id="gooderList" type="kr.co.inception.board.vo.GooderListVO">
+		<id property="gooder" column="gooder" />
+	</resultMap>
+	<resultMap id="baderList" type="kr.co.inception.board.vo.BaderListVO">
+		<id property="bader" column="bader" />
+	</resultMap>
+	<resultMap id="scraperList" type="kr.co.inception.board.vo.ScraperListVO">
+		<id property="scraper" column="scraper" />
+	</resultMap>
+
+	<select id="boardDetail" resultMap="boardDetail2">
 		<![CDATA[
-		
-		
+			select b.bidx,b.title,b.userid,b.writedate,b.contents,b.hitcount,b.category,t.tag,g.gooder,bad.bader,s.scraper,rp.replycount
+			from ( select bidx,title,contents,userid,writedate,HITCOUNT,category from board where bidx=#{bidx}) b
+     			 left join(select bidx,tag from boardtag where bidx=#{bidx})t on b.bidx=t.bidx
+			     left join ( select bidx, userid as gooder from goodbad where bidx=#{bidx} and g_b_count='0') g ON b.bidx = g.bidx
+     			 left join ( select bidx, userid as bader from goodbad where bidx=#{bidx} and g_b_count='1') bad on b.bidx = bad.bidx
+				 left join ( select bidx, userid as scraper from scrape where bidx=#{bidx}) s ON b.bidx = s.bidx
+				 left join ( select bidx, count(*) as replycount from BoardReply where bidx=#{bidx} GROUP BY bidx) rp on b.bidx = rp.bidx
 		]]>
 	</select>
+	
+
 
 	<resultMap id="boardSimple2" type="kr.co.inception.board.vo.BoardSimpleVO">
 		<id property="bidx" column="bidx" />
@@ -127,11 +166,7 @@
 		<collection property="tag" column="tag" javaType="java.util.List"
 			resultMap="tagList" />
 	</resultMap>
-	<resultMap id="tagList" type="kr.co.inception.board.vo.TagListVO">
-		<id property="tag" column="tag" />
-	</resultMap>
-
-
+	
 	<select id="boardSimple" resultMap="boardSimple2">
 		<![CDATA[
 			select b.bidx,b.title,b.userid,b.writedate,b.contents,b.hitcount,b.category,t.tag,g.good,b.bad,s.scrapecount,r.replycount
