@@ -18,7 +18,7 @@
 	rel="stylesheet"
 	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
 	crossorigin="anonymous">
-	
+
 <script>
 	function ReplyView() {
 		if ($(document).find("#replymore").html() == "댓글보기") {
@@ -166,19 +166,19 @@ p img {
 		<!-- Blog entry -->
 		<div class="w3-card-4 w3-margin w3-white">
 
-			<div class="w3-container">
+			<div class="w3-container-fluid">
 				<h3>
 					<span id="bidx">${vo.bidx}</span> <b>${vo.title}</b>
 				</h3>
 				<h5>
 					<a href="/profile/${vo.userid}">${ vo.userid }</a> <span
 						class="w3-opacity">${ vo.writedate }</span> <span
-						class="w3-opacity"><a href="board/boardList/${vo.category}">${ vo.category }</a></span> <span
-						class="w3-opacity">조회수.${ vo.hitcount }</span> <span
+						class="w3-opacity"><a href="board/boardList/${vo.category}">${ vo.category }</a></span>
+					<span class="w3-opacity">조회수.${ vo.hitcount }</span> <span
 						class="w3-opacity"><a id="good">좋아요.</a></span><span
 						class="w3-opacity"><a id="goodLst">${ vo.good }</a></span> <span
 						class="w3-opacity"><a id="bad">나빠요.</a></span><span
-						class="w3-opacity"><a id="badLst">${ vo.bad }</a></span><span 
+						class="w3-opacity"><a id="badLst">${ vo.bad }</a></span><span
 						class="w3-opacity"><a id="scrape">스크랩.</a></span><span
 						class="w3-opacity"><a id="scrapeLst">${ vo.scrapecount }</a></span>
 				</h5>
