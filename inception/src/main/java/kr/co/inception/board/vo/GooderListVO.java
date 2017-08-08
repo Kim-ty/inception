@@ -2,15 +2,16 @@ package kr.co.inception.board.vo;
 
 public class GooderListVO {
 	
-	private String userid;
+	private String gooder;
 
-	public String getUserid() {
-		return userid;
+	public String getGooder() {
+		return gooder;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setGooder(String gooder) {
+		this.gooder = gooder;
 	}
+
 		
 	
 }

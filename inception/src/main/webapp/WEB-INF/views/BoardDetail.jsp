@@ -18,8 +18,14 @@
 	rel="stylesheet"
 	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
 	crossorigin="anonymous">
+<<<<<<< HEAD
 
 <script>
+=======
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	
+<script type="text/javascript">
+>>>>>>> 9379402ba107af6501e4213c2e013edcf9fd90ed
 	function ReplyView() {
 		if ($(document).find("#replymore").html() == "댓글보기") {
 			reply.style.visibility = "visible";
@@ -31,6 +37,36 @@
 		}
 	}
 
+	function goodchk(loginID,badList){
+		$.each(Listarr,function(key,value)){
+				if(loginID==value.gooder){
+					return 1;					
+				}
+		}
+		return 2;
+	}
+	
+	function badchk(loginID,badList){
+		$.each(Listarr,function(key,value)){
+				if(loginID==value.bader){
+					return 1;					
+				}
+		}
+		return 2;
+	}
+
+	function scrapechk(loginID,scrapeList){
+		$.each(Listarr,function(key,value)){
+				if(loginID==value.scraper){
+					return 1;					
+				}
+		}
+		return 2;
+	}
+	
+	
+	
+	
 	function taglink(votag) {
 		alert(votag);
 		var tagArray = (votag).split(',');
@@ -73,7 +109,7 @@
 							});
 						});
 						
-						/* $('#scrape').click(function(){
+						 $('#scrape').click(function(){
 							$.ajax({
 								url : "/boad/scrape",
 								type : "post",
@@ -84,7 +120,7 @@
 									
 								}
 							});
-						}); */
+						});
 						
 						
 						$('#replymore')
@@ -94,7 +130,7 @@
 													.ajax({
 														url : "/board/replyList",
 														type : "POST",
-														dataType : "JSON",
+														dataType : "json",
 														data : {
 															bidx : $(document)
 																	.find(
@@ -145,13 +181,17 @@
 					});
 </script>
 <style>
+
 p img {
+
 	resize: both; /* 이미지 최대 사이즈에 적용 */
 	float: center; /* 가운데 정렬 */
 	max-width: 100%; /* 넓이를 지정 */
 	height: auto; /* 높이를 지정 */
 	margin: 5px 0; /* 여백을 적용 4가지 조건이 가능 위쪽, 오른쪽, 아래쪽, 왼쪽 순서 */
+
 }
+
 </style>
 
 <title>boardDetail</title>
@@ -160,7 +200,7 @@ p img {
 
 	<jsp:include page="header.jsp" flush="false" />
 
-	<c:set var="vo" value="${boardSimple}" />
+	<c:set var="vo" value="${boardDetail}" />
 	<!-- Blog entries -->
 	<div>
 		<!-- Blog entry -->
@@ -176,11 +216,15 @@ p img {
 						class="w3-opacity"><a href="board/boardList/${vo.category}">${ vo.category }</a></span>
 					<span class="w3-opacity">조회수.${ vo.hitcount }</span> <span
 						class="w3-opacity"><a id="good">좋아요.</a></span><span
-						class="w3-opacity"><a id="goodLst">${ vo.good }</a></span> <span
+						class="w3-opacity"><a id="goodLst">${fn:length(vo.gooder)}</a></span> <span
 						class="w3-opacity"><a id="bad">나빠요.</a></span><span
+<<<<<<< HEAD
 						class="w3-opacity"><a id="badLst">${ vo.bad }</a></span><span
+=======
+						class="w3-opacity"><a id="badLst">${fn:length(vo.bader)}</a></span><span 
+>>>>>>> 9379402ba107af6501e4213c2e013edcf9fd90ed
 						class="w3-opacity"><a id="scrape">스크랩.</a></span><span
-						class="w3-opacity"><a id="scrapeLst">${ vo.scrapecount }</a></span>
+						class="w3-opacity"><a id="scrapeLst">${fn:length(vo.scraper)}</a></span>
 				</h5>
 
 			</div>

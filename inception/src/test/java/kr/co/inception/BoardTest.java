@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.co.inception.board.service.BoardService;
+import kr.co.inception.board.vo.BoardDetailVO;
 import kr.co.inception.message.service.MessageService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -41,7 +42,12 @@ public class BoardTest {
 //		
 //		boardService.boardInsert(board);
 //		
-		boardService.showBoardList();
+//		boardService.showBoardList();
+		BoardDetailVO boardDetailVO = new BoardDetailVO();
+		boardDetailVO = boardService.showBoardDetail("3");
+		System.out.println(boardDetailVO);
+		System.out.println(boardDetailVO.getBidx());
+		//		boardService.showBoardSimple("2");
 		//System.out.println(boardService.showScraperList("2"));
 	}
 }

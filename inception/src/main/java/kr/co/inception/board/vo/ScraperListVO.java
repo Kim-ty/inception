@@ -2,25 +2,16 @@ package kr.co.inception.board.vo;
 
 public class ScraperListVO {
 	
-	
-	private String bidx;
-	private String userid;
+	private String scraper;
 
-	public String getBidx() {
-		return bidx;
+	public String getScraper() {
+		return scraper;
 	}
 
-	public void setBidx(String bidx) {
-		this.bidx = bidx;
+	public void setScraper(String scraper) {
+		this.scraper = scraper;
 	}
 
-	public String getUserid() {
-		return userid;
-	}
-
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
 	
 	
 }

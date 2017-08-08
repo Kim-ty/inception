@@ -43,6 +43,9 @@ public interface BoardService {
 	public List<BoardListVO> selectcategory(String category);
 	public List<TagListVO> tagList();
 	public String boarddetailprofilepicture(String bidx);
+	public int goodbadcheck(GoodDTO goodDTO);
+	public void goodbaddelete(GoodDTO goodDTO);
+	public void updategoodbad(GoodDTO goodDTO);
 
 
 
