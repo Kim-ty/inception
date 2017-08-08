@@ -18,14 +18,9 @@
 	rel="stylesheet"
 	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
 	crossorigin="anonymous">
-<<<<<<< HEAD
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 	
 <script type="text/javascript">
-=======
-	
-<script>
->>>>>>> d75249796279c5b590e92ddb11c464439f4f4897
 	function ReplyView() {
 		if ($(document).find("#replymore").html() == "댓글보기") {
 			reply.style.visibility = "visible";
@@ -84,48 +79,6 @@
 						var targetbidx = $(document).find("#bidx").html();
 						
 						$('#good').click(function(){
-<<<<<<< HEAD
-		                     $.ajax({
-		                        url : "/boad/good",
-		                        type : "post",
-		                        dataType : "JSON",
-		                        data : {
-		                           bidx : targetbidx
-		                           },
-		                        success : :function(){
-		                           
-		                        }
-		                     });
-		                  });
-		                  
-		                  $('#bad').click(function(){
-		                     $.ajax({
-		                        url : "/boad/bad",
-		                        type : "post",
-		                        dataType : "JSON",
-		                        data : {
-		                           bidx : targetbidx
-		                           },
-		                        success : :function(){
-		                           
-		                        }
-		                     });
-		                  });
-		                  
-		                   $('#scrape').click(function(){
-		                     $.ajax({
-		                        url : "/boad/scrape",
-		                        type : "post",
-		                        dataType : "JSON",
-		                        data : {
-		                           bidx : targetbidx
-		                           },
-		                        success : :function(){
-		                           
-		                        }
-		                     });
-		                  });
-=======
 							$.ajax({
 								url : "/boad/good",
 								type : "post",
@@ -162,12 +115,7 @@
 									
 								}
 							});
-<<<<<<< HEAD
 						});
-=======
-						}); */
->>>>>>> d75249796279c5b590e92ddb11c464439f4f4897
->>>>>>> 8270240721cc946034e2f0b9e4026ad89b93197c
 						
 						
 						$('#replymore')
@@ -267,11 +215,7 @@ p img {
 						class="w3-opacity"><a id="bad">나빠요.</a></span><span
 						class="w3-opacity"><a id="badLst">${fn:length(vo.bader)}</a></span><span 
 						class="w3-opacity"><a id="scrape">스크랩.</a></span><span
-<<<<<<< HEAD
 						class="w3-opacity"><a id="scrapeLst">${fn:length(vo.scraper)}</a></span>
-=======
-						class="w3-opacity"><a id="scrapeLst">${ vo.scrapecount }</a></span>
->>>>>>> d75249796279c5b590e92ddb11c464439f4f4897
 				</h5>
 
 			</div>

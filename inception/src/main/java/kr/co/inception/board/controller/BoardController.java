@@ -149,11 +149,6 @@ public class BoardController {
 		goodDTO.setBidx(bidx);
 		goodDTO.setUserid(userid);
 		int result = boardService.goodcheck(goodDTO);
-		if (result == 1) {
-			System.out.println("이미 따봉 했당게");
-			return result;
-		}
-		System.out.println("따봉 ㄳ");
 		return result;
 	}
 
@@ -353,5 +348,43 @@ public class BoardController {
 		boardService.boardInsert(boardInsertDTO);
 
 	}
+	
+	@RequestMapping(value = "/andgoodbadcheck")
+	@ResponseBody
+	public int andgoodbadcheck(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid) {
+		GoodDTO goodDTO = new GoodDTO();
+		goodDTO.setBidx(bidx);
+		goodDTO.setUserid(userid);
+		int g_b_count = boardService.goodbadcheck(goodDTO);
+		return g_b_count;
+
+	}
+	
+	@RequestMapping(value = "/andgoodbaddelete")
+	@ResponseBody
+	public void andgoodbaddelete(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid) {
+		GoodDTO goodDTO = new GoodDTO();
+		goodDTO.setBidx(bidx);
+		goodDTO.setUserid(userid);
+		boardService.goodbaddelete(goodDTO);
+		
+
+	}
+	@RequestMapping(value = "/andupdategoodbad")
+	@ResponseBody
+	public void andupdategoodbad(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid,@RequestParam("g_b_count") String g_b_count) {
+		GoodDTO goodDTO = new GoodDTO();
+		goodDTO.setBidx(bidx);
+		goodDTO.setUserid(userid);
+		goodDTO.setG_b_count(g_b_count);
+		boardService.updategoodbad(goodDTO);
+		
+
+	}
+	
+	
+	
+	
+	
 
 }

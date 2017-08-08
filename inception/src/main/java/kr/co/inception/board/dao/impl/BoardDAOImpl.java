@@ -155,6 +155,21 @@ public class BoardDAOImpl implements BoardDAO{
 	public String boarddetailprofilepicture(String bidx) {
 		return sqlSession.selectOne(namespace+".boarddetailprofilepicture",bidx);
 	}
+
+	@Override
+	public int goodbadcheck(GoodDTO goodDTO) {
+		return sqlSession.selectOne(namespace+".goodbadcheck",goodDTO);
+	}
+
+	@Override
+	public void goodbaddelete(GoodDTO goodDTO) {
+		sqlSession.delete(namespace+".goodbaddelete",goodDTO);
+	}
+
+	@Override
+	public void updategoodbad(GoodDTO goodDTO) {
+		sqlSession.update(namespace+".updategoodbad",goodDTO);
+	}
 	
 
 }
