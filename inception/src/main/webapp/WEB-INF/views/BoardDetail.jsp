@@ -73,7 +73,7 @@
 							});
 						});
 						
-						/* $('#scrape').click(function(){
+						 $('#scrape').click(function(){
 							$.ajax({
 								url : "/boad/scrape",
 								type : "post",
@@ -84,7 +84,7 @@
 									
 								}
 							});
-						}); */
+						});
 						
 						
 						$('#replymore')
