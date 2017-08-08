@@ -29,6 +29,7 @@ import kr.co.inception.board.dto.GoodDTO;
 import kr.co.inception.board.dto.ReplyDTO;
 import kr.co.inception.board.dto.ScrapeDTO;
 import kr.co.inception.board.service.BoardService;
+import kr.co.inception.board.vo.BoardDetailVO;
 import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.board.vo.BoardSimpleVO;
 import kr.co.inception.board.vo.ReplyListVO;
@@ -214,11 +215,10 @@ public class BoardController {
 	@RequestMapping(value = "/boardDetail/{param1}")
 	public String boardDetail(@PathVariable("param1") String bidx, Model model) {
 		boardService.hit(bidx);
-		BoardSimpleVO boardSimple = boardService.showBoardSimple(bidx);
-		for (TagListVO tag : boardSimple.getTag()) {
-			System.out.println(tag.getTag());
-		}
-		model.addAttribute("boardSimple", boardSimple);
+		BoardDetailVO boardDetail = boardService.showBoardDetail(bidx);
+		System.out.println(boardDetail);
+		System.out.println(boardDetail.getBidx());
+		model.addAttribute("boardDetail", boardDetail);
 		return "BoardDetail";
 	}
 
@@ -242,13 +242,6 @@ public class BoardController {
 	public String boardInsert(BoardInsertDTO boardInsertDTO, HttpSession session, Model model) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		boardInsertDTO.setUserid(loginVO.getUserid());
-		System.out.println("title : "+boardInsertDTO.getTitle());
-		System.out.println("contents : "+boardInsertDTO.getContents());
-		for(BoardTagDTO i : boardInsertDTO.getTagList()){
-			System.out.println("tag : "+i);
-		}
-		System.out.println("category : "+boardInsertDTO.getCategory());
-		System.out.println("thumbnail : "+boardInsertDTO.getThumbnail());
 		boardService.boardInsert(boardInsertDTO);
 
 		return "redirect:/board/boardList";
