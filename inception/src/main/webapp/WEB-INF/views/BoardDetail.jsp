@@ -19,154 +19,102 @@
 	rel="stylesheet"
 	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
 	crossorigin="anonymous">
-<<<<<<< HEAD
-<script type="text/javascript">
-=======
-<<<<<<< HEAD
-
-<script>
-=======
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 	
 <script type="text/javascript">
->>>>>>> 9379402ba107af6501e4213c2e013edcf9fd90ed
-	function ReplyView() {
-		if ($(document).find("#replymore").html() == "댓글보기") {
-			reply.style.visibility = "visible";
-			$(document).find("#replymore").html("댓글숨기기");
-		} else {
-			$("#replycontents").empty();
-			$(document).find("#replymore").html("댓글보기");
-			$("reply").append("<div id=replycontents></div>");
-		}
-	}
-
-	function goodchk(loginID,badList){
-		$.each(Listarr,function(key,value)){
-				if(loginID==value.gooder){
-					return 1;					
-				}
-		}
-		return 2;
-	}
-	
-	function badchk(loginID,badList){
-		$.each(Listarr,function(key,value)){
-				if(loginID==value.bader){
-					return 1;					
-				}
-		}
-		return 2;
-	}
-
-	function scrapechk(loginID,scrapeList){
-		$.each(Listarr,function(key,value)){
-				if(loginID==value.scraper){
-					return 1;					
-				}
-		}
-		return 2;
-	}
-	
-	
-	
-	
-	function taglink(votag) {
-		alert(votag);
-		var tagArray = (votag).split(',');
-		for ( var i in tagArray) {
-			$("#tags").append(
-					"<th><a href='/board/boardList/tag"+tagArray[i]+"'>"
-							+ tagArray[i] + "</a></th>");
-		}
-	}
->>>>>>> 98b2429840c5acb261ff4b6a9f95313b2488fbab
 
 	$(document)
 			.ready(
 					function() {
 						
-						var targetbidx = $(document).find("#bidx").html();
+						var targetbidx = $("#bidx").html();
 						
-<<<<<<< HEAD
 		                   $('.act').click(function(){
 		                	  var urlchose = $(this).attr("id");
-		                	  var targetbidx = $("#bidx").html();
-		                	  
 		                	  
 		                	  if($(this).html().indexOf("취소")==-1){
-			                     if($("#good").html.indexOf("취소")>-1 ||$("#bad").html.indexOf("취소")>-1){
-			                    	 alert("업데이트");
-			                     }else{		                    	 
-				                     alert("insert");
+			                     if($("#good").html().indexOf("취소") > -1 ||$("#bad").html().indexOf("취소") > -1){
+			                    	 $.ajax({
+				                        url : "/board/updategood",
+				                        type : "post",
+		    		                    dataType : "json",
+		        		                data : {
+		        		                	bidx : targetbidx,
+		        		                	g_b_count : $(this).html()
+		        		                },
+		                    		    success  :function(data){
+											if($(this).html=="좋아요"){
+												$("#good").html("좋아요취소");
+												$("#bad").html("싫어요");
+											}else{
+												$("#good").html("좋아요");
+												$("#bad").html("싫어요취소");												
+											}
+											
+											$("#goodList").html(data.goodcount);
+											$("#badList").html(data.badcount);
+
+		                    		    }
+		                     		});
+			                     }else{		       
+			                		  $.ajax({
+				                        url : "/board/"+urlchose,
+				                        type : "post",
+		    		                    dataType : "json",
+		        		                data : {
+		        		                	bidx : targetbidx
+		        		                },
+		                    		    success  :function(data){
+											if(urlchose=="good"){
+												$("#good").html("좋아요취소");
+												$("#goodList").html(data);
+											}else{
+												$("#bad").html("싫어요취소");
+												$("#badList").html(data);										
+											}
+		                    		    }
+		                     		});
 			                     }
-// 			                		  $.ajax({
-// 				                        url : "/board/"+urlchose,
-// 				                        type : "post",
-// 		    		                    dataType : "JSON",
-// 		        		                data : {
-// 		            		               bidx : targetbidx
-// 		                		           },
-// 		                    		    success  :function(data){
-// 		                        		   alert(data);
-// 		                        		}
-// 		                     		});
 			                     
 		                	  }else{
-// 		                		  $.ajax({
-// 			                        url : "/board/no"+urlchose,
-// 			                        type : "post",
-// 		    	                    dataType : "JSON",
-// 		        	                data : {
-// 		            	               bidx : targetbidx
-// 		                	           },
-// 		                    	    success  :function(data){
-// 		                        	   alert(data);
-// 		                        	}
-// 		                     	});
+		                		  $.ajax({
+			                        url : "/board/nogood",
+			                        type : "post",
+		    	                    dataType : "json",
+		        	                data : {
+	        		                	bidx : targetbidx
+	        		                },
+		                    	    success  :function(data){
+										$("#good").html("좋아요");
+										$("#bad").html("싫어요");
+									
+										$("#goodList").html(data.goodcount);
+										$("#badList").html(data.badcount);		                        	}
+		                     	});
 		                	  }
 		                  });
-=======
-						$('#good').click(function(){
-							$.ajax({
-								url : "/boad/good",
-								type : "post",
-								dataType : "JSON",
-								data : {
-									bidx : targetbidx},
-								success : :function(){
-									
-								}
-							});
-						});
-						
-						$('#bad').click(function(){
-							$.ajax({
-								url : "/boad/bad",
-								type : "post",
-								dataType : "JSON",
-								data : {
-									bidx : targetbidx},
-								success : :function(){
-									
-								}
-							});
-						});
-						
-						 $('#scrape').click(function(){
-							$.ajax({
-								url : "/boad/scrape",
-								type : "post",
-								dataType : "JSON",
-								data : {
-									bidx : targetbidx},
-								success : :function(){
-									
-								}
-							});
-						});
->>>>>>> 98b2429840c5acb261ff4b6a9f95313b2488fbab
-						
+		                   
+		                   $('.actscrap').click(function(){
+		                	  var urlchose = $(this).attr("id");
+			                		  $.ajax({
+				                        url : "/board/"+urlchose,
+				                        type : "post",
+		    		                    dataType : "json",
+		        		                data : {
+		            		               bidx : targetbidx,
+		            		               scrape : $(this).html()
+		                		           },
+		                    		    success  :function(data){
+		      		                	  if($("#scrape").html().indexOf("취소")==-1){
+		      		                		  $("#scrape").html("스크랩취소");
+		      		                	  }else{
+		      		                		  $("#scrape").html("스크랩");		      		                		  
+		      		                	  }
+		      		                	  	$("#scrapeList").html(data);
+		                        		}
+		                     		});
+			                     
+		                	  });
 						
 						$('#replymore')
 								.click(
@@ -190,27 +138,27 @@
 																			function(
 																					key,
 																					value) {
-																				var sibal = " ";
+																				var space = " ";
 																				if (value.level > 1) {
 																					for (var i = 0; i <= value.level; i++) {
-																						sibal += "&nbsp;&nbsp;";
+																						space += "&nbsp;&nbsp;";
 																					}
 																				}
 																				var row = $("<p>"
 																						+ "<span>"
-																						+ sibal
+																						+ space
 																						+ "<span>"
 																						+ value.userid
 																						+ "&nbsp"
 																						+ value.writedate
 																						+ "<br>"
 																						+ "<span>"
-																						+ sibal
+																						+ space
 																						+ "<span>"
 																						+ value.contents
 																						+ "<br>"
 																						+ "<span>"
-																						+ sibal
+																						+ space
 																						+ "<span>"
 																						+ "<a href='javascript:Replyinsert()'>답글달기</a></p>");
 																				$(
@@ -282,29 +230,14 @@ p img {
 				<h5>
 					<a href="/profile/${vo.userid}">${ vo.userid }</a> <span
 						class="w3-opacity">${ vo.writedate }</span> <span
-<<<<<<< HEAD
 						class="w3-opacity"><a href="board/boardList/${vo.category}">${ vo.category }</a></span> <span
 						class="w3-opacity">조회수.${ vo.hitcount }</span> <span
 						class="w3-opacity"><a id="good" class="act">${vo.good}</a></span><span
 						class="w3-opacity"><a id="goodList" class="list">${fn:length(vo.gooder)}</a></span> <span
 						class="w3-opacity"><a id="bad" class="act">${vo.bad}</a></span><span
 						class="w3-opacity"><a id="badList" class="list">${fn:length(vo.bader)}</a></span><span 
-						class="w3-opacity"><a id="scrape" class="act">${vo.scrape}</a></span><span
+						class="w3-opacity"><a id="scrape" class="actscrap">${vo.scrape}</a></span><span
 						class="w3-opacity"><a id="scrapeList" class="list">${fn:length(vo.scraper)}</a></span>
-=======
-						class="w3-opacity"><a href="board/boardList/${vo.category}">${ vo.category }</a></span>
-					<span class="w3-opacity">조회수.${ vo.hitcount }</span> <span
-						class="w3-opacity"><a id="good">좋아요.</a></span><span
-						class="w3-opacity"><a id="goodLst">${fn:length(vo.gooder)}</a></span> <span
-						class="w3-opacity"><a id="bad">나빠요.</a></span><span
-<<<<<<< HEAD
-						class="w3-opacity"><a id="badLst">${ vo.bad }</a></span><span
-=======
-						class="w3-opacity"><a id="badLst">${fn:length(vo.bader)}</a></span><span 
->>>>>>> 9379402ba107af6501e4213c2e013edcf9fd90ed
-						class="w3-opacity"><a id="scrape">스크랩.</a></span><span
-						class="w3-opacity"><a id="scrapeLst">${fn:length(vo.scraper)}</a></span>
->>>>>>> 98b2429840c5acb261ff4b6a9f95313b2488fbab
 				</h5>
 
 			</div>

@@ -22,6 +22,7 @@ public interface BoardService {
 	public void boardInsert(BoardInsertDTO boardInsertDTO);
 	public void boardUpdate(BoardUpdateDTO boardUpdateDTO);
 	public void replyInsert(ReplyDTO replyDTO);
+	public void descrape(ScrapeDTO scrapeDTO);
 	public void Scrape(ScrapeDTO scrapeDTO);
 	public void good(GoodDTO goodDTO);
 	public void bad(BadDTO badDTO);

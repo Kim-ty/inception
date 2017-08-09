@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +31,7 @@ import kr.co.inception.board.dto.GoodDTO;
 import kr.co.inception.board.dto.ReplyDTO;
 import kr.co.inception.board.dto.ScrapeDTO;
 import kr.co.inception.board.service.BoardService;
+import kr.co.inception.board.vo.AjaxGoodBadResult;
 import kr.co.inception.board.vo.BaderListVO;
 import kr.co.inception.board.vo.BoardDetailVO;
 import kr.co.inception.board.vo.BoardListVO;
@@ -281,42 +284,91 @@ public class BoardController {
 		return "boardInsert";
 	}
 
-	@RequestMapping(value = "/scrape")
+	@RequestMapping(value = "/scrape",method = RequestMethod.POST)
 	@ResponseBody
-	public String scrape(@RequestParam("bidx") String bidx, HttpSession session) {
+	public String scrape(@RequestParam String bidx,@RequestParam String scrape, HttpSession session) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		ScrapeDTO scrapeDTO = new ScrapeDTO();
 		scrapeDTO.setBidx(bidx);
 		scrapeDTO.setUserid(loginVO.getUserid());
-		boardService.Scrape(scrapeDTO);
-
-		return "/boardList";
+		if(scrape.equals("스크랩취소")){
+			boardService.descrape(scrapeDTO);
+		}else{
+			boardService.Scrape(scrapeDTO);			
+		}
+		List<ScraperListVO> scrapeListVO= boardService.showScraperList(bidx);
+		
+		return scrapeListVO.size()+"";
 	}
 
-	@RequestMapping(value = "/good")
+	
+	@RequestMapping(value = "/good",method = RequestMethod.POST)
 	@ResponseBody
-	public String good(@RequestParam("bidx") String bidx, HttpSession session) {
+	public String good(@RequestParam String bidx, HttpSession session) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		GoodDTO goodDTO = new GoodDTO();
 		goodDTO.setBidx(bidx);
 		goodDTO.setUserid(loginVO.getUserid());
+		System.out.println("bidx : "+goodDTO.getBidx());
+		System.out.println("g_b_count : "+goodDTO.getG_b_count());
+		System.out.println("userid : "+goodDTO.getUserid());
 		boardService.good(goodDTO);
-
-		return "/boardSimple";
+		
+		return boardService.showGooderList(bidx).size()+"";
 	}
 
-	@RequestMapping(value = "/bad")
+	@RequestMapping(value = "/bad",method = RequestMethod.POST)
 	@ResponseBody
-	public String bad(@RequestParam("bidx") String bidx, HttpSession session) {
+	public String bad(@RequestParam String bidx, HttpSession session) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		BadDTO badDTO = new BadDTO();
 		badDTO.setBidx(bidx);
 		badDTO.setUserid(loginVO.getUserid());
 		boardService.bad(badDTO);
 
-		return "";
+		return boardService.showBaderList(bidx).size()+"";
+	}
+	
+	@RequestMapping(value = "/updategood",method = RequestMethod.POST)
+	@ResponseBody
+	public AjaxGoodBadResult updatebad(@RequestParam String bidx,@RequestParam String g_b_count,HttpSession session){
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		GoodDTO goodDTO = new GoodDTO();
+		if(g_b_count.contains("좋아요")){
+			goodDTO.setG_b_count("0");			
+		}else{
+			goodDTO.setG_b_count("1");
+		}
+		goodDTO.setBidx(bidx);
+		goodDTO.setUserid(loginVO.getUserid());
+		System.out.println("카운트 : "+goodDTO.getG_b_count());
+		boardService.updategoodbad(goodDTO);
+		AjaxGoodBadResult ajaxGoodBadResult = new AjaxGoodBadResult();
+		ajaxGoodBadResult.setGoodcount(boardService.showGooderList(bidx).size()+"");
+		ajaxGoodBadResult.setBadcount(boardService.showBaderList(bidx).size()+"");
+		
+		return ajaxGoodBadResult;
 	}
 
+	@RequestMapping(value = "/nogood",method = RequestMethod.POST)
+	@ResponseBody
+	public AjaxGoodBadResult nogood(@RequestParam String bidx,HttpSession session){
+		
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		GoodDTO goodDTO = new GoodDTO();
+		goodDTO.setBidx(bidx);
+		goodDTO.setUserid(loginVO.getUserid());
+		System.out.println("bidx : "+goodDTO.getBidx());
+		System.out.println("g_b_count : "+goodDTO.getG_b_count());
+		System.out.println("userid : "+goodDTO.getUserid());
+		boardService.goodbaddelete(goodDTO);
+		AjaxGoodBadResult ajaxGoodBadResult = new AjaxGoodBadResult();
+		ajaxGoodBadResult.setGoodcount(boardService.showGooderList(bidx).size()+"");
+		ajaxGoodBadResult.setBadcount(boardService.showBaderList(bidx).size()+"");
+		
+		return ajaxGoodBadResult;
+	}
+	
 	@RequestMapping(value = "/uploadImage", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String uploadAjax(MultipartFile file) throws Exception {

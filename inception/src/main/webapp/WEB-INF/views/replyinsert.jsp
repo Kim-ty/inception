@@ -18,18 +18,17 @@
 			<div class="col-sm">
 				<div class="login-box well">
 
-					<form role="form" method="post" action="/user/loginchk">
+					<form role="form" method="post" action="/board/replyInsert">
 						<legend align="left">댓글달기</legend>
-
 						<div class="form-group">
-								<input name="userid"
-								id="userid" type="text"
+								<input name="reply"
+								id="reply" type="text"
 								class="form-control" />
 						</div>
 						<div class="form-group">
 							<input type="submit"
 								class="btn btn-default btn-login-submit btn-block m-t-md"
-								value="sign in" />
+								value="post" />
 						</div>
 					</form>
 				</div>
