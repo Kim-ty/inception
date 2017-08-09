@@ -27,12 +27,31 @@
 <body>
 	<div class="container">
 		<div class="row">
+<<<<<<< HEAD
 			<form role="form" method="post" action="">
 				<div class="form-group">
 					<input name="reply" id="reply" type="text" class="form-control" />
 				</div>
 				<div class="form-group">
 					<input type="submit" value="submit" />
+=======
+			<div class="col-sm">
+				<div class="login-box well">
+
+					<form role="form" method="post" action="/board/replyInsert">
+						<legend align="left">댓글달기</legend>
+						<div class="form-group">
+								<input name="reply"
+								id="reply" type="text"
+								class="form-control" />
+						</div>
+						<div class="form-group">
+							<input type="submit"
+								class="btn btn-default btn-login-submit btn-block m-t-md"
+								value="post" />
+						</div>
+					</form>
+>>>>>>> 524a1f4f10b1edee45a1897ddb37527db90f02fb
 				</div>
 				<div class="form-group">
 					<input type="Button" value="Cancel" />

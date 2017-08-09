@@ -7,20 +7,27 @@
 <html lang="en">
 
 <head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<<<<<<< HEAD
 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+=======
+>>>>>>> 524a1f4f10b1edee45a1897ddb37527db90f02fb
 
 <!-- 부트스트랩 -->
 <link
+<<<<<<< HEAD
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet">
 <script type="text/javascript">
@@ -30,6 +37,109 @@
 
 						var targetbidx = $(document).find("#bidx").html();
 
+=======
+	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
+	crossorigin="anonymous">
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	
+<script type="text/javascript">
+
+	$(document)
+			.ready(
+					function() {
+						
+						var targetbidx = $("#bidx").html();
+						
+		                   $('.act').click(function(){
+		                	  var urlchose = $(this).attr("id");
+		                	  
+		                	  if($(this).html().indexOf("취소")==-1){
+			                     if($("#good").html().indexOf("취소") > -1 ||$("#bad").html().indexOf("취소") > -1){
+			                    	 $.ajax({
+				                        url : "/board/updategood",
+				                        type : "post",
+		    		                    dataType : "json",
+		        		                data : {
+		        		                	bidx : targetbidx,
+		        		                	g_b_count : $(this).html()
+		        		                },
+		                    		    success  :function(data){
+											if($(this).html=="좋아요"){
+												$("#good").html("좋아요취소");
+												$("#bad").html("싫어요");
+											}else{
+												$("#good").html("좋아요");
+												$("#bad").html("싫어요취소");												
+											}
+											
+											$("#goodList").html(data.goodcount);
+											$("#badList").html(data.badcount);
+
+		                    		    }
+		                     		});
+			                     }else{		       
+			                		  $.ajax({
+				                        url : "/board/"+urlchose,
+				                        type : "post",
+		    		                    dataType : "json",
+		        		                data : {
+		        		                	bidx : targetbidx
+		        		                },
+		                    		    success  :function(data){
+											if(urlchose=="good"){
+												$("#good").html("좋아요취소");
+												$("#goodList").html(data);
+											}else{
+												$("#bad").html("싫어요취소");
+												$("#badList").html(data);										
+											}
+		                    		    }
+		                     		});
+			                     }
+			                     
+		                	  }else{
+		                		  $.ajax({
+			                        url : "/board/nogood",
+			                        type : "post",
+		    	                    dataType : "json",
+		        	                data : {
+	        		                	bidx : targetbidx
+	        		                },
+		                    	    success  :function(data){
+										$("#good").html("좋아요");
+										$("#bad").html("싫어요");
+									
+										$("#goodList").html(data.goodcount);
+										$("#badList").html(data.badcount);		                        	}
+		                     	});
+		                	  }
+		                  });
+		                   
+		                   $('.actscrap').click(function(){
+		                	  var urlchose = $(this).attr("id");
+			                		  $.ajax({
+				                        url : "/board/"+urlchose,
+				                        type : "post",
+		    		                    dataType : "json",
+		        		                data : {
+		            		               bidx : targetbidx,
+		            		               scrape : $(this).html()
+		                		           },
+		                    		    success  :function(data){
+		      		                	  if($("#scrape").html().indexOf("취소")==-1){
+		      		                		  $("#scrape").html("스크랩취소");
+		      		                	  }else{
+		      		                		  $("#scrape").html("스크랩");		      		                		  
+		      		                	  }
+		      		                	  	$("#scrapeList").html(data);
+		                        		}
+		                     		});
+			                     
+		                	  });
+						
+>>>>>>> 524a1f4f10b1edee45a1897ddb37527db90f02fb
 						$('#replymore')
 								.click(
 										function() {
@@ -52,27 +162,27 @@
 																			function(
 																					key,
 																					value) {
-																				var sibal = " ";
+																				var space = " ";
 																				if (value.level > 1) {
 																					for (var i = 0; i <= value.level; i++) {
-																						sibal += "&nbsp;&nbsp;";
+																						space += "&nbsp;&nbsp;";
 																					}
 																				}
 																				var row = $("<p>"
 																						+ "<span>"
-																						+ sibal
+																						+ space
 																						+ "<span>"
 																						+ value.userid
 																						+ "&nbsp"
 																						+ value.writedate
 																						+ "<br>"
 																						+ "<span>"
-																						+ sibal
+																						+ space
 																						+ "<span>"
 																						+ value.contents
 																						+ "<br>"
 																						+ "<span>"
-																						+ sibal
+																						+ space
 																						+ "<span>"
 																						+ "<a href='javascript:Replyinsert()'>답글달기</a></p>");
 																				$(
@@ -86,6 +196,31 @@
 										});
 
 					});
+
+	function ReplyView() {
+		if ($(document).find("#replymore").html() == "댓글보기") {
+			reply.style.visibility = "visible";
+			$(document).find("#replymore").html("댓글숨기기");
+		} else {
+			$("#replycontents").empty();
+			$(document).find("#replymore").html("댓글보기");
+			$("reply").append("<div id=replycontents></div>");
+		}
+	}
+
+	
+	
+	
+	
+	function taglink(votag) {
+		alert(votag);
+		var tagArray = (votag).split(',');
+		for ( var i in tagArray) {
+			$("#tags").append(
+					"<th><a href='/board/boardList/tag"+tagArray[i]+"'>"
+							+ tagArray[i] + "</a></th>");
+		}
+	}
 </script>
 
 <style>
@@ -102,6 +237,7 @@ p img {
 </head>
 <body>
 
+<<<<<<< HEAD
 	<div class="container-fluid">
 		<div>
 			<jsp:include page="header.jsp" flush="false" />
@@ -159,6 +295,66 @@ p img {
 							<div id=replycontents></div>
 						</div>
 					</div>
+=======
+	<jsp:include page="header.jsp" flush="false" />
+	<c:set var="vo" value="${boardDetail}" />
+	<!-- Blog entries -->
+	<div>
+		<!-- Blog entry -->
+		<div class="w3-card-4 w3-margin w3-white">
+
+			<div class="w3-container-fluid">
+				<h3>
+					<span id="bidx">${vo.bidx}</span> <b>${vo.title}</b>
+				</h3>
+				<h5>
+					<a href="/profile/${vo.userid}">${ vo.userid }</a> <span
+						class="w3-opacity">${ vo.writedate }</span> <span
+						class="w3-opacity"><a href="board/boardList/${vo.category}">${ vo.category }</a></span> <span
+						class="w3-opacity">조회수.${ vo.hitcount }</span> <span
+						class="w3-opacity"><a id="good" class="act">${vo.good}</a></span><span
+						class="w3-opacity"><a id="goodList" class="list">${fn:length(vo.gooder)}</a></span> <span
+						class="w3-opacity"><a id="bad" class="act">${vo.bad}</a></span><span
+						class="w3-opacity"><a id="badList" class="list">${fn:length(vo.bader)}</a></span><span 
+						class="w3-opacity"><a id="scrape" class="actscrap">${vo.scrape}</a></span><span
+						class="w3-opacity"><a id="scrapeList" class="list">${fn:length(vo.scraper)}</a></span>
+				</h5>
+
+			</div>
+
+			<div class="w3-container">
+				<p>${vo.contents}.</p>
+
+			</div>
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Tags</h4>
+				</div>
+				<div class="w3-container w3-white">
+					<p>
+						<c:forEach var="tag" items="${vo.tag}">
+							<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
+								<a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
+							</span>
+						</c:forEach>
+					</p>
+				</div>
+			</div>
+
+			<div class="w3-row">
+				<div class="w3-col m8 s12">
+					<p>
+						<button class="w3-button w3-padding-large w3-white w3-border">
+							<b><a id="replymore">댓글보기</a></b>
+						</button>
+					</p>
+				</div>
+				<div class="w3-col m4 w3-hide-small">
+					<p>
+						<span class="w3-padding-large w3-right"><b>Comments</b> <span
+							class="w3-tag">${ vo.replycount }</span></span>
+					</p>
+>>>>>>> 524a1f4f10b1edee45a1897ddb37527db90f02fb
 				</div>
 			</div>
 		</div>
