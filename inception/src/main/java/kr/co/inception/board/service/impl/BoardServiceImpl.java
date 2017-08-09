@@ -144,6 +144,21 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public String boarddetailprofilepicture(String bidx) {
 		return boardDAO.boarddetailprofilepicture(bidx);
+	}
+
+	@Override
+	public int goodbadcheck(GoodDTO goodDTO) {
+		return boardDAO.goodbadcheck(goodDTO);
+	}
+
+	@Override
+	public void goodbaddelete(GoodDTO goodDTO) {
+		boardDAO.goodbaddelete(goodDTO);
+	}
+
+	@Override
+	public void updategoodbad(GoodDTO goodDTO) {
+		boardDAO.updategoodbad(goodDTO);
 	} 
 
 
