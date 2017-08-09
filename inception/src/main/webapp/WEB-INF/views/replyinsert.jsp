@@ -21,6 +21,12 @@
 					<form role="form" method="post" action="/board/replyInsert">
 						<legend align="left">댓글달기</legend>
 						<div class="form-group">
+							<input name="targetreply" id="targetreply" type="text" class="form-control" value="${value.ridx}"/>
+						</div>
+						<div class="form-group">
+							<input name="bidx" id="bidx" type="text" class="form-control" value="${vo.bidx}"/>
+						</div>
+						<div class="form-group">
 								<input name="reply"
 								id="reply" type="text"
 								class="form-control" />
