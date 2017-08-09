@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,8 +15,29 @@
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<<<<<<< HEAD
+<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+=======
+>>>>>>> 524a1f4f10b1edee45a1897ddb37527db90f02fb
 
+<!-- 부트스트랩 -->
 <link
+<<<<<<< HEAD
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+
+						var targetbidx = $(document).find("#bidx").html();
+
+=======
 	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
@@ -172,6 +195,7 @@
 
 						
 						
+>>>>>>> 524a1f4f10b1edee45a1897ddb37527db90f02fb
 						$('#replymore')
 								.click(
 										function() {
@@ -256,6 +280,10 @@
 		}
 	}
 </script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> dbb2cfb5b214f5bbbdff144640dceb221f06e0d4
 <style>
 p img {
 	resize: both; /* 이미지 최대 사이즈에 적용 */
@@ -270,6 +298,65 @@ p img {
 </head>
 <body>
 
+<<<<<<< HEAD
+	<div class="container-fluid">
+		<div>
+			<jsp:include page="header.jsp" flush="false" />
+			<div class="row-fluid">
+				<div>
+					<c:set var="vo" value="${boardDetail}" />
+
+					<div id="boarddetailcontents" style="border: solid black 1px;">
+						<div class="boarddetailcontents_header">
+							<div align="right">
+								<a href="/profile/${vo.userid}">${ vo.userid }</a> <span>${ vo.writedate }</span>
+								<span><a href="board/boardList/${vo.category}">${ vo.category }</a></span>
+								<span>조회수.${ vo.hitcount }</span>
+							</div>
+							<div align="left">
+								<span id="bidx">${vo.bidx}</span> <b><span>${vo.title}</span></b>
+							</div>
+						</div>
+						<div></div>
+
+
+						<div class="boarddetailcontents_body">
+							<div>
+								<span>${vo.contents}.</span>
+							</div>
+						</div>
+						<div class="boarddetailcontents_footer1">
+							<div align="right">
+								<span><a id="good">좋아요.</a></span> <span><a id="goodLst">${fn:length(vo.gooder)}</a></span>
+								<span><a id="bad">나빠요.</a></span> <span><a id="badLst">${fn:length(vo.bader)}</a></span>
+								<span><a id="scrape">스크랩.</a></span> <span><a
+									id="scrapeLst">${fn:length(vo.scraper)}</a></span>
+							</div>
+						</div>
+						<div class="boarddetailcontents_tags">
+							<div>
+								<h4>Tags</h4>
+								<div>
+									<c:forEach var="tag" items="${vo.tag}">
+										<span> <a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
+										</span>
+									</c:forEach>
+								</div>
+							</div>
+						</div>
+
+						<div class="boarddetailcontents_reply">
+							<div>
+								<span><b> <a id="replymore">댓글보기</a></b></span> <b>Comments</b>
+								<span>${ vo.replycount }</span>
+							</div>
+						</div>
+
+						<div id="reply" style="visibility: hidden;">
+							<div id=replycontents></div>
+						</div>
+					</div>
+=======
 	<jsp:include page="header.jsp" flush="false" />
 	<c:set var="vo" value="${boardDetail}" />
 	<!-- Blog entries -->
@@ -328,61 +415,47 @@ p img {
 						<span class="w3-padding-large w3-right"><b>Comments</b> <span
 							class="w3-tag">${ vo.replycount }</span></span>
 					</p>
-				</div>
-			</div>
-
-
-			<div id="reply" class="w3-container w3-white"
-				style="visibility: hidden;">
-				<div id=replycontents></div>
-			</div>
-
-		</div>
-	</div>
-
-
-
-
-
-	<div id="myModal" class="modal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">
-					<jsp:include page="replyinsert.jsp" />
+>>>>>>> 524a1f4f10b1edee45a1897ddb37527db90f02fb
 				</div>
 			</div>
 		</div>
 	</div>
+
+
+
+
+
+
+	<script type="text/javascript">
+		function ReplyView() {
+			if ($(document).find("#replymore").html() == "댓글보기") {
+				reply.style.visibility = "visible";
+				$(document).find("#replymore").html("댓글숨기기");
+			} else {
+				$("#replycontents").empty();
+				$(document).find("#replymore").html("댓글보기");
+				$("reply").append("<div id=replycontents></div>");
+			}
+		}
+
+		function taglink(votag) {
+			alert(votag);
+			var tagArray = (votag).split(',');
+			for ( var i in tagArray) {
+				$("#tags").append(
+						"<th><a href='/board/boardList/tag"+tagArray[i]+"'>"
+								+ tagArray[i] + "</a></th>");
+
+			}
+		}
+	</script>
 
 	<script>
 		function Replyinsert() {
 			modal.style.display = "block";
 		}
-
-		// Get the modal
-		var modal = document.getElementById('myModal');
-
-		// Get the button that opens the modal
-
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
-
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
 	</script>
+
 
 </body>
 </html>

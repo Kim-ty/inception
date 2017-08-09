@@ -250,6 +250,7 @@ public class MainController {
 			File imagefile = new File(imagePath);
 			System.out.println(imagefile.getName() + ", " + imagefile.isFile());
 			image = ImageIO.read(imagefile);
+			System.out.println("!!!!!!!!!!!!!");
 			if (image == null) {
 				System.out.println(imagePath + " 파일을 찾을 수 없음");
 			} else {
