@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.inception.board.dto.BadDTO;
 import kr.co.inception.board.dto.BoardInsertDTO;
 import kr.co.inception.board.dto.BoardTagDTO;
 import kr.co.inception.board.dto.BoardUpdateDTO;
@@ -28,11 +29,11 @@ import kr.co.inception.board.dto.GoodDTO;
 import kr.co.inception.board.dto.ReplyDTO;
 import kr.co.inception.board.dto.ScrapeDTO;
 import kr.co.inception.board.service.BoardService;
+import kr.co.inception.board.vo.BoardDetailVO;
 import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.board.vo.BoardSimpleVO;
 import kr.co.inception.board.vo.ReplyListVO;
 import kr.co.inception.board.vo.TagListVO;
-import kr.co.inception.main.service.MainService;
 import kr.co.inception.user.vo.LoginVO;
 
 @Controller
@@ -70,6 +71,8 @@ public class BoardController {
 	public BoardSimpleVO andboard(@RequestParam("bidx") String bidx) {
 		boardService.hit(bidx);
 		BoardSimpleVO boardSimple = boardService.showBoardSimple(bidx);
+		String profilepicture = boardService.boarddetailprofilepicture(bidx);
+		boardSimple.setProfilepicture(profilepicture);
 		return boardSimple;
 	}
 
@@ -129,6 +132,16 @@ public class BoardController {
 
 	}
 
+	@RequestMapping(value = "/andcontentsbad")
+	@ResponseBody
+	public void andcontentsbad(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid) {
+		BadDTO badDTO = new BadDTO();
+		badDTO.setBidx(bidx);
+		badDTO.setUserid(userid);
+		boardService.bad(badDTO);
+
+	}
+
 	@RequestMapping(value = "/andgoodcheck")
 	@ResponseBody
 	public int andgoodcheck(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid) {
@@ -136,11 +149,6 @@ public class BoardController {
 		goodDTO.setBidx(bidx);
 		goodDTO.setUserid(userid);
 		int result = boardService.goodcheck(goodDTO);
-		if (result == 1) {
-			System.out.println("이미 따봉 했당게");
-			return result;
-		}
-		System.out.println("따봉 ㄳ");
 		return result;
 	}
 
@@ -202,11 +210,10 @@ public class BoardController {
 	@RequestMapping(value = "/boardDetail/{param1}")
 	public String boardDetail(@PathVariable("param1") String bidx, Model model) {
 		boardService.hit(bidx);
-		BoardSimpleVO boardSimple = boardService.showBoardSimple(bidx);
-		for (TagListVO tag : boardSimple.getTag()) {
-			System.out.println(tag.getTag());
-		}
-		model.addAttribute("boardSimple", boardSimple);
+		BoardDetailVO boardDetail = boardService.showBoardDetail(bidx);
+		System.out.println(boardDetail);
+		System.out.println(boardDetail.getBidx());
+		model.addAttribute("boardDetail", boardDetail);
 		return "BoardDetail";
 	}
 
@@ -230,13 +237,6 @@ public class BoardController {
 	public String boardInsert(BoardInsertDTO boardInsertDTO, HttpSession session, Model model) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		boardInsertDTO.setUserid(loginVO.getUserid());
-		System.out.println("title : "+boardInsertDTO.getTitle());
-		System.out.println("contents : "+boardInsertDTO.getContents());
-		for(BoardTagDTO i : boardInsertDTO.getTagList()){
-			System.out.println("tag : "+i);
-		}
-		System.out.println("category : "+boardInsertDTO.getCategory());
-		System.out.println("thumbnail : "+boardInsertDTO.getThumbnail());
 		boardService.boardInsert(boardInsertDTO);
 
 		return "redirect:/board/boardList";
@@ -273,20 +273,41 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/scrape")
-	public String scrape(ScrapeDTO scrapeDTO) {
-
+	@ResponseBody
+	public String scrape(@RequestParam("bidx") String bidx,HttpSession session) {
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		ScrapeDTO scrapeDTO = new ScrapeDTO();
+		scrapeDTO.setBidx(bidx);
+		scrapeDTO.setUserid(loginVO.getUserid());
 		boardService.Scrape(scrapeDTO);
 
 		return "/boardList";
 	}
 
 	@RequestMapping(value = "/good")
-	public String good(GoodDTO goodDTO) {
+	@ResponseBody
+	public String good(@RequestParam("bidx") String bidx,HttpSession session) {
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		GoodDTO goodDTO = new GoodDTO();
+		goodDTO.setBidx(bidx);
+		goodDTO.setUserid(loginVO.getUserid());
 		boardService.good(goodDTO);
 
 		return "/boardSimple";
 	}
 
+	@RequestMapping(value="/bad")
+	@ResponseBody
+	public String bad(@RequestParam("bidx") String bidx,HttpSession session){
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		BadDTO badDTO = new BadDTO();
+		badDTO.setBidx(bidx);
+		badDTO.setUserid(loginVO.getUserid());
+		boardService.bad(badDTO);
+		
+		return "";
+	}
+	
 	@RequestMapping(value = "/uploadImage", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String uploadAjax(MultipartFile file) throws Exception {
@@ -306,12 +327,13 @@ public class BoardController {
 	@ResponseBody
 	public void andboardinsert(@RequestParam("title") String title, @RequestParam("userid") String userid,
 			@RequestParam("contents") String contents, @RequestParam("category") String category,
-			@RequestParam("tag") String tag) {
+			@RequestParam("tag") String tag,@RequestParam("thumbnail") String thumbnail) {
 		BoardInsertDTO boardInsertDTO = new BoardInsertDTO();
 		boardInsertDTO.setTitle(title);
 		boardInsertDTO.setUserid(userid);
 		boardInsertDTO.setCategory(category);
 		boardInsertDTO.setContents(contents);
+		boardInsertDTO.setThumbnail(thumbnail);
 		System.out.println(tag);
 		List<BoardTagDTO> tagList = new ArrayList<BoardTagDTO>();
 		String[] aaa = tag.split("@");
@@ -326,5 +348,43 @@ public class BoardController {
 		boardService.boardInsert(boardInsertDTO);
 
 	}
+	
+	@RequestMapping(value = "/andgoodbadcheck")
+	@ResponseBody
+	public int andgoodbadcheck(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid) {
+		GoodDTO goodDTO = new GoodDTO();
+		goodDTO.setBidx(bidx);
+		goodDTO.setUserid(userid);
+		int g_b_count = boardService.goodbadcheck(goodDTO);
+		return g_b_count;
+
+	}
+	
+	@RequestMapping(value = "/andgoodbaddelete")
+	@ResponseBody
+	public void andgoodbaddelete(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid) {
+		GoodDTO goodDTO = new GoodDTO();
+		goodDTO.setBidx(bidx);
+		goodDTO.setUserid(userid);
+		boardService.goodbaddelete(goodDTO);
+		
+
+	}
+	@RequestMapping(value = "/andupdategoodbad")
+	@ResponseBody
+	public void andupdategoodbad(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid,@RequestParam("g_b_count") String g_b_count) {
+		GoodDTO goodDTO = new GoodDTO();
+		goodDTO.setBidx(bidx);
+		goodDTO.setUserid(userid);
+		goodDTO.setG_b_count(g_b_count);
+		boardService.updategoodbad(goodDTO);
+		
+
+	}
+	
+	
+	
+	
+	
 
 }

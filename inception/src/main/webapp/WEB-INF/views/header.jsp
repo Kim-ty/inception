@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
+
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -42,9 +47,10 @@ body {
 }
 
 div.jumbotron {
-	padding-top: 1pc;
+	padding-top: 15px;
 	padding-left: 15px;
 	padding-right: 15px;
+	padding-bottom: 0px;
 	background-color: transparent;
 }
 
@@ -57,18 +63,17 @@ div.logo {
 }
 </style>
 
-<title>Main</title>
-
 </head>
 
 <body>
 
-	<div class="jumbotron">
+	<div class="jumbotron" style="margin-bottom: 0px;">
 
 		<div>
 			<div class="logo">
-				<a href="http://localhost:8080/">Inception</a>
-
+				<h1>
+					<a href="http://localhost:8080/">Inception</a>
+				</h1>
 
 				<div id="login">
 
@@ -95,6 +100,7 @@ div.logo {
 									<!-- Modal content -->
 									<div class="modal-content">
 										<div class="modal-header">
+
 											<button type="button" class="close" data-dismiss="modal"
 												aria-hidden="true">&times;</button>
 
@@ -148,8 +154,9 @@ div.logo {
 			<c:when test="${not  empty categoryList}">
 				<div class="w3-hide-small" id="categories" align="left">
 					<c:forEach var="vo" items="${categoryList }">
-						<a href="/board/boardList/${vo.category }">
-						<input type="submit" name="category1" value=${vo.category }></a>
+
+						<a href="/board/boardList/${vo.category }"> <input
+							type="submit" name="category1" value=${vo.category }></a>
 					</c:forEach>
 				</div>
 				<div>
@@ -166,25 +173,27 @@ div.logo {
 
 				<nav
 					class="w3-sidebar w3-bar-block w3-light-grey w3-card-2 w3-animate-left w3-hide-medium w3-hide-large"
-					style="display: none" id="mySidebar"> <a
-					href="javascript:void(0)" onclick="w3_close(mySidebar)"
-					class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a> <c:forEach
-					var="vo" items="${categoryList }">
+					style="display: none" id="mySidebar">
+					<a href="javascript:void(0)" onclick="w3_close(mySidebar)"
+						class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+					<c:forEach var="vo" items="${categoryList }">
 
-					<a href="/board/boardList/${vo.category }"
-						onclick="w3_close(mySidebar)" class="w3-bar-item w3-button">${vo.category }</a>
+						<a href="/board/boardList/${vo.category }"
+							onclick="w3_close(mySidebar)" class="w3-bar-item w3-button">${vo.category }</a>
 
-				</c:forEach> </nav>
+					</c:forEach>
+				</nav>
 
 				<nav
 					class="w3-sidebar w3-bar-block w3-light-grey w3-card-2 w3-animate-left w3-hide-medium w3-hide-large"
-					style="display: none" id="mySideTags"> <a
-					href="javascript:void(0)" onclick="w3_close(mySideTags)"
-					class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a> <c:forEach
-					var="tagList" items="${tagList}">
-					<a href="/board/boardList/tag${tagList.tag}"
-						onclick="w3_close(mySideTags)" class="w3-bar-item w3-button">${tagList.tag}</a>
-				</c:forEach> </nav>
+					style="display: none" id="mySideTags">
+					<a href="javascript:void(0)" onclick="w3_close(mySideTags)"
+						class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+					<c:forEach var="tagList" items="${tagList}">
+						<a href="/board/boardList/tag${tagList.tag}"
+							onclick="w3_close(mySideTags)" class="w3-bar-item w3-button">${tagList.tag}</a>
+					</c:forEach>
+				</nav>
 				<hr>
 	</div>
 	</c:when>

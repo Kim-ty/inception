@@ -46,4 +46,5 @@ public class MessageServiceImpl implements MessageService {
 	public void notyfidelete(String targetuserid) {
 		messageDAO.notyfidelete(targetuserid);
 	}
+
 }

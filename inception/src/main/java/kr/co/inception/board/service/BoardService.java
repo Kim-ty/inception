@@ -41,7 +41,12 @@ public interface BoardService {
 	public int scrapscheck(ScrapeDTO scrapeDTO);
 	public int goodcheck(GoodDTO goodDTO);
 	public List<BoardListVO> selectcategory(String category);
-	public List<TagListVO> tagList();	
+	public List<TagListVO> tagList();
+	public String boarddetailprofilepicture(String bidx);
+	public int goodbadcheck(GoodDTO goodDTO);
+	public void goodbaddelete(GoodDTO goodDTO);
+	public void updategoodbad(GoodDTO goodDTO);
+
 
 
 	

@@ -9,11 +9,12 @@ public class ProfileBoardListVO {
 	private String writedate;
 	private String category;
 	private int hitcnt;
+	
 	private String gcnt;
 	private String bcnt;
 	private String scrapecnt;
 	private String rpcnt;
-	
+	private String thumbnail;
 	public String getCategory() {
 		return category;
 	}
@@ -79,6 +80,12 @@ public class ProfileBoardListVO {
 	}
 	public void setBidx(String bidx) {
 		this.bidx = bidx;
+	}
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 		

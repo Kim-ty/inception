@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -55,36 +59,40 @@ body {
 <body>
 
 	<jsp:include page="header.jsp" flush="false" />
+	<div>
 
-	<div class="w3-row-padding w3-center w3-margin-top">
-		<div class="w3-threequarter">
-			<div class="w3-card-2 w3-container" style="min-height: 460px">
+		<div class="w3-row-padding w3-center w3-margin-top">
+			<div class="w3-threequarter">
+				<div class="w3-card-2 w3-container" style="min-height: 460px">
 
-				<form>
-					<h4>Search</h4>
-					<input type="text" name="" placeholder="Search"> <br>
-					<br>
-					<button type="submit" name="" class="btn btn-default">search</button>
-				</form>
-				<br> or
-				<form id="form1" runat="server" action="inception" method="post"
-					enctype="multipart/form-data">
-					<p>
-						<input id="imgInp" type="file" name="uploadfile"
-							required="required" style="display: none;" /> <img
-							src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/25.Camera-Front-128.png"
-							border="0" onclick="document.all.uploadfile.click();" id="imgbtn">
+					<form>
+						<h4>Search</h4>
+						<input type="text" name="" placeholder="Search"> <br>
+						<br>
+						<button type="submit" name="" class="btn btn-default">search</button>
+					</form>
+					<br> or
+					<form id="form1" runat="server" action="inception" method="post"
+						enctype="multipart/form-data">
+						<p>
+							<input id="imgInp" type="file" name="uploadfile"
+								required="required" style="display: none;" /> <img
+								src="https://cdn4.iconfinder.com/data/icons/48-bubbles/48/25.Camera-Front-128.png"
+								border="0" onclick="document.all.uploadfile.click();"
+								id="imgbtn">
 
-					</p>
-					<h4>Click the Camera and Upload your Image</h4>
+						</p>
+						<h4>Click the Camera and Upload your Image</h4>
 
-					<br> <img id="blah" style="width: 80%; height: auto;" /> <br>
-					<br> <input type="submit" value="Search"
-						class="btn btn-default">
+						<br> <img id="blah" style="width: 80%; height: auto;" /> <br>
+						<br> <input type="submit" value="Search"
+							class="btn btn-default">
 
-				</form>
+					</form>
 
+				</div>
 			</div>
+<<<<<<< HEAD
 		</div>
 		<div class="w3-quarter w3-hide-small" style="width: 13%" align="left">
 			<div class="w3-card-2 w3-container" style="min-height: 460px">
@@ -102,11 +110,17 @@ body {
 
 
 				</c:forEach>
+=======
+			<div class="w3-quarter w3-hide-small">
+				<div class="w3-card-2 w3-container" style="min-height: 460px">
 
+					<jsp:include page="tagList.jsp" flush="false" />
+>>>>>>> 98b2429840c5acb261ff4b6a9f95313b2488fbab
+
+				</div>
 			</div>
 		</div>
 	</div>
-
 </body>
 
 </html>

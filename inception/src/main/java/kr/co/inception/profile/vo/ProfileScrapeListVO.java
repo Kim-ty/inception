@@ -15,7 +15,14 @@ public class ProfileScrapeListVO {
 	private String rpcnt;
 	private String profileid;
 	private String scrapedate;
+	private String thumbnail;
 	
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
 	public String getWritedate() {
 		return writedate;
 	}
