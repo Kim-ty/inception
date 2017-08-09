@@ -29,10 +29,13 @@ import kr.co.inception.board.dto.GoodDTO;
 import kr.co.inception.board.dto.ReplyDTO;
 import kr.co.inception.board.dto.ScrapeDTO;
 import kr.co.inception.board.service.BoardService;
+import kr.co.inception.board.vo.BaderListVO;
 import kr.co.inception.board.vo.BoardDetailVO;
 import kr.co.inception.board.vo.BoardListVO;
 import kr.co.inception.board.vo.BoardSimpleVO;
+import kr.co.inception.board.vo.GooderListVO;
 import kr.co.inception.board.vo.ReplyListVO;
+import kr.co.inception.board.vo.ScraperListVO;
 import kr.co.inception.board.vo.TagListVO;
 import kr.co.inception.user.vo.LoginVO;
 
@@ -213,11 +216,17 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/boardDetail/{param1}")
-	public String boardDetail(@PathVariable("param1") String bidx, Model model) {
+	public String boardDetail(@PathVariable("param1") String bidx, HttpSession session, Model model) {
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		boardService.hit(bidx);
 		BoardDetailVO boardDetail = boardService.showBoardDetail(bidx);
-		System.out.println(boardDetail);
-		System.out.println(boardDetail.getBidx());
+		
+		
+			boardDetail.setGood(goodchk(boardDetail.getGooder(), loginVO.getUserid()));
+			boardDetail.setBad(badchk(boardDetail.getBader(), loginVO.getUserid()));			
+			boardDetail.setScrape(scrapechk(boardDetail.getScraper(), loginVO.getUserid()));
+		
+
 		model.addAttribute("boardDetail", boardDetail);
 		return "BoardDetail";
 	}
@@ -279,7 +288,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/scrape")
 	@ResponseBody
-	public String scrape(@RequestParam("bidx") String bidx,HttpSession session) {
+	public String scrape(@RequestParam("bidx") String bidx, HttpSession session) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		ScrapeDTO scrapeDTO = new ScrapeDTO();
 		scrapeDTO.setBidx(bidx);
@@ -291,7 +300,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/good")
 	@ResponseBody
-	public String good(@RequestParam("bidx") String bidx,HttpSession session) {
+	public String good(@RequestParam("bidx") String bidx, HttpSession session) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		GoodDTO goodDTO = new GoodDTO();
 		goodDTO.setBidx(bidx);
@@ -301,18 +310,18 @@ public class BoardController {
 		return "/boardSimple";
 	}
 
-	@RequestMapping(value="/bad")
+	@RequestMapping(value = "/bad")
 	@ResponseBody
-	public String bad(@RequestParam("bidx") String bidx,HttpSession session){
+	public String bad(@RequestParam("bidx") String bidx, HttpSession session) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		BadDTO badDTO = new BadDTO();
 		badDTO.setBidx(bidx);
 		badDTO.setUserid(loginVO.getUserid());
 		boardService.bad(badDTO);
-		
+
 		return "";
 	}
-	
+
 	@RequestMapping(value = "/uploadImage", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String uploadAjax(MultipartFile file) throws Exception {
@@ -332,7 +341,7 @@ public class BoardController {
 	@ResponseBody
 	public void andboardinsert(@RequestParam("title") String title, @RequestParam("userid") String userid,
 			@RequestParam("contents") String contents, @RequestParam("category") String category,
-			@RequestParam("tag") String tag,@RequestParam("thumbnail") String thumbnail) {
+			@RequestParam("tag") String tag, @RequestParam("thumbnail") String thumbnail) {
 		BoardInsertDTO boardInsertDTO = new BoardInsertDTO();
 		boardInsertDTO.setTitle(title);
 		boardInsertDTO.setUserid(userid);
@@ -352,6 +361,39 @@ public class BoardController {
 		boardInsertDTO.setTagList(tagList);
 		boardService.boardInsert(boardInsertDTO);
 
+	}
+
+	public String goodchk(List<GooderListVO> gooderList, String userid) {
+		if (gooderList != null) {
+			for (GooderListVO i : gooderList) {
+				if (i.getGooder().equals(userid)) {
+					return "좋아요취소";
+				}
+			}
+		}
+		return "좋아요";
+	}
+
+	public String badchk(List<BaderListVO> baderList, String userid) {
+		if (baderList != null) {
+			for (BaderListVO i : baderList) {
+				if (i.getBader().equals(userid)) {
+					return "나빠요취소";
+				}
+			}
+		}
+		return "나빠요";
+	}
+
+	public String scrapechk(List<ScraperListVO> scraperList, String userid) {
+		if (scraperList != null) {
+			for (ScraperListVO i : scraperList) {
+				if (i.getScraper().equals(userid)) {
+					return "스크랩취소";
+				}
+			}
+		}
+		return "스크랩";
 	}
 
 }

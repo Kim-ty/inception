@@ -5,77 +5,21 @@
 <html lang="en">
 
 <head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
 	crossorigin="anonymous">
-<<<<<<< HEAD
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-	
 <script type="text/javascript">
-=======
-	
-<script>
->>>>>>> d75249796279c5b590e92ddb11c464439f4f4897
-	function ReplyView() {
-		if ($(document).find("#replymore").html() == "댓글보기") {
-			reply.style.visibility = "visible";
-			$(document).find("#replymore").html("댓글숨기기");
-		} else {
-			$("#replycontents").empty();
-			$(document).find("#replymore").html("댓글보기");
-			$("reply").append("<div id=replycontents></div>");
-		}
-	}
-
-	function goodchk(loginID,badList){
-		$.each(Listarr,function(key,value)){
-				if(loginID==value.gooder){
-					return 1;					
-				}
-		}
-		return 2;
-	}
-	
-	function badchk(loginID,badList){
-		$.each(Listarr,function(key,value)){
-				if(loginID==value.bader){
-					return 1;					
-				}
-		}
-		return 2;
-	}
-
-	function scrapechk(loginID,scrapeList){
-		$.each(Listarr,function(key,value)){
-				if(loginID==value.scraper){
-					return 1;					
-				}
-		}
-		return 2;
-	}
-	
-	
-	
-	
-	function taglink(votag) {
-		alert(votag);
-		var tagArray = (votag).split(',');
-		for ( var i in tagArray) {
-			$("#tags").append(
-					"<th><a href='/board/boardList/tag"+tagArray[i]+"'>"
-							+ tagArray[i] + "</a></th>");
-		}
-	}
 
 	$(document)
 			.ready(
@@ -83,87 +27,43 @@
 						
 						var targetbidx = $(document).find("#bidx").html();
 						
-						$('#good').click(function(){
-<<<<<<< HEAD
-		                     $.ajax({
-		                        url : "/boad/good",
-		                        type : "post",
-		                        dataType : "JSON",
-		                        data : {
-		                           bidx : targetbidx
-		                           },
-		                        success : :function(){
-		                           
-		                        }
-		                     });
+		                   $('.act').click(function(){
+		                	  var urlchose = $(this).attr("id");
+		                	  var targetbidx = $("#bidx").html();
+		                	  
+		                	  
+		                	  if($(this).html().indexOf("취소")==-1){
+			                     if($("#good").html.indexOf("취소")>-1 ||$("#bad").html.indexOf("취소")>-1){
+			                    	 alert("업데이트");
+			                     }else{		                    	 
+				                     alert("insert");
+			                     }
+// 			                		  $.ajax({
+// 				                        url : "/board/"+urlchose,
+// 				                        type : "post",
+// 		    		                    dataType : "JSON",
+// 		        		                data : {
+// 		            		               bidx : targetbidx
+// 		                		           },
+// 		                    		    success  :function(data){
+// 		                        		   alert(data);
+// 		                        		}
+// 		                     		});
+			                     
+		                	  }else{
+// 		                		  $.ajax({
+// 			                        url : "/board/no"+urlchose,
+// 			                        type : "post",
+// 		    	                    dataType : "JSON",
+// 		        	                data : {
+// 		            	               bidx : targetbidx
+// 		                	           },
+// 		                    	    success  :function(data){
+// 		                        	   alert(data);
+// 		                        	}
+// 		                     	});
+		                	  }
 		                  });
-		                  
-		                  $('#bad').click(function(){
-		                     $.ajax({
-		                        url : "/boad/bad",
-		                        type : "post",
-		                        dataType : "JSON",
-		                        data : {
-		                           bidx : targetbidx
-		                           },
-		                        success : :function(){
-		                           
-		                        }
-		                     });
-		                  });
-		                  
-		                   $('#scrape').click(function(){
-		                     $.ajax({
-		                        url : "/boad/scrape",
-		                        type : "post",
-		                        dataType : "JSON",
-		                        data : {
-		                           bidx : targetbidx
-		                           },
-		                        success : :function(){
-		                           
-		                        }
-		                     });
-		                  });
-=======
-							$.ajax({
-								url : "/boad/good",
-								type : "post",
-								dataType : "JSON",
-								data : {
-									bidx : targetbidx},
-								success : :function(){
-									
-								}
-							});
-						});
-						
-						$('#bad').click(function(){
-							$.ajax({
-								url : "/boad/bad",
-								type : "post",
-								dataType : "JSON",
-								data : {
-									bidx : targetbidx},
-								success : :function(){
-									
-								}
-							});
-						});
-						
-						/* $('#scrape').click(function(){
-							$.ajax({
-								url : "/boad/scrape",
-								type : "post",
-								dataType : "JSON",
-								data : {
-									bidx : targetbidx},
-								success : :function(){
-									
-								}
-							});
-						}); */
->>>>>>> d75249796279c5b590e92ddb11c464439f4f4897
 						
 						
 						$('#replymore')
@@ -222,6 +122,31 @@
 										});
 
 					});
+
+	function ReplyView() {
+		if ($(document).find("#replymore").html() == "댓글보기") {
+			reply.style.visibility = "visible";
+			$(document).find("#replymore").html("댓글숨기기");
+		} else {
+			$("#replycontents").empty();
+			$(document).find("#replymore").html("댓글보기");
+			$("reply").append("<div id=replycontents></div>");
+		}
+	}
+
+	
+	
+	
+	
+	function taglink(votag) {
+		alert(votag);
+		var tagArray = (votag).split(',');
+		for ( var i in tagArray) {
+			$("#tags").append(
+					"<th><a href='/board/boardList/tag"+tagArray[i]+"'>"
+							+ tagArray[i] + "</a></th>");
+		}
+	}
 </script>
 <style>
 
@@ -242,7 +167,6 @@ p img {
 <body>
 
 	<jsp:include page="header.jsp" flush="false" />
-
 	<c:set var="vo" value="${boardDetail}" />
 	<!-- Blog entries -->
 	<div>
@@ -258,16 +182,12 @@ p img {
 						class="w3-opacity">${ vo.writedate }</span> <span
 						class="w3-opacity"><a href="board/boardList/${vo.category}">${ vo.category }</a></span> <span
 						class="w3-opacity">조회수.${ vo.hitcount }</span> <span
-						class="w3-opacity"><a id="good">좋아요.</a></span><span
-						class="w3-opacity"><a id="goodLst">${fn:length(vo.gooder)}</a></span> <span
-						class="w3-opacity"><a id="bad">나빠요.</a></span><span
-						class="w3-opacity"><a id="badLst">${fn:length(vo.bader)}</a></span><span 
-						class="w3-opacity"><a id="scrape">스크랩.</a></span><span
-<<<<<<< HEAD
-						class="w3-opacity"><a id="scrapeLst">${fn:length(vo.scraper)}</a></span>
-=======
-						class="w3-opacity"><a id="scrapeLst">${ vo.scrapecount }</a></span>
->>>>>>> d75249796279c5b590e92ddb11c464439f4f4897
+						class="w3-opacity"><a id="good" class="act">${vo.good}</a></span><span
+						class="w3-opacity"><a id="goodList" class="list">${fn:length(vo.gooder)}</a></span> <span
+						class="w3-opacity"><a id="bad" class="act">${vo.bad}</a></span><span
+						class="w3-opacity"><a id="badList" class="list">${fn:length(vo.bader)}</a></span><span 
+						class="w3-opacity"><a id="scrape" class="act">${vo.scrape}</a></span><span
+						class="w3-opacity"><a id="scrapeList" class="list">${fn:length(vo.scraper)}</a></span>
 				</h5>
 
 			</div>
