@@ -10,20 +10,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 
-
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
+<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- 부트스트랩 -->
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+
 
 <script>
 	function removeTag(content) {
@@ -38,99 +36,6 @@
 	})
 </script>
 
-
-<style>
-/* The Modal (background) */
-.modal {
-	display: none;
-	/* Hidden by default */
-	position: fixed;
-	/* Stay in place */
-	z-index: 1;
-	/* Sit on top */
-	padding-top: 100px;
-	/* Location of the box */
-	left: 0;
-	top: 0;
-	width: 100%;
-	/* Full width */
-	height: 100%;
-	/* Full height */
-	overflow: auto;
-	/* Enable scroll if needed */
-	background-color: rgb(0, 0, 0);
-	/* Fallback color */
-	background-color: rgba(0, 0, 0, 0.4);
-	/* Black w/ opacity */
-}
-/* Modal Content */
-.modal-content {
-	position: relative;
-	background-color: #fefefe;
-	margin: auto;
-	padding: 0;
-	border: 1px solid #888;
-	width: 80%;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
-		rgba(0, 0, 0, 0.19);
-	-webkit-animation-name: animatetop;
-	-webkit-animation-duration: 0.3s;
-	animation-name: animatetop;
-	animation-duration: 0.3s
-}
-/* Add Animation */
-@
--webkit-keyframes animatetop {from { top:-300px;
-	opacity: 0
-}
-
-to {
-	top: 0;
-	opacity: 1
-}
-
-}
-@
-keyframes animatetop {from { top:-300px;
-	opacity: 0
-}
-
-to {
-	top: 0;
-	opacity: 1
-}
-
-}
-/* The Close Button */
-.close {
-	color: white;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-}
-
-.close:hover, .close:focus {
-	color: #000;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-.modal-header {
-	padding: 2px 16px;
-	background-color: #5cb85c;
-	color: white;
-}
-
-.modal-body {
-	padding: 2px 16px;
-}
-
-.modal-footer {
-	padding: 2px 16px;
-	background-color: #5cb85c;
-	color: white;
-}
-</style>
 <style>
 .active img {
 	resize: both; /* 이미지 최대 사이즈에 적용 */
@@ -149,69 +54,73 @@ img {
 </head>
 
 <body>
+	<div class="container-fluid">
+		<div>
+			<c:import url="/category"></c:import>
+			<div class="row">
+				<div class="col-md-9">
+					<div>
+						<c:forEach var="vo" items="${boardList}">
+							<div class="row">
+								<div class="col-md-2">
+									<a href="/board/boardDetail/${vo.bidx}">${vo.thumbnail} </a><img
+										src="http://cafefiles.naver.net/MjAxNzA4MDdfOCAg/MDAxNTAyMTE3MDg0MTI1.IWJYc1vg1mLtBVE0uB9qOCM3P5Lnm9i2qKnbbwHoUukg.zE9P69X2q0EK7tPDnxUy56KG28xa5DQwZTJNMKklgDEg.PNG.altmxjqkr1478/235.png">
 
+								</div>
 
-	<c:import url="/category"></c:import>
+								<div class="col-md-10">
+									<div align="left">
+										<h2>
+											<a href="/board/boardDetail/${vo.bidx}">${vo.title}</a>
+										</h2>
+									</div>
+									<div align="center">
+										<h4>
+											<a href="/board/boardDetail/${vo.bidx}">${vo.contents}</a>
+										</h4>
+									</div>
 
+									<div class="container-fluid" align="right">
+										<div class="row">
 
-	<div class="w3-row-padding w3-center w3-margin-top">
-		<div class="w3-threequarter">
-			<div class="w3-card-2 w3-container">
+											<div class="col-sm-2">
+												<span class="glyphicon glyphicon-user" aria-hidden="true"></span>${ vo.userid }</div>
+											<div class="col-sm-3">
+												<span class="glyphicon glyphicon-time" aria-hidden="true"></span>${ vo.writedate }</div>
+											<div class="col-sm-1">
+												<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>${ vo.category }</div>
+											<div class="col-sm-1">
+												<span class="glyphicon glyphicon-eye-open"
+													aria-hidden="true"></span>${ vo.hitcnt }</div>
+											<div class="col-sm-1">
+												<span class="glyphicon glyphicon-thumbs-up"
+													aria-hidden="true"></span> ${ vo.gcnt }
+											</div>
+											<div class="col-sm-1">
+												<span class="glyphicon glyphicon-thumbs-down"
+													aria-hidden="true"></span>${ vo.bcnt }</div>
+											<div class="col-sm-1">
+												<span class="glyphicon glyphicon-heart-empty"
+													aria-hidden="true"></span>${ vo.scrapecnt }</div>
+											<div class="col-sm-1">
+												<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>${ vo.rpcnt }</div>
 
-				<c:forEach var="vo" items="${boardList}">
-					<div class="row">
-						<div class="col-md-2">
-							<a href="/board/boardDetail/${vo.bidx}">${vo.thumbnail}</a>
-						</div>
-
-						<div class="col-md-10">
-							<div align="left">
-								<h2>
-									<a href="/board/boardDetail/${vo.bidx}">${vo.title}</a>
-								</h2>
-							</div>
-							<div align="center">
-								<h4>
-									<a href="/board/boardDetail/${vo.bidx}">${vo.contents}</a>
-								</h4>
-							</div>
-
-							<div class="container-fluid" align="right">
-								<div class="row">
-									<div class="col-sm-2">${ vo.userid }</div>
-									<div class="col-sm-3">${ vo.writedate }</div>
-									<div class="col-sm-1">${ vo.category }</div>
-									<div class="col-sm-1">${ vo.hitcnt }</div>
-									<div class="col-sm-1">${ vo.gcnt }</div>
-									<div class="col-sm-1">${ vo.bcnt }</div>
-									<div class="col-sm-1">${ vo.scrapecnt }</div>
-									<div class="col-sm-1">${ vo.rpcnt }</div>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-						<hr>
+							<hr>
+						</c:forEach>
 					</div>
-				</c:forEach>
-			</div>
-		</div>
-
-		<div class="w3-quarter w3-hide-small">
-			<div class="w3-card-2 w3-container" style="min-height: 460px">
-
-				<c:import url="/board/hottagList"></c:import>
-
+				</div>
+				<div class="col-md-3">
+					<div>
+						<c:import url="/board/hottagList"></c:import>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
-	<!-- 	<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog"
-		aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content"></div>
-		</div>
-	</div> -->
-
-
 
 
 
