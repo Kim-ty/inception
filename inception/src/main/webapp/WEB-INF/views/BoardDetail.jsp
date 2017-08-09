@@ -5,13 +5,14 @@
 <html lang="en">
 
 <head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"
@@ -21,102 +22,99 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 	
 <script type="text/javascript">
-	function ReplyView() {
-		if ($(document).find("#replymore").html() == "댓글보기") {
-			reply.style.visibility = "visible";
-			$(document).find("#replymore").html("댓글숨기기");
-		} else {
-			$("#replycontents").empty();
-			$(document).find("#replymore").html("댓글보기");
-			$("reply").append("<div id=replycontents></div>");
-		}
-	}
-
-	function goodchk(loginID,badList){
-		$.each(Listarr,function(key,value)){
-				if(loginID==value.gooder){
-					return 1;					
-				}
-		}
-		return 2;
-	}
-	
-	function badchk(loginID,badList){
-		$.each(Listarr,function(key,value)){
-				if(loginID==value.bader){
-					return 1;					
-				}
-		}
-		return 2;
-	}
-
-	function scrapechk(loginID,scrapeList){
-		$.each(Listarr,function(key,value)){
-				if(loginID==value.scraper){
-					return 1;					
-				}
-		}
-		return 2;
-	}
-	
-	
-	
-	
-	function taglink(votag) {
-		alert(votag);
-		var tagArray = (votag).split(',');
-		for ( var i in tagArray) {
-			$("#tags").append(
-					"<th><a href='/board/boardList/tag"+tagArray[i]+"'>"
-							+ tagArray[i] + "</a></th>");
-		}
-	}
 
 	$(document)
 			.ready(
 					function() {
 						
-						var targetbidx = $(document).find("#bidx").html();
+						var targetbidx = $("#bidx").html();
 						
-						$('#good').click(function(){
-							$.ajax({
-								url : "/boad/good",
-								type : "post",
-								dataType : "JSON",
-								data : {
-									bidx : targetbidx},
-								success : :function(){
+		                   $('.act').click(function(){
+		                	  var urlchose = $(this).attr("id");
+		                	  
+		                	  if($(this).html().indexOf("취소")==-1){
+			                     if($("#good").html().indexOf("취소") > -1 ||$("#bad").html().indexOf("취소") > -1){
+			                    	 $.ajax({
+				                        url : "/board/updategood",
+				                        type : "post",
+		    		                    dataType : "json",
+		        		                data : {
+		        		                	bidx : targetbidx,
+		        		                	g_b_count : $(this).html()
+		        		                },
+		                    		    success  :function(data){
+											if($(this).html=="좋아요"){
+												$("#good").html("좋아요취소");
+												$("#bad").html("싫어요");
+											}else{
+												$("#good").html("좋아요");
+												$("#bad").html("싫어요취소");												
+											}
+											
+											$("#goodList").html(data.goodcount);
+											$("#badList").html(data.badcount);
+
+		                    		    }
+		                     		});
+			                     }else{		       
+			                		  $.ajax({
+				                        url : "/board/"+urlchose,
+				                        type : "post",
+		    		                    dataType : "json",
+		        		                data : {
+		        		                	bidx : targetbidx
+		        		                },
+		                    		    success  :function(data){
+											if(urlchose=="good"){
+												$("#good").html("좋아요취소");
+												$("#goodList").html(data);
+											}else{
+												$("#bad").html("싫어요취소");
+												$("#badList").html(data);										
+											}
+		                    		    }
+		                     		});
+			                     }
+			                     
+		                	  }else{
+		                		  $.ajax({
+			                        url : "/board/nogood",
+			                        type : "post",
+		    	                    dataType : "json",
+		        	                data : {
+	        		                	bidx : targetbidx
+	        		                },
+		                    	    success  :function(data){
+										$("#good").html("좋아요");
+										$("#bad").html("싫어요");
 									
-								}
-							});
-						});
-						
-						$('#bad').click(function(){
-							$.ajax({
-								url : "/boad/bad",
-								type : "post",
-								dataType : "JSON",
-								data : {
-									bidx : targetbidx},
-								success : :function(){
-									
-								}
-							});
-						});
-						
-						 $('#scrape').click(function(){
-							$.ajax({
-								url : "/boad/scrape",
-								type : "post",
-								dataType : "JSON",
-								data : {
-									bidx : targetbidx},
-								success : :function(){
-									
-								}
-							});
-						});
-						
+										$("#goodList").html(data.goodcount);
+										$("#badList").html(data.badcount);		                        	}
+		                     	});
+		                	  }
+		                  });
+		                   
+		                   $('.actscrap').click(function(){
+		                	  var urlchose = $(this).attr("id");
+			                		  $.ajax({
+				                        url : "/board/"+urlchose,
+				                        type : "post",
+		    		                    dataType : "json",
+		        		                data : {
+		            		               bidx : targetbidx,
+		            		               scrape : $(this).html()
+		                		           },
+		                    		    success  :function(data){
+		      		                	  if($("#scrape").html().indexOf("취소")==-1){
+		      		                		  $("#scrape").html("스크랩취소");
+		      		                	  }else{
+		      		                		  $("#scrape").html("스크랩");		      		                		  
+		      		                	  }
+		      		                	  	$("#scrapeList").html(data);
+		                        		}
+		                     		});
+			                     
+		                	  });
 						
 						$('#replymore')
 								.click(
@@ -140,27 +138,27 @@
 																			function(
 																					key,
 																					value) {
-																				var sibal = " ";
+																				var space = " ";
 																				if (value.level > 1) {
 																					for (var i = 0; i <= value.level; i++) {
-																						sibal += "&nbsp;&nbsp;";
+																						space += "&nbsp;&nbsp;";
 																					}
 																				}
 																				var row = $("<p>"
 																						+ "<span>"
-																						+ sibal
+																						+ space
 																						+ "<span>"
 																						+ value.userid
 																						+ "&nbsp"
 																						+ value.writedate
 																						+ "<br>"
 																						+ "<span>"
-																						+ sibal
+																						+ space
 																						+ "<span>"
 																						+ value.contents
 																						+ "<br>"
 																						+ "<span>"
-																						+ sibal
+																						+ space
 																						+ "<span>"
 																						+ "<a href='javascript:Replyinsert()'>답글달기</a></p>");
 																				$(
@@ -174,6 +172,31 @@
 										});
 
 					});
+
+	function ReplyView() {
+		if ($(document).find("#replymore").html() == "댓글보기") {
+			reply.style.visibility = "visible";
+			$(document).find("#replymore").html("댓글숨기기");
+		} else {
+			$("#replycontents").empty();
+			$(document).find("#replymore").html("댓글보기");
+			$("reply").append("<div id=replycontents></div>");
+		}
+	}
+
+	
+	
+	
+	
+	function taglink(votag) {
+		alert(votag);
+		var tagArray = (votag).split(',');
+		for ( var i in tagArray) {
+			$("#tags").append(
+					"<th><a href='/board/boardList/tag"+tagArray[i]+"'>"
+							+ tagArray[i] + "</a></th>");
+		}
+	}
 </script>
 <style>
 
@@ -194,14 +217,13 @@ p img {
 <body>
 
 	<jsp:include page="header.jsp" flush="false" />
-
 	<c:set var="vo" value="${boardDetail}" />
 	<!-- Blog entries -->
 	<div>
 		<!-- Blog entry -->
 		<div class="w3-card-4 w3-margin w3-white">
 
-			<div class="w3-container">
+			<div class="w3-container-fluid">
 				<h3>
 					<span id="bidx">${vo.bidx}</span> <b>${vo.title}</b>
 				</h3>
@@ -210,12 +232,12 @@ p img {
 						class="w3-opacity">${ vo.writedate }</span> <span
 						class="w3-opacity"><a href="board/boardList/${vo.category}">${ vo.category }</a></span> <span
 						class="w3-opacity">조회수.${ vo.hitcount }</span> <span
-						class="w3-opacity"><a id="good">좋아요.</a></span><span
-						class="w3-opacity"><a id="goodLst">${fn:length(vo.gooder)}</a></span> <span
-						class="w3-opacity"><a id="bad">나빠요.</a></span><span
-						class="w3-opacity"><a id="badLst">${fn:length(vo.bader)}</a></span><span 
-						class="w3-opacity"><a id="scrape">스크랩.</a></span><span
-						class="w3-opacity"><a id="scrapeLst">${fn:length(vo.scraper)}</a></span>
+						class="w3-opacity"><a id="good" class="act">${vo.good}</a></span><span
+						class="w3-opacity"><a id="goodList" class="list">${fn:length(vo.gooder)}</a></span> <span
+						class="w3-opacity"><a id="bad" class="act">${vo.bad}</a></span><span
+						class="w3-opacity"><a id="badList" class="list">${fn:length(vo.bader)}</a></span><span 
+						class="w3-opacity"><a id="scrape" class="actscrap">${vo.scrape}</a></span><span
+						class="w3-opacity"><a id="scrapeList" class="list">${fn:length(vo.scraper)}</a></span>
 				</h5>
 
 			</div>

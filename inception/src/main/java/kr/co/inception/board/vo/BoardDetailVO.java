@@ -11,6 +11,9 @@ public class BoardDetailVO {
 	private String contents;
 	private String hitcount;
 	private String category;
+	private String good;
+	private String bad;
+	private String scrape;
 	private List<GooderListVO> gooder;
 	private List<BaderListVO> bader;
 	private List<ScraperListVO> scraper;
@@ -88,6 +91,24 @@ public class BoardDetailVO {
 	}
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	public String getGood() {
+		return good;
+	}
+	public void setGood(String good) {
+		this.good = good;
+	}
+	public String getBad() {
+		return bad;
+	}
+	public void setBad(String bad) {
+		this.bad = bad;
+	}
+	public String getScrape() {
+		return scrape;
+	}
+	public void setScrape(String scrape) {
+		this.scrape = scrape;
 	}
 	
 }

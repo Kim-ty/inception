@@ -23,6 +23,7 @@ public interface BoardDAO {
 	public void boardUpdate(BoardUpdateDTO boardUpdateDTO);
 	public void replyInsert(ReplyDTO replyDTO);
 	public void Scrape(ScrapeDTO scrapeDTO);
+	public void descrape(ScrapeDTO scrapeDTO);
 	public void good(GoodDTO goodDTO);
 	public void bad(BadDTO badDTO);
 	public List<BoardListVO> showBoardList();
