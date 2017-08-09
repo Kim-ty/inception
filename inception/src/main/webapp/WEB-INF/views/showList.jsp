@@ -5,6 +5,48 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css"
+	href="../../resources/jqcloud/jqcloud.css" />
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
+<script type="text/javascript"
+	src="../../resources/jqcloud/jqcloud-1.0.4.js"></script>
+
+<script type="text/javascript">
+	function cloud(tagList) {
+	var words = new Array;
+		$.each(tagList, function(key, value) {
+			words.push({
+				text : value.hashtag,
+				weight : value.weight,
+				link : "./hashtag?&detail=" + value.hashtag
+			});
+		});
+		$("#wordcloud").empty();
+		$("#wordcloud").jQCloud(words);
+
+	}
+
+	$(document).ready(function() {
+		$('.category').click(
+
+		function() {
+			var targeturl = "/search/taglist/" + $(this).attr("id");
+			$.ajax({
+				url : targeturl,
+				type : "POST",
+				dataType : "json",
+				success : function(tagList) {
+					cloud(tagList);
+				}
+			});
+		});
+	});
+</script>
+
+
+
 <title>Insert title here</title>
 </head>
 
@@ -18,14 +60,31 @@ body, html {
 	line-height: 1.8;
 	background-color: AntiqueWhite;
 }
+
+#wordcloud {
+	width: 550px;
+	height: 350px;
+	margin: auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0; /* delete to center horizon only */
+	bottom: 0;
+}
 </style>
+
 <body>
-	<c:forEach var="list" items="${list}">
-	 catgory :	<a href="./${list.id } "> ${list.id } </a>		  total collections : ${list.total} <br>
+	<div id="categoryList">
+		<c:forEach var="list" items="${list}">
+			 catgory :	<a href="./${list.id } "> ${list.id } </a>		    total collections : ${list.total} 
+				<button>
+				<a id="${list.id}" class="category">${list.id }_AJAX</a>
+			</button>
+			<br>
+		</c:forEach>
+	</div>
 
-	</c:forEach>
-
-
+	<div id="wordcloud" align="center"></div>
 
 </body>
 </html>

@@ -57,26 +57,16 @@
 																			"#bidx")
 																	.html()
 														},
-														success : function(
-																replyVO) {
-															$
-																	.each(
-																			replyVO,
-																			function(
-																					key,
-																					value) {
+														success : function(replyVO) { 
+															$.each(replyVO,function(key,	value) {
+																alert(key+":"+value.contents);
 																				var sibal = " ";
 																				if (value.level > 1) {
 																					for (var i = 0; i <= value.level; i++) {
 																						sibal += "&nbsp;&nbsp;";
 																					}
 																				}
-																				var row = $("<p>"
-																						+ "<span>"
-																						+ sibal
-																						+ "<span>"
-																						+ value.userid
-																						+ "&nbsp"
+																				var row = $("<p>"+ "<span>"+ sibal+ "<span>"+ value.userid+ "&nbsp"
 																						+ value.writedate
 																						+ "<br>"
 																						+ "<span>"
@@ -130,9 +120,7 @@ p img {
 					<a href="/profile/${vo.userid}">${ vo.userid }</a> <span
 						class="w3-opacity">${ vo.writedate }</span> <span
 						class="w3-opacity">${ vo.category }</span> <span
-						class="w3-opacity">조회수.${ vo.hitcount }</span> <span
-						class="w3-opacity">좋아요.${ vo.good }</span> <span
-						class="w3-opacity">나빠요.${ vo.bad }</span> <span class="w3-opacity">스크랩.${ vo.scrapecount }</span>
+						class="w3-opacity">조회수.${ vo.hitcount }</span> 
 				</h5>
 
 			</div>
@@ -159,15 +147,22 @@ p img {
 			<div class="w3-row">
 				<div class="w3-col m8 s12">
 					<p>
-						<button class="w3-button w3-padding-large w3-white w3-border">
-							<b><a id="replymore">댓글보기</a></b>
+						<button class="w3-button w3-padding-medium w3-white w3-border">
+							<b><a id="replymore">댓글보기</a></b><span
+							class="w3-tag">${ vo.replycount }</span>
 						</button>
-					</p>
-				</div>
-				<div class="w3-col m4 w3-hide-small">
-					<p>
-						<span class="w3-padding-large w3-right"><b>Comments</b> <span
-							class="w3-tag">${ vo.replycount }</span></span>
+						<button class="w3-button w3-padding-medium w3-white w3-border">
+							<b><a href="#">좋아요</a></b><span
+							class="w3-tag">${ vo.good }</span>
+						</button>
+						<button class="w3-button w3-padding-medium w3-white w3-border">
+							<b><a href="#">나빠요</a></b><span
+							class="w3-tag">${ vo.bad }</span>
+						</button>
+						<button class="w3-button w3-padding-medium w3-white w3-border">
+							<b><a href="#">스크랩</a></b><span
+							class="w3-tag">${ vo.scrapecount }</span>
+						</button>
 					</p>
 				</div>
 			</div>

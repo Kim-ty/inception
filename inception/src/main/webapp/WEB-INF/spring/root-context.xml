@@ -89,8 +89,8 @@
 	<!-- </tx:advice> -->
 
 
-	<mongo:mongo-client host="192.168.1.45" port="27017"
-		credentials="lsh2:1234@test21">
+	<mongo:mongo-client host="192.168.1.29" port="27017"
+		credentials="inceptionAdmin:1234@inception">
 		<mongo:client-options connections-per-host="8"
 			threads-allowed-to-block-for-connection-multiplier="4"
 			connect-timeout="1000" max-wait-time="1500" socket-keep-alive="true"
@@ -99,7 +99,7 @@
 
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg ref="mongo" />
-		<constructor-arg name="databaseName" value="test21" />
+		<constructor-arg name="databaseName" value="inception" />
 
 	</bean>
 
