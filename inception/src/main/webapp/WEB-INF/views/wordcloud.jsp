@@ -48,7 +48,7 @@ body, html {
 }
 </style>
 <body>
-
+ <jsp:include page="header.jsp" flush="false" />
 
 	<a href="./list">목록보기</a>
 	<br> ${searchWord }

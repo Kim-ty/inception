@@ -29,7 +29,7 @@ body, html {
 }
 </style>
 <body>
-
+	<jsp:include page="header.jsp" flush="false" />
 	<a href="./list">카테고리 보러가기</a>
 	<br>
 
@@ -66,12 +66,12 @@ body, html {
 						<script src="../../resources/masonry/js/classie.js"></script>
 						<script src="../../resources/masonry/js/AnimOnScroll.js"></script>
 						<script>
-					new AnimOnScroll(document.getElementById('grid'), {
-						minDuration : 0.4,
-						maxDuration : 0.7,
-						viewportFactor : 0.2
-					});
-				</script>
+							new AnimOnScroll(document.getElementById('grid'), {
+								minDuration : 0.4,
+								maxDuration : 0.7,
+								viewportFactor : 0.2
+							});
+						</script>
 
 					</c:forEach>
 				</ul>
