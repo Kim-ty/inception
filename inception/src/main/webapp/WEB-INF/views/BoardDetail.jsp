@@ -188,7 +188,7 @@
 	
 	
 	
-	function taglink(votag) {
+	function taglink(voztag) {
 		alert(votag);
 		var tagArray = (votag).split(',');
 		for ( var i in tagArray) {
@@ -197,6 +197,7 @@
 							+ tagArray[i] + "</a></th>");
 		}
 	}
+	
 </script>
 <style>
 

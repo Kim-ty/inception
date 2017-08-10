@@ -290,6 +290,7 @@ left join(select profilepicture,userid from tb_user) p ON b.userid = p.userid wh
 			update goodbad set G_B_COUNT = #{g_b_count} where bidx= #{bidx} and userid = #{userid}
 		]]>
 	</update>
+
 	
 
 
