@@ -5,18 +5,16 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+<!-- 부트스트랩 -->
 <link
-	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
-	crossorigin="anonymous">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
 
 
 <script type="text/javascript">
@@ -55,6 +53,7 @@
 							}
 
 						});
+
 				$("#useremail2").blur(
 						function() {
 							var email1 = $("#useremail").val();
@@ -150,9 +149,9 @@
 
 <body>
 
-	<jsp:include page="header.jsp" flush="false" />
+	<div class="container-fluid">
+		<jsp:include page="header.jsp" flush="false" />
 
-	<div class="container">
 		<div class="row">
 			<div class="col-md-3">
 				<div class="login-box well">
@@ -195,11 +194,7 @@
 						<div class="form-group">
 							<input id="sex" type="radio" name="sex" value="남자"> 남자<br />
 							<input id="sex" type="radio" name="sex" value="여자"> 여자<br />
-							<!--  <label for="sex">SEX</label>
-              <input id="sex" type="text" name="sex" class="form-control" placeholder="Enter Your sex" /> -->
 						</div>
-
-
 
 						<div class="form-group">
 							<input type="submit" id="join"
@@ -213,13 +208,21 @@
 								value="reset" />
 						</div>
 
-
 					</form>
-
 				</div>
 			</div>
 		</div>
 	</div>
+
+
+
+
+	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
 </html>

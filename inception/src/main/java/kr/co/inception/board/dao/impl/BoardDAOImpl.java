@@ -34,9 +34,6 @@ public class BoardDAOImpl implements BoardDAO{
 	
 	@Override
 	public void boardInsert(BoardInsertDTO boardInsertDTO) {
-		for(BoardTagDTO i:boardInsertDTO.getTagList()){
-			System.out.println(i.getTag());
-		}
 		sqlSession.insert(namespace+".boardInsert", boardInsertDTO);
 	}
 
@@ -169,6 +166,12 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public void updategoodbad(GoodDTO goodDTO) {
 		sqlSession.update(namespace+".updategoodbad",goodDTO);
+	}
+
+	@Override
+	public void descrape(ScrapeDTO scrapeDTO) {
+		sqlSession.delete(namespace+".descrape",scrapeDTO);
+		
 	}
 	
 

@@ -159,6 +159,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void updategoodbad(GoodDTO goodDTO) {
 		boardDAO.updategoodbad(goodDTO);
+	}
+
+	@Override
+	public void descrape(ScrapeDTO scrapeDTO) {
+		boardDAO.descrape(scrapeDTO);
 	} 
 
 
