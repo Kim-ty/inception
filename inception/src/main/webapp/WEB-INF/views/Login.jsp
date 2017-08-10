@@ -34,7 +34,6 @@
 				class="form-control" />
 		</div>
 
-
 		<div class="form-group">
 			<button type="submit">Sign in</button>
 		</div>
