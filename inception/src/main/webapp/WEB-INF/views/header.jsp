@@ -9,19 +9,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 
-<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+<!-- jQuery -->
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	src="resources/startbootstrap-grayscale-gh-pages/vendor/jquery/jquery.js"></script>
 
-<!-- 부트스트랩 -->
+<!-- Bootstrap Core JavaScript -->
+<script
+	src="resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap Core CSS -->
 <link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	href="resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
+<!-- Custom Fonts -->
+<link
+	href="resources/startbootstrap-grayscale-gh-pages/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css">
 
+<!-- Theme CSS -->
+<link
+	href="/resources/startbootstrap-grayscale-gh-pages/css/grayscale.min.css"
+	rel="stylesheet">
 
 </head>
 
@@ -29,17 +43,6 @@
 	<div class="container-fluid">
 
 		<div class="row">
-
-			<div>
-				<div class="logo">
-					<div>
-						<h1>
-							<a href="http://localhost:8080/">Inception</a>
-						</h1>
-						<hr>
-					</div>
-				</div>
-			</div>
 			<div>
 				<div id="login">
 					<div>
@@ -50,42 +53,13 @@
 									<a href="/board/write">Write</a> <span>welcome
 										${sessionScope.loginInfo.userid} !! </span> <a
 										href="/profile/${sessionScope.loginInfo.userid}/">profile</a>
-
-
 									<a href="/user/logout">Log out</a>
-
-
 
 								</div>
 							</c:when>
 							<c:otherwise>
 
-								<!-- <a> tag trigger modal -->
-
-								<div align="right">
-									<h3>
-										<a data-toggle="modal" data-target="#loginModal"> Login </a>
-									</h3>
-								</div>
-
-								<!-- Modal -->
-								<div class="modal fade" id="loginModal" tabindex="-1"
-									role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-												<h4 class="modal-title" id="myModalLabel"></h4>
-											</div>
-											<div class="modal-body">
-												<jsp:include page="Login.jsp" />
-											</div>
-										</div>
-									</div>
-								</div>
+								
 							</c:otherwise>
 						</c:choose>
 					</div>
