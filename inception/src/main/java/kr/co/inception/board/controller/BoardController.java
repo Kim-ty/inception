@@ -480,5 +480,16 @@ public class BoardController {
 		}
 		return "스크랩";
 	}
+	
+	@RequestMapping(value = "/anddescrap")
+	@ResponseBody
+	public void anddescrap(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid) {
+		ScrapeDTO scrapeDTO = new ScrapeDTO();
+		scrapeDTO.setBidx(bidx);
+		scrapeDTO.setUserid(userid);
+		boardService.descrape(scrapeDTO);
+		
+
+	}
 
 }
