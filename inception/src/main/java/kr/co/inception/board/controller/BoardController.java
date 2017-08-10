@@ -261,6 +261,21 @@ public class BoardController {
 
 		return "/boardList";
 	}
+	
+	@RequestMapping(value = "/commentInsert",method=RequestMethod.POST)
+	public String commentInsert(@RequestParam String bidx,@RequestParam String comment,@RequestParam String target,HttpSession session){
+		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
+		ReplyDTO replyDTO = new ReplyDTO();
+		replyDTO.setBidx(bidx);
+		replyDTO.setContents(comment);
+		replyDTO.setUserid(loginVO.getUserid());
+		replyDTO.setTargetreply(target);
+		System.out.println(replyDTO.getBidx());
+		System.out.println(replyDTO.getContents());
+		System.out.println(replyDTO.getUserid());
+		boardService.replyInsert(replyDTO);
+		return "forward:/board/replyList";
+	}
 
 	@RequestMapping(value = "/replyInsert")
 	public String replyInsert(ReplyDTO replyDTO, Model model) {
@@ -309,9 +324,6 @@ public class BoardController {
 		GoodDTO goodDTO = new GoodDTO();
 		goodDTO.setBidx(bidx);
 		goodDTO.setUserid(loginVO.getUserid());
-		System.out.println("bidx : "+goodDTO.getBidx());
-		System.out.println("g_b_count : "+goodDTO.getG_b_count());
-		System.out.println("userid : "+goodDTO.getUserid());
 		boardService.good(goodDTO);
 		
 		return boardService.showGooderList(bidx).size()+"";
@@ -358,9 +370,6 @@ public class BoardController {
 		GoodDTO goodDTO = new GoodDTO();
 		goodDTO.setBidx(bidx);
 		goodDTO.setUserid(loginVO.getUserid());
-		System.out.println("bidx : "+goodDTO.getBidx());
-		System.out.println("g_b_count : "+goodDTO.getG_b_count());
-		System.out.println("userid : "+goodDTO.getUserid());
 		boardService.goodbaddelete(goodDTO);
 		AjaxGoodBadResult ajaxGoodBadResult = new AjaxGoodBadResult();
 		ajaxGoodBadResult.setGoodcount(boardService.showGooderList(bidx).size()+"");
