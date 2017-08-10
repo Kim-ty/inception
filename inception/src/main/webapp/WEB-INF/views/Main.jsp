@@ -40,7 +40,7 @@
 </script>
 
 
-<!-- CSS -->
+<!— CSS —>
 <style>
 body {
 	background-color: white;
@@ -66,7 +66,6 @@ body {
 					<div>
 						<form>
 							<h4>Search</h4>
-
 							<input type="text" name="" placeholder="Search"> <br>
 							<br>
 							<button type="submit" name="">search</button>
@@ -92,7 +91,6 @@ body {
 			</div>
 		</div>
 	</div>
-
 
 
 </body>

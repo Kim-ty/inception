@@ -41,7 +41,11 @@
 
                                  if ($(this).html().indexOf("취소") == -1) {
                                     if ($("#good").html().indexOf("취소") > -1|| $("#bad").html().indexOf("취소") > -1) {
+<<<<<<< HEAD
                                        $.ajax({
+=======
+                                   $.ajax({
+>>>>>>> 4b72e84f0165438c46a34a591f0f16384ac4b5d3
                                                 url : "/board/updategood",
                                                 type : "post",
                                                 dataType : "json",
