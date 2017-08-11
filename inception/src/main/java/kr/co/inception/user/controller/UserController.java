@@ -112,13 +112,14 @@ public class UserController {
 	public String loginUser(LoginDTO loginDTO, Model model, HttpSession session, HttpServletRequest request) {
 		LoginVO loginVO = userService.loginUser(loginDTO);
 		System.out.println(loginVO);
-		model.addAttribute("loginInfo", loginVO);
-		session.setAttribute("loginInfo", loginVO);
-		System.out.println("로그인성공");
-
-		String requestPage = (String) request.getSession().getAttribute("requestPage");
-		return "redirect:" + requestPage;
-
+		if (loginVO != null) {
+			model.addAttribute("loginInfo", loginVO);
+			session.setAttribute("loginInfo", loginVO);
+			System.out.println("로그인성공");
+		} else {
+			model.addAttribute("loginFail", true);
+		}
+		return "Login";
 	}
 
 	// android
