@@ -10,18 +10,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 
-<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+<!-- jQuery -->
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	src="/resources/startbootstrap-grayscale-gh-pages/vendor/jquery/jquery.js"></script>
 
-<!-- 부트스트랩 -->
+<!-- Bootstrap Core JavaScript -->
+<script
+	src="/resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap Core CSS -->
 <link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	href="/resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
+<!-- Custom Fonts -->
+<link
+	href="/resources/startbootstrap-grayscale-gh-pages/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css">
+
+<!-- Theme CSS -->
+<link
+	href="/resources/startbootstrap-grayscale-gh-pages/css/grayscale.min.css"
+	rel="stylesheet">
 
 <script>
 	function removeTag(content) {
@@ -54,73 +69,103 @@ img {
 </head>
 
 <body>
-	<div class="container-fluid">
-		<div>
-			<c:import url="/category"></c:import>
-			<div class="row">
-				<div class="col-md-9">
-					<div>
-						<c:forEach var="vo" items="${boardList}">
-							<div class="row">
-								<div class="col-md-2">
-									<a href="/board/boardDetail/${vo.bidx}">${vo.thumbnail} </a><img
-										src="http://cafefiles.naver.net/MjAxNzA4MDdfOCAg/MDAxNTAyMTE3MDg0MTI1.IWJYc1vg1mLtBVE0uB9qOCM3P5Lnm9i2qKnbbwHoUukg.zE9P69X2q0EK7tPDnxUy56KG28xa5DQwZTJNMKklgDEg.PNG.altmxjqkr1478/235.png">
 
-								</div>
+	<div>
+		<c:import url="/category"></c:import>
+		<div class="row">
+			<div class="col-md-9">
+				<div>
+					<a href="/board/write">Write</a>
+					<c:forEach var="vo" items="${boardList}">
+						<div class="row">
+							<div class="col-md-2">
+								<a href="/board/boardDetail/${vo.bidx}">${vo.thumbnail} </a><img
+									src="http://cafefiles.naver.net/MjAxNzA4MDdfOCAg/MDAxNTAyMTE3MDg0MTI1.IWJYc1vg1mLtBVE0uB9qOCM3P5Lnm9i2qKnbbwHoUukg.zE9P69X2q0EK7tPDnxUy56KG28xa5DQwZTJNMKklgDEg.PNG.altmxjqkr1478/235.png">
 
-								<div class="col-md-10">
-									<div align="left">
-										<h2>
-											<a href="/board/boardDetail/${vo.bidx}">${vo.title}</a>
-										</h2>
-									</div>
-									<div align="center">
-										<h4>
-											<a href="/board/boardDetail/${vo.bidx}">${vo.contents}</a>
-										</h4>
-									</div>
+							</div>
 
-									<div class="container-fluid" align="right">
-										<div class="row">
+							<div class="col-md-10">
+								<div align="left">
+									<h2>
+										<a href="/board/boardDetail/${vo.bidx}"> <c:choose>
+												<c:when test="${not empty sessionScope.loginInfo}">
+												${vo.title}
+											</c:when>
+												<c:otherwise>
+													<!-- <a> tag trigger modal -->
+													<a data-toggle="modal" data-target="#loginModal"> Login</a>
+												</c:otherwise>
+											</c:choose>
 
-											<div class="col-sm-2">
-												<span class="glyphicon glyphicon-user" aria-hidden="true"></span>${ vo.userid }</div>
-											<div class="col-sm-3">
-												<span class="glyphicon glyphicon-time" aria-hidden="true"></span>${ vo.writedate }</div>
-											<div class="col-sm-1">
-												<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>${ vo.category }</div>
-											<div class="col-sm-1">
-												<span class="glyphicon glyphicon-eye-open"
-													aria-hidden="true"></span>${ vo.hitcnt }</div>
-											<div class="col-sm-1">
-												<span class="glyphicon glyphicon-thumbs-up"
-													aria-hidden="true"></span> ${ vo.gcnt }
+										</a>
+
+									</h2>
+									<!-- Modal -->
+									<div class="modal fade" id="loginModal" tabindex="-1"
+										role="dialog" aria-labelledby="myModalLabel"
+										aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+													<h4 class="modal-title" id="myModalLabel"></h4>
+												</div>
+												<div class="modal-body">
+													<jsp:include page="Login.jsp" />
+												</div>
 											</div>
-											<div class="col-sm-1">
-												<span class="glyphicon glyphicon-thumbs-down"
-													aria-hidden="true"></span>${ vo.bcnt }</div>
-											<div class="col-sm-1">
-												<span class="glyphicon glyphicon-heart-empty"
-													aria-hidden="true"></span>${ vo.scrapecnt }</div>
-											<div class="col-sm-1">
-												<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>${ vo.rpcnt }</div>
-
 										</div>
 									</div>
 								</div>
+								<div align="center">
+									<h4>
+										<a href="/board/boardDetail/${vo.bidx}">${vo.contents}</a>
+									</h4>
+								</div>
+
+								<div class="container" align="right">
+									<div class="row">
+
+										<div class="col-sm-2">
+											<span class="glyphicon glyphicon-user" aria-hidden="true"></span>${ vo.userid }</div>
+										<div class="col-sm-3">
+											<span class="glyphicon glyphicon-time" aria-hidden="true"></span>${ vo.writedate }</div>
+										<div class="col-sm-1">
+											<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>${ vo.category }</div>
+										<div class="col-sm-1">
+											<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>${ vo.hitcnt }</div>
+										<div class="col-sm-1">
+											<span class="glyphicon glyphicon-thumbs-up"
+												aria-hidden="true"></span> ${ vo.gcnt }
+										</div>
+										<div class="col-sm-1">
+											<span class="glyphicon glyphicon-thumbs-down"
+												aria-hidden="true"></span>${ vo.bcnt }</div>
+										<div class="col-sm-1">
+											<span class="glyphicon glyphicon-heart-empty"
+												aria-hidden="true"></span>${ vo.scrapecnt }</div>
+										<div class="col-sm-1">
+											<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>${ vo.rpcnt }</div>
+
+									</div>
+								</div>
 							</div>
-							<hr>
-						</c:forEach>
-					</div>
+						</div>
+						<hr>
+					</c:forEach>
 				</div>
-				<div class="col-md-3">
-					<div>
-						<c:import url="/board/hottagList"></c:import>
-					</div>
+			</div>
+			<div class="col-md-3">
+				<div>
+					<c:import url="/board/hottagList"></c:import>
 				</div>
 			</div>
 		</div>
 	</div>
+
 
 
 

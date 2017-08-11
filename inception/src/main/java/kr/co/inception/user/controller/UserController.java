@@ -42,9 +42,9 @@ public class UserController {
 	public String move_login() {
 		return "Login";
 	}
-	
+
 	@RequestMapping("/update")
-	public String move_update(){
+	public String move_update() {
 		return "UserUpdate";
 	}
 
@@ -83,21 +83,21 @@ public class UserController {
 
 		return result;
 	}
+
 	// android
-		@RequestMapping(value = "/anddupidchk", method = RequestMethod.POST)
-		@ResponseBody
-		public boolean duplicationIdCheck(@RequestParam("userid") String userid) {
-			JoinDTO joinDTO = new JoinDTO();
-			
-			System.out.println(userid);
-			joinDTO.setUserid(userid);
-			int joinVO = userService.idchk(joinDTO);
-			if (joinVO == 1) {
-				return false;
-			}
-			return true;
+	@RequestMapping(value = "/anddupidchk", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean duplicationIdCheck(@RequestParam("userid") String userid) {
+		JoinDTO joinDTO = new JoinDTO();
+
+		System.out.println(userid);
+		joinDTO.setUserid(userid);
+		int joinVO = userService.idchk(joinDTO);
+		if (joinVO == 1) {
+			return false;
 		}
-	
+		return true;
+	}
 
 	@RequestMapping(value = "/emailchk")
 	public @ResponseBody int duplicationEmailCheck(@ModelAttribute("joinDTO") JoinDTO joinDTO) throws Exception {
@@ -109,14 +109,17 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "loginchk", method = RequestMethod.POST)
-	public String loginUser(LoginDTO loginDTO, Model model, HttpSession session) {
+	public String loginUser(LoginDTO loginDTO, Model model, HttpSession session, HttpServletRequest request) {
 		LoginVO loginVO = userService.loginUser(loginDTO);
 		System.out.println(loginVO);
-		model.addAttribute("loginInfo", loginVO);
-		session.setAttribute("loginInfo", loginVO);
-		System.out.println("로그인성공");
-		return "redirect:/";
-
+		if (loginVO != null) {
+			model.addAttribute("loginInfo", loginVO);
+			session.setAttribute("loginInfo", loginVO);
+			System.out.println("로그인성공");
+		} else {
+			model.addAttribute("loginFail", true);
+		}
+		return "Login";
 	}
 
 	// android
@@ -132,9 +135,9 @@ public class UserController {
 		}
 		return true;
 	}
-	
-	@RequestMapping(value="/updateUser",method= RequestMethod.POST)
-	public String updateUserInfo(UpdateUserDTO updateuserDTO,HttpSession session){
+
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+	public String updateUserInfo(UpdateUserDTO updateuserDTO, HttpSession session) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		System.out.println(updateuserDTO.getProfilepicture());
 		System.out.println(updateuserDTO.getUseremail());
