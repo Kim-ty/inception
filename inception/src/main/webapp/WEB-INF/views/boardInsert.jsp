@@ -78,11 +78,6 @@
 		<div class="form-group">
 			<select id="category" name="category" class="form-control">
 				<option value="의류">의류</option>
-				<option value="애완동물">애완동물</option>
-				<option value="food">food</option>
-				<option value="차">차</option>
-				<option value="사진">사진</option>
-				<option value="여행">여행</option>
 			</select>
 		</div>
 

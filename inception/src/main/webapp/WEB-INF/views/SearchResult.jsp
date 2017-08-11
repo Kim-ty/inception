@@ -20,7 +20,7 @@
 			words.push({
 				text : value.hashtag,
 				weight : value.weight,
-				link : "./hashtag?&detail=" + value.hashtag
+				link : "/search/hashtag?&detail=" + value.hashtag
 			});
 		});
 		$("#wordcloud").empty();
@@ -74,7 +74,7 @@ body, html {
 
 <body>
 
-	<jsp:include page="header.jsp" flush="false" />
+<%-- 	<jsp:include page="header.jsp" flush="false" /> --%>
 
 	이미지 분석 결과값
 	</br>
