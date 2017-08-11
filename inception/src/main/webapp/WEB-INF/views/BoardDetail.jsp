@@ -19,9 +19,8 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script
-<<<<<<< HEAD
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-=======
+<script
 	src="resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap Core CSS -->
@@ -38,7 +37,6 @@
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css">
->>>>>>> dbeed1771260b45fd8f413404830915a059d4949
 
 <!-- Theme CSS -->
 <link
@@ -353,9 +351,7 @@
 			$("reply").append("<div id=replycontents></div>");
 			reply.style.visibility = "hidden";
 		}
-<<<<<<< HEAD
 
-=======
 	}
 
 	function taglink(votag) {
@@ -368,7 +364,6 @@
 
 		}
 	}
->>>>>>> dbeed1771260b45fd8f413404830915a059d4949
 </script>
 <style>
 p img {
@@ -383,10 +378,6 @@ p img {
 <title>boardDetail</title>
 </head>
 <body>
-<<<<<<< HEAD
-
-=======
->>>>>>> dbeed1771260b45fd8f413404830915a059d4949
 	<div class="container-fluid">
 		<div>
 			<jsp:include page="header.jsp" flush="false" />
@@ -456,14 +447,6 @@ p img {
 				</div>
 			</div>
 		</div>
-<<<<<<< HEAD
-
-
-
-
-=======
 	</div>
->>>>>>> dbeed1771260b45fd8f413404830915a059d4949
 </body>
 </html>
-
