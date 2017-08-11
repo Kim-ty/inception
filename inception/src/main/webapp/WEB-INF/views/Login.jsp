@@ -10,9 +10,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 
-<!-- 부트스트랩 -->
+<!-- jQuery -->
+<script
+	src="/resources/startbootstrap-grayscale-gh-pages/vendor/jquery/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script
+	src="/resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap Core CSS -->
 <link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	href="/resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link
+	href="/resources/startbootstrap-grayscale-gh-pages/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css">
+
+<!-- Theme CSS -->
+<link
+	href="/resources/startbootstrap-grayscale-gh-pages/css/grayscale.min.css"
 	rel="stylesheet">
 
 <title>Login</title>
@@ -61,12 +84,7 @@
 		)
 	</script>
 
-	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 </body>
 
