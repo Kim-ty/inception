@@ -8,14 +8,13 @@
 
 <link rel="stylesheet" type="text/css"
 	href="../../resources/jqcloud/jqcloud.css" />
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
-<script type="text/javascript"
-	src="../../resources/jqcloud/jqcloud-1.0.4.js"></script>
+<script
+	src="/resources/startbootstrap-grayscale-gh-pages/vendor/jquery/jquery.js"></script>
+
 
 <script type="text/javascript">
 	function cloud(tagList) {
-	var words = new Array;
+		var words = new Array;
 		$.each(tagList, function(key, value) {
 			words.push({
 				text : value.hashtag,
@@ -74,6 +73,9 @@ body, html {
 </style>
 
 <body>
+
+	<jsp:include page="header.jsp" flush="false" />
+
 	<div id="categoryList">
 		<c:forEach var="list" items="${list}">
 			 catgory :	<a href="./${list.id } "> ${list.id } </a>		    total collections : ${list.total} 
@@ -86,5 +88,7 @@ body, html {
 
 	<div id="wordcloud" align="center"></div>
 
+	<script type="text/javascript"
+		src="../../resources/jqcloud/jqcloud-1.0.4.js"></script>
 </body>
 </html>

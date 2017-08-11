@@ -9,22 +9,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 
+
+
 <!-- jQuery -->
 <script
-	src="resources/startbootstrap-grayscale-gh-pages/vendor/jquery/jquery.js"></script>
+	src="/resources/startbootstrap-grayscale-gh-pages/vendor/jquery/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script
-	src="resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/js/bootstrap.min.js"></script>
+	src="/resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap Core CSS -->
 <link
-	href="resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/css/bootstrap.min.css"
+	href="/resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link
-	href="resources/startbootstrap-grayscale-gh-pages/vendor/font-awesome/css/font-awesome.min.css"
+	href="/resources/startbootstrap-grayscale-gh-pages/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
@@ -40,120 +42,34 @@
 </head>
 
 <body>
-	<div class="container-fluid">
-
-		<div class="row">
-			<div>
-				
-				<hr>
-			</div>
-
-			<div>
-				<div id="categories">
-					<div>
-						<c:choose>
-							<c:when test="${not  empty categoryList}">
-
-								<div class="w3-hide-small" id="categories" align="left">
-									<div class="row">
-										<c:forEach var="vo" items="${categoryList }">
-											<div class="col-md-1">
-												<a href="/board/boardList/${vo.category }">
-													${vo.category } </a>
-											</div>
-										</c:forEach>
-									</div>
-								</div>
-
-								<div>
-									<a href="javascript:void(0)"
-										class="w3-bar-item w3-button w3-left  w3-hide-large w3-hide-medium"
-										onclick="w3_open(mySidebar)"> Category </a>
-								</div>
-
-								<div>
-									<a href="javascript:void(0)"
-										class="w3-bar-item w3-button w3-left  w3-hide-large w3-hide-medium"
-										onclick="w3_open(mySideTags)"> tag </a>
-								</div>
-
-								<nav
-									class="w3-sidebar w3-bar-block w3-light-grey w3-card-2 w3-animate-left w3-hide-medium w3-hide-large"
-									style="display: none" id="mySidebar">
-									<a href="javascript:void(0)" onclick="w3_close(mySidebar)"
-										class="w3-bar-item w3-button w3-large w3-padding-16">Close
-										×</a>
-
-									<c:forEach var="vo" items="${categoryList }">
-
-										<a href="/board/boardList/${vo.category }"
-											onclick="w3_close(mySidebar)" class="w3-bar-item w3-button">${vo.category }</a>
-
-									</c:forEach>
-								</nav>
-
-								<nav
-									class="w3-sidebar w3-bar-block w3-light-grey w3-card-2 w3-animate-left w3-hide-medium w3-hide-large"
-									style="display: none" id="mySideTags">
-									<a href="javascript:void(0)" onclick="w3_close(mySideTags)"
-										class="w3-bar-item w3-button w3-large w3-padding-16">Close
-										×</a>
-									<c:forEach var="tagList" items="${tagList}">
-										<a href="/board/boardList/tag${tagList.tag}"
-											onclick="w3_close(mySideTags)" class="w3-bar-item w3-button">${tagList.tag}</a>
-									</c:forEach>
-								</nav>
-
-								<hr>
-
-							</c:when>
-							<c:otherwise>
-
-							</c:otherwise>
-
-						</c:choose>
-					</div>
-				</div>
-			</div>
+	<!-- Navigation -->
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-main-collapse">
+				Menu <i class="fa fa-bars"></i>
+			</button>
+			<a class="navbar-brand page-scroll" href="#page-top"> <i
+				class="fa fa-play-circle"></i> <span class="light">Start</span>
+				Bootstrap
+			</a>
 		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div
+			class="collapse navbar-collapse navbar-right navbar-main-collapse">
+			<ul class="nav navbar-nav">
+				<!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+				<li class="hidden"><a href="#page-top"></a></li>
+				<li><a class="page-scroll" href="#about">About</a></li>
+				<li><a class="page-scroll" href="#download">Download</a></li>
+				<li><a class="page-scroll" href="#contact">Contact</a></li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
 	</div>
-	<!-- sidebars -->
-	<script>
-		// Toggle between showing and hiding the sidebar when clicking the menu icon
-		function w3_open(element) {
-			if (element.style.display === 'block') {
-				element.style.display = 'none';
-			} else {
-				element.style.display = 'block';
-			}
-		}
-		// Close the sidebar with the close button
-		function w3_close(element) {
-			element.style.display = "none";
-		}
-	</script>
-
-	<!-- image file upload -->
-	<script type="text/javascript">
-		$(function() {
-			$("#imgInp").on('change', function() {
-				readURL(this);
-			});
-		});
-
-		function readURL(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					$('#blah').attr('src', e.target.result);
-				}
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-	</script>
-
-
-
+	<!-- /.container --> </nav>
 
 
 </body>
