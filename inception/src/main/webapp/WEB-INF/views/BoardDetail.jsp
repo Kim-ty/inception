@@ -183,9 +183,9 @@
 										success : function(data) {
 											if ($("#scrape").html().indexOf(
 													"취소") == -1) {
-												$("#scrape").html("스크랩취소");
+												$("#scrape").html("스크랩취소B");
 											} else {
-												$("#scrape").html("스크랩");
+												$("#scrape").html("스크랩A");
 											}
 											$("#scrapeList").html(data);
 										}
@@ -375,73 +375,70 @@ p img {
 <title>boardDetail</title>
 </head>
 <body>
-	<div class="container-fluid">
-		<div>
-			<jsp:include page="header.jsp" flush="false" />
-			<div class="row-fluid">
-				<div>
-					<c:set var="vo" value="${boardDetail}" />
+	<div class="container">
 
-					<div id="boarddetailcontents" style="border: solid black 1px;">
-						<div class="boarddetailcontents_header">
-							<div align="right">
-								<a href="/profile/${vo.userid}">${ vo.userid }</a> <span>${ vo.writedate }</span>
-								<span><a href="board/boardList/${vo.category}">${ vo.category }</a></span>
-								<span>조회수.${ vo.hitcount }</span>
-							</div>
-							<div align="left">
-								<span id="bidx">${vo.bidx}</span> <b><span>${vo.title}</span></b>
-							</div>
-						</div>
-						<div></div>
+		<div class="row">
 
+			<c:set var="vo" value="${boardDetail}" />
 
-						<div class="boarddetailcontents_body">
-							<div>
-								<span>${vo.contents}.</span>
-							</div>
-						</div>
-						<div class="boarddetailcontents_footer1">
-							<div align="right">
-								<span><a id="good" class="act">${vo.good}</a></span> <span><a
-									id="goodList">${fn:length(vo.gooder)}</a></span> <span><a
-									id="bad" class="act">${vo.bad}</a></span> <span><a id="badList">${fn:length(vo.bader)}</a></span>
-								<span><a id="scrape" class="actscrap">${vo.scrape}</a></span> <span><a
-									id="scrapeList">${fn:length(vo.scraper)}</a></span>
-							</div>
-						</div>
-						<div class="boarddetailcontents_tags">
-							<div>
-								<h4>Tags</h4>
-								<div>
-									<c:forEach var="tag" items="${vo.tag}">
-										<span> <a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
-										</span>
-									</c:forEach>
-								</div>
-							</div>
-						</div>
-
-						<div class="boarddetailcontents_reply">
-							<div>
-								<span><b> <a id="replymore">댓글보기</a></b></span> <b>Comments</b>
-								<span id="replycount">${ vo.replycount }</span>
-							</div>
-						</div>
-
-						<div id="reply" style="visibility: hidden;">
-							<div>
-								<form name='commentform' id='commentform'>
-									<input type='text' name='comment'></input> <input type='hidden'
-										name='target' value=''> <input type='hidden'
-										name='bidx' value="${vo.bidx}"> <input type='button'
-										value='submit' onclick='commentSubmit()'>
-								</form>
-							</div>
-						</div>
-						<div id=replycontents></div>
+			<div id="boarddetailcontents" style="border: solid black 1px;">
+				<div class="boarddetailcontents_header">
+					<div align="right">
+						<a href="/profile/${vo.userid}">${ vo.userid }</a> <span>${ vo.writedate }</span>
+						<span><a href="board/boardList/${vo.category}">${ vo.category }</a></span>
+						<span>조회수.${ vo.hitcount }</span>
+					</div>
+					<div align="left">
+						<span id="bidx">${vo.bidx}</span> <b><span>${vo.title}</span></b>
 					</div>
 				</div>
+				<div></div>
+
+
+				<div class="boarddetailcontents_body">
+					<div>
+						<span>${vo.contents}.</span>
+					</div>
+				</div>
+				<div class="boarddetailcontents_footer1">
+					<div align="right">
+						<span><a id="good" class="act">${vo.good}</a></span> <span><a
+							id="goodList">${fn:length(vo.gooder)}</a></span> <span><a
+							id="bad" class="act">${vo.bad}</a></span> <span><a id="badList">${fn:length(vo.bader)}</a></span>
+						<span><a id="scrape" class="actscrap">${vo.scrape}</a></span> <span><a
+							id="scrapeList">${fn:length(vo.scraper)}</a></span>
+					</div>
+				</div>
+				<div class="boarddetailcontents_tags">
+					<div>
+						<h4>Tags</h4>
+						<div>
+							<c:forEach var="tag" items="${vo.tag}">
+								<span> <a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
+								</span>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
+
+				<div class="boarddetailcontents_reply">
+					<div>
+						<span><b> <a id="replymore">댓글보기</a></b></span> <b>Comments</b> <span
+							id="replycount">${ vo.replycount }</span>
+					</div>
+				</div>
+
+				<div id="reply" style="visibility: hidden;">
+					<div>
+						<form name='commentform' id='commentform'>
+							<input type='text' name='comment'></input> <input type='hidden'
+								name='target' value=''> <input type='hidden' name='bidx'
+								value="${vo.bidx}"> <input type='button' value='submit'
+								onclick='commentSubmit()'>
+						</form>
+					</div>
+				</div>
+				<div id=replycontents></div>
 			</div>
 		</div>
 	</div>

@@ -84,10 +84,17 @@
 					<li><a class="page-scroll" href="#Searching">Searching</a></li>
 					<li><a class="page-scroll" href="#download">Download</a></li>
 					<li><a class="page-scroll" href="#boards">boards</a></li>
-					<li>
-						<!-- <a> tag trigger modal --> <a data-toggle="modal"
-						data-target="#loginModal"> Login </a>
-					</li>
+					<li><c:choose>
+							<c:when test="${not empty sessionScope.loginInfo}">
+								<span>welcome ${sessionScope.loginInfo.userid} !! </span>
+								<a href="/profile/${sessionScope.loginInfo.userid}/">profile</a>
+								<a href="/user/logout">Log out</a>
+							</c:when>
+							<c:otherwise>
+								<!-- <a> tag trigger modal -->
+								<a data-toggle="modal" data-target="#loginModal"> Login </a>
+							</c:otherwise>
+						</c:choose></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -142,7 +149,7 @@
 				<h2>Searching</h2>
 
 				<div>
-					<jsp:include page="header.jsp" flush="false" />
+
 					<div class="row">
 						<div align="center">
 							<form>
@@ -186,7 +193,7 @@
 	<section id="boards" class="container content-section text-center">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2">
-				<%-- <jsp:include page="BoardList.jsp" flush="false" /> --%>
+				<jsp:include page="BoardList.jsp" flush="false" />
 			</div>
 		</div>
 	</section>
