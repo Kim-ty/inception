@@ -19,6 +19,9 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script
+<<<<<<< HEAD
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+=======
 	src="resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap Core CSS -->
@@ -35,6 +38,7 @@
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css">
+>>>>>>> dbeed1771260b45fd8f413404830915a059d4949
 
 <!-- Theme CSS -->
 <link
@@ -349,6 +353,9 @@
 			$("reply").append("<div id=replycontents></div>");
 			reply.style.visibility = "hidden";
 		}
+<<<<<<< HEAD
+
+=======
 	}
 
 	function taglink(votag) {
@@ -361,6 +368,7 @@
 
 		}
 	}
+>>>>>>> dbeed1771260b45fd8f413404830915a059d4949
 </script>
 <style>
 p img {
@@ -375,7 +383,33 @@ p img {
 <title>boardDetail</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<div class="container">
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> dbeed1771260b45fd8f413404830915a059d4949
+	<div class="container-fluid">
+		<div>
+			<jsp:include page="header.jsp" flush="false" />
+			<div class="row-fluid">
+				<div>
+					<c:set var="vo" value="${boardDetail}" />
+
+					<div id="boarddetailcontents" style="border: solid black 1px;">
+						<div class="boarddetailcontents_header">
+							<div align="right">
+								<a href="/profile/${vo.userid}">${ vo.userid }</a> <span>${ vo.writedate }</span>
+								<span><a href="board/boardList/${vo.category}">${ vo.category }</a></span>
+								<span>조회수.${ vo.hitcount }</span>
+							</div>
+							<div align="left">
+								<span id="bidx">${vo.bidx}</span> <b><span>${vo.title}</span></b>
+							</div>
+						</div>
+						<div></div>
+>>>>>>> e3d2b5464b63da3094df66dec1831ea5b45d5510
 
 		<div class="row">
 
@@ -441,7 +475,14 @@ p img {
 				<div id=replycontents></div>
 			</div>
 		</div>
+<<<<<<< HEAD
+
+
+
+
+=======
 	</div>
+>>>>>>> dbeed1771260b45fd8f413404830915a059d4949
 </body>
 </html>
 

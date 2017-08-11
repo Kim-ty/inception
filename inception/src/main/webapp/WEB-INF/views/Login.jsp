@@ -43,6 +43,12 @@
 
 <body>
 
+	<c:choose>
+		<c:when test="${not  empty loginFail}">
+		로그인 실패<br>
+		다시 입력혀~
+		</c:when>
+	</c:choose>
 
 	<form role="form" method="post" action="/user/loginchk">
 

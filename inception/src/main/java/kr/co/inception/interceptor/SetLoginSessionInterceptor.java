@@ -15,15 +15,15 @@ public class SetLoginSessionInterceptor extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 
 		System.out.println("postHandle 에 오긴했어");
-		request.getSession().invalidate();
 		LoginVO loginVO = (LoginVO) modelAndView.getModel().get("loginInfo");
 		if (loginVO != null) {// login 성공 시
+			String requestPage = (String) request.getSession().getAttribute("requestPage");
+			request.getSession().invalidate();
 			String userid = loginVO.getUserid();
-			System.out.println(userid);
+			System.out.println("userid : "+userid);
 			System.out.println("login sucess");
 			request.getSession().setAttribute("loginInfo", loginVO);
-			System.out.println("ddd");
-			System.out.println(request.getSession().getAttribute("requestPage"));
+			response.sendRedirect(requestPage);
 		}
 
 	}
