@@ -44,26 +44,7 @@
 
 		<div class="row">
 			<div>
-				<div id="login">
-					<div>
-						<c:choose>
-							<c:when test="${not empty sessionScope.loginInfo}">
-								<div align="right">
-
-									<a href="/board/write">Write</a> <span>welcome
-										${sessionScope.loginInfo.userid} !! </span> <a
-										href="/profile/${sessionScope.loginInfo.userid}/">profile</a>
-									<a href="/user/logout">Log out</a>
-
-								</div>
-							</c:when>
-							<c:otherwise>
-
-								
-							</c:otherwise>
-						</c:choose>
-					</div>
-				</div>
+				
 				<hr>
 			</div>
 
