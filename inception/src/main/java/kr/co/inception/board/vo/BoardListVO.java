@@ -19,6 +19,8 @@ public class BoardListVO{
 	private String bcnt;
 	private String scrapecnt;
 	private String rpcnt;
+	private String rnum;
+	
 	public String getCategory() {
 		return category;
 	}
