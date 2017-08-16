@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,98 +27,12 @@
 	}
 </script>
 
-<title>inception</title>
-
 </head>
-
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
-	<!-- Navigation -->
-	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-main-collapse">
-					Menu <i class="fa fa-bars"></i>
-				</button>
-				<a class="navbar-brand page-scroll" href="#page-top"> <i
-					class="fa fa-play-circle"></i> <span class="light">Start</span>
-					INCEPTION
-				</a>
-			</div>
-
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div
-				class="collapse navbar-collapse navbar-right navbar-main-collapse">
-				<ul class="nav navbar-nav">
-					<!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-					<li class="hidden"><a href="#page-top"></a></li>
-					<li><a class="page-scroll" href="#Searching">Searching</a></li>
-					<li><a class="page-scroll" href="#download">Download</a></li>
-					<li><a class="page-scroll" href="#boards">boards</a></li>
-					<li><c:choose>
-							<c:when test="${not empty sessionScope.loginInfo}">
-								<span>welcome ${sessionScope.loginInfo.userid} !! </span>
-								<a href="/profile/${sessionScope.loginInfo.userid}/">profile</a>
-								<a href="/user/logout">Log out</a>
-							</c:when>
-							<c:otherwise>
-								<!-- <a> tag trigger modal -->
-								<a data-toggle="modal" data-target="#loginModal"> Login </a>
-							</c:otherwise>
-						</c:choose></li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container -->
-	</nav>
-
-
-	<!-- Modal -->
-	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel"></h4>
-				</div>
-				<div class="modal-body">
-					<jsp:include page="Login.jsp" />
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Intro Header -->
-	<header class="intro">
-		<div class="intro-body">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<h1 class="brand-heading">inception</h1>
-						<p class="intro-text">
-							JUST upload any kind of image, <br> what you want to know
-							about it<br> It`s simple
-						</p>
-						<a href="#Searching" class="btn btn-circle page-scroll"> <i
-							class="fa fa-angle-double-down animated"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-
-	<!-- Searching Section -->
-	<section id="Searching" class="container content-section text-center">
+<body>
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2">
-				<h2>Searching</h2>
+
 
 				<div>
 
@@ -126,9 +40,8 @@
 						<div align="center">
 							<form>
 								<input type="text" name="" placeholder="Search"> <br>
-								<br> <input type="submit" name="" value="1">
+								<br> <input type="submit" name="" value="Search">
 
-								<button type="submit" name="">1234</button>
 							</form>
 							<br> or
 							<form id="form1" runat="server" action="inception" method="post"
@@ -150,33 +63,7 @@
 
 			</div>
 		</div>
-	</section>
-
-	<!-- Download Section -->
-	<section id="download" class="content-section text-center">
-		<div class="download-section">
-			<div class="container">
-				<div class="col-lg-8 col-lg-offset-2"></div>
-			</div>
-		</div>
-	</section>
-
-	<!-- boards Section -->
-	<section id="boards" class="container content-section text-center">
-		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2">
-				<jsp:include page="BoardList.jsp" flush="false" />
-			</div>
-		</div>
-	</section>
-
-	<!-- Footer -->
-	<footer>
-		<div class="container text-center">
-			<p>Copyright &copy; Project Inception 2017</p>
-		</div>
-	</footer>
+	</div>
 
 </body>
-
 </html>
