@@ -16,7 +16,7 @@
 	<!-- CDNlib -->
 	<jsp:include page="CDNLIB.jsp" flush="false" />
 
-	<div id="container-fluid">
+	<div id="container">
 
 		<!-- header -->
 		<div id="row">
@@ -26,9 +26,7 @@
 		</div>
 		<!-- category -->
 		<div id="row">
-			<div class="col-md-12" align="center">
-				<jsp:include page="2categories.jsp" flush="false" />
-			</div>
+			<div class="col-md-12" align="center"></div>
 		</div>
 		<!-- body -->
 		<div id="row">

@@ -492,5 +492,4 @@ public class BoardController {
 		boardService.descrape(scrapeDTO);
 
 	}
-
 }

@@ -14,18 +14,11 @@
 <body>
 	<nav class="navbar navbar-default navbar-static-top">
 		<div class="container-fluid">
-			<div class="navbar-header">
+			<div>
 				<jsp:include page="2sidebar.jsp" flush="false" />
 			</div>
-			<div>
-				<a class="navbar-brand" href="/"> <img alt="inception" src=""
-					width="110px" height="auto">
-				</a>
-			</div>
-
 			<div align="right">
 				<div>
-
 					<c:choose>
 						<c:when test="${not empty sessionScope.loginInfo}">
 							<span>welcome ${sessionScope.loginInfo.userid} !! </span>
@@ -33,11 +26,9 @@
 							<a href="/user/logout">Log out</a>
 						</c:when>
 						<c:otherwise>
-							<!-- <a> tag trigger modal -->
 							<a class="btn btn-default" href="user/login" role="button">login</a>
 						</c:otherwise>
 					</c:choose>
-
 				</div>
 			</div>
 

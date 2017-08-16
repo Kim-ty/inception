@@ -39,29 +39,25 @@
 	rel="stylesheet">
 
 <script>
+	$(document).ready(function() {
+		$('#moreview').click(function() {
+			alert($(location).attr('pathname'));
+			//                    $.ajax({
+			//                             url : $(location).attr('pathname'),
+			//                             type : "POST",
+			//                             dataType : "json",
+			//                             data : {
+			// 								rnum : 10
+			//                             },
+			//                             success : function(boardList) {
+			//                                $.each(boardList,function(key,value) {
+			//                                   $("#boardlistinfi").append(ajaxlist(value.bidx,value.thumbnail,value.title,value.contents,value.userid,value.writedate,value.category,value.hitcnt,value.gcnt,value.bcnt,value.scrapecnt,value.rpcnt));
+			//                                });
+			//                             }
+			//                          });
+		});
 
-$(document)
-.ready(
-      function() {
-          $('#moreview').click(
-                function() {
-                	alert($(location).attr('pathname'));
-//                    $.ajax({
-//                             url : $(location).attr('pathname'),
-//                             type : "POST",
-//                             dataType : "json",
-//                             data : {
-// 								rnum : 10
-//                             },
-//                             success : function(boardList) {
-//                                $.each(boardList,function(key,value) {
-//                                   $("#boardlistinfi").append(ajaxlist(value.bidx,value.thumbnail,value.title,value.contents,value.userid,value.writedate,value.category,value.hitcnt,value.gcnt,value.bcnt,value.scrapecnt,value.rpcnt));
-//                                });
-//                             }
-//                          });
-                });
-
- });
+	});
 
 	function removeTag(content) {
 		return content.replace(/(<([^>]+)>)/gi, "");
@@ -73,63 +69,83 @@ $(document)
 			});
 		})
 	})
-	
-	function ajaxlist(bidx,thumbnail,title,contents,userid,writedate,category,hitcnt,gcnt,bcnt,scrapecnt,rpcnt){
+
+	function ajaxlist(bidx, thumbnail, title, contents, userid, writedate,
+			category, hitcnt, gcnt, bcnt, scrapecnt, rpcnt) {
 		var row = $(
-				
-				//디자인시 여기도 바꿔야함
-				"<div class='row'>"+
-		"<div class='col-md-2'>"+
-			"<a href='/board/boardDetail/"+bidx+"'>"+thumbnail+"</a><img src='http://cafefiles.naver.net/MjAxNzA4MDdfOCAg/MDAxNTAyMTE3MDg0MTI1.IWJYc1vg1mLtBVE0uB9qOCM3P5Lnm9i2qKnbbwHoUukg.zE9P69X2q0EK7tPDnxUy56KG28xa5DQwZTJNMKklgDEg.PNG.altmxjqkr1478/235.png'>"+
-		"</div>"+
 
-		"<div class='col-md-10'>"+
-			"<div align='left'>"+
-				"<h2>"+
-					"<a href='/board/boardDetail/"+bidx+"'> <c:choose>"+
-							"<c:when test='${not empty sessionScope.loginInfo}'>"+title+
-						"</c:when>"+
-							"<c:otherwise>"+
-								"<a data-toggle='modal' data-target='#loginModal'> Login</a>"+
-							"</c:otherwise>"+
-						"</c:choose>"+
-					"</a>"+
-				"</h2>"+
-			"</div>"+
-			"<div align='center'>"+
-				"<h4>"+
-					"<a href='/board/boardDetail/"+bidx+"'>"+contents+"</a>"+
-				"</h4>"+
-			"</div>"+
+		//디자인시 여기도 바꿔야함
+		"<div class='row'>" + "<div class='col-md-2'>"
+				+ "<a href='/board/boardDetail/"+bidx+"'>"
+				+ thumbnail
+				+ "</a><img src='http://cafefiles.naver.net/MjAxNzA4MDdfOCAg/MDAxNTAyMTE3MDg0MTI1.IWJYc1vg1mLtBVE0uB9qOCM3P5Lnm9i2qKnbbwHoUukg.zE9P69X2q0EK7tPDnxUy56KG28xa5DQwZTJNMKklgDEg.PNG.altmxjqkr1478/235.png'>"
+				+ "</div>"
+				+
 
-			"<div class='container' align='right'>"+
-				"<div class='row'>"+
+				"<div class='col-md-10'>"
+				+ "<div align='left'>"
+				+ "<h2>"
+				+ "<a href='/board/boardDetail/"+bidx+"'> <c:choose>"
+				+ "<c:when test='${not empty sessionScope.loginInfo}'>"
+				+ title
+				+ "</c:when>"
+				+ "<c:otherwise>"
+				+ "<a data-toggle='modal' data-target='#loginModal'> Login</a>"
+				+ "</c:otherwise>"
+				+ "</c:choose>"
+				+ "</a>"
+				+ "</h2>"
+				+ "</div>"
+				+ "<div align='center'>"
+				+ "<h4>"
+				+ "<a href='/board/boardDetail/"+bidx+"'>"
+				+ contents
+				+ "</a>"
+				+ "</h4>"
+				+ "</div>"
+				+
 
-					"<div class='col-sm-2'>"+
-						"<span class='glyphicon glyphicon-user' aria-hidden='true'></span>"+userid+"</div>"+
-					"<div class='col-sm-3'>"+
-						"<span class='glyphicon glyphicon-time' aria-hidden='true'></span>"+writedate+"</div>"+
-					"<div class='col-sm-1'>"+
-						"<span class='glyphicon glyphicon-th-list' aria-hidden='true'></span>"+category+"</div>"+
-					"<div class='col-sm-1'>"+
-						"<span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span>"+hitcnt+"</div>"+
-					"<div class='col-sm-1'>"+
-						"<span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>"+gcnt+"</div>"+
-					"<div class='col-sm-1'>"+
-						"<span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span>"+bcnt+"</div>"+
-					"<div class='col-sm-1'>"+
-						"<span class='glyphicon glyphicon-heart-empty' aria-hidden='true'></span>"+vo.scrapecnt+"</div>"+
-					"<div class='col-sm-1'>"+
-						"<span class='glyphicon glyphicon-comment' aria-hidden='true'></span>"+vo.rpcnt+"</div>"+
-				"</div>"+
-			"</div>"+
-		"</div>"+
-	"</div>"+
-	"<hr>"
-			);
+				"<div class='container' align='right'>"
+				+ "<div class='row'>"
+				+
+
+				"<div class='col-sm-2'>"
+				+ "<span class='glyphicon glyphicon-user' aria-hidden='true'></span>"
+				+ userid
+				+ "</div>"
+				+ "<div class='col-sm-3'>"
+				+ "<span class='glyphicon glyphicon-time' aria-hidden='true'></span>"
+				+ writedate
+				+ "</div>"
+				+ "<div class='col-sm-1'>"
+				+ "<span class='glyphicon glyphicon-th-list' aria-hidden='true'></span>"
+				+ category
+				+ "</div>"
+				+ "<div class='col-sm-1'>"
+				+ "<span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span>"
+				+ hitcnt
+				+ "</div>"
+				+ "<div class='col-sm-1'>"
+				+ "<span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>"
+				+ gcnt
+				+ "</div>"
+				+ "<div class='col-sm-1'>"
+				+ "<span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span>"
+				+ bcnt
+				+ "</div>"
+				+ "<div class='col-sm-1'>"
+				+ "<span class='glyphicon glyphicon-heart-empty' aria-hidden='true'></span>"
+				+ vo.scrapecnt
+				+ "</div>"
+				+ "<div class='col-sm-1'>"
+				+ "<span class='glyphicon glyphicon-comment' aria-hidden='true'></span>"
+				+ vo.rpcnt
+				+ "</div>"
+				+ "</div>"
+				+ "</div>"
+				+ "</div>"
+				+ "</div>" + "<hr>");
 	}
-	
-	
 </script>
 
 <style>
@@ -153,10 +169,10 @@ img {
 
 	<div>
 		<c:import url="/category"></c:import>
-		
+
 		<div class="row">
 			<div class="col-md-9">
-				<div id = "boardlistinfi">
+				<div id="boardlistinfi">
 					<a href="/board/write">Write</a>
 					<c:forEach var="vo" items="${boardList}" end="10">
 						<div class="row">
@@ -174,7 +190,6 @@ img {
 												${vo.title}
 											</c:when>
 												<c:otherwise>
-													<a data-toggle="modal" data-target="#loginModal"> Login</a>
 												</c:otherwise>
 											</c:choose>
 										</a>
@@ -227,24 +242,6 @@ img {
 		</div>
 	</div>
 
-
-<!-- Modal -->
-		<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<button type="button" class="close" data-dismiss="modal"
-														aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-													<h4 class="modal-title" id="myModalLabel"></h4>
-												</div>
-												<div class="modal-body">
-													<jsp:include page="Login.jsp" />
-												</div>
-											</div>
-										</div>
-									</div>
 
 
 

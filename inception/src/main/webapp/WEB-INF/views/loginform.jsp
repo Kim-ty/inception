@@ -528,7 +528,6 @@ keyframes buttonFadeInUp { 0% {
 	<div class="container">
 		<div class="row">
 
-			<!-- Mixins-->
 			<!-- Pen Title-->
 			<div class="pen-title"></div>
 			<div class="container">
@@ -573,10 +572,25 @@ keyframes buttonFadeInUp { 0% {
 								for="Password">Password</label>
 							<div class="bar"></div>
 						</div>
+
 						<div class="input-container">
 							<input type="password" id="Repeat Password" required="required" />
 							<label for="Repeat Password">Repeat Password</label>
 							<div class="bar"></div>
+						</div>
+						<div class="input-container">
+							<input type="text" id="email" required="required" /> <label
+								for="email">email</label>
+							<div class="bar"></div>
+						</div>
+						<div class="input-container">
+							<input type="text" id="Repeat email" required="required" /> <label
+								for="Repeat email">Repeat email</label>
+							<div class="bar"></div>
+						</div>
+						<div class="input-container">
+							<input id="sex" type="radio" name="sex" value="남자"> 남자<br />
+							<input id="sex" type="radio" name="sex" value="여자"> 여자<br />
 						</div>
 						<div class="button-container">
 							<button>
@@ -586,9 +600,6 @@ keyframes buttonFadeInUp { 0% {
 					</form>
 				</div>
 			</div>
-			<!-- Portfolio-->
-			<a id="portfolio" href="http://pkshopy.com/farooqshad/"
-				title="View my portfolio!"><i class="fa fa-link"></i></a>
 		</div>
 	</div>
 
