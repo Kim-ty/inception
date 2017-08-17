@@ -210,7 +210,7 @@ public class BoardController {
 		List<BoardListVO> boardList = boardService.showBoardList();
 		model.addAttribute("boardList", boardList);
 
-		return "2BoardList";
+		return "BoardList";
 	}
 
 	@RequestMapping(value = "/boardDetail/{param1}")
@@ -224,7 +224,7 @@ public class BoardController {
 		boardDetail.setScrape(scrapechk(boardDetail.getScraper(), loginVO.getUserid()));
 
 		model.addAttribute("boardDetail", boardDetail);
-		return "2BoardDetail";
+		return "BoardDetail";
 	}
 
 	@RequestMapping(value = "/boardList/{param1}")
@@ -240,7 +240,7 @@ public class BoardController {
 			boardList = boardService.showBoardListCa(category);
 		}
 		model.addAttribute("boardList", boardList);
-		return "2BoardList";
+		return "BoardList";
 	}
 
 	@RequestMapping(value = "/boardInsert")

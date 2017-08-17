@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,503 +10,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 
-<!-- jQuery -->
-<script
-	src="resources/startbootstrap-grayscale-gh-pages/vendor/jquery/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script
-	src="resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- Bootstrap Core CSS -->
-<link
-	href="resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-
-<!-- Custom Fonts -->
-<link
-	href="resources/startbootstrap-grayscale-gh-pages/vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet" type="text/css">
-
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <script type="text/javascript">
-   $(document)
-         .ready(
-               function() {
+	function ReplyView() {
+		if ($(document).find("#replymore").html() == "댓글보기") {
+			reply.style.visibility = "visible";
+			$(document).find("#replymore").html("댓글숨기기");
+		} else {
+			$("#replycontents").empty();
+			$(document).find("#replymore").html("댓글보기");
+			$("reply").append("<div id=replycontents></div>");
+		}
+	}
 
-                  var targetbidx = $("#bidx").html();
+	function taglink(votag) {
+		alert(votag);
+		var tagArray = (votag).split(',');
+		for ( var i in tagArray) {
+			$("#tags").append(
+					"<th><a href='/board/boardList/tag"+tagArray[i]+"'>"
+							+ tagArray[i] + "</a></th>");
+		}
+	}
 
-                  $('.act')
-                        .click(
-                              function() {
-                                 var urlchose = $(this).attr("id");
-
-                                 if ($(this).html().indexOf("취소") == -1) {
-                                    if ($("#good").html().indexOf(
-                                          "취소") > -1
-                                          || $("#bad").html()
-                                                .indexOf("취소") > -1) {
-                                       $
-                                             .ajax({
-                                                url : "/board/updategood",
-                                                type : "post",
-                                                dataType : "json",
-                                                data : {
-                                                   bidx : targetbidx,
-                                                   g_b_count : $(
-                                                         this)
-                                                         .html()
-                                                },
-                                                success : function(
-                                                      data) {
-                                                   if ($(
-                                                         "#good")
-                                                         .html() == "좋아요") {
-                                                      $(
-                                                            "#good")
-                                                            .html(
-                                                                  "좋아요취소");
-                                                      $(
-                                                            "#bad")
-                                                            .html(
-                                                                  "싫어요");
-                                                   } else {
-                                                      $(
-                                                            "#good")
-                                                            .html(
-                                                                  "좋아요");
-                                                      $(
-                                                            "#bad")
-                                                            .html(
-                                                                  "싫어요취소");
-                                                   }
-
-                                                   $(
-                                                         "#goodList")
-                                                         .html(
-                                                               data.goodcount);
-                                                   $(
-                                                         "#badList")
-                                                         .html(
-                                                               data.badcount);
-                                                }
-                                             });
-                                    } else {
-                                       $
-                                             .ajax({
-                                                url : "/board/"
-                                                      + urlchose,
-                                                type : "post",
-                                                dataType : "json",
-                                                data : {
-                                                   bidx : targetbidx
-                                                },
-                                                success : function(
-                                                      data) {
-                                                   if (urlchose == "good") {
-                                                      $(
-                                                            "#good")
-                                                            .html(
-                                                                  "좋아요취소");
-                                                      $(
-                                                            "#goodList")
-                                                            .html(
-                                                                  data);
-                                                   } else {
-                                                      $(
-                                                            "#bad")
-                                                            .html(
-                                                                  "싫어요취소");
-                                                      $(
-                                                            "#badList")
-                                                            .html(
-                                                                  data);
-                                                   }
-                                                }
-                                             });
-                                    }
-
-                                 } else {
-                                    $
-                                          .ajax({
-                                             url : "/board/nogood",
-                                             type : "post",
-                                             dataType : "json",
-                                             data : {
-                                                bidx : targetbidx
-                                             },
-                                             success : function(
-                                                   data) {
-                                                $("#good")
-                                                      .html(
-                                                            "좋아요");
-                                                $("#bad").html(
-                                                      "싫어요");
-
-                                                $("#goodList")
-                                                      .html(
-                                                            data.goodcount);
-                                                $("#badList")
-                                                      .html(
-                                                            data.badcount);
-                                             }
-                                          });
-                                 }
-                              });
-
-                  $('.actscrap').click(
-                        function() {
-                           var urlchose = $(this).attr("id");
-                           $.ajax({
-                              url : "/board/" + urlchose,
-                              type : "post",
-                              dataType : "json",
-                              data : {
-                                 bidx : targetbidx,
-                                 scrape : $(this).html()
-                              },
-                              success : function(data) {
-                                 if ($("#scrape").html().indexOf(
-                                       "취소") == -1) {
-                                    $("#scrape").html("스크랩취소");
-                                 } else {
-                                    $("#scrape").html("스크랩");
-                                 }
-                                 $("#scrapeList").html(data);
-                              }
-                           });
-
-                        });
-
-                  $('#replymore')
-                        .click(
-                              function() {
-                                 $
-                                       .ajax({
-                                          url : "/board/replyList",
-                                          type : "POST",
-                                          dataType : "json",
-                                          data : {
-                                             bidx : $(document)
-                                                   .find(
-                                                         "#bidx")
-                                                   .html()
-                                          },
-                                          success : function(
-                                                replyVO) {
-                                             $
-                                                   .each(
-                                                         replyVO,
-                                                         function(
-                                                               key,
-                                                               value) {
-                                                            var sibal = " ";
-                                                            if (value.level > 1) {
-                                                               for (var i = 0; i <= value.level; i++) {
-                                                                  sibal += "&nbsp;&nbsp;";
-                                                               }
-                                                            }
-                                                            var row = $("<div id='"+value.ridx+"repldiv'>"
-                                                                  + "<span>"
-                                                                  + sibal
-                                                                  + "<span><a href='/profile/profileboard'>"
-                                                                  + value.userid
-                                                                  + "</a>&nbsp"
-                                                                  + value.writedate
-                                                                  + "<br>"
-                                                                  + "<span>"
-                                                                  + sibal
-                                                                  + "<span>"
-                                                                  + value.contents
-                                                                  + "<br>"
-                                                                  + "<span>"
-                                                                  + sibal
-                                                                  + "<span>"
-                                                                  + "<a href='javascript:Replyinsert("
-                                                                  + value.ridx
-                                                                  + ","
-                                                                  + $(
-                                                                        "#bidx")
-                                                                        .html()
-                                                                  + ")'>답글달기</a></div>");
-                                                            $(
-                                                                  "#replycontents")
-                                                                  .append(
-                                                                        row);
-                                                         });
-                                             ReplyView();
-                                          }
-                                       });
-                              });
-
-               });
-
-   function commentSubmit() {
-
-      var params = $("#commentform").serialize();
-
-      $.ajax({
-         url : "/board/commentInsert",
-         type : "POST",
-         dataType : "json",
-         data : params,
-         success : function(replyVO) {
-            $("#replycontents").empty();
-            $("#reply").append("<div id=replycontents></div>");
-            $.each(replyVO, function(key, value) {
-               var sibal = " ";
-               if (value.level > 1) {
-                  for (var i = 0; i <= value.level; i++) {
-                     sibal += "&nbsp;&nbsp;";
-                  }
-               }
-               var row = $("<div id='"+value.ridx+"repldiv'>" + "<span>"
-                     + sibal + "<span><a href='/profile/profileboard'>"
-                     + value.userid + "</a>&nbsp" + value.writedate
-                     + "<br>" + "<span>" + sibal + "<span>"
-                     + value.contents + "<br>" + "<span>" + sibal
-                     + "<span>" + "<a href='javascript:Replyinsert("
-                     + value.ridx + "," + $("#bidx").html()
-                     + ")'>답글달기</a></div>");
-               $("#replycontents").append(row);
-               $("#comment").val("");
-               $("#replycount").html(replyVO.length);
-            });
-         }
-      });
-   }
-
-   function formSubmit(ididx) {
-      var useid = "#" + ididx + "repl";
-      var params = $(useid).serialize();
-
-      $.ajax({
-         url : "/board/commentInsert",
-         type : "POST",
-         dataType : "json",
-         data : params,
-         success : function(replyVO) {
-            $("#replycontents").empty();
-            $("#reply").append("<div id=replycontents></div>");
-            $.each(replyVO, function(key, value) {
-               var sibal = " ";
-               if (value.level > 1) {
-                  for (var i = 0; i <= value.level; i++) {
-                     sibal += "&nbsp;&nbsp;";
-                  }
-               }
-               var row = $("<div id='"+value.ridx+"repldiv'><p>"
-                     + "<span>" + sibal
-                     + "<span><a href='/profile/profileboard'>"
-                     + value.userid + "</a>&nbsp" + value.writedate
-                     + "<br>" + "<span>" + sibal + "<span>"
-                     + value.contents + "<br>" + "<span>" + sibal
-                     + "<span>" + "<a href='javascript:Replyinsert("
-                     + value.ridx + "," + $("#bidx").html()
-                     + ")'>답글달기</a></p><div>");
-               $("#replycontents").append(row);
-               $("#comment").val("");
-               $("#replycount").html(replyVO.length);
-            });
-            $(ididx).remove();
-         }
-
-      });
-   }
-
-   function Replyinsert(ridx, bidx) {
-      var appn = "#" + ridx + "repldiv";
-      var row = $("<form name='repl' id='"+ridx+"repl'><input name = 'comment' type='text'></input><input type ='hidden' name='target' value='"+ridx+" '><input type = 'hidden' name='bidx' value='"+bidx+"'><input type='button' id='"
-            + ridx
-            + "_btn' value='submit' onclick='formSubmit("
-            + ridx
-            + ")'></form>");
-      $(appn).append(row);
-   }
-
-   function ReplyView() {
-      if ($(document).find("#replymore").html() == "댓글보기") {
-         reply.style.visibility = "visible";
-         $(document).find("#replymore").html("댓글숨기기");
-      } else {
-         $("#replycontents").empty();
-         $(document).find("#replymore").html("댓글보기");
-         $("reply").append("<div id=replycontents></div>");
-         reply.style.visibility = "hidden";
-      }
-
-   }
-
-   function taglink(votag) {
-      alert(votag);
-      var tagArray = (votag).split(',');
-      for ( var i in tagArray) {
-         $("#tags").append(
-               "<th><a href='/board/boardList/tag"+tagArray[i]+"'>"
-                     + tagArray[i] + "</a></th>");
-
-      }
-   }
-<<<<<<< HEAD
-=======
-=======
 	$(document)
 			.ready(
 					function() {
-
-						var targetbidx = $("#bidx").html();
-
-						$('.act')
-								.click(
-										function() {
-											var urlchose = $(this).attr("id");
-
-											if ($(this).html().indexOf("취소") == -1) {
-												if ($("#good").html().indexOf(
-														"취소") > -1
-														|| $("#bad").html()
-																.indexOf("취소") > -1) {
-													$
-															.ajax({
-																url : "/board/updategood",
-																type : "post",
-																dataType : "json",
-																data : {
-																	bidx : targetbidx,
-																	g_b_count : $(
-																			this)
-																			.html()
-																},
-																success : function(
-																		data) {
-																	if ($(
-																			"#good")
-																			.html() == "좋아요") {
-																		$(
-																				"#good")
-																				.html(
-																						"좋아요취소");
-																		$(
-																				"#bad")
-																				.html(
-																						"싫어요");
-																	} else {
-																		$(
-																				"#good")
-																				.html(
-																						"좋아요");
-																		$(
-																				"#bad")
-																				.html(
-																						"싫어요취소");
-																	}
-
-																	$(
-																			"#goodList")
-																			.html(
-																					data.goodcount);
-																	$(
-																			"#badList")
-																			.html(
-																					data.badcount);
-																}
-															});
-												} else {
-													$
-															.ajax({
-																url : "/board/"
-																		+ urlchose,
-																type : "post",
-																dataType : "json",
-																data : {
-																	bidx : targetbidx
-																},
-																success : function(
-																		data) {
-																	if (urlchose == "good") {
-																		$(
-																				"#good")
-																				.html(
-																						"좋아요취소");
-																		$(
-																				"#goodList")
-																				.html(
-																						data);
-																	} else {
-																		$(
-																				"#bad")
-																				.html(
-																						"싫어요취소");
-																		$(
-																				"#badList")
-																				.html(
-																						data);
-																	}
-																}
-															});
-												}
-
-											} else {
-												$
-														.ajax({
-															url : "/board/nogood",
-															type : "post",
-															dataType : "json",
-															data : {
-																bidx : targetbidx
-															},
-															success : function(
-																	data) {
-																$("#good")
-																		.html(
-																				"좋아요");
-																$("#bad").html(
-																		"싫어요");
-
-																$("#goodList")
-																		.html(
-																				data.goodcount);
-																$("#badList")
-																		.html(
-																				data.badcount);
-															}
-														});
-											}
-										});
-
-						$('.actscrap').click(
-								function() {
-									var urlchose = $(this).attr("id");
-									$.ajax({
-										url : "/board/" + urlchose,
-										type : "post",
-										dataType : "json",
-										data : {
-											bidx : targetbidx,
-											scrape : $(this).html()
-										},
-										success : function(data) {
-											if ($("#scrape").html().indexOf(
-													"취소") == -1) {
-												$("#scrape").html("스크랩취소");
-											} else {
-												$("#scrape").html("스크랩");
-											}
-											$("#scrapeList").html(data);
-										}
-									});
-
-								});
 
 						$('#replymore')
 								.click(
@@ -517,7 +43,7 @@
 													.ajax({
 														url : "/board/replyList",
 														type : "POST",
-														dataType : "json",
+														dataType : "JSON",
 														data : {
 															bidx : $(document)
 																	.find(
@@ -538,12 +64,12 @@
 																						sibal += "&nbsp;&nbsp;";
 																					}
 																				}
-																				var row = $("<div id='"+value.ridx+"repldiv'>"
+																				var row = $("<p>"
 																						+ "<span>"
 																						+ sibal
-																						+ "<span><a href='/profile/profileboard'>"
+																						+ "<span>"
 																						+ value.userid
-																						+ "</a>&nbsp"
+																						+ "&nbsp"
 																						+ value.writedate
 																						+ "<br>"
 																						+ "<span>"
@@ -554,13 +80,7 @@
 																						+ "<span>"
 																						+ sibal
 																						+ "<span>"
-																						+ "<a href='javascript:Replyinsert("
-																						+ value.ridx
-																						+ ","
-																						+ $(
-																								"#bidx")
-																								.html()
-																						+ ")'>답글달기</a></div>");
+																						+ "<a href='javascript:Replyinsert()'>답글달기</a></p>");
 																				$(
 																						"#replycontents")
 																						.append(
@@ -572,115 +92,6 @@
 										});
 
 					});
-
-	function commentSubmit() {
-
-		var params = $("#commentform").serialize();
-
-		$.ajax({
-			url : "/board/commentInsert",
-			type : "POST",
-			dataType : "json",
-			data : params,
-			success : function(replyVO) {
-				$("#replycontents").empty();
-				$("#reply").append("<div id=replycontents></div>");
-				$.each(replyVO, function(key, value) {
-					var sibal = " ";
-					if (value.level > 1) {
-						for (var i = 0; i <= value.level; i++) {
-							sibal += "&nbsp;&nbsp;";
-						}
-					}
-					var row = $("<div id='"+value.ridx+"repldiv'>" + "<span>"
-							+ sibal + "<span><a href='/profile/profileboard'>"
-							+ value.userid + "</a>&nbsp" + value.writedate
-							+ "<br>" + "<span>" + sibal + "<span>"
-							+ value.contents + "<br>" + "<span>" + sibal
-							+ "<span>" + "<a href='javascript:Replyinsert("
-							+ value.ridx + "," + $("#bidx").html()
-							+ ")'>답글달기</a></div>");
-					$("#replycontents").append(row);
-					$("#comment").val("");
-					$("#replycount").html(replyVO.length);
-				});
-			}
-		});
-	}
-
-	function formSubmit(ididx) {
-		var useid = "#" + ididx + "repl";
-		var params = $(useid).serialize();
-
-		$.ajax({
-			url : "/board/commentInsert",
-			type : "POST",
-			dataType : "json",
-			data : params,
-			success : function(replyVO) {
-				$("#replycontents").empty();
-				$("#reply").append("<div id=replycontents></div>");
-				$.each(replyVO, function(key, value) {
-					var sibal = " ";
-					if (value.level > 1) {
-						for (var i = 0; i <= value.level; i++) {
-							sibal += "&nbsp;&nbsp;";
-						}
-					}
-					var row = $("<div id='"+value.ridx+"repldiv'><p>"
-							+ "<span>" + sibal
-							+ "<span><a href='/profile/profileboard'>"
-							+ value.userid + "</a>&nbsp" + value.writedate
-							+ "<br>" + "<span>" + sibal + "<span>"
-							+ value.contents + "<br>" + "<span>" + sibal
-							+ "<span>" + "<a href='javascript:Replyinsert("
-							+ value.ridx + "," + $("#bidx").html()
-							+ ")'>답글달기</a></p><div>");
-					$("#replycontents").append(row);
-					$("#comment").val("");
-					$("#replycount").html(replyVO.length);
-				});
-				$(ididx).remove();
-			}
-
-		});
-	}
-
-	function Replyinsert(ridx, bidx) {
-		var appn = "#" + ridx + "repldiv";
-		var row = $("<form name='repl' id='"+ridx+"repl'><input name = 'comment' type='text'></input><input type ='hidden' name='target' value='"+ridx+" '><input type = 'hidden' name='bidx' value='"+bidx+"'><input type='button' id='"
-				+ ridx
-				+ "_btn' value='submit' onclick='formSubmit("
-				+ ridx
-				+ ")'></form>");
-		$(appn).append(row);
-	}
-
-	function ReplyView() {
-		if ($(document).find("#replymore").html() == "댓글보기") {
-			reply.style.visibility = "visible";
-			$(document).find("#replymore").html("댓글숨기기");
-		} else {
-			$("#replycontents").empty();
-			$(document).find("#replymore").html("댓글보기");
-			$("reply").append("<div id=replycontents></div>");
-			reply.style.visibility = "hidden";
-		}
-
-	}
-
-	function taglink(votag) {
-		alert(votag);
-		var tagArray = (votag).split(',');
-		for ( var i in tagArray) {
-			$("#tags").append(
-					"<th><a href='/board/boardList/tag"+tagArray[i]+"'>"
-							+ tagArray[i] + "</a></th>");
-
-		}
-	}
->>>>>>> c48c4ae23e5d7ac53befbb966efa7608cddfa4ea
->>>>>>> f4877ae0d50f3c9189f9d3bbc89e89f3006af597
 </script>
 <style>
 p img {
@@ -695,156 +106,120 @@ p img {
 <title>boardDetail</title>
 </head>
 <body>
-	<<<<<<< HEAD ======= <<<<<<< HEAD ======= <<<<<<< HEAD >>>>>>>
-	f4877ae0d50f3c9189f9d3bbc89e89f3006af597
-	<div class="container-fluid">
-		<div>
-			<jsp:include page="header.jsp" flush="false" />
-			<div class="row-fluid">
-				<div>
-					<c:set var="vo" value="${boardDetail}" />
 
-					<div id="boarddetailcontents" style="border: solid black 1px;">
-						<div class="boarddetailcontents_header">
-							<div align="right">
-								<a href="/profile/${vo.userid}">${ vo.userid }</a> <span>${ vo.writedate }</span>
-								<span><a href="board/boardList/${vo.category}">${ vo.category }</a></span>
-								<span>조회수.${ vo.hitcount }</span>
-							</div>
-							<div align="left">
-								<span id="bidx">${vo.bidx}</span> <b><span>${vo.title}</span></b>
-							</div>
-						</div>
-						<div></div>
+	<jsp:include page="header.jsp" flush="false" />
+
+	<c:set var="vo" value="${boardSimple}" />
+	<!-- Blog entries -->
+	<div>
+		<!-- Blog entry -->
+		<div class="w3-card-4 w3-margin w3-white">
+
+			<div class="w3-container">
+				<h3>
+					<span id="bidx">${vo.bidx}</span> <b>${vo.title}</b>
+				</h3>
+				<h5>
+					<a href="/profile/${vo.userid}">${ vo.userid }</a> <span
+						class="w3-opacity">${ vo.writedate }</span> <span
+						class="w3-opacity">${ vo.category }</span> <span
+						class="w3-opacity">조회수.${ vo.hitcount }</span> <span
+						class="w3-opacity">좋아요.${ vo.good }</span> <span
+						class="w3-opacity">나빠요.${ vo.bad }</span> <span class="w3-opacity">스크랩.${ vo.scrapecount }</span>
+				</h5>
+
+			</div>
+
+			<div class="w3-container">
+				<p>${vo.contents}.</p>
+
+			</div>
+			<!-- 게시글에 관련된 태그 리스트 -->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Tags</h4>
+				</div>
+				<div class="w3-container w3-white">
+					<p>
+						<c:forEach var="tag" items="${vo.tag}">
+							<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">
+								<a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
+							</span>
+						</c:forEach>
+					</p>
+				</div>
+			</div>
+
+			<div class="w3-row">
+				<div class="w3-col m8 s12">
+					<p>
+						<button class="w3-button w3-padding-large w3-white w3-border">
+							<b><a id="replymore">댓글보기</a></b>
+						</button>
+					</p>
+				</div>
+				<div class="w3-col m4 w3-hide-small">
+					<p>
+						<span class="w3-padding-large w3-right"><b>Comments</b> <span
+							class="w3-tag">${ vo.replycount }</span></span>
+					</p>
+				</div>
+			</div>
 
 
-						<div class="boarddetailcontents_body">
-							<div>
-								<span>${vo.contents}.</span>
-							</div>
-						</div>
-						<div class="boarddetailcontents_footer1">
-							<div align="right">
-								<span><a id="good" class="act">${vo.good}</a></span> <span><a
-									id="goodList">${fn:length(vo.gooder)}</a></span> <span><a
-									id="bad" class="act">${vo.bad}</a></span> <span><a id="badList">${fn:length(vo.bader)}</a></span>
-								<span><a id="scrape" class="actscrap">${vo.scrape}</a></span> <span><a
-									id="scrapeList">${fn:length(vo.scraper)}</a></span>
-							</div>
-						</div>
-						<div class="boarddetailcontents_tags">
-							<div>
-								<h4>Tags</h4>
-								<div>
-									<c:forEach var="tag" items="${vo.tag}">
-										<span> <a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
-										</span>
-									</c:forEach>
-								</div>
-							</div>
-						</div>
+			<div id="reply" class="w3-container w3-white"
+				style="visibility: hidden;">
+				<div id=replycontents></div>
+			</div>
 
-						<div class="boarddetailcontents_reply">
-							<div>
-								<span><b> <a id="replymore">댓글보기</a></b></span> <b>Comments</b>
-								<span id="replycount">${ vo.replycount }</span>
-							</div>
-						</div>
+		</div>
+	</div>
 
-						<div id="reply" style="visibility: hidden;">
-							<div>
-								<form name='commentform' id='commentform'>
-									<input type='text' name='comment'></input> <input type='hidden'
-										name='target' value=''> <input type='hidden'
-										name='bidx' value="${vo.bidx}"> <input type='button'
-										value='submit' onclick='commentSubmit()'>
-								</form>
-							</div>
-						</div>
-						<div id=replycontents></div>
-					</div>
+
+
+
+
+	<div id="myModal" class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<jsp:include page="replyinsert.jsp" />
 				</div>
 			</div>
 		</div>
 	</div>
-	<<<<<<< HEAD ======= ======= <<<<<<< HEAD ======= <<<<<<< HEAD
-	<div class="container">
-		======= <<<<<<< HEAD ======= >>>>>>>
-		dbeed1771260b45fd8f413404830915a059d4949 >>>>>>>
-		7a4cbd1c5cc6a35c9b38fbbcb84c7802d8227bcc >>>>>>>
-		796caa606ed576cc7de24e8c7b9a43f8e6adbf10
-		<div class="container-fluid">
-			<div>
-				<jsp:include page="header.jsp" flush="false" />
-				<div class="row-fluid">
-					<div>
-						<c:set var="vo" value="${boardDetail}" />
 
-						<div id="boarddetailcontents" style="border: solid black 1px;">
-							<div class="boarddetailcontents_header">
-								<div align="right">
-									<a href="/profile/${vo.userid}">${ vo.userid }</a> <span>${ vo.writedate }</span>
-									<span><a href="board/boardList/${vo.category}">${ vo.category }</a></span>
-									<span>조회수.${ vo.hitcount }</span>
-								</div>
-								<div align="left">
-									<span id="bidx">${vo.bidx}</span> <b><span>${vo.title}</span></b>
-								</div>
-							</div>
-							<div></div>
+	<script>
+		function Replyinsert() {
+			modal.style.display = "block";
+		}
 
+		// Get the modal
+		var modal = document.getElementById('myModal');
 
-							<div class="boarddetailcontents_body">
-								<div>
-									<span>${vo.contents}.</span>
-								</div>
-							</div>
-							<div class="boarddetailcontents_footer1">
-								<div align="right">
-									<span><a id="good" class="act">${vo.good}</a></span> <span><a
-										id="goodList">${fn:length(vo.gooder)}</a></span> <span><a
-										id="bad" class="act">${vo.bad}</a></span> <span><a
-										id="badList">${fn:length(vo.bader)}</a></span> <span><a
-										id="scrape" class="actscrap">${vo.scrape}</a></span> <span><a
-										id="scrapeList">${fn:length(vo.scraper)}</a></span>
-								</div>
-							</div>
-							<div class="boarddetailcontents_tags">
-								<div>
-									<h4>Tags</h4>
-									<div>
-										<c:forEach var="tag" items="${vo.tag}">
-											<span> <a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
-											</span>
-										</c:forEach>
-									</div>
-								</div>
-							</div>
+		// Get the button that opens the modal
 
-							<div class="boarddetailcontents_reply">
-								<div>
-									<span><b> <a id="replymore">댓글보기</a></b></span> <b>Comments</b>
-									<span id="replycount">${ vo.replycount }</span>
-								</div>
-							</div>
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
 
-							<div id="reply" style="visibility: hidden;">
-								<div>
-									<form name='commentform' id='commentform'>
-										<input type='text' name='comment'></input> <input
-											type='hidden' name='target' value=''> <input
-											type='hidden' name='bidx' value="${vo.bidx}"> <input
-											type='button' value='submit' onclick='commentSubmit()'>
-									</form>
-								</div>
-							</div>
-							<div id=replycontents></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		>>>>>>> c48c4ae23e5d7ac53befbb966efa7608cddfa4ea >>>>>>>
-		f4877ae0d50f3c9189f9d3bbc89e89f3006af597
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	</script>
+
 </body>
 </html>
+
+

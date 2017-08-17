@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet"
@@ -25,44 +26,46 @@
 <script src="/resources/summernote/dist/summernote.js"></script>
 <!--   <script src="follow.js" ></script> -->
 <script type="text/javascript">
-	function submitForm() {
+
+		function submitForm() {
 
 		var contents = $(".summernote").summernote("code");
 		var regex = /<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>/i;
-		///img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*/g;
-		var src
-		if (regex.exec(contents) == null) {
+			///img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*/g;
+		var src = regex.exec(contents)[0];
+		alert("["+src+"]src선언전")
+		if(regex.exec(contents) == null){
 			src = "/uploadimage/default.jpg";
-			$("thumbnail").val(src);
-		} else {
+			alert(src+"디폴트이미지");
+			thumbnail.value = src;
+		}else{
 			src = regex.exec(contents)[0];
-			$("#thumbnail").val(src);
-			var sibal = $("#thumbnail").val();
+			$("#thumbnail").html = src;
+			alert($("#thumbnail").html);
 		}
 		$("#contents").val(contents);
 		var boardForm = document.write;
 		if ($("#tag").val() != ' ') {
 			var strArray = ($("#tag").val()).split('#');
 			for ( var i in strArray) {
-				if (strArray[i] != '') {
-					var input = document.createElement("input");
-					input.type = "text";
-					input.name = "tagList[" + (i-1) + "].tag";
-					input.value = strArray[i];
-					alert(input.name + ',' + input.value);
-					boardForm.appendChild(input);
-				}
+				var input = document.createElement("input");
+				input.type = "text";
+				input.name = "tagList[" + i + "].tag";
+				input.value = strArray[i];
+				alert(input.name + ',' + input.value);
+				boardForm.appendChild(input);
 			}
-		} else {
+		}else{
 			var input = document.createElement("input");
-			input.type = "text";
-			input.name = "tagList[0].tag";
+			input.type="text";
+			input.name="tagList[0].tag";
 			input.value = " ";
 			boardForm.appendChild(input);
 		}
 
-		$("#boardInsert").submit();
+		//$("#boardInsert").submit();
 	}
+
 </script>
 </head>
 
@@ -78,6 +81,11 @@
 		<div class="form-group">
 			<select id="category" name="category" class="form-control">
 				<option value="의류">의류</option>
+				<option value="애완동물">애완동물</option>
+				<option value="food">food</option>
+				<option value="차">차</option>
+				<option value="사진">사진</option>
+				<option value="여행">여행</option>
 			</select>
 		</div>
 
@@ -133,9 +141,8 @@
 				placeholder="Enter tag" />
 		</div>
 		<div class="form-group">
-			<textarea id="thumbnail" name="thumbnail" class="form-control"
-				style="display: none;">
-			</textarea>
+			<input id="thumbnail" name="thumbnail" class="form-control"
+			style="display:none;">
 		</div>
 	</form>
 

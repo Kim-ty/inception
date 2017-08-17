@@ -1,40 +1,71 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
+
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 
-<title>inception_Login</title>
+<title>Login</title>
+
 
 </head>
 
 <body>
 
-	<!-- CDNlib -->
-	<jsp:include page="CDNLIB.jsp" flush="false" />
 
-	<div id="container-fluid">
+
+	<div class="container">
 		<div class="row">
-			<div style="background-color: #ec2652;">
-				<jsp:include page="2sidebar.jsp" flush="false" />
-			</div>
-		</div>
+			<div class="col-sm">
+				<div class="login-box well">
 
-		<!-- login -->
-		<div id="row">
-			<div class="col-md-12" align="center"><jsp:include
-					page="loginform.jsp" flush="false" /></div>
-		</div>
-		<div id="row">
-			<div class="col-md-12" align="center"><jsp:include
-					page="loginbackground.jsp" flush="false" /></div>
+					<form role="form" method="post" action="/user/loginchk">
+						<legend align="left">Login</legend>
+
+						<div class="form-group">
+							<label for="userid">ID or Email</label> <input name="userid"
+								id="userid" placeholder="E-mail or Username" type="text"
+								class="form-control" />
+						</div>
+						<div class="form-group">
+							<label for="password">Password</label> <input name="userpw"
+								id="password" placeholder="Password" type="password"
+								class="form-control" />
+						</div>
+						<div class="form-group">
+							<input type="submit"
+								class="btn btn-default btn-login-submit btn-block m-t-md"
+								value="sign in" />
+						</div>
+					</form>
+					<form role="form" action="/user/join" method="post">
+						<div class="form-group">
+							<input type="submit"
+								class="btn btn-default btn-login-submit btn-block m-t-md"
+								value="sign up" />
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 
+
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var loginCheck = document.getElementById()
+		}
+
+		)
+	</script>
+
+
+
 </body>
+
 </html>

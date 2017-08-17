@@ -14,10 +14,10 @@
 <body>
 
 	<div>
-		<h2 align="left">tags</h2>
+		<h2>tags</h2>
 		<hr>
 		<c:forEach var="tagList" items="${tagList}">
-			<p align="left">
+			<p>
 				<a href="/board/boardList/tag${tagList.tag}">${tagList.tag}</a>
 			</p>
 		</c:forEach>
@@ -25,3 +25,9 @@
 
 </body>
 </html>
+
+
+
+
+
+
