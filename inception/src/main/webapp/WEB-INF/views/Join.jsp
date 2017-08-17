@@ -140,9 +140,6 @@
 </head>
 
 <body>
-
-	<jsp:include page="header.jsp" flush="false" />
-
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">

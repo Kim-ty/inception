@@ -18,31 +18,28 @@
 
 	<button type="button" class="btn btn-primary">Primary</button>
 
-<<<<<<< HEAD
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div
-				class="collapse navbar-collapse navbar-right navbar-main-collapse">
-				<ul class="nav navbar-nav">
-					<!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-					<li class="hidden"><a href="#page-top"></a></li>
-					<li><a class="page-scroll" href="#Searching">Searching</a></li>
-					<li><a class="page-scroll" href="#download">Download</a></li>
-					<li><a class="page-scroll" href="#boards">boards</a></li>
-					<li><c:choose>
-							<c:when test="${not empty sessionScope.loginInfo}">
-								<span>welcome ${sessionScope.loginInfo.userid} !! </span>
-								<a href="/profile/${sessionScope.loginInfo.userid}/">profile</a>
-								<a href="/user/logout">Log out</a>
-							</c:when>
-							<c:otherwise>
-								<!-- <a> tag trigger modal -->
-								<a data-toggle="modal" data-target="#loginModal"> Login </a>
-								
-							</c:otherwise>
-						</c:choose></li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
+	<<<<<<< HEAD
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+		<ul class="nav navbar-nav">
+			<!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+			<li class="hidden"><a href="#page-top"></a></li>
+			<li><a class="page-scroll" href="#Searching">Searching</a></li>
+			<li><a class="page-scroll" href="#download">Download</a></li>
+			<li><a class="page-scroll" href="#boards">boards</a></li>
+			<li><c:choose>
+					<c:when test="${not empty sessionScope.loginInfo}">
+						<span>welcome ${sessionScope.loginInfo.userid} !! </span>
+						<a href="/profile/${sessionScope.loginInfo.userid}/">profile</a>
+						<a href="/user/logout">Log out</a>
+					</c:when>
+					<c:otherwise>
+						<a href="/user/login"> Login </a>
+					</c:otherwise>
+				</c:choose></li>
+		</ul>
+	</div>
+	<!-- /.navbar-collapse -->
 	<div class="container">
 		<div class="page-header" style="border: solid 1px;">
 			<jsp:include page="header.jsp" flush="false" />

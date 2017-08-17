@@ -35,12 +35,12 @@ public class UserController {
 
 	@RequestMapping("/join")
 	public String move_join() {
-		return "Join";
+		return "2Join";
 	}
 
 	@RequestMapping("/login")
 	public String move_login() {
-		return "Login";
+		return "2Login";
 	}
 
 	@RequestMapping("/update")

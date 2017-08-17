@@ -55,7 +55,7 @@ public class MainController {
 		model.addAttribute("categoryListSize", categoryListVO.size());
 		List<TagListVO> tagListVO = boardService.tagList();
 		model.addAttribute("tagList", tagListVO);
-		return "Main";
+		return "2main";
 	}
 
 	@RequestMapping("/category")
