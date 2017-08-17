@@ -218,12 +218,10 @@ public class BoardController {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		boardService.hit(bidx);
 		BoardDetailVO boardDetail = boardService.showBoardDetail(bidx);
-		
-		
-			boardDetail.setGood(goodchk(boardDetail.getGooder(), loginVO.getUserid()));
-			boardDetail.setBad(badchk(boardDetail.getBader(), loginVO.getUserid()));			
-			boardDetail.setScrape(scrapechk(boardDetail.getScraper(), loginVO.getUserid()));
-		
+
+		boardDetail.setGood(goodchk(boardDetail.getGooder(), loginVO.getUserid()));
+		boardDetail.setBad(badchk(boardDetail.getBader(), loginVO.getUserid()));
+		boardDetail.setScrape(scrapechk(boardDetail.getScraper(), loginVO.getUserid()));
 
 		model.addAttribute("boardDetail", boardDetail);
 		return "BoardDetail";
@@ -261,9 +259,10 @@ public class BoardController {
 
 		return "/boardList";
 	}
-	
-	@RequestMapping(value = "/commentInsert",method=RequestMethod.POST)
-	public String commentInsert(@RequestParam String bidx,@RequestParam String comment,@RequestParam String target,HttpSession session){
+
+	@RequestMapping(value = "/commentInsert", method = RequestMethod.POST)
+	public String commentInsert(@RequestParam String bidx, @RequestParam String comment, @RequestParam String target,
+			HttpSession session) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		ReplyDTO replyDTO = new ReplyDTO();
 		replyDTO.setBidx(bidx);
@@ -299,25 +298,24 @@ public class BoardController {
 		return "boardInsert";
 	}
 
-	@RequestMapping(value = "/scrape",method = RequestMethod.POST)
+	@RequestMapping(value = "/scrape", method = RequestMethod.POST)
 	@ResponseBody
-	public String scrape(@RequestParam String bidx,@RequestParam String scrape, HttpSession session) {
+	public String scrape(@RequestParam String bidx, @RequestParam String scrape, HttpSession session) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		ScrapeDTO scrapeDTO = new ScrapeDTO();
 		scrapeDTO.setBidx(bidx);
 		scrapeDTO.setUserid(loginVO.getUserid());
-		if(scrape.equals("스크랩취소")){
+		if (scrape.equals("스크랩취소")) {
 			boardService.descrape(scrapeDTO);
-		}else{
-			boardService.Scrape(scrapeDTO);			
+		} else {
+			boardService.Scrape(scrapeDTO);
 		}
-		List<ScraperListVO> scrapeListVO= boardService.showScraperList(bidx);
-		
-		return scrapeListVO.size()+"";
+		List<ScraperListVO> scrapeListVO = boardService.showScraperList(bidx);
+
+		return scrapeListVO.size() + "";
 	}
 
-	
-	@RequestMapping(value = "/good",method = RequestMethod.POST)
+	@RequestMapping(value = "/good", method = RequestMethod.POST)
 	@ResponseBody
 	public String good(@RequestParam String bidx, HttpSession session) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
@@ -325,11 +323,11 @@ public class BoardController {
 		goodDTO.setBidx(bidx);
 		goodDTO.setUserid(loginVO.getUserid());
 		boardService.good(goodDTO);
-		
-		return boardService.showGooderList(bidx).size()+"";
+
+		return boardService.showGooderList(bidx).size() + "";
 	}
 
-	@RequestMapping(value = "/bad",method = RequestMethod.POST)
+	@RequestMapping(value = "/bad", method = RequestMethod.POST)
 	@ResponseBody
 	public String bad(@RequestParam String bidx, HttpSession session) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
@@ -338,46 +336,46 @@ public class BoardController {
 		badDTO.setUserid(loginVO.getUserid());
 		boardService.bad(badDTO);
 
-		return boardService.showBaderList(bidx).size()+"";
+		return boardService.showBaderList(bidx).size() + "";
 	}
-	
-	@RequestMapping(value = "/updategood",method = RequestMethod.POST)
+
+	@RequestMapping(value = "/updategood", method = RequestMethod.POST)
 	@ResponseBody
-	public AjaxGoodBadResult updatebad(@RequestParam String bidx,@RequestParam String g_b_count,HttpSession session){
+	public AjaxGoodBadResult updatebad(@RequestParam String bidx, @RequestParam String g_b_count, HttpSession session) {
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		GoodDTO goodDTO = new GoodDTO();
-		if(g_b_count.contains("좋아요")){
-			goodDTO.setG_b_count("0");			
-		}else{
+		if (g_b_count.contains("좋아요")) {
+			goodDTO.setG_b_count("0");
+		} else {
 			goodDTO.setG_b_count("1");
 		}
 		goodDTO.setBidx(bidx);
 		goodDTO.setUserid(loginVO.getUserid());
-		System.out.println("카운트 : "+goodDTO.getG_b_count());
+		System.out.println("카운트 : " + goodDTO.getG_b_count());
 		boardService.updategoodbad(goodDTO);
 		AjaxGoodBadResult ajaxGoodBadResult = new AjaxGoodBadResult();
-		ajaxGoodBadResult.setGoodcount(boardService.showGooderList(bidx).size()+"");
-		ajaxGoodBadResult.setBadcount(boardService.showBaderList(bidx).size()+"");
-		
+		ajaxGoodBadResult.setGoodcount(boardService.showGooderList(bidx).size() + "");
+		ajaxGoodBadResult.setBadcount(boardService.showBaderList(bidx).size() + "");
+
 		return ajaxGoodBadResult;
 	}
 
-	@RequestMapping(value = "/nogood",method = RequestMethod.POST)
+	@RequestMapping(value = "/nogood", method = RequestMethod.POST)
 	@ResponseBody
-	public AjaxGoodBadResult nogood(@RequestParam String bidx,HttpSession session){
-		
+	public AjaxGoodBadResult nogood(@RequestParam String bidx, HttpSession session) {
+
 		LoginVO loginVO = (LoginVO) session.getAttribute("loginInfo");
 		GoodDTO goodDTO = new GoodDTO();
 		goodDTO.setBidx(bidx);
 		goodDTO.setUserid(loginVO.getUserid());
 		boardService.goodbaddelete(goodDTO);
 		AjaxGoodBadResult ajaxGoodBadResult = new AjaxGoodBadResult();
-		ajaxGoodBadResult.setGoodcount(boardService.showGooderList(bidx).size()+"");
-		ajaxGoodBadResult.setBadcount(boardService.showBaderList(bidx).size()+"");
-		
+		ajaxGoodBadResult.setGoodcount(boardService.showGooderList(bidx).size() + "");
+		ajaxGoodBadResult.setBadcount(boardService.showBaderList(bidx).size() + "");
+
 		return ajaxGoodBadResult;
 	}
-	
+
 	@RequestMapping(value = "/uploadImage", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String uploadAjax(MultipartFile file) throws Exception {
@@ -418,7 +416,7 @@ public class BoardController {
 		boardService.boardInsert(boardInsertDTO);
 
 	}
-	
+
 	@RequestMapping(value = "/andgoodbadcheck")
 	@ResponseBody
 	public int andgoodbadcheck(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid) {
@@ -429,7 +427,7 @@ public class BoardController {
 		return g_b_count;
 
 	}
-	
+
 	@RequestMapping(value = "/andgoodbaddelete")
 	@ResponseBody
 	public void andgoodbaddelete(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid) {
@@ -437,25 +435,20 @@ public class BoardController {
 		goodDTO.setBidx(bidx);
 		goodDTO.setUserid(userid);
 		boardService.goodbaddelete(goodDTO);
-		
 
 	}
+
 	@RequestMapping(value = "/andupdategoodbad")
 	@ResponseBody
-	public void andupdategoodbad(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid,@RequestParam("g_b_count") String g_b_count) {
+	public void andupdategoodbad(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid,
+			@RequestParam("g_b_count") String g_b_count) {
 		GoodDTO goodDTO = new GoodDTO();
 		goodDTO.setBidx(bidx);
 		goodDTO.setUserid(userid);
 		goodDTO.setG_b_count(g_b_count);
 		boardService.updategoodbad(goodDTO);
-		
 
 	}
-	
-	
-	
-	
-	
 
 	public String goodchk(List<GooderListVO> gooderList, String userid) {
 		if (gooderList != null) {
@@ -489,7 +482,7 @@ public class BoardController {
 		}
 		return "스크랩";
 	}
-	
+
 	@RequestMapping(value = "/anddescrap")
 	@ResponseBody
 	public void anddescrap(@RequestParam("bidx") String bidx, @RequestParam("userid") String userid) {
@@ -497,8 +490,6 @@ public class BoardController {
 		scrapeDTO.setBidx(bidx);
 		scrapeDTO.setUserid(userid);
 		boardService.descrape(scrapeDTO);
-		
 
 	}
-
 }
