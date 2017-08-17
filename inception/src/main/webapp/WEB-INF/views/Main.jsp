@@ -48,7 +48,7 @@
 			<jsp:include page="header.jsp" flush="false" />
 		</div>
 		<div class="col-xs-9" style="border: solid 1px;">
-<%-- 			<jsp:include page="searching.jsp" flush="false" /> --%>
+			<jsp:include page="searching.jsp" flush="false" />
 		</div>
 		<div class="col-xs-3" style="border: solid 1px;">
 			<c:import url="/board/hottagList"></c:import>
