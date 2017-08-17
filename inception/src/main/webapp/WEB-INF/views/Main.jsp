@@ -43,14 +43,12 @@
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
-=======
 	<div class="container">
 		<div class="page-header" style="border: solid 1px;">
 			<jsp:include page="header.jsp" flush="false" />
->>>>>>> 681ae3c6cae14353d0b28090aa79e7801e0b5699
 		</div>
 		<div class="col-xs-9" style="border: solid 1px;">
-			<jsp:include page="searching.jsp" flush="false" />
+<%-- 			<jsp:include page="searching.jsp" flush="false" /> --%>
 		</div>
 		<div class="col-xs-3" style="border: solid 1px;">
 			<c:import url="/board/hottagList"></c:import>
