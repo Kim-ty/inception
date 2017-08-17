@@ -10,12 +10,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 
+
 </head>
 
 <body>
 
-	<!-- CDNlib -->
-	<jsp:include page="CDNLIB.jsp" flush="false" />
+
+
+
 
 	<div class="container-fluid">
 		<div id="row">
@@ -23,43 +25,105 @@
 				<jsp:include page="2header.jsp" flush="false" />
 			</div>
 		</div>
-		<div id="row">
-			<div class="col-md-10">
-				<div class="media">
-					<!-- photo -->
-					<div class="media-left media-middle">
-						<a href="#"> <img class="media-object"
-							src="https://search.pstatic.net/common?type=o&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201606%2F20160613150203917.jpg"
-							alt="1234">
-						</a>
+
+
+
+
+		<div>
+			<%-- <c:import url="/category"></c:import> --%>
+
+			<div class="row">
+				<div class="col-md-9">
+					<div id="boardlistinfi">
+						<a href="/board/write">Write</a>
+						<c:forEach var="vo" items="${boardList}" end="10">
+
+
+							<div id="row">
+								<div class="col-md-10">
+									<div class="media">
+										<!-- photo -->
+										<div class="media-left media-middle">
+											<a href=""/board/boardDetail/${vo.bidx}">${vo.thumbnail}
+												<img class="media-object" src="" alt="1234">
+											</a>
+										</div>
+										<!-- acticle -->
+										<div class="media-body">
+											<h4 class="media-heading">Middle aligned media</h4>
+											<a href="/board/boardDetail/${vo.bidx}"> <c:choose>
+													<c:when test="${not empty sessionScope.loginInfo}">
+												${vo.title}
+											</c:when>
+													<c:otherwise>
+													</c:otherwise>
+												</c:choose>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div class="col-md-10">
+									<div align="left"></div>
+									<div align="center">
+										<h4>
+											<a href="/board/boardDetail/${vo.bidx}">${vo.contents}</a>
+										</h4>
+									</div>
+
+									<div class="container" align="right">
+										<div class="row">
+
+											<div class="col-sm-2">
+												<span class="glyphicon glyphicon-user" aria-hidden="true"></span>${ vo.userid }</div>
+											<div class="col-sm-3">
+												<span class="glyphicon glyphicon-time" aria-hidden="true"></span>${ vo.writedate }</div>
+											<div class="col-sm-1">
+												<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>${ vo.category }</div>
+											<div class="col-sm-1">
+												<span class="glyphicon glyphicon-eye-open"
+													aria-hidden="true"></span>${ vo.hitcnt }</div>
+											<div class="col-sm-1">
+												<span class="glyphicon glyphicon-thumbs-up"
+													aria-hidden="true"></span> ${ vo.gcnt }
+											</div>
+											<div class="col-sm-1">
+												<span class="glyphicon glyphicon-thumbs-down"
+													aria-hidden="true"></span>${ vo.bcnt }</div>
+											<div class="col-sm-1">
+												<span class="glyphicon glyphicon-heart-empty"
+													aria-hidden="true"></span>${ vo.scrapecnt }</div>
+											<div class="col-sm-1">
+												<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>${ vo.rpcnt }</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr>
+						</c:forEach>
+						<div id="moreview">더보기</div>
 					</div>
-					<!-- acticle -->
-					<div class="media-body">
-						<h4 class="media-heading">Middle aligned media</h4>
-						Explore Wikipedia's Contents Shortcuts: WP:START WP:EXPLORE
-						Contents [hide] 1 Curated article collections 2 Reference
-						collections 3 Special format collections 4 Collections of articles
-						5 Collections of articles by quality or popularity There are two
-						ways to look things up in Wikipedia: by searching or by browsing.
-						If you know the name of an article for which you are looking,
-						simply type it into Wikipedia's search box. If you would like to
-						look around the encyclopedia to see what is on it, use Wikipedia's
-						Contents pages. Lists and indices are examples of contents for a
-						published work, and Wikipedia has many of each, including a
-						complete alphabetical index and indices by category. Links to all
-						of Wikipedia's main contents pages are presented below, and they
-						in turn link to the more specific pages. Curated article
-						collections Overview articles Overview articles summarize in prose
-						a broad topic like biology, and also have illustrations and links
-						to subtopics like cell biology, biographies like Carl Linnaeus,
-						and other related articles like Human Genome Project.
-						Portal:Contents/Overviews lists overview articles from covered
-						areas of knowledge in a single page.
+				</div>
+				<div class="col-md-3">
+					<div>
+			<%-- 			<c:import url="/board/hottagList"></c:import> --%>
 					</div>
 				</div>
 			</div>
-
 		</div>
+
+
+
+
+
+
+
+
+
 	</div>
 </body>
 

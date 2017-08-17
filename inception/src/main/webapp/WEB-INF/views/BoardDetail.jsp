@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
@@ -15,35 +14,32 @@
 
 <!-- jQuery -->
 <script
-   src="resources/startbootstrap-grayscale-gh-pages/vendor/jquery/jquery.js"></script>
+	src="resources/startbootstrap-grayscale-gh-pages/vendor/jquery/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script
-   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script   src="resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap Core CSS -->
 <link
-   href="resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/css/bootstrap.min.css"
-   rel="stylesheet">
+	href="resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link
-   href="resources/startbootstrap-grayscale-gh-pages/vendor/font-awesome/css/font-awesome.min.css"
-   rel="stylesheet" type="text/css">
+	href="resources/startbootstrap-grayscale-gh-pages/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
 <link
-   href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-   rel="stylesheet" type="text/css">
+	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-   rel="stylesheet" type="text/css">
+	rel="stylesheet" type="text/css">
 
-<!-- Theme CSS -->
-<link
-   href="/resources/startbootstrap-grayscale-gh-pages/css/grayscale.min.css"
-   rel="stylesheet">
 
 <script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script type="text/javascript">
    $(document)
@@ -688,107 +684,19 @@
 </script>
 <style>
 p img {
-   resize: both; /* 이미지 최대 사이즈에 적용 */
-   float: center; /* 가운데 정렬 */
-   max-width: 100%; /* 넓이를 지정 */
-   height: auto; /* 높이를 지정 */
-   margin: 5px 0; /* 여백을 적용 4가지 조건이 가능 위쪽, 오른쪽, 아래쪽, 왼쪽 순서 */
+	resize: both; /* 이미지 최대 사이즈에 적용 */
+	float: center; /* 가운데 정렬 */
+	max-width: 100%; /* 넓이를 지정 */
+	height: auto; /* 높이를 지정 */
+	margin: 5px 0; /* 여백을 적용 4가지 조건이 가능 위쪽, 오른쪽, 아래쪽, 왼쪽 순서 */
 }
 </style>
 
 <title>boardDetail</title>
 </head>
 <body>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f4877ae0d50f3c9189f9d3bbc89e89f3006af597
-   <div class="container-fluid">
-      <div>
-         <jsp:include page="header.jsp" flush="false" />
-         <div class="row-fluid">
-            <div>
-               <c:set var="vo" value="${boardDetail}" />
-
-               <div id="boarddetailcontents" style="border: solid black 1px;">
-                  <div class="boarddetailcontents_header">
-                     <div align="right">
-                        <a href="/profile/${vo.userid}">${ vo.userid }</a> <span>${ vo.writedate }</span>
-                        <span><a href="board/boardList/${vo.category}">${ vo.category }</a></span>
-                        <span>조회수.${ vo.hitcount }</span>
-                     </div>
-                     <div align="left">
-                        <span id="bidx">${vo.bidx}</span> <b><span>${vo.title}</span></b>
-                     </div>
-                  </div>
-                  <div></div>
-
-
-                  <div class="boarddetailcontents_body">
-                     <div>
-                        <span>${vo.contents}.</span>
-                     </div>
-                  </div>
-                  <div class="boarddetailcontents_footer1">
-                     <div align="right">
-                        <span><a id="good" class="act">${vo.good}</a></span> <span><a
-                           id="goodList">${fn:length(vo.gooder)}</a></span> <span><a
-                           id="bad" class="act">${vo.bad}</a></span> <span><a id="badList">${fn:length(vo.bader)}</a></span>
-                        <span><a id="scrape" class="actscrap">${vo.scrape}</a></span> <span><a
-                           id="scrapeList">${fn:length(vo.scraper)}</a></span>
-                     </div>
-                  </div>
-                  <div class="boarddetailcontents_tags">
-                     <div>
-                        <h4>Tags</h4>
-                        <div>
-                           <c:forEach var="tag" items="${vo.tag}">
-                              <span> <a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
-                              </span>
-                           </c:forEach>
-                        </div>
-                     </div>
-                  </div>
-
-                  <div class="boarddetailcontents_reply">
-                     <div>
-                        <span><b> <a id="replymore">댓글보기</a></b></span> <b>Comments</b>
-                        <span id="replycount">${ vo.replycount }</span>
-                     </div>
-                  </div>
-
-                  <div id="reply" style="visibility: hidden;">
-                     <div>
-                        <form name='commentform' id='commentform'>
-                           <input type='text' name='comment'></input> <input type='hidden'
-                              name='target' value=''> <input type='hidden'
-                              name='bidx' value="${vo.bidx}"> <input type='button'
-                              value='submit' onclick='commentSubmit()'>
-                        </form>
-                     </div>
-                  </div>
-                  <div id=replycontents></div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-	<div class="container">
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> dbeed1771260b45fd8f413404830915a059d4949
->>>>>>> 7a4cbd1c5cc6a35c9b38fbbcb84c7802d8227bcc
->>>>>>> 796caa606ed576cc7de24e8c7b9a43f8e6adbf10
+	<<<<<<< HEAD ======= <<<<<<< HEAD ======= <<<<<<< HEAD >>>>>>>
+	f4877ae0d50f3c9189f9d3bbc89e89f3006af597
 	<div class="container-fluid">
 		<div>
 			<jsp:include page="header.jsp" flush="false" />
@@ -859,7 +767,84 @@ p img {
 			</div>
 		</div>
 	</div>
->>>>>>> c48c4ae23e5d7ac53befbb966efa7608cddfa4ea
->>>>>>> f4877ae0d50f3c9189f9d3bbc89e89f3006af597
+	<<<<<<< HEAD ======= ======= <<<<<<< HEAD ======= <<<<<<< HEAD
+	<div class="container">
+		======= <<<<<<< HEAD ======= >>>>>>>
+		dbeed1771260b45fd8f413404830915a059d4949 >>>>>>>
+		7a4cbd1c5cc6a35c9b38fbbcb84c7802d8227bcc >>>>>>>
+		796caa606ed576cc7de24e8c7b9a43f8e6adbf10
+		<div class="container-fluid">
+			<div>
+				<jsp:include page="header.jsp" flush="false" />
+				<div class="row-fluid">
+					<div>
+						<c:set var="vo" value="${boardDetail}" />
+
+						<div id="boarddetailcontents" style="border: solid black 1px;">
+							<div class="boarddetailcontents_header">
+								<div align="right">
+									<a href="/profile/${vo.userid}">${ vo.userid }</a> <span>${ vo.writedate }</span>
+									<span><a href="board/boardList/${vo.category}">${ vo.category }</a></span>
+									<span>조회수.${ vo.hitcount }</span>
+								</div>
+								<div align="left">
+									<span id="bidx">${vo.bidx}</span> <b><span>${vo.title}</span></b>
+								</div>
+							</div>
+							<div></div>
+
+
+							<div class="boarddetailcontents_body">
+								<div>
+									<span>${vo.contents}.</span>
+								</div>
+							</div>
+							<div class="boarddetailcontents_footer1">
+								<div align="right">
+									<span><a id="good" class="act">${vo.good}</a></span> <span><a
+										id="goodList">${fn:length(vo.gooder)}</a></span> <span><a
+										id="bad" class="act">${vo.bad}</a></span> <span><a
+										id="badList">${fn:length(vo.bader)}</a></span> <span><a
+										id="scrape" class="actscrap">${vo.scrape}</a></span> <span><a
+										id="scrapeList">${fn:length(vo.scraper)}</a></span>
+								</div>
+							</div>
+							<div class="boarddetailcontents_tags">
+								<div>
+									<h4>Tags</h4>
+									<div>
+										<c:forEach var="tag" items="${vo.tag}">
+											<span> <a href="/board/boardList/tag${tag.tag}">${tag.tag}</a>
+											</span>
+										</c:forEach>
+									</div>
+								</div>
+							</div>
+
+							<div class="boarddetailcontents_reply">
+								<div>
+									<span><b> <a id="replymore">댓글보기</a></b></span> <b>Comments</b>
+									<span id="replycount">${ vo.replycount }</span>
+								</div>
+							</div>
+
+							<div id="reply" style="visibility: hidden;">
+								<div>
+									<form name='commentform' id='commentform'>
+										<input type='text' name='comment'></input> <input
+											type='hidden' name='target' value=''> <input
+											type='hidden' name='bidx' value="${vo.bidx}"> <input
+											type='button' value='submit' onclick='commentSubmit()'>
+									</form>
+								</div>
+							</div>
+							<div id=replycontents></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		>>>>>>> c48c4ae23e5d7ac53befbb966efa7608cddfa4ea >>>>>>>
+		f4877ae0d50f3c9189f9d3bbc89e89f3006af597
 </body>
 </html>
