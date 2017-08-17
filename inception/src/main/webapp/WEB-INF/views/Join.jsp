@@ -10,36 +10,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 
-
-<!-- jQuery -->
-<script
-	src="/resources/startbootstrap-grayscale-gh-pages/vendor/jquery/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script
-	src="/resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- Bootstrap Core CSS -->
-<link
-	href="/resources/startbootstrap-grayscale-gh-pages/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-
-<!-- Custom Fonts -->
-<link
-	href="/resources/startbootstrap-grayscale-gh-pages/vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet" type="text/css">
-
-<!-- Theme CSS -->
-<link
-	href="/resources/startbootstrap-grayscale-gh-pages/css/grayscale.min.css"
-	rel="stylesheet">
-
-
 <script type="text/javascript">
 	$(document).ready(
 			function() {
@@ -76,7 +46,6 @@
 							}
 
 						});
-
 				$("#useremail2").blur(
 						function() {
 							var email1 = $("#useremail").val();
@@ -172,9 +141,9 @@
 
 <body>
 
-	<div class="container-fluid">
-		<jsp:include page="header.jsp" flush="false" />
+	<jsp:include page="header.jsp" flush="false" />
 
+	<div class="container">
 		<div class="row">
 			<div class="col-md-3">
 				<div class="login-box well">
@@ -217,7 +186,11 @@
 						<div class="form-group">
 							<input id="sex" type="radio" name="sex" value="남자"> 남자<br />
 							<input id="sex" type="radio" name="sex" value="여자"> 여자<br />
+							<!--  <label for="sex">SEX</label>
+              <input id="sex" type="text" name="sex" class="form-control" placeholder="Enter Your sex" /> -->
 						</div>
+
+
 
 						<div class="form-group">
 							<input type="submit" id="join"
@@ -231,15 +204,13 @@
 								value="reset" />
 						</div>
 
+
 					</form>
+
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
 </body>
 
 </html>

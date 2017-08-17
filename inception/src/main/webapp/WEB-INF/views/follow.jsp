@@ -5,18 +5,13 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
-	crossorigin="anonymous">
+
 <!--   <script src="follow.js" ></script> -->
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -26,9 +21,11 @@
 				url : "/follow/followcheck",
 				type : "POST",
 				dataType : "text",
-				data : { follow : $(this).attr("id") },
+				data : {
+					follow : $(this).attr("id")
+				},
 				success : function(fck) {
-					$(document).find("button[id="+follow+"]").html(fck);
+					$(document).find("button[id=" + follow + "]").html(fck);
 				}
 			});
 		});
