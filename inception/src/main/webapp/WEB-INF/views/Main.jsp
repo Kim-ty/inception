@@ -93,6 +93,7 @@
 							<c:otherwise>
 								<!-- <a> tag trigger modal -->
 								<a data-toggle="modal" data-target="#loginModal"> Login </a>
+								
 							</c:otherwise>
 						</c:choose></li>
 				</ul>
